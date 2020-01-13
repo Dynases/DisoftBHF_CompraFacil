@@ -9505,7 +9505,7 @@ Public Class AccesoLogica
         Else
             _Where = " cbtimp = " + tImp + " and cbest = 1 order by cbnumi"
         End If
-        _Tabla = D_Datos_Tabla("*", "TC002", _Where)
+        _Tabla = D_Datos_Tabla("*", "TC0002", _Where)
         _Ds.Tables.Add(_Tabla)
         Return _Ds
     End Function

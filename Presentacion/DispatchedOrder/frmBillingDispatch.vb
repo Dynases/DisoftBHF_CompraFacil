@@ -199,53 +199,30 @@ Public Class frmBillingDispatch
         updateTO001C(numi, Str(_NumFac))
         _Ds = L_Reporte_Factura(numi, numi)
 
-        'For I = 0 To _Ds.Tables(0).Rows.Count - 1
-        '    _Ds.Tables(0).Rows(I).Item("fvaimgqr") = P_fnImageToByteArray(QrFactura.Image)
-        'Next
+        ''For I = 0 To _Ds.Tables(0).Rows.Count - 1
+        ''    _Ds.Tables(0).Rows(I).Item("fvaimgqr") = P_fnImageToByteArray(QrFactura.Image)
+        ''Next
         'If (impFactura) Then
         '    _Ds3 = L_ObtenerRutaImpresora("1") ' Datos de Impresion de Facturación
         '    If (_Ds3.Tables(0).Rows(0).Item("cbvp")) Then 'Vista Previa de la Ventana de Vizualización 1 = True 0 = False
         '        P_Global.Visualizador = New Visualizador 'Comentar
         '    End If
-        '    Dim objrep As Object = Nothing
-        '    'If (gi_FacturaTipo = 1) Then
-        '    '    'objrep = New R_FacturaG
-        '    'ElseIf (gi_FacturaTipo = 2) Then
-        '    '    objrep = New R_FacturaCarta
-        '    '    If (Not _Ds.Tables(0).Rows.Count = gi_FacturaCantidadItems) Then
-        '    '        For index = _Ds.Tables(0).Rows.Count To gi_FacturaCantidadItems - 1
-        '    '            'Insertamos la primera fila con el saldo Inicial
-        '    '            Dim f As DataRow = _Ds.Tables(0).NewRow
-        '    '            f.ItemArray() = _Ds.Tables(0).Rows(0).ItemArray
-        '    '            f.Item("fvbcant") = -1
-        '    '            _Ds.Tables(0).Rows.Add(f)
-        '    '        Next
-        '    '    End If
-        '    'End If
 
-        '    'objrep.SetDataSource(_Ds.Tables(0))
-        '    'objrep.SetParameterValue("Hora", _Hora)
-        '    'objrep.SetParameterValue("Direccionpr", _Ds2.Tables(0).Rows(0).Item("scdir").ToString)
-        '    'objrep.SetParameterValue("Telefonopr", _Ds2.Tables(0).Rows(0).Item("sctelf").ToString)
-        '    'objrep.SetParameterValue("Literal1", _Literal)
-        '    'objrep.SetParameterValue("Literal2", " ")
-        '    'objrep.SetParameterValue("Literal3", " ")
-        '    'objrep.SetParameterValue("NroFactura", _NumFac)
-        '    'objrep.SetParameterValue("NroAutoriz", _Autorizacion)
-        '    'objrep.SetParameterValue("ENombre", _Ds2.Tables(0).Rows(0).Item("scneg").ToString) '?
-        '    'objrep.SetParameterValue("ECasaMatriz", _Ds2.Tables(0).Rows(0).Item("scsuc").ToString)
-        '    'objrep.SetParameterValue("ECiudadPais", _Ds2.Tables(0).Rows(0).Item("scpai").ToString)
-        '    'objrep.SetParameterValue("ESFC", _Ds1.Tables(0).Rows(0).Item("sbsfc").ToString)
-        '    'objrep.SetParameterValue("ENit", _Ds2.Tables(0).Rows(0).Item("scnit").ToString)
-        '    'objrep.SetParameterValue("EActividad", _Ds2.Tables(0).Rows(0).Item("scact").ToString)
-        '    'objrep.SetParameterValue("ESms", "''" + _Ds1.Tables(0).Rows(0).Item("sbnota").ToString + "''")
-        '    'objrep.SetParameterValue("ESms2", "''" + _Ds1.Tables(0).Rows(0).Item("sbnota2").ToString + "''")
-        '    'objrep.SetParameterValue("EDuenho", _Ds2.Tables(0).Rows(0).Item("scnom").ToString) '?
-        '    'objrep.SetParameterValue("URLImageLogo", gs_CarpetaRaiz + "\LogoFactura.jpg")
-        '    'objrep.SetParameterValue("URLImageMarcaAgua", gs_CarpetaRaiz + "\MarcaAguaFactura.jpg")
+
+        '    Dim objrep As Object = Nothing
+        '    objrep = New R_FacturaPreImpresa
+
+        '    objrep.SetDataSource(_Ds.Tables(0))
+        '    objrep.SetParameterValue("Hora", _Hora)
+        '    objrep.SetParameterValue("Literal", _Literal)
+
+        '    P_Global.Visualizador.CRV1.ReportSource = objrep
+        '    P_Global.Visualizador.Show()
+        '    P_Global.Visualizador.BringToFront()
+
 
         '    'If (_Ds3.Tables(0).Rows(0).Item("cbvp")) Then 'Vista Previa de la Ventana de Vizualización 1 = True 0 = False
-        '    '    P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
+        '    '    P_Global.Visualizador.CRV1.ReportSource = objrep 'Comentar
         '    '    P_Global.Visualizador.ShowDialog() 'Comentar
         '    '    P_Global.Visualizador.BringToFront() 'Comentar
         '    'End If
@@ -514,7 +491,7 @@ Public Class frmBillingDispatch
             End With
 
             With dgjPedido.RootTable.Columns("NroFactura")
-                .Caption = "Número"
+                .Caption = "Nro. Factura"
                 .Width = 80
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Visible = True

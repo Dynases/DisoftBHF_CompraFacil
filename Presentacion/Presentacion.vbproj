@@ -686,6 +686,12 @@
       <DependentUpon>R_EstadoCuentasClientes.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\R_FacturaPreImpresa.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_FacturaPreImpresa.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\R_GraficaVendedorVentas.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1315,6 +1321,10 @@
     <EmbeddedResource Include="Reportes\R_EstadoCuentasClientes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_EstadoCuentasClientes.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_FacturaPreImpresa.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_FacturaPreImpresa.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_GraficaVendedorVentas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
