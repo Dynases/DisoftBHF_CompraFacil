@@ -321,6 +321,12 @@
     <Compile Include="DispatchedOrder\frmDispatch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DispatchedOrder\Report\DespachoNotaVentaXCliente.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DespachoNotaVentaXCliente.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DispatchedOrder\Report\DespachoXCliente.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1130,6 +1136,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DispatchedOrder\frmDispatch.resx">
       <DependentUpon>frmDispatch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DispatchedOrder\Report\DespachoNotaVentaXCliente.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DespachoNotaVentaXCliente.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="DispatchedOrder\Report\DespachoXCliente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
