@@ -990,7 +990,7 @@ Public Class AccesoLogica
         Else
             _Where = "oanumi=oanumi AND ccnumi=oaccli AND oazona=lanumi AND cecon=2 AND lazona=cenum " + _Cadena
         End If
-        _Tabla = D_Datos_Tabla("DISTINCT oanumi,oafdoc,oahora,cccod,ccdesc,ccdirec,cctelf1,cccat,cczona as oazona,cedesc,oaobs,oaobs2,oaest,cclat,cclongi,oaap,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi)>0,1,0 ) as reclamo,oapg,ccultvent,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi and oftip=1)>0,1,0 ) as tipoRecCliente,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi and oftip=2)>0,1,0 ) as tipoRecRepartidor, ccnumi, cceven", "TO001,TC004,TC0051,TL001", _Where + " order by oanumi")
+        _Tabla = D_Datos_Tabla("DISTINCT oanumi,oafdoc,oahora,cccod,ccdesc,ccdirec,cctelf1,cccat,cczona as oazona,cedesc,oaobs,oaobs2,oaest,cclat,cclongi,oaap,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi)>0,1,0 ) as reclamo,oapg,ccultvent,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi and oftip=1)>0,1,0 ) as tipoRecCliente,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi and oftip=2)>0,1,0 ) as tipoRecRepartidor, ccnumi, cceven,cast((select sum(obptot )  from TO0011 where obnumi =oanumi) as decimal(18,2)) as monto", "TO001,TC004,TC0051,TL001", _Where + " order by oanumi")
         Return _Tabla
     End Function
 
@@ -1036,8 +1036,8 @@ Public Class AccesoLogica
                                + "oapg,ccultvent," _
                                + "IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi And oftip=1)>0,1,0 ) as tipoRecCliente," _
                                + "IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi And oftip=2)>0,1,0 ) as tipoRecRepartidor," _
-                               + "ccnumi, cceven",
-                               "TO001,TC004,TC0051,TL001,TL0012",
+                                + "ccnumi, cceven,cast((select sum(obptot )  from TO0011 where obnumi =oanumi) as decimal(18,2)) as monto",
+                              "TO001,TC004,TC0051,TL001,TL0012",
                                _Where + " order by oanumi")
         Return _Tabla
     End Function
@@ -1318,6 +1318,71 @@ Public Class AccesoLogica
         _Err = D_Insertar_Datos("TO0012", Sql)
     End Sub
 
+    Public Shared Function L_prPedidoNotaVenta(oanumi As Integer) As DataTable
+        Dim _resultado As Boolean
+        '@olnumi,@olnumichof ,@olnumiconci ,@olfecha ,@newFecha ,@newHora ,@oluact
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 22))
+        _listParam.Add(New Datos.DParametro("@oanumi", oanumi))
+        _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TO005", _listParam)
+
+
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prGrabarTO001C(oanumi As Integer, chofer As Double) As Boolean
+        Dim _resultado As Boolean
+        '@olnumi,@olnumichof ,@olnumiconci ,@olfecha ,@newFecha ,@newHora ,@oluact
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 23))
+        _listParam.Add(New Datos.DParametro("@oanumi", oanumi))
+        _listParam.Add(New Datos.DParametro("@chofer", chofer))
+        _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TO005", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_prListaPedidos() As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 20))
+        _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TO005", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_prCajaGrabarCredito(oanumi As Integer, credito As Double) As Boolean
+        Dim _resultado As Boolean
+        '@olnumi,@olnumichof ,@olnumiconci ,@olfecha ,@newFecha ,@newHora ,@oluact
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 21))
+        _listParam.Add(New Datos.DParametro("@oanumi", oanumi))
+        _listParam.Add(New Datos.DParametro("@credito", credito))
+        _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TO005", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
     'DETALLE DE RECLAMOS
     Public Shared Function L_PedidoReclamosVistaReporte(_Modo As Integer, _del As String, _al As String, Optional _numiRepart As String = "") As DataTable
         Dim _Tabla As DataTable
