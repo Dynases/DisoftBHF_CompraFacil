@@ -1324,7 +1324,7 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", 22))
+        _listParam.Add(New Datos.DParametro("@tipo", 24))
         _listParam.Add(New Datos.DParametro("@oanumi", oanumi))
         _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TO005", _listParam)
@@ -1339,7 +1339,7 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", 23))
+        _listParam.Add(New Datos.DParametro("@tipo", 25))
         _listParam.Add(New Datos.DParametro("@oanumi", oanumi))
         _listParam.Add(New Datos.DParametro("@chofer", chofer))
         _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
@@ -1357,7 +1357,7 @@ Public Class AccesoLogica
     Public Shared Function L_prListaPedidos() As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
-        _listParam.Add(New Datos.DParametro("@tipo", 20))
+        _listParam.Add(New Datos.DParametro("@tipo", 22))
         _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TO005", _listParam)
         Return _Tabla
@@ -1368,7 +1368,7 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", 21))
+        _listParam.Add(New Datos.DParametro("@tipo", 23))
         _listParam.Add(New Datos.DParametro("@oanumi", oanumi))
         _listParam.Add(New Datos.DParametro("@credito", credito))
         _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))

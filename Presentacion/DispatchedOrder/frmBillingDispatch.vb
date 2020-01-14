@@ -199,6 +199,24 @@ Public Class frmBillingDispatch
         updateTO001C(numi, Str(_NumFac))
         _Ds = L_Reporte_Factura(numi, numi)
 
+        _Ds3 = L_ObtenerRutaImpresora("1") ' Datos de Impresion de Facturación
+
+        P_Global.Visualizador = New Visualizador
+        Dim objrep As New R_FacturaPreImpresa
+
+        objrep.SetDataSource(_Ds.Tables(0))
+        objrep.SetParameterValue("Literal", _Literal)
+        'objrep.PrintOptions.PrinterName = "L4150 Series(Red) (Copiar 1)"
+
+        'P_Global.Visualizador.CRV1.ReportSource = objrep
+        'P_Global.Visualizador.Show()
+        'P_Global.Visualizador.BringToFront()
+        objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
+        objrep.PrintToPrinter(1, False, 1, 1)
+
+
+
+
         ''For I = 0 To _Ds.Tables(0).Rows.Count - 1
         ''    _Ds.Tables(0).Rows(I).Item("fvaimgqr") = P_fnImageToByteArray(QrFactura.Image)
         ''Next
