@@ -4361,7 +4361,7 @@ Public Class AccesoLogica
             _Where = _where1
         End If
 
-        Dim campos As String = "canumi,cacod,cadesc,cadesc2,caest,iacprod,iacant,cenum,cedesc "
+        Dim campos As String = "canumi,cacod,cadesc,cadesc2,caest,iacprod,iacant, caconv, cenum,cedesc "
         _Tabla = D_Datos_Tabla(campos, "VR_stockActual", _Where + " order by cadesc")
         Return _Tabla
     End Function

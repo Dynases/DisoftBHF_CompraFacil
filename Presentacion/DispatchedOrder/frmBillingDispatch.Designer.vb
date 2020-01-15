@@ -35,6 +35,7 @@ Partial Class frmBillingDispatch
         Me.btReporteDespachoLinea = New DevComponents.DotNetBar.ButtonX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.cbChoferes = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.QrFactura = New Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl()
         Me.PanelBase.SuspendLayout()
         Me.PanelPedido.SuspendLayout()
         CType(Me.dgjPedido, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -42,6 +43,7 @@ Partial Class frmBillingDispatch
         CType(Me.dgjProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelSuperior.SuspendLayout()
         CType(Me.cbChoferes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.QrFactura, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelBase
@@ -74,6 +76,7 @@ Partial Class frmBillingDispatch
         '
         'PanelProducto
         '
+        Me.PanelProducto.Controls.Add(Me.QrFactura)
         Me.PanelProducto.Controls.Add(Me.dgjProducto)
         Me.PanelProducto.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelProducto.Location = New System.Drawing.Point(0, 350)
@@ -170,6 +173,21 @@ Partial Class frmBillingDispatch
         Me.cbChoferes.Size = New System.Drawing.Size(200, 20)
         Me.cbChoferes.TabIndex = 2
         '
+        'QrFactura
+        '
+        Me.QrFactura.ErrorCorrectLevel = Gma.QrCodeNet.Encoding.ErrorCorrectionLevel.M
+        Me.QrFactura.Image = CType(resources.GetObject("QrFactura.Image"), System.Drawing.Image)
+        Me.QrFactura.Location = New System.Drawing.Point(694, 5)
+        Me.QrFactura.Margin = New System.Windows.Forms.Padding(2)
+        Me.QrFactura.Name = "QrFactura"
+        Me.QrFactura.QuietZoneModule = Gma.QrCodeNet.Encoding.Windows.Render.QuietZoneModules.Two
+        Me.QrFactura.Size = New System.Drawing.Size(95, 90)
+        Me.QrFactura.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.QrFactura.TabIndex = 23
+        Me.QrFactura.TabStop = False
+        Me.QrFactura.Text = "QrCodeImgControl1"
+        Me.QrFactura.Visible = False
+        '
         'frmBillingDispatch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -186,6 +204,7 @@ Partial Class frmBillingDispatch
         Me.PanelSuperior.ResumeLayout(False)
         Me.PanelSuperior.PerformLayout()
         CType(Me.cbChoferes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.QrFactura, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -201,4 +220,5 @@ Partial Class frmBillingDispatch
     Friend WithEvents dgjPedido As Janus.Windows.GridEX.GridEX
     Friend WithEvents dgjProducto As Janus.Windows.GridEX.GridEX
     Friend WithEvents btReporteDespachoCliente As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents QrFactura As Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl
 End Class

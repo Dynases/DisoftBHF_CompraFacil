@@ -478,7 +478,7 @@ Public Class F0_MCaja
             .Width = 120
             .AggregateFunction = AggregateFunction.Sum
             '.Visible = (gi_vcre2 = 1)
-            .Visible = False
+            .Visible = True
             .FormatString = "0.00"
         End With
         With grtotalpedidos.RootTable.Columns("oarepa")
@@ -573,7 +573,7 @@ Public Class F0_MCaja
             .Caption = "CREDITO"
             .Width = 120
             '.Visible = (gi_vcre2 = 1)
-            .Visible = False
+            .Visible = True
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
         End With

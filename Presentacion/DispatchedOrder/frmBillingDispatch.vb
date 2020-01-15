@@ -132,7 +132,7 @@ Public Class frmBillingDispatch
         Dim I, _NumFac, _numidosif, _TotalCC As Integer
         Dim ice, _Desc, _TotalLi As Decimal
         Dim _VistaPrevia As Integer = 0
-        Dim QrFactura As String
+        Dim QrFactura1 As String
 
         _Desc = CDbl(0)
         If Not IsNothing(P_Global.Visualizador) Then
@@ -170,7 +170,7 @@ Public Class frmBillingDispatch
         'Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(_Total) - CDbl(_TotalDecimal)) + " con " + IIf(_TotalDecimal2.Equals("0"), "00", _TotalDecimal2) + "/100 Bolivianos"
         _Literal = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(_TotalLi) - CDbl(_TotalDecimal)) + " con " + IIf(_TotalDecimal2.Equals("0"), "00", _TotalDecimal2) + "/100 Bolivianos"
         _Ds2 = L_Reporte_Factura_Cia("1")
-        QrFactura = _Ds2.Tables(0).Rows(0).Item("scnit").ToString + "|" + Str(_NumFac).Trim + "|" + _Autorizacion + "|" + _Fecha + "|" + _Total + "|" + _TotalLi.ToString + "|" + _Cod_Control + "|" + nit + "|" + ice.ToString + "|0|0|" + Str(_Desc).Trim
+        QrFactura.Text = _Ds2.Tables(0).Rows(0).Item("scnit").ToString + "|" + Str(_NumFac).Trim + "|" + _Autorizacion + "|" + _Fecha + "|" + _Total + "|" + _TotalLi.ToString + "|" + _Cod_Control + "|" + nit + "|" + ice.ToString + "|0|0|" + Str(_Desc).Trim
 
         L_Modificar_Factura("fvanumi = " + CStr(numi),
                             "",
@@ -201,16 +201,16 @@ Public Class frmBillingDispatch
 
         _Ds3 = L_ObtenerRutaImpresora("1") ' Datos de Impresion de Facturación
 
+        For I = 0 To _Ds.Tables(0).Rows.Count - 1
+            _Ds.Tables(0).Rows(I).Item("fvaimgqr") = P_fnImageToByteArray(QrFactura.Image)
+        Next
         P_Global.Visualizador = New Visualizador
         Dim objrep As New R_FacturaPreImpresa
 
         objrep.SetDataSource(_Ds.Tables(0))
         objrep.SetParameterValue("Literal", _Literal)
+        objrep.SetParameterValue("Ley", _Ds1.Tables(0).Rows(0).Item("yenota").ToString())
         'objrep.PrintOptions.PrinterName = "L4150 Series(Red) (Copiar 1)"
-
-        'P_Global.Visualizador.CRV1.ReportSource = objrep
-        'P_Global.Visualizador.Show()
-        'P_Global.Visualizador.BringToFront()
         objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
         objrep.PrintToPrinter(1, False, 1, 1)
 
@@ -267,7 +267,11 @@ Public Class frmBillingDispatch
         'End If
         L_Actualiza_Dosificacion(_numidosif, _NumFac, numi)
     End Sub
-
+    Public Function P_fnImageToByteArray(ByVal imageIn As Image) As Byte()
+        Dim ms As New System.IO.MemoryStream()
+        imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+        Return ms.ToArray()
+    End Function
     Private Function P_fnGrabarFacturarTFV001(numi As String, total As Double, nit As String, nameCliente As String) As Boolean
         Dim a As Double = total
         Dim b As Double = CDbl(0) 'Ya esta calculado el 55% del ICE
