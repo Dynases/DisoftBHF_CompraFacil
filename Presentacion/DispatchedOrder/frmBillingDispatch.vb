@@ -7,6 +7,8 @@ Imports UTILITIES
 Imports Facturacion
 Imports Logica.AccesoLogica
 
+
+
 Public Class frmBillingDispatch
 
     Public _nameButton As String
@@ -205,7 +207,7 @@ Public Class frmBillingDispatch
             _Ds.Tables(0).Rows(I).Item("fvaimgqr") = P_fnImageToByteArray(QrFactura.Image)
         Next
         P_Global.Visualizador = New Visualizador
-        Dim objrep As New R_FacturaPreImpresa
+        Dim objrep As New R_FacturaPreImpresa1
 
         objrep.SetDataSource(_Ds.Tables(0))
         objrep.SetParameterValue("Literal", _Literal)
@@ -213,8 +215,6 @@ Public Class frmBillingDispatch
         'objrep.PrintOptions.PrinterName = "L4150 Series(Red) (Copiar 1)"
         objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
         objrep.PrintToPrinter(1, False, 1, 1)
-
-
 
 
         ''For I = 0 To _Ds.Tables(0).Rows.Count - 1
