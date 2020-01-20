@@ -70,7 +70,7 @@ Public Class frmBillingDispatch
                 GrabarTV001(Str(list1(i).Id))
                 Dim dtDetalle As DataTable = L_prObtenerDetallePedidoFactura(Str(list1(i).Id))
 
-                P_fnGenerarFactura(dtDetalle.Rows(0).Item("oanumi"), dtDetalle.Rows(0).Item("total"), dtDetalle.Rows(0).Item("nit"), dtDetalle.Rows(0).Item("cliente"))
+                P_fnGenerarFactura(dtDetalle.Rows(0).Item("oanumi"), dtDetalle.Rows(0).Item("total"), dtDetalle.Rows(0).Item("nit"), dtDetalle.Rows(0).Item("cliente"), dtDetalle.Rows(0).Item("codcli"))
 
             Next
 
@@ -99,9 +99,9 @@ Public Class frmBillingDispatch
         Return True
     End Function
 
-    Private Function P_fnGenerarFactura(numi As String, total As Double, nit As String, Nombre As String) As Boolean
+    Private Function P_fnGenerarFactura(numi As String, total As Double, nit As String, Nombre As String, Codcli As String) As Boolean
         Dim res As Boolean = False
-        res = P_fnGrabarFacturarTFV001(numi, total, nit, Nombre) ' Grabar en la TFV001
+        res = P_fnGrabarFacturarTFV001(numi, total, nit, Nombre, Codcli) ' Grabar en la TFV001
         If (res) Then
             If (P_fnValidarFactura()) Then
                 'Validar para facturar
@@ -208,9 +208,53 @@ Public Class frmBillingDispatch
         Next
         P_Global.Visualizador = New Visualizador
         Dim objrep As New R_FacturaPreImpresa1
+        Dim dia, mes, ano As Integer
+        Dim Fecliteral, mesl As String
+        Fecliteral = _Ds.Tables(0).Rows(0).Item("fvafec").ToString
+        dia = Microsoft.VisualBasic.Left(Fecliteral, 2)
+        mes = Microsoft.VisualBasic.Mid(Fecliteral, 4, 2)
+        ano = Microsoft.VisualBasic.Mid(Fecliteral, 7, 4)
+        If mes = 1 Then
+            mesl = "Enero"
+        End If
+        If mes = 2 Then
+            mesl = "Febrero"
+        End If
+        If mes = 3 Then
+            mesl = "Marzo"
+        End If
+        If mes = 4 Then
+            mesl = "Abril"
+        End If
+        If mes = 5 Then
+            mesl = "Mayo"
+        End If
+        If mes = 6 Then
+            mesl = "Junio"
+        End If
+        If mes = 7 Then
+            mesl = "Julio"
+        End If
+        If mes = 8 Then
+            mesl = "Agosto"
+        End If
+        If mes = 9 Then
+            mesl = "Septiembre"
+        End If
+        If mes = 10 Then
+            mesl = "Octubre"
+        End If
+        If mes = 11 Then
+            mesl = "Noviembre"
+        End If
+        If mes = 12 Then
+            mesl = "Diciembre"
+        End If
 
+        Fecliteral = "Cochabamba, " + dia.ToString + " de " + mesl + " del " + ano.ToString
         objrep.SetDataSource(_Ds.Tables(0))
         objrep.SetParameterValue("Literal", _Literal)
+        objrep.SetParameterValue("Fechali", Fecliteral)
         objrep.SetParameterValue("Ley", _Ds1.Tables(0).Rows(0).Item("yenota").ToString())
         'objrep.PrintOptions.PrinterName = "L4150 Series(Red) (Copiar 1)"
         objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
@@ -272,7 +316,7 @@ Public Class frmBillingDispatch
         imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
         Return ms.ToArray()
     End Function
-    Private Function P_fnGrabarFacturarTFV001(numi As String, total As Double, nit As String, nameCliente As String) As Boolean
+    Private Function P_fnGrabarFacturarTFV001(numi As String, total As Double, nit As String, nameCliente As String, Codcli As String) As Boolean
         Dim a As Double = total
         Dim b As Double = CDbl(0) 'Ya esta calculado el 55% del ICE
         Dim c As Double = CDbl("0")
@@ -288,7 +332,7 @@ Public Class frmBillingDispatch
                         Now.Date.ToString("yyyy/MM/dd"), "0", "0",
                         "1",
                         nit,
-                        "0",
+                        Codcli,
                        nameCliente,
                         "",
                         CStr(Format(a, "####0.00")),
