@@ -9685,4 +9685,316 @@ Public Class AccesoLogica
     End Function
 
 #End Region
+
+#Region "TV001 Ventas"
+    Public Shared Function L_fnGeneralVenta() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnDetalleVenta(_numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@tanumi", _numi))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnVentaNotaDeVenta(_numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 10))
+        _listParam.Add(New Datos.DParametro("@tanumi", _numi))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnVentaFactura(_numi As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 13))
+        _listParam.Add(New Datos.DParametro("@tanumi", _numi))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnListarProductos(_almacen As String, _cliente As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@cliente", _cliente))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Marco_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarProductosFiltradoCompuesto(_almacen As String, _cliente As String, _grup1 As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 14))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@cliente", _cliente))
+        _listParam.Add(New Datos.DParametro("@grupo1", _grup1))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Marco_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarProductosFiltradoAccion(_almacen As String, _cliente As String, _grup2 As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 15))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@cliente", _cliente))
+        _listParam.Add(New Datos.DParametro("@grupo2", _grup2))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Marco_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+
+
+    'funcion para llenar los datos de la grilla en la venta
+    Public Shared Function L_fnListarProductosC(_yfcBarra As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 11))
+        _listParam.Add(New Datos.DParametro("@yfcbarra", _yfcBarra))
+        '_listParam.Add(New Datos.DParametro("@cliente", _cliente))
+        '_listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        '_listParam.Add(New Datos.DParametro("@TV0011", "", _detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+
+
+        Return _Tabla
+
+    End Function
+
+    Public Shared Function L_fnListarProductosSinLote(_almacen As String, _cliente As String, _detalle As DataTable) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 9))
+        _listParam.Add(New Datos.DParametro("@almacen", _almacen))
+        _listParam.Add(New Datos.DParametro("@cliente", _cliente))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@TV0011", "", _detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnListarClientes() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarProforma() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 11))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarProductoProforma(_panumi As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 12))
+        _listParam.Add(New Datos.DParametro("@panumi", _panumi))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        Return _Tabla
+    End Function
+    'Public Shared Function L_fnListarEmpleado() As DataTable
+    '    Dim _Tabla As DataTable
+
+    '    Dim _listParam As New List(Of Datos.DParametro)
+    '    _listParam.Add(New Datos.DParametro("@tipo", 7))
+    '    _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+    '    Return _Tabla
+    'End Function
+
+    Public Shared Function L_fnGrabarVenta(ByRef _tanumi As String, _taidCorelativo As String, _tafdoc As String, _taven As Integer, _tatven As Integer, _tafvcr As String, _taclpr As Integer,
+                                           _tamon As Integer, _taobs As String,
+                                           _tadesc As Double, _taice As Double,
+                                           _tatotal As Double, detalle As DataTable, _almacen As Integer, _taprforma As Integer, _emision As Integer) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+        '    @tanumi ,@taalm,@tafdoc ,@taven  ,@tatven,
+        '@tafvcr ,@taclpr,@tamon ,@taest  ,@taobs ,@tadesc ,@newFecha,@newHora,@tauact,@taproforma
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@tanumi", _tanumi))
+        _listParam.Add(New Datos.DParametro("@taproforma", _taprforma))
+        _listParam.Add(New Datos.DParametro("@taidCore", _taidCorelativo))
+        _listParam.Add(New Datos.DParametro("@taalm", _almacen))
+        _listParam.Add(New Datos.DParametro("@tafdoc", _tafdoc))
+        _listParam.Add(New Datos.DParametro("@taven", _taven))
+        _listParam.Add(New Datos.DParametro("@tatven", _tatven))
+        _listParam.Add(New Datos.DParametro("@tafvcr", _tafvcr))
+        _listParam.Add(New Datos.DParametro("@taclpr", _taclpr))
+        _listParam.Add(New Datos.DParametro("@tamon", _tamon))
+        _listParam.Add(New Datos.DParametro("@taest", 1))
+        _listParam.Add(New Datos.DParametro("@taobs", _taobs))
+        _listParam.Add(New Datos.DParametro("@tadesc", _tadesc))
+        _listParam.Add(New Datos.DParametro("@taice", _taice))
+        _listParam.Add(New Datos.DParametro("@tatotal", _tatotal))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@taemision", _emision))
+        _listParam.Add(New Datos.DParametro("@TV0011", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+
+        If _Tabla.Rows.Count > 0 Then
+            _tanumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnModificarVenta(_tanumi As String, _tafdoc As String, _taven As Integer, _tatven As Integer, _tafvcr As String, _taclpr As Integer,
+                                           _tamon As Integer, _taobs As String,
+                                           _tadesc As Double, _taice As Double, _tatotal As Double, detalle As DataTable, _almacen As Integer, _taprforma As Integer, _emision As Integer) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@tanumi", _tanumi))
+        _listParam.Add(New Datos.DParametro("@taalm", _almacen))
+        _listParam.Add(New Datos.DParametro("@taproforma", _taprforma))
+        _listParam.Add(New Datos.DParametro("@tafdoc", _tafdoc))
+        _listParam.Add(New Datos.DParametro("@taven", _taven))
+        _listParam.Add(New Datos.DParametro("@tatven", _tatven))
+        _listParam.Add(New Datos.DParametro("@tafvcr", _tafvcr))
+        _listParam.Add(New Datos.DParametro("@taclpr", _taclpr))
+        _listParam.Add(New Datos.DParametro("@tamon", _tamon))
+        _listParam.Add(New Datos.DParametro("@taest", 1))
+        _listParam.Add(New Datos.DParametro("@taobs", _taobs))
+        _listParam.Add(New Datos.DParametro("@tadesc", _tadesc))
+        _listParam.Add(New Datos.DParametro("@taice", _taice))
+        _listParam.Add(New Datos.DParametro("@tatotal", _tatotal))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@taemision", _emision))
+        _listParam.Add(New Datos.DParametro("@TV0011", "", detalle))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+
+        If _Tabla.Rows.Count > 0 Then
+            _tanumi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
+    Public Shared Function L_fnEliminarVenta(numi As String, ByRef mensaje As String) As Boolean
+        Dim _resultado As Boolean
+        If L_fnbValidarEliminacion(numi, "TV001", "tanumi", mensaje) = True Then
+            Dim _Tabla As DataTable
+            Dim _listParam As New List(Of Datos.DParametro)
+
+            _listParam.Add(New Datos.DParametro("@tipo", -1))
+            _listParam.Add(New Datos.DParametro("@tanumi", numi))
+            _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+            _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+            If _Tabla.Rows.Count > 0 Then
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnVerificarSiSeContabilizoVenta(_tanumi As String) As Boolean
+        Dim _Tabla As DataTable
+        Dim _resultado As Boolean
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 14))
+        _listParam.Add(New Datos.DParametro("@tanumi", _tanumi))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_fnVerificarPagosVentas(numi As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 15))
+        _listParam.Add(New Datos.DParametro("@tanumi", numi))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnNameLabel() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        Return _Tabla
+    End Function
+#End Region
 End Class

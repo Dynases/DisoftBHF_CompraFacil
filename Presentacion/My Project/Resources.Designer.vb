@@ -61,6 +61,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Public ReadOnly Property _14() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("14", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Busca un recurso adaptado de tipo System.Byte[].
         '''</summary>
         Public ReadOnly Property _DEFAULT1() As Byte()

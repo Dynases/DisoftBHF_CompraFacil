@@ -36,7 +36,7 @@ Partial Class Form1
         Me.btgrupo2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.btgrupo2.BackColor = System.Drawing.Color.Transparent
         Me.btgrupo2.ColorTable = DevComponents.DotNetBar.eButtonColor.Flat
-        Me.btgrupo2.Image = Global.Presentacion.My.Resources.Resources.add
+        Me.btgrupo2.Image = Global.Presentacion.My.Resources.Resources._14
         Me.btgrupo2.ImageFixedSize = New System.Drawing.Size(25, 23)
         Me.btgrupo2.Location = New System.Drawing.Point(386, 214)
         Me.btgrupo2.Name = "btgrupo2"

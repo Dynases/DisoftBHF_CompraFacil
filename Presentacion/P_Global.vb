@@ -76,7 +76,15 @@ Module P_Global
     Public G_NroLinea As String = ""
 
 #End Region
+    Public gb_FacturaEmite As Boolean = True 'Emite factura? true=Sistema factura; false=Sistema no factura 
+    Public gi_FacturaTipo As Byte = 2 'Tipo de Factura, 1=Ticket, 2=Hoja Carta
+    Public gi_FacturaCantidadItems As Byte = 20 'Cantidad de items para la factura, 0 es sin limite
+    Public gb_FacturaIncluirICE As Boolean = False 'Incluir en Importe ICE / IEHD / TASAS?, true=Si se incluye, false=No se incluye
+    Public gb_CodigoBarra As Boolean = False 'False=No habilita la venta con lector de codigo de barra, True=Si habilita la venta con lector de codigo de barra
+    Public gb_DetalleProducto As Boolean = False 'False=No habilita ingreso de detalle de producto, True=Si habilita el ingreso de detalle de producto
 
+    Public gi_IVA As Decimal = 13 'Valor por defecto 13 = IVA actual Bolivia 2016
+    Public gi_ICE As Decimal = 55 'Valor por defecto 55 = ICE actual Bolivia 2016
 #Region "Metodos"
 
     'Tipos de Modos
