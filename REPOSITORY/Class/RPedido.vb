@@ -21,7 +21,8 @@ Public Class RPedido
                                       .Id = a.oanumi,
                                       .Fecha = a.oafdoc,
                                       .NombreCliente = b.ccdesc,
-                                      .NombreVendedor = c.cbdesc
+                                      .NombreVendedor = c.cbdesc,
+                                      .idZona = a.oazona
                                       }).ToList()
                 Return listResult
             End Using
@@ -44,7 +45,8 @@ Public Class RPedido
                                       .Fecha = a.oafdoc,
                                       .NombreCliente = b.ccdesc,
                                       .NombreVendedor = c.cbdesc,
-                                      .NroFactura = d.oacnrofac
+                                      .NroFactura = d.oacnrofac,
+                                      .idZona = a.oazona
                                       }).ToList()
                 Return listResult
             End Using
@@ -85,9 +87,11 @@ Public Class RPedido
                                       .cccod = a.cccod,
                                       .ccdesc = a.ccdesc,
                                       .oacnrofact = a.oacnrofact,
-                                      .obptot = a.obptot
+                                      .obptot = a.obptot,
+                                      .IdZona = a.IdZona
                                       }).ToList()
                 Return listResult
+
             End Using
         Catch ex As Exception
             Throw New Exception(ex.Message)

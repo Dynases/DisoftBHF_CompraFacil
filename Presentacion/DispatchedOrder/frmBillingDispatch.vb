@@ -542,18 +542,25 @@ Public Class frmBillingDispatch
 
             With dgjPedido.RootTable.Columns("NombreVendedor")
                 .Caption = "Vendedor"
-                .Width = 400
+                .Width = 250
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
                 .Visible = True
                 .Position = 3
             End With
 
+            With dgjPedido.RootTable.Columns("idZona")
+                .Caption = "Zona"
+                .Width = 150
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .Visible = True
+                .Position = 4
+            End With
             With dgjPedido.RootTable.Columns("EstaFacturado")
                 .Caption = "Facturado"
                 .Width = 80
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
                 .Visible = False
-                .Position = 4
+                .Position = 5
             End With
 
             With dgjPedido.RootTable.Columns("NroFactura")
@@ -561,7 +568,7 @@ Public Class frmBillingDispatch
                 .Width = 80
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Visible = True
-                .Position = 5
+                .Position = 6
             End With
 
             With dgjPedido

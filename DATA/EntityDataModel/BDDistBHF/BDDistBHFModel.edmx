@@ -29,27 +29,6 @@
           <Property Name="mbhact" Type="nvarchar" MaxLength="5" />
           <Property Name="mbuact" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.Personal' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Personal">
-          <Property Name="codper" Type="int" />
-          <Property Name="fecha" Type="date" />
-          <Property Name="sueldo" Type="numeric" Precision="18" Scale="2" />
-          <Property Name="Ci" Type="nvarchar" MaxLength="200" />
-          <Property Name="nombre" Type="nvarchar" MaxLength="200" />
-          <Property Name="obser" Type="nvarchar" MaxLength="400" />
-          <Property Name="direccion" Type="nvarchar" MaxLength="400" />
-          <Property Name="fechnac" Type="date" />
-          <Property Name="fechret" Type="date" />
-          <Property Name="foto" Type="nvarchar" MaxLength="200" />
-          <Property Name="activo" Type="int" />
-          <Property Name="categoria" Type="nvarchar" MaxLength="200" />
-          <Property Name="telefono" Type="nvarchar" MaxLength="200" />
-          <Property Name="Ecivil" Type="nvarchar" MaxLength="200" />
-          <Property Name="fechareg" Type="date" />
-          <Property Name="horareg" Type="nvarchar" MaxLength="5" />
-          <Property Name="usuarioreg" Type="nvarchar" MaxLength="200" />
-        </EntityType>-->
         <EntityType Name="TA001">
           <Key>
             <PropertyRef Name="aaId" />
@@ -75,40 +54,6 @@ advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.Personal' no tiene definida
           <Property Name="bahact" Type="nvarchar" MaxLength="5" />
           <Property Name="bauact" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TB002' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TB002">
-          <Property Name="bbnumi" Type="int" />
-          <Property Name="bbtran" Type="int" />
-          <Property Name="bbtori" Type="nvarchar" MaxLength="10" />
-          <Property Name="bbcori" Type="nchar" MaxLength="10" />
-          <Property Name="bbtdes" Type="nchar" MaxLength="10" />
-          <Property Name="bbcdes" Type="nchar" MaxLength="10" />
-          <Property Name="bbprog" Type="nvarchar" MaxLength="30" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC000' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC000">
-          <Property Name="cnumi" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC0001' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC0001">
-          <Property Name="cccnumi" Type="int" />
-          <Property Name="cccmapa" Type="int" />
-          <Property Name="cccnotiped" Type="int" />
-          <Property Name="cccvcre" Type="int" />
-          <Property Name="cccvdes" Type="int" />
-          <Property Name="cccvccli" Type="int" />
-          <Property Name="cccvacu" Type="int" />
-          <Property Name="cccftp" Type="int" />
-          <Property Name="cccvcre2" Type="int" />
-          <Property Name="cccmprec" Type="int" />
-          <Property Name="cccadev" Type="int" />
-          <Property Name="ccprecapp" Type="int" />
-          <Property Name="ccstock" Type="int" />
-          <Property Name="cccdespacho" Type="int" />
-        </EntityType>-->
         <EntityType Name="TC001">
           <Key>
             <PropertyRef Name="canumi" />
@@ -185,20 +130,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TC0012' no tiene definida n
           <Property Name="cbhact" Type="nvarchar" MaxLength="5" />
           <Property Name="cbuact" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC0021' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC0021">
-          <Property Name="chnumi" Type="int" />
-          <Property Name="chano" Type="int" />
-          <Property Name="chmes" Type="int" />
-          <Property Name="chsueldo" Type="decimal" Precision="18" Scale="2" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC0022' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC0022">
-          <Property Name="cknumi" Type="int" />
-          <Property Name="ckidfsm" Type="nvarchar" MaxLength="250" />
-        </EntityType>-->
         <EntityType Name="TC003">
           <Key>
             <PropertyRef Name="chnumi" />
@@ -280,17 +211,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TC0041' no tiene definida n
           <Property Name="cpcat" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC004A' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC004A">
-          <Property Name="ccatc4numi" Type="int" />
-          <Property Name="ccatacu" Type="int" />
-          <Property Name="ccafini" Type="date" />
-          <Property Name="ccaffin" Type="date" />
-          <Property Name="ccafre" Type="int" />
-          <Property Name="ccaest" Type="int" />
-          <Property Name="ccaobs" Type="nvarchar" MaxLength="200" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TC004A1' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TC004A1">
           <Key>
@@ -343,18 +263,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TC004A2' no tiene definida 
           <Property Name="cehact" Type="nvarchar" MaxLength="50" />
           <Property Name="ceuact" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC005C' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC005C">
-          <Property Name="canumi" Type="int" />
-          <Property Name="canombre" Type="nvarchar" MaxLength="200" />
-          <Property Name="cadesc" Type="nvarchar" MaxLength="200" />
-          <Property Name="caimg" Type="nvarchar" MaxLength="50" />
-          <Property Name="caest" Type="int" />
-          <Property Name="cafact" Type="date" />
-          <Property Name="cahact" Type="nvarchar" MaxLength="5" />
-          <Property Name="cauact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
         <EntityType Name="TC006">
           <Key>
             <PropertyRef Name="cfid" />
@@ -365,47 +273,6 @@ advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC005C' no tiene definida u
           <Property Name="cfhact" Type="nvarchar" MaxLength="5" />
           <Property Name="cfuact" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC0061' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC0061">
-          <Property Name="cgcfid" Type="int" />
-          <Property Name="cgcon" Type="int" />
-          <Property Name="cgconp" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC007' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC007">
-          <Property Name="cinumi" Type="int" />
-          <Property Name="cicod" Type="nvarchar" MaxLength="10" />
-          <Property Name="cidesc" Type="nvarchar" MaxLength="80" />
-          <Property Name="cifact" Type="date" />
-          <Property Name="cihact" Type="nvarchar" MaxLength="5" />
-          <Property Name="ciuact" Type="nvarchar" MaxLength="10" />
-          <Property Name="citcv" Type="bit" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC008' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC008">
-          <Property Name="cjnumi" Type="int" />
-          <Property Name="cjusuario" Type="int" />
-          <Property Name="cjpara" Type="int" />
-          <Property Name="cjnota" Type="nvarchar" MaxLength="2000" />
-          <Property Name="cjfecha" Type="date" />
-          <Property Name="cjhora" Type="nvarchar" MaxLength="5" />
-          <Property Name="cjleido" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC009' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC009">
-          <Property Name="cknumi" Type="int" />
-          <Property Name="ckdesc" Type="nvarchar" MaxLength="50" />
-          <Property Name="ckest" Type="int" />
-          <Property Name="ckpdf" Type="nvarchar" MaxLength="20" />
-          <Property Name="ckobs" Type="nvarchar" MaxLength="200" />
-          <Property Name="ckfact" Type="date" />
-          <Property Name="ckhact" Type="nvarchar" MaxLength="5" />
-          <Property Name="ckuact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TC0091' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TC0091">
@@ -418,22 +285,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TC0091' no tiene definida n
           <Property Name="cllin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="clcopy" Type="bit" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC010' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TC010">
-          <Property Name="cmnumi" Type="int" />
-          <Property Name="cmdesc" Type="nvarchar" MaxLength="50" />
-          <Property Name="cmtelf" Type="nvarchar" MaxLength="20" />
-          <Property Name="cmemail" Type="nvarchar" MaxLength="50" />
-          <Property Name="cmest" Type="int" />
-          <Property Name="cmobs" Type="nvarchar" MaxLength="200" />
-          <Property Name="cmrsocial" Type="nvarchar" MaxLength="50" />
-          <Property Name="cmnit" Type="nvarchar" MaxLength="20" />
-          <Property Name="cmfact" Type="date" />
-          <Property Name="cmhact" Type="nvarchar" MaxLength="5" />
-          <Property Name="cmuact" Type="nvarchar" MaxLength="10" />
-          <Property Name="cmncuenta" Type="int" />
-        </EntityType>-->
         <EntityType Name="TC011">
           <Key>
             <PropertyRef Name="cnnumi" />
@@ -513,21 +364,6 @@ advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TC010' no tiene definida un
           <Property Name="cabtca1numi" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TCA0012' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TCA0012">
-          <Property Name="tcnumi" Type="int" />
-          <Property Name="tctc1numi" Type="int" />
-          <Property Name="tcty4prov" Type="int" />
-          <Property Name="tcfvencre" Type="date" />
-          <Property Name="tcnotaentre" Type="nvarchar" MaxLength="20" />
-          <Property Name="tcnrofact" Type="nvarchar" MaxLength="20" />
-          <Property Name="tctotcre" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="tcfdoc" Type="date" />
-          <Property Name="tcfact" Type="date" />
-          <Property Name="tchact" Type="nvarchar" MaxLength="5" />
-          <Property Name="tcuact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TCA00121' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TCA00121">
           <Key>
@@ -547,48 +383,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TCA00121' no tiene definida
           <Property Name="tduact" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TCA0013' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TCA0013">
-          <Property Name="tenumi" Type="int" />
-          <Property Name="tefdoc" Type="date" />
-          <Property Name="tety4vend" Type="int" />
-          <Property Name="teobs" Type="nvarchar" MaxLength="100" />
-          <Property Name="tefact" Type="date" />
-          <Property Name="tehact" Type="nvarchar" MaxLength="5" />
-          <Property Name="teuact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TCI001' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TCI001">
-          <Property Name="cpnumi" Type="int" />
-          <Property Name="cpdesc" Type="nvarchar" MaxLength="30" />
-          <Property Name="cpmov" Type="int" />
-          <Property Name="cpmovcli" Type="int" />
-          <Property Name="cptipo" Type="int" />
-          <Property Name="cpest" Type="int" />
-          <Property Name="cpfact" Type="date" />
-          <Property Name="cphact" Type="nvarchar" MaxLength="5" />
-          <Property Name="cpuact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TCP001' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TCP001">
-          <Property Name="cpanumi" Type="int" />
-          <Property Name="cpaprov" Type="int" />
-          <Property Name="cpafdoc" Type="date" />
-          <Property Name="cpamonto" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="cpaobs" Type="nvarchar" MaxLength="200" />
-          <Property Name="cpaest" Type="int" />
-          <Property Name="cpafven" Type="date" />
-          <Property Name="cpatpago" Type="int" />
-          <Property Name="cpafpro" Type="int" />
-          <Property Name="cpanota" Type="int" />
-          <Property Name="cpatpro" Type="int" />
-          <Property Name="cpafact" Type="date" />
-          <Property Name="cpahact" Type="nvarchar" MaxLength="5" />
-          <Property Name="cpauact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TCP0011' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TCP0011">
           <Key>
@@ -602,25 +396,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TCP0011' no tiene definida 
           <Property Name="cpbhact" Type="nvarchar" MaxLength="5" />
           <Property Name="cpbuact" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TFC001' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TFC001">
-          <Property Name="fcanumi" Type="int" />
-          <Property Name="fcafdoc" Type="date" />
-          <Property Name="fcanit" Type="nvarchar" MaxLength="20" />
-          <Property Name="fcarsocial" Type="nvarchar" MaxLength="50" />
-          <Property Name="fcanfac" Type="int" />
-          <Property Name="fcandui" Type="int" />
-          <Property Name="fcaautoriz" Type="bigint" />
-          <Property Name="fcaitc" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="fcanscf" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="fcasubtotal" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="fcadesc" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="fcaibcf" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="fcacfiscal" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="fcaccont" Type="nvarchar" MaxLength="14" />
-          <Property Name="fcatcom" Type="int" />
-        </EntityType>-->
         <EntityType Name="TFV001">
           <Key>
             <PropertyRef Name="fvanumi" />
@@ -649,33 +424,6 @@ advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TFC001' no tiene definida u
           <Property Name="fvaalm" Type="int" />
           <Property Name="fvanumi2" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TFV0011' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TFV0011">
-          <Property Name="fvbnumi" Type="int" />
-          <Property Name="fvbcprod" Type="nvarchar" MaxLength="10" />
-          <Property Name="fvbdesprod" Type="nvarchar" MaxLength="50" />
-          <Property Name="fvbcant" Type="int" />
-          <Property Name="fvbprecio" Type="float" />
-          <Property Name="fvbnumi2" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TH001' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TH001">
-          <Property Name="hanumi" Type="int" />
-          <Property Name="hadesc" Type="nvarchar" MaxLength="50" />
-          <Property Name="hames1" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="hames2" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="hames3" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="hasaldo" Type="decimal" Precision="18" Scale="2" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TI001' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TI001">
-          <Property Name="iacprod" Type="int" />
-          <Property Name="iacant" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="iaalm" Type="int" />
-        </EntityType>-->
         <EntityType Name="TI002">
           <Key>
             <PropertyRef Name="ibid" />
@@ -746,30 +494,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TI003' no tiene definida ni
           <Property Name="lahact" Type="nvarchar" MaxLength="5" />
           <Property Name="lauact" Type="nchar" MaxLength="10" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TL001_C' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TL001_C">
-          <Property Name="id" Type="int" />
-          <Property Name="cod" Type="nvarchar" MaxLength="50" />
-          <Property Name="des" Type="nvarchar" MaxLength="150" />
-          <Property Name="codent" Type="int" />
-          <Property Name="hact" Type="nvarchar" MaxLength="5" />
-          <Property Name="fact" Type="date" />
-          <Property Name="uact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TL0012' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TL0012">
-          <Property Name="lcnumi" Type="int" />
-          <Property Name="lccbnumi" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TL0013' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TL0013">
-          <Property Name="lbnumi" Type="int" />
-          <Property Name="lblat" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="lblongi" Type="decimal" Precision="18" Scale="6" />
-        </EntityType>-->
         <EntityType Name="TL002">
           <Key>
             <PropertyRef Name="ldnumi" />
@@ -865,24 +589,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TO0011' no tiene definida n
           <Property Name="obptot" Type="numeric" Precision="18" Scale="2" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TO0012' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TO0012">
-          <Property Name="ocnumi" Type="int" />
-          <Property Name="ocest" Type="int" />
-          <Property Name="ocfecha" Type="date" />
-          <Property Name="ochora" Type="nvarchar" MaxLength="5" />
-          <Property Name="ocobs" Type="nvarchar" MaxLength="20" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TO0013' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TO0013">
-          <Property Name="odnumi" Type="int" />
-          <Property Name="odnum" Type="int" />
-          <Property Name="odfecha" Type="date" />
-          <Property Name="odhora" Type="nvarchar" MaxLength="5" />
-          <Property Name="odobs" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TO0014' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TO0014">
           <Key>
@@ -900,20 +606,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TO0014' no tiene definida n
           <Property Name="ofuact" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TO0015' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TO0015">
-          <Property Name="ohnumi" Type="int" />
-          <Property Name="ohdiassem" Type="nvarchar" MaxLength="7" />
-          <Property Name="ohdias" Type="int" />
-          <Property Name="ohdiames" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TO0016' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TO0016">
-          <Property Name="oinumi" Type="int" />
-          <Property Name="oifecha" Type="date" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TO001A' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TO001A">
           <Key>
@@ -925,19 +617,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TO001A' no tiene definida n
           <Property Name="oaaentrega" Type="int" />
           <Property Name="oaacaja" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TO001A1' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TO001A1">
-          <Property Name="ognumi" Type="int" />
-          <Property Name="ogcred" Type="decimal" Precision="18" Scale="2" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TO001B' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TO001B">
-          <Property Name="obnumi" Type="int" />
-          <Property Name="oblatitud" Type="decimal" Precision="18" Scale="14" />
-          <Property Name="oblongitud" Type="decimal" Precision="18" Scale="14" />
-        </EntityType>-->
         <EntityType Name="TO001C">
           <Key>
             <PropertyRef Name="oacnumi" />
@@ -1085,18 +764,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TO0043' no tiene definida n
           <Property Name="okprecio" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TO005' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TO005">
-          <Property Name="olnumi" Type="int" />
-          <Property Name="olnumichof" Type="int" />
-          <Property Name="olnumiconci" Type="int" />
-          <Property Name="olfecha" Type="date" />
-          <Property Name="olmrec" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="olfact" Type="date" />
-          <Property Name="olhact" Type="nvarchar" MaxLength="5" />
-          <Property Name="oluact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TP001' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TP001">
           <Key>
@@ -1128,17 +795,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TP002' no tiene definida ni
           <Property Name="pbuact" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TP0021' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TP0021">
-          <Property Name="pcnumi" Type="int" />
-          <Property Name="pcdias" Type="int" />
-          <Property Name="pcmonto" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="pcobs" Type="nvarchar" MaxLength="50" />
-          <Property Name="pcmul" Type="bit" />
-          <Property Name="pcbode" Type="bit" />
-          <Property Name="pcfecha" Type="date" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TP003' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TP003">
           <Key>
@@ -1166,16 +822,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TP004' no tiene definida ni
           <Property Name="pehact" Type="nvarchar" MaxLength="50" />
           <Property Name="peuact" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TP005' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TP005">
-          <Property Name="pfnumi" Type="int" />
-          <Property Name="pfflib" Type="date" />
-          <Property Name="pfdes" Type="nvarchar" MaxLength="20" />
-          <Property Name="pffact" Type="date" />
-          <Property Name="pfhact" Type="nvarchar" MaxLength="5" />
-          <Property Name="pfuact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TP006' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="TP006">
@@ -1217,15 +863,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TP0061' no tiene definida n
           <Property Name="pihact" Type="nvarchar" MaxLength="5" />
           <Property Name="piuact" Type="nvarchar" MaxLength="10" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TP0071' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TP0071">
-          <Property Name="pjturno" Type="int" />
-          <Property Name="pjcper" Type="int" />
-          <Property Name="pjent" Type="nvarchar" MaxLength="5" />
-          <Property Name="pjsal" Type="nvarchar" MaxLength="5" />
-          <Property Name="pjfecha" Type="date" />
-        </EntityType>-->
         <EntityType Name="TP008">
           <Key>
             <PropertyRef Name="pknumi" />
@@ -1260,43 +897,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TS001' no tiene definida ni
           <Property Name="sanom1" Type="nvarchar" MaxLength="100" />
           <Property Name="sanom2" Type="nvarchar" MaxLength="30" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TS002' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TS002">
-          <Property Name="yenumi" Type="int" />
-          <Property Name="yecia" Type="int" />
-          <Property Name="yealm" Type="int" />
-          <Property Name="yesfc" Type="int" />
-          <Property Name="yeautoriz" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="yenunf" Type="int" />
-          <Property Name="yekey" Type="nvarchar" MaxLength="255" />
-          <Property Name="yefdel" Type="date" />
-          <Property Name="yefal" Type="date" />
-          <Property Name="yenota" Type="nvarchar" MaxLength="255" />
-          <Property Name="yenota2" Type="nvarchar" MaxLength="255" />
-          <Property Name="yeap" Type="nvarchar" MaxLength="1" />
-          <Property Name="yefact" Type="date" />
-          <Property Name="yehact" Type="nvarchar" MaxLength="5" />
-          <Property Name="yeuact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.TS003' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="TS003">
-          <Property Name="scnumi" Type="int" />
-          <Property Name="scnit" Type="nvarchar" MaxLength="15" />
-          <Property Name="scneg" Type="nvarchar" MaxLength="30" />
-          <Property Name="scnom" Type="nvarchar" MaxLength="30" />
-          <Property Name="scact" Type="nvarchar" MaxLength="40" />
-          <Property Name="scdir" Type="nvarchar" MaxLength="40" />
-          <Property Name="sctelf" Type="nvarchar" MaxLength="20" />
-          <Property Name="scciu" Type="nvarchar" MaxLength="20" />
-          <Property Name="scpai" Type="nvarchar" MaxLength="15" />
-          <Property Name="scsuc" Type="nchar" MaxLength="15" />
-          <Property Name="scdebfis" Type="float" />
-          <Property Name="scfact" Type="date" />
-          <Property Name="schact" Type="nvarchar" MaxLength="5" />
-          <Property Name="scuact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
         <EntityType Name="TV001">
           <Key>
             <PropertyRef Name="tanumi" />
@@ -1378,23 +978,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TV0013' no tiene definida n
           <Property Name="zahora" Type="nvarchar" MaxLength="10" />
           <Property Name="zaest" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.ZY001' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="ZY001">
-          <Property Name="yanumi" Type="int" />
-          <Property Name="yaprog" Type="nvarchar" MaxLength="40" />
-          <Property Name="yatit" Type="nvarchar" MaxLength="40" />
-          <Property Name="yamod" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.ZY002' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="ZY002">
-          <Property Name="ybnumi" Type="int" />
-          <Property Name="ybrol" Type="nvarchar" MaxLength="30" />
-          <Property Name="ybfact" Type="date" />
-          <Property Name="ybhact" Type="nvarchar" MaxLength="5" />
-          <Property Name="ybuact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
         <EntityType Name="ZY0021">
           <Key>
             <PropertyRef Name="ycline" />
@@ -1407,20 +990,6 @@ advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.ZY002' no tiene definida un
           <Property Name="ycmod" Type="bit" />
           <Property Name="ycdel" Type="bit" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.ZY003' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="ZY003">
-          <Property Name="ydnumi" Type="int" />
-          <Property Name="yduser" Type="nvarchar" MaxLength="10" />
-          <Property Name="ydrol" Type="int" />
-          <Property Name="ydpass" Type="nvarchar" MaxLength="20" />
-          <Property Name="ydest" Type="bit" />
-          <Property Name="ydcant" Type="int" />
-          <Property Name="ydfontsize" Type="int" />
-          <Property Name="ydfact" Type="date" />
-          <Property Name="ybhact" Type="nvarchar" MaxLength="5" />
-          <Property Name="ybuact" Type="nvarchar" MaxLength="10" />
-        </EntityType>-->
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.vista_promconsumo' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="vista_promconsumo">
@@ -1498,20 +1067,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.Vr_Conciliacion' no tiene d
           <Property Name="Prod" Type="int" />
           <Property Name="Cant" Type="decimal" Precision="38" Scale="2" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.VR_CuentasPagar_PagosProximos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="VR_CuentasPagar_PagosProximos">
-          <Property Name="cpaprov" Type="int" />
-          <Property Name="cmdesc" Type="nvarchar" MaxLength="50" />
-          <Property Name="cpanumi" Type="int" />
-          <Property Name="cpaobs" Type="nvarchar" MaxLength="200" />
-          <Property Name="cpafdoc" Type="date" />
-          <Property Name="cpafven" Type="date" />
-          <Property Name="cpamonto" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="saldo" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="pagado" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="mora" Type="int" />
-        </EntityType>-->
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_CuentasPagar_PagosRealizados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VR_CuentasPagar_PagosRealizados">
@@ -1601,18 +1156,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_FacturasChacaltaya' no t
           <Property Name="oeefec" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.VR_FidelidadCliente' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="VR_FidelidadCliente">
-          <Property Name="Anho" Type="int" />
-          <Property Name="oencli" Type="int" />
-          <Property Name="ccdesc" Type="nvarchar" MaxLength="50" />
-          <Property Name="TotalPedido" Type="int" />
-          <Property Name="odtprod" Type="int" />
-          <Property Name="cadesc" Type="nvarchar" MaxLength="30" />
-          <Property Name="cadesc2" Type="nvarchar" MaxLength="15" />
-          <Property Name="ccprconsu" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.vr_go_comprobanteSalidaItems' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="vr_go_comprobanteSalidaItems">
           <Key>
@@ -1668,6 +1211,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DespachoXCliente' no 
           <Property Name="ccdesc" Type="nvarchar" MaxLength="50" />
           <Property Name="oacnrofact" Type="bigint" Nullable="false" />
           <Property Name="obptot" Type="numeric" Precision="38" Scale="2" />
+          <Property Name="IdZona" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DespachoXProducto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -1811,17 +1355,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_FacturaVsVenta2' no t
           <Property Name="tipo" Type="varchar" MaxLength="8" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_FaltanteTapas' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="VR_GO_FaltanteTapas">
-          <Property Name="nota" Type="int" />
-          <Property Name="fecha" Type="date" />
-          <Property Name="ctprod" Type="int" />
-          <Property Name="ntprod" Type="nvarchar" MaxLength="50" />
-          <Property Name="crepa" Type="int" />
-          <Property Name="nrepa" Type="nvarchar" MaxLength="50" />
-          <Property Name="tapas" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_ListarZona' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VR_GO_ListarZona">
           <Key>
@@ -1876,15 +1409,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_PrestamoEquiposDetall
           <Property Name="cpmov" Type="int" />
           <Property Name="cpmovcli" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_ProductoVendidoCliente' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="VR_GO_ProductoVendidoCliente">
-          <Property Name="cliente" Type="int" />
-          <Property Name="fecha" Type="date" />
-          <Property Name="codProducto" Type="nvarchar" MaxLength="10" />
-          <Property Name="cantidad" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="monto" Type="numeric" Precision="38" Scale="2" />
-        </EntityType>-->
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.vr_go_reciboCliente' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="vr_go_reciboCliente">
@@ -2281,7 +1805,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_NotaCompra' no tiene def
             <PropertyRef Name="tipocompra" />
           </Key>
           <Property Name="caanumi" Type="int" Nullable="false" />
-          <Property Name="caafdoc" Type="date" />
+          <Property Name="FechaCompra" Type="nvarchar" MaxLength="4000" />
           <Property Name="caaprov" Type="int" />
           <Property Name="cmdesc" Type="nvarchar" MaxLength="50" />
           <Property Name="cmrsocial" Type="nvarchar" MaxLength="50" />
@@ -2294,14 +1818,19 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_NotaCompra' no tiene def
           <Property Name="caadesc" Type="decimal" Precision="18" Scale="2" />
           <Property Name="caatotal" Type="decimal" Precision="18" Scale="2" />
           <Property Name="caaemision" Type="int" />
-          <Property Name="caafingreso" Type="date" />
+          <Property Name="caaffactura" Type="date" />
           <Property Name="cabtc1numi" Type="int" />
           <Property Name="cadesc" Type="nvarchar" MaxLength="100" />
-          <Property Name="cabcant" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="cabpcom" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="cabpcosto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="cabcantcj" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="cabcantun" Type="int" />
+          <Property Name="cabpcomcj" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="cabpcomun" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="cabpcostocj" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="cabpcostoun" Type="decimal" Precision="18" Scale="4" />
           <Property Name="cabsubtot" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="cabdesc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="cabdesccj" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="cabdescpro1cj" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="cabdescpro2cj" Type="decimal" Precision="18" Scale="4" />
           <Property Name="cabtot" Type="decimal" Precision="18" Scale="2" />
           <Property Name="fcarsocial" Type="nvarchar" MaxLength="200" />
           <Property Name="fcanfac" Type="bigint" />
@@ -2369,13 +1898,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_SaldoCliente' no tiene d
           <Property Name="idsaldo" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.VR_SaldoInventario' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="VR_SaldoInventario">
-          <Property Name="Codigo" Type="int" />
-          <Property Name="Producto" Type="nvarchar" MaxLength="30" />
-          <Property Name="Cantidad" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_stockActual' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VR_stockActual">
           <Key>
@@ -2383,11 +1905,12 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_stockActual' no tiene de
           </Key>
           <Property Name="canumi" Type="int" Nullable="false" />
           <Property Name="cacod" Type="nvarchar" MaxLength="10" />
-          <Property Name="cadesc" Type="nvarchar" MaxLength="50" />
-          <Property Name="cadesc2" Type="nvarchar" MaxLength="20" />
+          <Property Name="cadesc" Type="nvarchar" MaxLength="100" />
+          <Property Name="cadesc2" Type="nvarchar" MaxLength="100" />
           <Property Name="caest" Type="bit" />
           <Property Name="iacprod" Type="int" />
           <Property Name="iacant" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="caconv" Type="decimal" Precision="18" Scale="2" />
           <Property Name="cenum" Type="bit" />
           <Property Name="cedesc" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -2406,24 +1929,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_StockDisponible' no tien
           <Property Name="StockSoloPedidos" Type="decimal" Precision="38" Scale="2" Nullable="false" />
           <Property Name="StockFinal" Type="decimal" Precision="38" Scale="2" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDDistBHF_CF.dbo.VR_UltimosPedidos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="VR_UltimosPedidos">
-          <Property Name="codCliente" Type="nvarchar" MaxLength="15" />
-          <Property Name="cliente" Type="nvarchar" MaxLength="50" />
-          <Property Name="Telefono" Type="nvarchar" MaxLength="101" />
-          <Property Name="direccion" Type="nvarchar" MaxLength="200" />
-          <Property Name="zona" Type="int" />
-          <Property Name="fechaPrestamo" Type="date" />
-          <Property Name="horaPrestamo" Type="nvarchar" MaxLength="5" />
-          <Property Name="codEquipo" Type="nvarchar" MaxLength="10" />
-          <Property Name="Equipo" Type="nvarchar" MaxLength="30" />
-          <Property Name="codMovimiento" Type="int" />
-          <Property Name="movimiento" Type="nvarchar" MaxLength="50" />
-          <Property Name="fechaUltimoPedido" Type="date" />
-          <Property Name="codProducto" Type="nvarchar" MaxLength="10" />
-          <Property Name="Producto" Type="nvarchar" MaxLength="30" />
-        </EntityType>-->
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_UtilidadPorProducto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VR_UtilidadPorProducto">
@@ -2986,6 +2491,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Parameter Name="ibuact" Type="nvarchar" Mode="In" />
           <Parameter Name="chofer" Type="int" Mode="In" />
           <Parameter Name="concepto" Type="int" Mode="In" />
+          <Parameter Name="nconci" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Mam_TO004" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo" Type="int" Mode="In" />
@@ -3013,6 +2519,10 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Parameter Name="fechaf" Type="date" Mode="In" />
           <Parameter Name="numi" Type="int" Mode="In" />
           <Parameter Name="nroFactura" Type="int" Mode="In" />
+          <Parameter Name="nconci" Type="int" Mode="In" />
+          <Parameter Name="oanumi" Type="int" Mode="In" />
+          <Parameter Name="credito" Type="decimal" Mode="In" />
+          <Parameter Name="chofer" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Mam_TV00121" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo" Type="int" Mode="In" />
@@ -3633,7 +3143,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_GO_DespachoXCliente].[cccod] AS [cccod], 
     [VR_GO_DespachoXCliente].[ccdesc] AS [ccdesc], 
     [VR_GO_DespachoXCliente].[oacnrofact] AS [oacnrofact], 
-    [VR_GO_DespachoXCliente].[obptot] AS [obptot]
+    [VR_GO_DespachoXCliente].[obptot] AS [obptot], 
+    [VR_GO_DespachoXCliente].[IdZona] AS [IdZona]
     FROM [dbo].[VR_GO_DespachoXCliente] AS [VR_GO_DespachoXCliente]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VR_GO_DespachoXProducto" EntityType="Self.VR_GO_DespachoXProducto" store:Type="Views" store:Schema="dbo">
@@ -4111,7 +3622,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySet Name="VR_NotaCompra" EntityType="Self.VR_NotaCompra" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VR_NotaCompra].[caanumi] AS [caanumi], 
-    [VR_NotaCompra].[caafdoc] AS [caafdoc], 
+    [VR_NotaCompra].[FechaCompra] AS [FechaCompra], 
     [VR_NotaCompra].[caaprov] AS [caaprov], 
     [VR_NotaCompra].[cmdesc] AS [cmdesc], 
     [VR_NotaCompra].[cmrsocial] AS [cmrsocial], 
@@ -4124,14 +3635,19 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_NotaCompra].[caadesc] AS [caadesc], 
     [VR_NotaCompra].[caatotal] AS [caatotal], 
     [VR_NotaCompra].[caaemision] AS [caaemision], 
-    [VR_NotaCompra].[caafingreso] AS [caafingreso], 
+    [VR_NotaCompra].[caaffactura] AS [caaffactura], 
     [VR_NotaCompra].[cabtc1numi] AS [cabtc1numi], 
     [VR_NotaCompra].[cadesc] AS [cadesc], 
-    [VR_NotaCompra].[cabcant] AS [cabcant], 
-    [VR_NotaCompra].[cabpcom] AS [cabpcom], 
-    [VR_NotaCompra].[cabpcosto] AS [cabpcosto], 
+    [VR_NotaCompra].[cabcantcj] AS [cabcantcj], 
+    [VR_NotaCompra].[cabcantun] AS [cabcantun], 
+    [VR_NotaCompra].[cabpcomcj] AS [cabpcomcj], 
+    [VR_NotaCompra].[cabpcomun] AS [cabpcomun], 
+    [VR_NotaCompra].[cabpcostocj] AS [cabpcostocj], 
+    [VR_NotaCompra].[cabpcostoun] AS [cabpcostoun], 
     [VR_NotaCompra].[cabsubtot] AS [cabsubtot], 
-    [VR_NotaCompra].[cabdesc] AS [cabdesc], 
+    [VR_NotaCompra].[cabdesccj] AS [cabdesccj], 
+    [VR_NotaCompra].[cabdescpro1cj] AS [cabdescpro1cj], 
+    [VR_NotaCompra].[cabdescpro2cj] AS [cabdescpro2cj], 
     [VR_NotaCompra].[cabtot] AS [cabtot], 
     [VR_NotaCompra].[fcarsocial] AS [fcarsocial], 
     [VR_NotaCompra].[fcanfac] AS [fcanfac], 
@@ -4196,6 +3712,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_stockActual].[caest] AS [caest], 
     [VR_stockActual].[iacprod] AS [iacprod], 
     [VR_stockActual].[iacant] AS [iacant], 
+    [VR_stockActual].[caconv] AS [caconv], 
     [VR_stockActual].[cenum] AS [cenum], 
     [VR_stockActual].[cedesc] AS [cedesc]
     FROM [dbo].[VR_stockActual] AS [VR_stockActual]</DefiningQuery>
@@ -4271,122 +3788,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     <edmx:ConceptualModels>
       <Schema Namespace="BDDistBHFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BDDistBHFEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CM001" EntityType="BDDistBHFModel.CM001" />
-          <EntitySet Name="CM0011" EntityType="BDDistBHFModel.CM0011" />
-          <EntitySet Name="TA001" EntityType="BDDistBHFModel.TA001" />
-          <EntitySet Name="TB001" EntityType="BDDistBHFModel.TB001" />
-          <EntitySet Name="TC001" EntityType="BDDistBHFModel.TC001" />
-          <EntitySet Name="TC002" EntityType="BDDistBHFModel.TC002" />
-          <EntitySet Name="TC003" EntityType="BDDistBHFModel.TC003" />
-          <EntitySet Name="TC004" EntityType="BDDistBHFModel.TC004" />
-          <EntitySet Name="TC0042" EntityType="BDDistBHFModel.TC0042" />
-          <EntitySet Name="TC004B" EntityType="BDDistBHFModel.TC004B" />
-          <EntitySet Name="TC005" EntityType="BDDistBHFModel.TC005" />
-          <EntitySet Name="TC0051" EntityType="BDDistBHFModel.TC0051" />
-          <EntitySet Name="TC006" EntityType="BDDistBHFModel.TC006" />
-          <EntitySet Name="TC011" EntityType="BDDistBHFModel.TC011" />
-          <EntitySet Name="TC0111" EntityType="BDDistBHFModel.TC0111" />
-          <EntitySet Name="TCA001" EntityType="BDDistBHFModel.TCA001" />
-          <EntitySet Name="TFV001" EntityType="BDDistBHFModel.TFV001" />
-          <EntitySet Name="TI002" EntityType="BDDistBHFModel.TI002" />
-          <EntitySet Name="TI0021" EntityType="BDDistBHFModel.TI0021" />
-          <EntitySet Name="TI004" EntityType="BDDistBHFModel.TI004" />
-          <EntitySet Name="TI0041" EntityType="BDDistBHFModel.TI0041" />
-          <EntitySet Name="TL001" EntityType="BDDistBHFModel.TL001" />
-          <EntitySet Name="TL002" EntityType="BDDistBHFModel.TL002" />
-          <EntitySet Name="TO001" EntityType="BDDistBHFModel.TO001" />
-          <EntitySet Name="TO001C" EntityType="BDDistBHFModel.TO001C" />
-          <EntitySet Name="TO004" EntityType="BDDistBHFModel.TO004" />
-          <EntitySet Name="TP007" EntityType="BDDistBHFModel.TP007" />
-          <EntitySet Name="TP008" EntityType="BDDistBHFModel.TP008" />
-          <EntitySet Name="TP0081" EntityType="BDDistBHFModel.TP0081" />
-          <EntitySet Name="TV00121" EntityType="BDDistBHFModel.TV00121" />
-          <EntitySet Name="TZ001" EntityType="BDDistBHFModel.TZ001" />
-          <EntitySet Name="ZY0021" EntityType="BDDistBHFModel.ZY0021" />
-          <EntitySet Name="TC0011" EntityType="BDDistBHFModel.TC0011" />
-          <EntitySet Name="TC0012" EntityType="BDDistBHFModel.TC0012" />
-          <EntitySet Name="TC0041" EntityType="BDDistBHFModel.TC0041" />
-          <EntitySet Name="TC004A1" EntityType="BDDistBHFModel.TC004A1" />
-          <EntitySet Name="TC004A2" EntityType="BDDistBHFModel.TC004A2" />
-          <EntitySet Name="TC0091" EntityType="BDDistBHFModel.TC0091" />
-          <EntitySet Name="TCA00121" EntityType="BDDistBHFModel.TCA00121" />
-          <EntitySet Name="TCP0011" EntityType="BDDistBHFModel.TCP0011" />
-          <EntitySet Name="TI003" EntityType="BDDistBHFModel.TI003" />
-          <EntitySet Name="TM001" EntityType="BDDistBHFModel.TM001" />
-          <EntitySet Name="TM0011" EntityType="BDDistBHFModel.TM0011" />
-          <EntitySet Name="TM0012" EntityType="BDDistBHFModel.TM0012" />
-          <EntitySet Name="TM0013" EntityType="BDDistBHFModel.TM0013" />
-          <EntitySet Name="TO0011" EntityType="BDDistBHFModel.TO0011" />
-          <EntitySet Name="TO0014" EntityType="BDDistBHFModel.TO0014" />
-          <EntitySet Name="TO001A" EntityType="BDDistBHFModel.TO001A" />
-          <EntitySet Name="TO002" EntityType="BDDistBHFModel.TO002" />
-          <EntitySet Name="TO0021" EntityType="BDDistBHFModel.TO0021" />
-          <EntitySet Name="TO0022" EntityType="BDDistBHFModel.TO0022" />
-          <EntitySet Name="TO0023" EntityType="BDDistBHFModel.TO0023" />
-          <EntitySet Name="TO003" EntityType="BDDistBHFModel.TO003" />
-          <EntitySet Name="TO0041" EntityType="BDDistBHFModel.TO0041" />
-          <EntitySet Name="TO0042" EntityType="BDDistBHFModel.TO0042" />
-          <EntitySet Name="TO0043" EntityType="BDDistBHFModel.TO0043" />
-          <EntitySet Name="TP001" EntityType="BDDistBHFModel.TP001" />
-          <EntitySet Name="TP002" EntityType="BDDistBHFModel.TP002" />
-          <EntitySet Name="TP003" EntityType="BDDistBHFModel.TP003" />
-          <EntitySet Name="TP004" EntityType="BDDistBHFModel.TP004" />
-          <EntitySet Name="TP006" EntityType="BDDistBHFModel.TP006" />
-          <EntitySet Name="TP0061" EntityType="BDDistBHFModel.TP0061" />
-          <EntitySet Name="TV0013" EntityType="BDDistBHFModel.TV0013" />
-          <EntitySet Name="vista_promconsumo" EntityType="BDDistBHFModel.vista_promconsumo" />
-          <EntitySet Name="vista_transacciones" EntityType="BDDistBHFModel.vista_transacciones" />
-          <EntitySet Name="VR_Clientes" EntityType="BDDistBHFModel.VR_Clientes" />
-          <EntitySet Name="VR_ClientesPendientesNota" EntityType="BDDistBHFModel.VR_ClientesPendientesNota" />
-          <EntitySet Name="Vr_Conciliacion" EntityType="BDDistBHFModel.Vr_Conciliacion" />
-          <EntitySet Name="VR_CuentasPagar_PagosRealizados" EntityType="BDDistBHFModel.VR_CuentasPagar_PagosRealizados" />
-          <EntitySet Name="VR_EntregaPedidos" EntityType="BDDistBHFModel.VR_EntregaPedidos" />
-          <EntitySet Name="VR_Facturas" EntityType="BDDistBHFModel.VR_Facturas" />
-          <EntitySet Name="VR_FacturasChacaltaya" EntityType="BDDistBHFModel.VR_FacturasChacaltaya" />
-          <EntitySet Name="vr_go_comprobanteSalidaItems" EntityType="BDDistBHFModel.vr_go_comprobanteSalidaItems" />
-          <EntitySet Name="vr_go_comprobanteVenta" EntityType="BDDistBHFModel.vr_go_comprobanteVenta" />
-          <EntitySet Name="VR_GO_DespachoXCliente" EntityType="BDDistBHFModel.VR_GO_DespachoXCliente" />
-          <EntitySet Name="VR_GO_DespachoXProducto" EntityType="BDDistBHFModel.VR_GO_DespachoXProducto" />
-          <EntitySet Name="VR_GO_DiferenciaPedidoNota" EntityType="BDDistBHFModel.VR_GO_DiferenciaPedidoNota" />
-          <EntitySet Name="VR_GO_EquipoPrestadoVsUltimaVenta" EntityType="BDDistBHFModel.VR_GO_EquipoPrestadoVsUltimaVenta" />
-          <EntitySet Name="VR_GO_EquiposPrestadoCliente" EntityType="BDDistBHFModel.VR_GO_EquiposPrestadoCliente" />
-          <EntitySet Name="VR_GO_FacturaVsVenta" EntityType="BDDistBHFModel.VR_GO_FacturaVsVenta" />
-          <EntitySet Name="VR_GO_FacturaVsVenta2" EntityType="BDDistBHFModel.VR_GO_FacturaVsVenta2" />
-          <EntitySet Name="VR_GO_ListarZona" EntityType="BDDistBHFModel.VR_GO_ListarZona" />
-          <EntitySet Name="VR_GO_PrestamoEquiposAgrupado" EntityType="BDDistBHFModel.VR_GO_PrestamoEquiposAgrupado" />
-          <EntitySet Name="VR_GO_PrestamoEquiposDetallado" EntityType="BDDistBHFModel.VR_GO_PrestamoEquiposDetallado" />
-          <EntitySet Name="vr_go_reciboCliente" EntityType="BDDistBHFModel.vr_go_reciboCliente" />
-          <EntitySet Name="VR_GO_SaldoPrestamoEquipo" EntityType="BDDistBHFModel.VR_GO_SaldoPrestamoEquipo" />
-          <EntitySet Name="VR_GO_UltimaVentaCliente" EntityType="BDDistBHFModel.VR_GO_UltimaVentaCliente" />
-          <EntitySet Name="vr_go_visitasDiarias" EntityType="BDDistBHFModel.vr_go_visitasDiarias" />
-          <EntitySet Name="VR_GraficaVentasVs" EntityType="BDDistBHFModel.VR_GraficaVentasVs" />
-          <EntitySet Name="VR_KadexCliente" EntityType="BDDistBHFModel.VR_KadexCliente" />
-          <EntitySet Name="VR_KardexInventario" EntityType="BDDistBHFModel.VR_KardexInventario" />
-          <EntitySet Name="VR_KardexPrestamos" EntityType="BDDistBHFModel.VR_KardexPrestamos" />
-          <EntitySet Name="VR_LibroVentas" EntityType="BDDistBHFModel.VR_LibroVentas" />
-          <EntitySet Name="VR_LibroVentasChacaltaya1" EntityType="BDDistBHFModel.VR_LibroVentasChacaltaya1" />
-          <EntitySet Name="VR_LibroVentasChacaltaya2" EntityType="BDDistBHFModel.VR_LibroVentasChacaltaya2" />
-          <EntitySet Name="Vr_Mam_Clientes" EntityType="BDDistBHFModel.Vr_Mam_Clientes" />
-          <EntitySet Name="VR_Mam_Conciliacion" EntityType="BDDistBHFModel.VR_Mam_Conciliacion" />
-          <EntitySet Name="Vr_Mam_Credito_Cliente" EntityType="BDDistBHFModel.Vr_Mam_Credito_Cliente" />
-          <EntitySet Name="Vr_Mam_ProductoVenta" EntityType="BDDistBHFModel.Vr_Mam_ProductoVenta" />
-          <EntitySet Name="VR_MO_GetPedidos" EntityType="BDDistBHFModel.VR_MO_GetPedidos" />
-          <EntitySet Name="VR_Nota_de_Venta" EntityType="BDDistBHFModel.VR_Nota_de_Venta" />
-          <EntitySet Name="VR_Pagos" EntityType="BDDistBHFModel.VR_Pagos" />
-          <EntitySet Name="VR_ProductosMesas" EntityType="BDDistBHFModel.VR_ProductosMesas" />
-          <EntitySet Name="VR_ResumenNotas" EntityType="BDDistBHFModel.VR_ResumenNotas" />
-          <EntitySet Name="VR_SaldoCliente" EntityType="BDDistBHFModel.VR_SaldoCliente" />
-          <EntitySet Name="VR_stockActual" EntityType="BDDistBHFModel.VR_stockActual" />
-          <EntitySet Name="VR_StockDisponible" EntityType="BDDistBHFModel.VR_StockDisponible" />
-          <EntitySet Name="VR_UtilidadPorProducto" EntityType="BDDistBHFModel.VR_UtilidadPorProducto" />
-          <EntitySet Name="Vr_VentasVendedor12Meses" EntityType="BDDistBHFModel.Vr_VentasVendedor12Meses" />
-          <EntitySet Name="Vr_VentasVendidas" EntityType="BDDistBHFModel.Vr_VentasVendidas" />
-          <EntitySet Name="VR_VistaPedido_PrecioCosto" EntityType="BDDistBHFModel.VR_VistaPedido_PrecioCosto" />
-          <EntitySet Name="TV001" EntityType="BDDistBHFModel.TV001" />
-          <EntitySet Name="TV0011" EntityType="BDDistBHFModel.TV0011" />
-          <EntitySet Name="TS001" EntityType="BDDistBHFModel.TS001" />
-          <EntitySet Name="VR_GO_Factura" EntityType="BDDistBHFModel.VR_GO_Factura" />
-          <EntitySet Name="VR_NotaCompra" EntityType="BDDistBHFModel.VR_NotaCompra" />
           <FunctionImport Name="PlanillaSueldo">
           <Parameter Name="fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
@@ -4863,6 +4264,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
             <Parameter Name="ibuact" Mode="In" Type="String" />
             <Parameter Name="chofer" Mode="In" Type="Int32" />
             <Parameter Name="concepto" Mode="In" Type="Int32" />
+            <Parameter Name="nconci" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Mam_TO004">
             <Parameter Name="tipo" Mode="In" Type="Int32" />
@@ -4890,6 +4292,10 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
             <Parameter Name="fechaf" Mode="In" Type="DateTime" />
             <Parameter Name="numi" Mode="In" Type="Int32" />
             <Parameter Name="nroFactura" Mode="In" Type="Int32" />
+            <Parameter Name="nconci" Mode="In" Type="Int32" />
+            <Parameter Name="oanumi" Mode="In" Type="Int32" />
+            <Parameter Name="credito" Mode="In" Type="Decimal" />
+            <Parameter Name="chofer" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Mam_TV00121">
             <Parameter Name="tipo" Mode="In" Type="Int32" />
@@ -4945,8 +4351,279 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           </FunctionImport>
           <FunctionImport Name="vis_promedioConsumo" ReturnType="Collection(BDDistBHFModel.vis_promedioConsumo_Result)" />
           <FunctionImport Name="vis_transacciones" ReturnType="Collection(BDDistBHFModel.vis_transacciones_Result)" />
+          <EntitySet Name="CM001" EntityType="BDDistBHFModel.CM001" />
+          <EntitySet Name="CM0011" EntityType="BDDistBHFModel.CM0011" />
+          <EntitySet Name="TA001" EntityType="BDDistBHFModel.TA001" />
+          <EntitySet Name="TB001" EntityType="BDDistBHFModel.TB001" />
+          <EntitySet Name="TC001" EntityType="BDDistBHFModel.TC001" />
+          <EntitySet Name="TC002" EntityType="BDDistBHFModel.TC002" />
+          <EntitySet Name="TC003" EntityType="BDDistBHFModel.TC003" />
+          <EntitySet Name="TC004" EntityType="BDDistBHFModel.TC004" />
+          <EntitySet Name="TC0042" EntityType="BDDistBHFModel.TC0042" />
+          <EntitySet Name="TC004B" EntityType="BDDistBHFModel.TC004B" />
+          <EntitySet Name="TC005" EntityType="BDDistBHFModel.TC005" />
+          <EntitySet Name="TC0051" EntityType="BDDistBHFModel.TC0051" />
+          <EntitySet Name="TC006" EntityType="BDDistBHFModel.TC006" />
+          <EntitySet Name="TC011" EntityType="BDDistBHFModel.TC011" />
+          <EntitySet Name="TC0111" EntityType="BDDistBHFModel.TC0111" />
+          <EntitySet Name="TCA001" EntityType="BDDistBHFModel.TCA001" />
           <EntitySet Name="TCA0011" EntityType="BDDistBHFModel.TCA0011" />
+          <EntitySet Name="TFV001" EntityType="BDDistBHFModel.TFV001" />
+          <EntitySet Name="TI002" EntityType="BDDistBHFModel.TI002" />
+          <EntitySet Name="TI0021" EntityType="BDDistBHFModel.TI0021" />
+          <EntitySet Name="TI004" EntityType="BDDistBHFModel.TI004" />
+          <EntitySet Name="TI0041" EntityType="BDDistBHFModel.TI0041" />
+          <EntitySet Name="TL001" EntityType="BDDistBHFModel.TL001" />
+          <EntitySet Name="TL002" EntityType="BDDistBHFModel.TL002" />
+          <EntitySet Name="TO001" EntityType="BDDistBHFModel.TO001" />
+          <EntitySet Name="TO001C" EntityType="BDDistBHFModel.TO001C" />
+          <EntitySet Name="TO004" EntityType="BDDistBHFModel.TO004" />
+          <EntitySet Name="TP007" EntityType="BDDistBHFModel.TP007" />
+          <EntitySet Name="TP008" EntityType="BDDistBHFModel.TP008" />
+          <EntitySet Name="TP0081" EntityType="BDDistBHFModel.TP0081" />
+          <EntitySet Name="TV001" EntityType="BDDistBHFModel.TV001" />
+          <EntitySet Name="TV0011" EntityType="BDDistBHFModel.TV0011" />
+          <EntitySet Name="TV00121" EntityType="BDDistBHFModel.TV00121" />
+          <EntitySet Name="TZ001" EntityType="BDDistBHFModel.TZ001" />
+          <EntitySet Name="ZY0021" EntityType="BDDistBHFModel.ZY0021" />
+          <EntitySet Name="TC0011" EntityType="BDDistBHFModel.TC0011" />
+          <EntitySet Name="TC0012" EntityType="BDDistBHFModel.TC0012" />
+          <EntitySet Name="TC0041" EntityType="BDDistBHFModel.TC0041" />
+          <EntitySet Name="TC004A1" EntityType="BDDistBHFModel.TC004A1" />
+          <EntitySet Name="TC004A2" EntityType="BDDistBHFModel.TC004A2" />
+          <EntitySet Name="TC0091" EntityType="BDDistBHFModel.TC0091" />
+          <EntitySet Name="TCA00121" EntityType="BDDistBHFModel.TCA00121" />
+          <EntitySet Name="TCP0011" EntityType="BDDistBHFModel.TCP0011" />
+          <EntitySet Name="TI003" EntityType="BDDistBHFModel.TI003" />
+          <EntitySet Name="TM001" EntityType="BDDistBHFModel.TM001" />
+          <EntitySet Name="TM0011" EntityType="BDDistBHFModel.TM0011" />
+          <EntitySet Name="TM0012" EntityType="BDDistBHFModel.TM0012" />
+          <EntitySet Name="TM0013" EntityType="BDDistBHFModel.TM0013" />
+          <EntitySet Name="TO0011" EntityType="BDDistBHFModel.TO0011" />
+          <EntitySet Name="TO0014" EntityType="BDDistBHFModel.TO0014" />
+          <EntitySet Name="TO001A" EntityType="BDDistBHFModel.TO001A" />
+          <EntitySet Name="TO002" EntityType="BDDistBHFModel.TO002" />
+          <EntitySet Name="TO0021" EntityType="BDDistBHFModel.TO0021" />
+          <EntitySet Name="TO0022" EntityType="BDDistBHFModel.TO0022" />
+          <EntitySet Name="TO0023" EntityType="BDDistBHFModel.TO0023" />
+          <EntitySet Name="TO003" EntityType="BDDistBHFModel.TO003" />
+          <EntitySet Name="TO0041" EntityType="BDDistBHFModel.TO0041" />
+          <EntitySet Name="TO0042" EntityType="BDDistBHFModel.TO0042" />
+          <EntitySet Name="TO0043" EntityType="BDDistBHFModel.TO0043" />
+          <EntitySet Name="TP001" EntityType="BDDistBHFModel.TP001" />
+          <EntitySet Name="TP002" EntityType="BDDistBHFModel.TP002" />
+          <EntitySet Name="TP003" EntityType="BDDistBHFModel.TP003" />
+          <EntitySet Name="TP004" EntityType="BDDistBHFModel.TP004" />
+          <EntitySet Name="TP006" EntityType="BDDistBHFModel.TP006" />
+          <EntitySet Name="TP0061" EntityType="BDDistBHFModel.TP0061" />
+          <EntitySet Name="TS001" EntityType="BDDistBHFModel.TS001" />
+          <EntitySet Name="TV0013" EntityType="BDDistBHFModel.TV0013" />
+          <EntitySet Name="vista_promconsumo" EntityType="BDDistBHFModel.vista_promconsumo" />
+          <EntitySet Name="vista_transacciones" EntityType="BDDistBHFModel.vista_transacciones" />
+          <EntitySet Name="VR_Clientes" EntityType="BDDistBHFModel.VR_Clientes" />
+          <EntitySet Name="VR_ClientesPendientesNota" EntityType="BDDistBHFModel.VR_ClientesPendientesNota" />
+          <EntitySet Name="Vr_Conciliacion" EntityType="BDDistBHFModel.Vr_Conciliacion" />
+          <EntitySet Name="VR_CuentasPagar_PagosRealizados" EntityType="BDDistBHFModel.VR_CuentasPagar_PagosRealizados" />
+          <EntitySet Name="VR_EntregaPedidos" EntityType="BDDistBHFModel.VR_EntregaPedidos" />
+          <EntitySet Name="VR_Facturas" EntityType="BDDistBHFModel.VR_Facturas" />
+          <EntitySet Name="VR_FacturasChacaltaya" EntityType="BDDistBHFModel.VR_FacturasChacaltaya" />
+          <EntitySet Name="vr_go_comprobanteSalidaItems" EntityType="BDDistBHFModel.vr_go_comprobanteSalidaItems" />
+          <EntitySet Name="vr_go_comprobanteVenta" EntityType="BDDistBHFModel.vr_go_comprobanteVenta" />
+          <EntitySet Name="VR_GO_DespachoXCliente" EntityType="BDDistBHFModel.VR_GO_DespachoXCliente" />
+          <EntitySet Name="VR_GO_DespachoXProducto" EntityType="BDDistBHFModel.VR_GO_DespachoXProducto" />
+          <EntitySet Name="VR_GO_DiferenciaPedidoNota" EntityType="BDDistBHFModel.VR_GO_DiferenciaPedidoNota" />
+          <EntitySet Name="VR_GO_EquipoPrestadoVsUltimaVenta" EntityType="BDDistBHFModel.VR_GO_EquipoPrestadoVsUltimaVenta" />
+          <EntitySet Name="VR_GO_EquiposPrestadoCliente" EntityType="BDDistBHFModel.VR_GO_EquiposPrestadoCliente" />
+          <EntitySet Name="VR_GO_Factura" EntityType="BDDistBHFModel.VR_GO_Factura" />
+          <EntitySet Name="VR_GO_FacturaVsVenta" EntityType="BDDistBHFModel.VR_GO_FacturaVsVenta" />
+          <EntitySet Name="VR_GO_FacturaVsVenta2" EntityType="BDDistBHFModel.VR_GO_FacturaVsVenta2" />
+          <EntitySet Name="VR_GO_ListarZona" EntityType="BDDistBHFModel.VR_GO_ListarZona" />
+          <EntitySet Name="VR_GO_PrestamoEquiposAgrupado" EntityType="BDDistBHFModel.VR_GO_PrestamoEquiposAgrupado" />
+          <EntitySet Name="VR_GO_PrestamoEquiposDetallado" EntityType="BDDistBHFModel.VR_GO_PrestamoEquiposDetallado" />
+          <EntitySet Name="vr_go_reciboCliente" EntityType="BDDistBHFModel.vr_go_reciboCliente" />
+          <EntitySet Name="VR_GO_SaldoPrestamoEquipo" EntityType="BDDistBHFModel.VR_GO_SaldoPrestamoEquipo" />
+          <EntitySet Name="VR_GO_UltimaVentaCliente" EntityType="BDDistBHFModel.VR_GO_UltimaVentaCliente" />
+          <EntitySet Name="vr_go_visitasDiarias" EntityType="BDDistBHFModel.vr_go_visitasDiarias" />
+          <EntitySet Name="VR_GraficaVentasVs" EntityType="BDDistBHFModel.VR_GraficaVentasVs" />
+          <EntitySet Name="VR_KadexCliente" EntityType="BDDistBHFModel.VR_KadexCliente" />
+          <EntitySet Name="VR_KardexInventario" EntityType="BDDistBHFModel.VR_KardexInventario" />
+          <EntitySet Name="VR_KardexPrestamos" EntityType="BDDistBHFModel.VR_KardexPrestamos" />
+          <EntitySet Name="VR_LibroVentas" EntityType="BDDistBHFModel.VR_LibroVentas" />
+          <EntitySet Name="VR_LibroVentasChacaltaya1" EntityType="BDDistBHFModel.VR_LibroVentasChacaltaya1" />
+          <EntitySet Name="VR_LibroVentasChacaltaya2" EntityType="BDDistBHFModel.VR_LibroVentasChacaltaya2" />
+          <EntitySet Name="Vr_Mam_Clientes" EntityType="BDDistBHFModel.Vr_Mam_Clientes" />
+          <EntitySet Name="VR_Mam_Conciliacion" EntityType="BDDistBHFModel.VR_Mam_Conciliacion" />
+          <EntitySet Name="Vr_Mam_Credito_Cliente" EntityType="BDDistBHFModel.Vr_Mam_Credito_Cliente" />
+          <EntitySet Name="Vr_Mam_ProductoVenta" EntityType="BDDistBHFModel.Vr_Mam_ProductoVenta" />
+          <EntitySet Name="VR_MO_GetPedidos" EntityType="BDDistBHFModel.VR_MO_GetPedidos" />
+          <EntitySet Name="VR_Nota_de_Venta" EntityType="BDDistBHFModel.VR_Nota_de_Venta" />
+          <EntitySet Name="VR_NotaCompra" EntityType="BDDistBHFModel.VR_NotaCompra" />
+          <EntitySet Name="VR_Pagos" EntityType="BDDistBHFModel.VR_Pagos" />
+          <EntitySet Name="VR_ProductosMesas" EntityType="BDDistBHFModel.VR_ProductosMesas" />
+          <EntitySet Name="VR_ResumenNotas" EntityType="BDDistBHFModel.VR_ResumenNotas" />
+          <EntitySet Name="VR_SaldoCliente" EntityType="BDDistBHFModel.VR_SaldoCliente" />
+          <EntitySet Name="VR_stockActual" EntityType="BDDistBHFModel.VR_stockActual" />
+          <EntitySet Name="VR_StockDisponible" EntityType="BDDistBHFModel.VR_StockDisponible" />
+          <EntitySet Name="VR_UtilidadPorProducto" EntityType="BDDistBHFModel.VR_UtilidadPorProducto" />
+          <EntitySet Name="Vr_VentasVendedor12Meses" EntityType="BDDistBHFModel.Vr_VentasVendedor12Meses" />
+          <EntitySet Name="Vr_VentasVendidas" EntityType="BDDistBHFModel.Vr_VentasVendidas" />
+          <EntitySet Name="VR_VistaPedido_PrecioCosto" EntityType="BDDistBHFModel.VR_VistaPedido_PrecioCosto" />
         </EntityContainer>
+        <ComplexType Name="sp_dg_RAsistencia_Result">
+          <Property Type="Int32" Name="cbnumi" Nullable="false" />
+          <Property Type="String" Name="cbdesc" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="pjent" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="pjsal" Nullable="true" MaxLength="5" />
+          <Property Type="DateTime" Name="pjfecha" Nullable="true" />
+          <Property Type="String" Name="dia" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ing1" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="sal1" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="ing2" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="sal2" Nullable="true" MaxLength="5" />
+        </ComplexType>
+        <ComplexType Name="Sp_GetClientes_Result">
+          <Property Type="Int32" Name="ccnumi" Nullable="false" />
+          <Property Type="String" Name="cccod" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="ccdesc" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ccdirec" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="cctelf1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cctelf2" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="numZona" Nullable="true" />
+          <Property Type="String" Name="descZona" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="numDct" Nullable="false" />
+          <Property Type="String" Name="descDct" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ccdctnum" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="numCat" Nullable="true" />
+          <Property Type="String" Name="descCat" Nullable="true" MaxLength="80" />
+          <Property Type="Int32" Name="ccest" Nullable="true" />
+          <Property Type="Decimal" Name="cclat" Nullable="true" Precision="18" Scale="14" />
+          <Property Type="Decimal" Name="cclongi" Nullable="true" Precision="18" Scale="14" />
+          <Property Type="Boolean" Name="cceven" Nullable="true" />
+          <Property Type="String" Name="ccobs" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="ccfnac" Nullable="true" />
+          <Property Type="String" Name="ccnomfac" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ccnit" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="ccfecing" Nullable="true" />
+          <Property Type="DateTime" Name="ccultped" Nullable="true" />
+          <Property Type="String" Name="ccuact" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_go_NV001_Result">
+          <Property Type="Int32" Name="oanumi" Nullable="false" />
+          <Property Type="Int32" Name="CodCliente" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="CI" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Celular" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CodProducto" Nullable="false" />
+          <Property Type="String" Name="Producto" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Vendedor" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_go_Reportes_Result">
+          <Property Type="Int32" Name="CodDB" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Contacto" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Carrito" Nullable="true" />
+          <Property Type="Int32" Name="Botellon" Nullable="true" />
+          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="Monto" Nullable="false" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="sp_Insert_TFV001_Result">
+          <Property Type="Int32" Name="fvanumi" Nullable="false" />
+          <Property Type="DateTime" Name="fvafec" Nullable="true" />
+          <Property Type="Int32" Name="fvanfac" Nullable="true" />
+          <Property Type="Double" Name="fvaautoriz" Nullable="true" />
+          <Property Type="Int32" Name="fvaest" Nullable="true" />
+          <Property Type="String" Name="fvanitcli" Nullable="true" MaxLength="15" />
+          <Property Type="Int32" Name="fvacodcli" Nullable="true" />
+          <Property Type="String" Name="fvadescli1" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="fvadescli2" Nullable="true" MaxLength="30" />
+          <Property Type="Double" Name="fvastot" Nullable="true" />
+          <Property Type="Double" Name="fvaimpsi" Nullable="true" />
+          <Property Type="Double" Name="fvaimpeo" Nullable="true" />
+          <Property Type="Double" Name="fvaimptc" Nullable="true" />
+          <Property Type="Double" Name="fvasubtotal" Nullable="true" />
+          <Property Type="Double" Name="fvadesc" Nullable="true" />
+          <Property Type="Double" Name="fvatotal" Nullable="true" />
+          <Property Type="Double" Name="fvadebfis" Nullable="true" />
+          <Property Type="String" Name="fvaccont" Nullable="true" MaxLength="14" />
+          <Property Type="DateTime" Name="fvaflim" Nullable="true" />
+          <Property Type="Binary" Name="fvaimgqr" Nullable="true" MaxLength="Max" />
+          <Property Type="Int32" Name="fvaalm" Nullable="true" />
+          <Property Type="Int32" Name="fvanumi2" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Insert_TO001_Result">
+          <Property Type="Int32" Name="oanumi" Nullable="false" />
+          <Property Type="DateTime" Name="oafdoc" Nullable="true" />
+          <Property Type="String" Name="oahora" Nullable="true" MaxLength="5" />
+          <Property Type="Int32" Name="oaccli" Nullable="true" />
+          <Property Type="Int32" Name="oazona" Nullable="true" />
+          <Property Type="Int32" Name="oarepa" Nullable="true" />
+          <Property Type="String" Name="oaobs" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="oaobs2" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="oaest" Nullable="true" />
+          <Property Type="Int32" Name="oaap" Nullable="true" />
+          <Property Type="Int32" Name="oapg" Nullable="true" />
+          <Property Type="DateTime" Name="oafact" Nullable="true" />
+          <Property Type="String" Name="oahact" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="oauact" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="sp_Mam_Asiento_Result">
+          <Property Type="Int32" Name="canumi" Nullable="false" />
+          <Property Type="String" Name="nro" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="cadesc" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="chporcen" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="chdebe" Nullable="true" />
+          <Property Type="Int32" Name="chhaber" Nullable="true" />
+          <Property Type="Decimal" Name="tc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="debe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="haber" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="debesus" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="habersus" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="variable" Nullable="true" />
+          <Property Type="Int32" Name="linea" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Mam_VentasCredito_Result">
+          <Property Type="Int32" Name="numicliente" Nullable="false" />
+          <Property Type="String" Name="cliente" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="credito" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="aporte" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="deuda" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Int32" Name="numiventa" Nullable="false" />
+          <Property Type="String" Name="aabdes" Nullable="false" MaxLength="17" />
+          <Property Type="String" Name="fechaventa" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="fechacredito" Nullable="true" MaxLength="4000" />
+          <Property Type="Decimal" Name="tctotcre" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="tdnrorecibo" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="tdfechaPago" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="tdnrodoc" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="tdmonto" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="observacion" Nullable="false" MaxLength="19" />
+        </ComplexType>
+        <ComplexType Name="vis_promedioConsumo_Result">
+          <Property Type="Int32" Name="ccnumi" Nullable="false" />
+          <Property Type="String" Name="ccdesc" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="cczona" Nullable="true" />
+          <Property Type="String" Name="cctelf1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ccdirec" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="ccest" Nullable="true" />
+          <Property Type="Int32" Name="ccprconsu" Nullable="true" />
+          <Property Type="DateTime" Name="fTentativa" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="vis_transacciones_Result">
+          <Property Type="Int32" Name="numi" Nullable="false" />
+          <Property Type="Int32" Name="odnota" Nullable="true" />
+          <Property Type="DateTime" Name="fdoc" Nullable="true" />
+          <Property Type="DateTime" Name="fact" Nullable="true" />
+          <Property Type="String" Name="hact" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="uact" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="tipo" Nullable="false" />
+        </ComplexType>
         <EntityType Name="CM001">
           <Key>
             <PropertyRef Name="manumi" />
@@ -5189,15 +4866,43 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="caamon" Type="Int32" />
           <Property Name="caaest" Type="Int32" />
           <Property Name="caadesc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="caatotal" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="caaemision" Type="Int32" />
-          <Property Name="caaconsigna" Type="Int32" />
           <Property Name="caadescpro1" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="caadescpro2" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="caadesctot" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="caatotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="caaemision" Type="Int32" />
+          <Property Name="caaconsigna" Type="Int32" />
           <Property Name="caaretenc" Type="Int32" />
           <Property Name="caaasientoi" Type="Int32" />
           <Property Name="caaffactura" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="TCA0011">
+          <Key>
+            <PropertyRef Name="cabnumi" />
+          </Key>
+          <Property Name="cabnumi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cabtc1numi" Type="Int32" />
+          <Property Name="cabcantcj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabcantun" Type="Int32" />
+          <Property Name="cabsubtot" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabpcomcj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabpcomun" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabporc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabdesccj" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabdescun" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabdescpro1cj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabdescpro1un" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabdescpro2cj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabdescpro2un" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabtot" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabpcostocj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabpcostoun" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabputi" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabpven" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabnfr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cabstocka" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabstockf" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabtca1numi" Type="Int32" />
         </EntityType>
         <EntityType Name="TFV001">
           <Key>
@@ -5374,6 +5079,46 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="pldesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="plmonto" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="plnumibd" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TV001">
+          <Key>
+            <PropertyRef Name="tanumi" />
+          </Key>
+          <Property Name="tanumi" Type="Int32" Nullable="false" />
+          <Property Name="taalm" Type="Int32" />
+          <Property Name="tafdoc" Type="DateTime" Precision="0" />
+          <Property Name="taven" Type="Int32" />
+          <Property Name="tatven" Type="Int32" />
+          <Property Name="tafvcr" Type="DateTime" Precision="0" />
+          <Property Name="taclpr" Type="Int32" Nullable="false" />
+          <Property Name="tamon" Type="Int32" />
+          <Property Name="taest" Type="Int32" />
+          <Property Name="tatotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tafact" Type="DateTime" Precision="0" />
+          <Property Name="tahact" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="tauact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TV0011">
+          <Key>
+            <PropertyRef Name="tbnumi" />
+          </Key>
+          <Property Name="tbnumi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tbtv1numi" Type="Int32" />
+          <Property Name="tbty5prod" Type="Int32" />
+          <Property Name="tbest" Type="Int32" />
+          <Property Name="tbcmin" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tbumin" Type="Int32" />
+          <Property Name="tbpbas" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tbptot" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tbporc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tbdesc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tbtotdesc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tbobs" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="tbpcos" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tbptot2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="tbfact" Type="DateTime" Precision="0" />
+          <Property Name="tbhact" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="tbuact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TV00121">
           <Key>
@@ -5779,6 +5524,15 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="phfing" Type="DateTime" Precision="0" />
           <Property Name="phdias" Type="Int32" />
         </EntityType>
+        <EntityType Name="TS001">
+          <Key>
+            <PropertyRef Name="sanumi" />
+          </Key>
+          <Property Name="sanumi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sanit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="sanom1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sanom2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="TV0013">
           <Key>
             <PropertyRef Name="tenumi" />
@@ -5988,6 +5742,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="ccdesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="oacnrofact" Type="Int64" Nullable="false" />
           <Property Name="obptot" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="IdZona" Type="Int32" />
         </EntityType>
         <EntityType Name="VR_GO_DespachoXProducto">
           <Key>
@@ -6049,6 +5804,40 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="botellone" Type="Int32" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VR_GO_Factura">
+          <Key>
+            <PropertyRef Name="fvanumi" />
+            <PropertyRef Name="fvanumi2" />
+          </Key>
+          <Property Name="fvanumi" Type="Int32" Nullable="false" />
+          <Property Name="fvafec" Type="DateTime" Precision="0" />
+          <Property Name="fvanfac" Type="Int32" />
+          <Property Name="fvaautoriz" Type="Double" />
+          <Property Name="fvaest" Type="Int32" />
+          <Property Name="fvanitcli" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="fvacodcli" Type="Int32" />
+          <Property Name="fvadescli1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fvadescli2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="fvastot" Type="Double" />
+          <Property Name="fvaimpsi" Type="Double" />
+          <Property Name="fvaimpeo" Type="Double" />
+          <Property Name="fvaimptc" Type="Double" />
+          <Property Name="fvasubtotal" Type="Double" />
+          <Property Name="fvadesc" Type="Double" />
+          <Property Name="fvatotal" Type="Double" />
+          <Property Name="fvadebfis" Type="Double" />
+          <Property Name="fvaccont" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="fvaflim" Type="DateTime" Precision="0" />
+          <Property Name="fvaimgqr" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="fvaalm" Type="Int32" />
+          <Property Name="fvanumi2" Type="Int32" Nullable="false" />
+          <Property Name="fvbnumi" Type="Int32" />
+          <Property Name="fvbcprod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="fvbdesprod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fvbcant" Type="Int32" />
+          <Property Name="fvbprecio" Type="Double" />
+          <Property Name="fvbnumi2" Type="Int32" />
         </EntityType>
         <EntityType Name="VR_GO_FacturaVsVenta">
           <Key>
@@ -6485,6 +6274,45 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="Vendedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FechaPedido" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="VR_NotaCompra">
+          <Key>
+            <PropertyRef Name="caanumi" />
+            <PropertyRef Name="tipocompra" />
+          </Key>
+          <Property Name="caanumi" Type="Int32" Nullable="false" />
+          <Property Name="FechaCompra" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="caaprov" Type="Int32" />
+          <Property Name="cmdesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cmrsocial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cmnit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cmtelf" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="caanfac" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="caatven" Type="Int32" />
+          <Property Name="tipocompra" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="caafvcred" Type="DateTime" Precision="0" />
+          <Property Name="caadesc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="caatotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="caaemision" Type="Int32" />
+          <Property Name="caaffactura" Type="DateTime" Precision="0" />
+          <Property Name="cabtc1numi" Type="Int32" />
+          <Property Name="cadesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cabcantcj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabcantun" Type="Int32" />
+          <Property Name="cabpcomcj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabpcomun" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabpcostocj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabpcostoun" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabsubtot" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabdesccj" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cabdescpro1cj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabdescpro2cj" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="cabtot" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="fcarsocial" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="fcanfac" Type="Int64" />
+          <Property Name="fcaautoriz" Type="Int64" />
+          <Property Name="fcaccont" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="plazo" Type="Int32" />
+        </EntityType>
         <EntityType Name="VR_Pagos">
           <Key>
             <PropertyRef Name="ognumi" />
@@ -6542,11 +6370,12 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           </Key>
           <Property Name="canumi" Type="Int32" Nullable="false" />
           <Property Name="cacod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="cadesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cadesc2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cadesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cadesc2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="caest" Type="Boolean" />
           <Property Name="iacprod" Type="Int32" />
           <Property Name="iacant" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="caconv" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="cenum" Type="Boolean" />
           <Property Name="cedesc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -6627,312 +6456,242 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="precioVenta" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="Utilidad" Type="Decimal" Precision="38" Scale="2" />
         </EntityType>
-        <EntityType Name="TV001">
-          <Key>
-            <PropertyRef Name="tanumi" />
-          </Key>
-          <Property Name="tanumi" Type="Int32" Nullable="false" />
-          <Property Name="taalm" Type="Int32" />
-          <Property Name="tafdoc" Type="DateTime" Precision="0" />
-          <Property Name="taven" Type="Int32" />
-          <Property Name="tatven" Type="Int32" />
-          <Property Name="tafvcr" Type="DateTime" Precision="0" />
-          <Property Name="taclpr" Type="Int32" Nullable="false" />
-          <Property Name="tamon" Type="Int32" />
-          <Property Name="taest" Type="Int32" />
-          <Property Name="tatotal" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="tafact" Type="DateTime" Precision="0" />
-          <Property Name="tahact" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="tauact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="TV0011">
-          <Key>
-            <PropertyRef Name="tbnumi" />
-          </Key>
-          <Property Name="tbnumi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tbtv1numi" Type="Int32" />
-          <Property Name="tbty5prod" Type="Int32" />
-          <Property Name="tbest" Type="Int32" />
-          <Property Name="tbcmin" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="tbumin" Type="Int32" />
-          <Property Name="tbpbas" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="tbptot" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="tbporc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="tbdesc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="tbtotdesc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="tbobs" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="tbpcos" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="tbptot2" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="tbfact" Type="DateTime" Precision="0" />
-          <Property Name="tbhact" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="tbuact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="TS001">
-          <Key>
-            <PropertyRef Name="sanumi" />
-          </Key>
-          <Property Name="sanumi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sanit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="sanom1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="sanom2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="VR_GO_Factura">
-          <Key>
-            <PropertyRef Name="fvanumi" />
-            <PropertyRef Name="fvanumi2" />
-          </Key>
-          <Property Name="fvanumi" Type="Int32" Nullable="false" />
-          <Property Name="fvafec" Type="DateTime" Precision="0" />
-          <Property Name="fvanfac" Type="Int32" />
-          <Property Name="fvaautoriz" Type="Double" />
-          <Property Name="fvaest" Type="Int32" />
-          <Property Name="fvanitcli" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="fvacodcli" Type="Int32" />
-          <Property Name="fvadescli1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="fvadescli2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="fvastot" Type="Double" />
-          <Property Name="fvaimpsi" Type="Double" />
-          <Property Name="fvaimpeo" Type="Double" />
-          <Property Name="fvaimptc" Type="Double" />
-          <Property Name="fvasubtotal" Type="Double" />
-          <Property Name="fvadesc" Type="Double" />
-          <Property Name="fvatotal" Type="Double" />
-          <Property Name="fvadebfis" Type="Double" />
-          <Property Name="fvaccont" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
-          <Property Name="fvaflim" Type="DateTime" Precision="0" />
-          <Property Name="fvaimgqr" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="fvaalm" Type="Int32" />
-          <Property Name="fvanumi2" Type="Int32" Nullable="false" />
-          <Property Name="fvbnumi" Type="Int32" />
-          <Property Name="fvbcprod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="fvbdesprod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fvbcant" Type="Int32" />
-          <Property Name="fvbprecio" Type="Double" />
-          <Property Name="fvbnumi2" Type="Int32" />
-        </EntityType>
-        <EntityType Name="VR_NotaCompra">
-          <Key>
-            <PropertyRef Name="caanumi" />
-            <PropertyRef Name="tipocompra" />
-          </Key>
-          <Property Name="caanumi" Type="Int32" Nullable="false" />
-          <Property Name="caafdoc" Type="DateTime" Precision="0" />
-          <Property Name="caaprov" Type="Int32" />
-          <Property Name="cmdesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cmrsocial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cmnit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="cmtelf" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="caanfac" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="caatven" Type="Int32" />
-          <Property Name="tipocompra" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="caafvcred" Type="DateTime" Precision="0" />
-          <Property Name="caadesc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="caatotal" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="caaemision" Type="Int32" />
-          <Property Name="caafingreso" Type="DateTime" Precision="0" />
-          <Property Name="cabtc1numi" Type="Int32" />
-          <Property Name="cadesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="cabcant" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabpcom" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabpcosto" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabsubtot" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabdesc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabtot" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="fcarsocial" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="fcanfac" Type="Int64" />
-          <Property Name="fcaautoriz" Type="Int64" />
-          <Property Name="fcaccont" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
-          <Property Name="plazo" Type="Int32" />
-        </EntityType>
-        <ComplexType Name="sp_dg_RAsistencia_Result">
-          <Property Type="Int32" Name="cbnumi" Nullable="false" />
-          <Property Type="String" Name="cbdesc" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="pjent" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="pjsal" Nullable="true" MaxLength="5" />
-          <Property Type="DateTime" Name="pjfecha" Nullable="true" />
-          <Property Type="String" Name="dia" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="ing1" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="sal1" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="ing2" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="sal2" Nullable="true" MaxLength="5" />
-        </ComplexType>
-        <ComplexType Name="Sp_GetClientes_Result">
-          <Property Type="Int32" Name="ccnumi" Nullable="false" />
-          <Property Type="String" Name="cccod" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="ccdesc" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ccdirec" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="cctelf1" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="cctelf2" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="numZona" Nullable="true" />
-          <Property Type="String" Name="descZona" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="numDct" Nullable="false" />
-          <Property Type="String" Name="descDct" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ccdctnum" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="numCat" Nullable="true" />
-          <Property Type="String" Name="descCat" Nullable="true" MaxLength="80" />
-          <Property Type="Int32" Name="ccest" Nullable="true" />
-          <Property Type="Decimal" Name="cclat" Nullable="true" Precision="18" Scale="14" />
-          <Property Type="Decimal" Name="cclongi" Nullable="true" Precision="18" Scale="14" />
-          <Property Type="Boolean" Name="cceven" Nullable="true" />
-          <Property Type="String" Name="ccobs" Nullable="true" MaxLength="150" />
-          <Property Type="DateTime" Name="ccfnac" Nullable="true" />
-          <Property Type="String" Name="ccnomfac" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="ccnit" Nullable="true" MaxLength="20" />
-          <Property Type="DateTime" Name="ccfecing" Nullable="true" />
-          <Property Type="DateTime" Name="ccultped" Nullable="true" />
-          <Property Type="String" Name="ccuact" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="sp_go_NV001_Result">
-          <Property Type="Int32" Name="oanumi" Nullable="false" />
-          <Property Type="Int32" Name="CodCliente" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="CI" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Celular" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="CodProducto" Nullable="false" />
-          <Property Type="String" Name="Producto" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="Cantidad" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="PrecioUnitario" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="Vendedor" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="FechaPedido" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_go_Reportes_Result">
-          <Property Type="Int32" Name="CodDB" Nullable="false" />
-          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="15" />
-          <Property Type="String" Name="Contacto" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Carrito" Nullable="true" />
-          <Property Type="Int32" Name="Botellon" Nullable="true" />
-          <Property Type="String" Name="Cliente" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="200" />
-          <Property Type="Decimal" Name="Cantidad" Nullable="false" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="Monto" Nullable="false" Precision="38" Scale="2" />
-        </ComplexType>
-        <ComplexType Name="sp_Insert_TFV001_Result">
-          <Property Type="Int32" Name="fvanumi" Nullable="false" />
-          <Property Type="DateTime" Name="fvafec" Nullable="true" />
-          <Property Type="Int32" Name="fvanfac" Nullable="true" />
-          <Property Type="Double" Name="fvaautoriz" Nullable="true" />
-          <Property Type="Int32" Name="fvaest" Nullable="true" />
-          <Property Type="String" Name="fvanitcli" Nullable="true" MaxLength="15" />
-          <Property Type="Int32" Name="fvacodcli" Nullable="true" />
-          <Property Type="String" Name="fvadescli1" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="fvadescli2" Nullable="true" MaxLength="30" />
-          <Property Type="Double" Name="fvastot" Nullable="true" />
-          <Property Type="Double" Name="fvaimpsi" Nullable="true" />
-          <Property Type="Double" Name="fvaimpeo" Nullable="true" />
-          <Property Type="Double" Name="fvaimptc" Nullable="true" />
-          <Property Type="Double" Name="fvasubtotal" Nullable="true" />
-          <Property Type="Double" Name="fvadesc" Nullable="true" />
-          <Property Type="Double" Name="fvatotal" Nullable="true" />
-          <Property Type="Double" Name="fvadebfis" Nullable="true" />
-          <Property Type="String" Name="fvaccont" Nullable="true" MaxLength="14" />
-          <Property Type="DateTime" Name="fvaflim" Nullable="true" />
-          <Property Type="Binary" Name="fvaimgqr" Nullable="true" MaxLength="Max" />
-          <Property Type="Int32" Name="fvaalm" Nullable="true" />
-          <Property Type="Int32" Name="fvanumi2" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="sp_Insert_TO001_Result">
-          <Property Type="Int32" Name="oanumi" Nullable="false" />
-          <Property Type="DateTime" Name="oafdoc" Nullable="true" />
-          <Property Type="String" Name="oahora" Nullable="true" MaxLength="5" />
-          <Property Type="Int32" Name="oaccli" Nullable="true" />
-          <Property Type="Int32" Name="oazona" Nullable="true" />
-          <Property Type="Int32" Name="oarepa" Nullable="true" />
-          <Property Type="String" Name="oaobs" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="oaobs2" Nullable="true" MaxLength="60" />
-          <Property Type="Int32" Name="oaest" Nullable="true" />
-          <Property Type="Int32" Name="oaap" Nullable="true" />
-          <Property Type="Int32" Name="oapg" Nullable="true" />
-          <Property Type="DateTime" Name="oafact" Nullable="true" />
-          <Property Type="String" Name="oahact" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="oauact" Nullable="true" MaxLength="10" />
-        </ComplexType>
-        <ComplexType Name="sp_Mam_Asiento_Result">
-          <Property Type="Int32" Name="canumi" Nullable="false" />
-          <Property Type="String" Name="nro" Nullable="false" MaxLength="12" />
-          <Property Type="String" Name="cadesc" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="chporcen" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="chdebe" Nullable="true" />
-          <Property Type="Int32" Name="chhaber" Nullable="true" />
-          <Property Type="Decimal" Name="tc" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="debe" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="haber" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="debesus" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="habersus" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="variable" Nullable="true" />
-          <Property Type="Int32" Name="linea" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_Mam_VentasCredito_Result">
-          <Property Type="Int32" Name="numicliente" Nullable="false" />
-          <Property Type="String" Name="cliente" Nullable="true" MaxLength="50" />
-          <Property Type="Decimal" Name="credito" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="aporte" Nullable="false" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="deuda" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Int32" Name="numiventa" Nullable="false" />
-          <Property Type="String" Name="aabdes" Nullable="false" MaxLength="17" />
-          <Property Type="String" Name="fechaventa" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="fechacredito" Nullable="true" MaxLength="4000" />
-          <Property Type="Decimal" Name="tctotcre" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="tdnrorecibo" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="tdfechaPago" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="tdnrodoc" Nullable="true" MaxLength="20" />
-          <Property Type="Decimal" Name="tdmonto" Nullable="true" Precision="18" Scale="2" />
-          <Property Type="String" Name="observacion" Nullable="false" MaxLength="19" />
-        </ComplexType>
-        <ComplexType Name="vis_promedioConsumo_Result">
-          <Property Type="Int32" Name="ccnumi" Nullable="false" />
-          <Property Type="String" Name="ccdesc" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="cczona" Nullable="true" />
-          <Property Type="String" Name="cctelf1" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ccdirec" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="ccest" Nullable="true" />
-          <Property Type="Int32" Name="ccprconsu" Nullable="true" />
-          <Property Type="DateTime" Name="fTentativa" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="vis_transacciones_Result">
-          <Property Type="Int32" Name="numi" Nullable="false" />
-          <Property Type="Int32" Name="odnota" Nullable="true" />
-          <Property Type="DateTime" Name="fdoc" Nullable="true" />
-          <Property Type="DateTime" Name="fact" Nullable="true" />
-          <Property Type="String" Name="hact" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="uact" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="tipo" Nullable="false" />
-        </ComplexType>
-        <EntityType Name="TCA0011">
-          <Key>
-            <PropertyRef Name="cabnumi" />
-          </Key>
-          <Property Name="cabnumi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cabtc1numi" Type="Int32" />
-          <Property Name="cabcantcj" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="cabcantun" Type="Int32" />
-          <Property Name="cabsubtot" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabpcomcj" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="cabpcomun" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="cabporc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabdesccj" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabdescun" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabdescpro1cj" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="cabdescpro1un" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="cabdescpro2cj" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="cabdescpro2un" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="cabtot" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabpcostocj" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="cabpcostoun" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="cabputi" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabpven" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabnfr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="cabstocka" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabstockf" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="cabtca1numi" Type="Int32" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BDDistBHFModelStoreContainer" CdmEntityContainer="BDDistBHFEntities">
+          <FunctionImportMapping FunctionImportName="PlanillaSueldo" FunctionName="BDDistBHFModel.Store.PlanillaSueldo" />
+          <FunctionImportMapping FunctionImportName="sp_dg_RAsistencia" FunctionName="BDDistBHFModel.Store.sp_dg_RAsistencia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_dg_RAsistencia_Result">
+                <ScalarProperty Name="cbnumi" ColumnName="cbnumi" />
+                <ScalarProperty Name="cbdesc" ColumnName="cbdesc" />
+                <ScalarProperty Name="pjent" ColumnName="pjent" />
+                <ScalarProperty Name="pjsal" ColumnName="pjsal" />
+                <ScalarProperty Name="pjfecha" ColumnName="pjfecha" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="ing1" ColumnName="ing1" />
+                <ScalarProperty Name="sal1" ColumnName="sal1" />
+                <ScalarProperty Name="ing2" ColumnName="ing2" />
+                <ScalarProperty Name="sal2" ColumnName="sal2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_dg_TC011" FunctionName="BDDistBHFModel.Store.sp_dg_TC011" />
+          <FunctionImportMapping FunctionImportName="sp_dg_TP007" FunctionName="BDDistBHFModel.Store.sp_dg_TP007" />
+          <FunctionImportMapping FunctionImportName="sp_dg_TP008" FunctionName="BDDistBHFModel.Store.sp_dg_TP008" />
+          <FunctionImportMapping FunctionImportName="sp_dg_TZ001" FunctionName="BDDistBHFModel.Store.sp_dg_TZ001" />
+          <FunctionImportMapping FunctionImportName="sp_dg_ZY002" FunctionName="BDDistBHFModel.Store.sp_dg_ZY002" />
+          <FunctionImportMapping FunctionImportName="Sp_GetClientes" FunctionName="BDDistBHFModel.Store.Sp_GetClientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.Sp_GetClientes_Result">
+                <ScalarProperty Name="ccnumi" ColumnName="ccnumi" />
+                <ScalarProperty Name="cccod" ColumnName="cccod" />
+                <ScalarProperty Name="ccdesc" ColumnName="ccdesc" />
+                <ScalarProperty Name="ccdirec" ColumnName="ccdirec" />
+                <ScalarProperty Name="cctelf1" ColumnName="cctelf1" />
+                <ScalarProperty Name="cctelf2" ColumnName="cctelf2" />
+                <ScalarProperty Name="numZona" ColumnName="numZona" />
+                <ScalarProperty Name="descZona" ColumnName="descZona" />
+                <ScalarProperty Name="numDct" ColumnName="numDct" />
+                <ScalarProperty Name="descDct" ColumnName="descDct" />
+                <ScalarProperty Name="ccdctnum" ColumnName="ccdctnum" />
+                <ScalarProperty Name="numCat" ColumnName="numCat" />
+                <ScalarProperty Name="descCat" ColumnName="descCat" />
+                <ScalarProperty Name="ccest" ColumnName="ccest" />
+                <ScalarProperty Name="cclat" ColumnName="cclat" />
+                <ScalarProperty Name="cclongi" ColumnName="cclongi" />
+                <ScalarProperty Name="cceven" ColumnName="cceven" />
+                <ScalarProperty Name="ccobs" ColumnName="ccobs" />
+                <ScalarProperty Name="ccfnac" ColumnName="ccfnac" />
+                <ScalarProperty Name="ccnomfac" ColumnName="ccnomfac" />
+                <ScalarProperty Name="ccnit" ColumnName="ccnit" />
+                <ScalarProperty Name="ccfecing" ColumnName="ccfecing" />
+                <ScalarProperty Name="ccultped" ColumnName="ccultped" />
+                <ScalarProperty Name="ccuact" ColumnName="ccuact" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_go_CM001" FunctionName="BDDistBHFModel.Store.sp_go_CM001" />
+          <FunctionImportMapping FunctionImportName="sp_go_NV001" FunctionName="BDDistBHFModel.Store.sp_go_NV001">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_go_NV001_Result">
+                <ScalarProperty Name="oanumi" ColumnName="oanumi" />
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="CI" ColumnName="CI" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="CodProducto" ColumnName="CodProducto" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_go_Reportes" FunctionName="BDDistBHFModel.Store.sp_go_Reportes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_go_Reportes_Result">
+                <ScalarProperty Name="CodDB" ColumnName="CodDB" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="Carrito" ColumnName="Carrito" />
+                <ScalarProperty Name="Botellon" ColumnName="Botellon" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_go_TC001" FunctionName="BDDistBHFModel.Store.sp_go_TC001" />
+          <FunctionImportMapping FunctionImportName="sp_go_TC002" FunctionName="BDDistBHFModel.Store.sp_go_TC002" />
+          <FunctionImportMapping FunctionImportName="sp_go_TC004" FunctionName="BDDistBHFModel.Store.sp_go_TC004" />
+          <FunctionImportMapping FunctionImportName="sp_go_TC004_appMovil" FunctionName="BDDistBHFModel.Store.sp_go_TC004_appMovil" />
+          <FunctionImportMapping FunctionImportName="sp_go_TC009" FunctionName="BDDistBHFModel.Store.sp_go_TC009" />
+          <FunctionImportMapping FunctionImportName="sp_go_TC010" FunctionName="BDDistBHFModel.Store.sp_go_TC010" />
+          <FunctionImportMapping FunctionImportName="sp_go_TCA001" FunctionName="BDDistBHFModel.Store.sp_go_TCA001" />
+          <FunctionImportMapping FunctionImportName="sp_go_TCI001" FunctionName="BDDistBHFModel.Store.sp_go_TCI001" />
+          <FunctionImportMapping FunctionImportName="sp_go_TCP001" FunctionName="BDDistBHFModel.Store.sp_go_TCP001" />
+          <FunctionImportMapping FunctionImportName="sp_go_TI002" FunctionName="BDDistBHFModel.Store.sp_go_TI002" />
+          <FunctionImportMapping FunctionImportName="sp_go_TO0023" FunctionName="BDDistBHFModel.Store.sp_go_TO0023" />
+          <FunctionImportMapping FunctionImportName="sp_go_TS002" FunctionName="BDDistBHFModel.Store.sp_go_TS002" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_TC004" FunctionName="BDDistBHFModel.Store.sp_Insert_TC004" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_TFV001" FunctionName="BDDistBHFModel.Store.sp_Insert_TFV001">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_Insert_TFV001_Result">
+                <ScalarProperty Name="fvanumi" ColumnName="fvanumi" />
+                <ScalarProperty Name="fvafec" ColumnName="fvafec" />
+                <ScalarProperty Name="fvanfac" ColumnName="fvanfac" />
+                <ScalarProperty Name="fvaautoriz" ColumnName="fvaautoriz" />
+                <ScalarProperty Name="fvaest" ColumnName="fvaest" />
+                <ScalarProperty Name="fvanitcli" ColumnName="fvanitcli" />
+                <ScalarProperty Name="fvacodcli" ColumnName="fvacodcli" />
+                <ScalarProperty Name="fvadescli1" ColumnName="fvadescli1" />
+                <ScalarProperty Name="fvadescli2" ColumnName="fvadescli2" />
+                <ScalarProperty Name="fvastot" ColumnName="fvastot" />
+                <ScalarProperty Name="fvaimpsi" ColumnName="fvaimpsi" />
+                <ScalarProperty Name="fvaimpeo" ColumnName="fvaimpeo" />
+                <ScalarProperty Name="fvaimptc" ColumnName="fvaimptc" />
+                <ScalarProperty Name="fvasubtotal" ColumnName="fvasubtotal" />
+                <ScalarProperty Name="fvadesc" ColumnName="fvadesc" />
+                <ScalarProperty Name="fvatotal" ColumnName="fvatotal" />
+                <ScalarProperty Name="fvadebfis" ColumnName="fvadebfis" />
+                <ScalarProperty Name="fvaccont" ColumnName="fvaccont" />
+                <ScalarProperty Name="fvaflim" ColumnName="fvaflim" />
+                <ScalarProperty Name="fvaimgqr" ColumnName="fvaimgqr" />
+                <ScalarProperty Name="fvaalm" ColumnName="fvaalm" />
+                <ScalarProperty Name="fvanumi2" ColumnName="fvanumi2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Insert_TL002" FunctionName="BDDistBHFModel.Store.sp_Insert_TL002" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_TO001" FunctionName="BDDistBHFModel.Store.sp_Insert_TO001">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_Insert_TO001_Result">
+                <ScalarProperty Name="oanumi" ColumnName="oanumi" />
+                <ScalarProperty Name="oafdoc" ColumnName="oafdoc" />
+                <ScalarProperty Name="oahora" ColumnName="oahora" />
+                <ScalarProperty Name="oaccli" ColumnName="oaccli" />
+                <ScalarProperty Name="oazona" ColumnName="oazona" />
+                <ScalarProperty Name="oarepa" ColumnName="oarepa" />
+                <ScalarProperty Name="oaobs" ColumnName="oaobs" />
+                <ScalarProperty Name="oaobs2" ColumnName="oaobs2" />
+                <ScalarProperty Name="oaest" ColumnName="oaest" />
+                <ScalarProperty Name="oaap" ColumnName="oaap" />
+                <ScalarProperty Name="oapg" ColumnName="oapg" />
+                <ScalarProperty Name="oafact" ColumnName="oafact" />
+                <ScalarProperty Name="oahact" ColumnName="oahact" />
+                <ScalarProperty Name="oauact" ColumnName="oauact" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Mam_Asiento" FunctionName="BDDistBHFModel.Store.sp_Mam_Asiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_Mam_Asiento_Result">
+                <ScalarProperty Name="canumi" ColumnName="canumi" />
+                <ScalarProperty Name="nro" ColumnName="nro" />
+                <ScalarProperty Name="cadesc" ColumnName="cadesc" />
+                <ScalarProperty Name="chporcen" ColumnName="chporcen" />
+                <ScalarProperty Name="chdebe" ColumnName="chdebe" />
+                <ScalarProperty Name="chhaber" ColumnName="chhaber" />
+                <ScalarProperty Name="tc" ColumnName="tc" />
+                <ScalarProperty Name="debe" ColumnName="debe" />
+                <ScalarProperty Name="haber" ColumnName="haber" />
+                <ScalarProperty Name="debesus" ColumnName="debesus" />
+                <ScalarProperty Name="habersus" ColumnName="habersus" />
+                <ScalarProperty Name="variable" ColumnName="variable" />
+                <ScalarProperty Name="linea" ColumnName="linea" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Mam_ReporteVentas" FunctionName="BDDistBHFModel.Store.sp_Mam_ReporteVentas" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TC002" FunctionName="BDDistBHFModel.Store.sp_Mam_TC002" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TC005C" FunctionName="BDDistBHFModel.Store.sp_Mam_TC005C" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TCA00121Cheque" FunctionName="BDDistBHFModel.Store.sp_Mam_TCA00121Cheque" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TI005" FunctionName="BDDistBHFModel.Store.sp_Mam_TI005" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TM001" FunctionName="BDDistBHFModel.Store.sp_Mam_TM001" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TM001SalidaChofer" FunctionName="BDDistBHFModel.Store.sp_Mam_TM001SalidaChofer" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TO004" FunctionName="BDDistBHFModel.Store.sp_Mam_TO004" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TO005" FunctionName="BDDistBHFModel.Store.sp_Mam_TO005" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TV00121" FunctionName="BDDistBHFModel.Store.sp_Mam_TV00121" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_TV00121Cheque" FunctionName="BDDistBHFModel.Store.sp_Mam_TV00121Cheque" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_VentasCredito" FunctionName="BDDistBHFModel.Store.sp_Mam_VentasCredito">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_Mam_VentasCredito_Result">
+                <ScalarProperty Name="numicliente" ColumnName="numicliente" />
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="credito" ColumnName="credito" />
+                <ScalarProperty Name="aporte" ColumnName="aporte" />
+                <ScalarProperty Name="deuda" ColumnName="deuda" />
+                <ScalarProperty Name="numiventa" ColumnName="numiventa" />
+                <ScalarProperty Name="aabdes" ColumnName="aabdes" />
+                <ScalarProperty Name="fechaventa" ColumnName="fechaventa" />
+                <ScalarProperty Name="fechacredito" ColumnName="fechacredito" />
+                <ScalarProperty Name="tctotcre" ColumnName="tctotcre" />
+                <ScalarProperty Name="tdnrorecibo" ColumnName="tdnrorecibo" />
+                <ScalarProperty Name="tdfechaPago" ColumnName="tdfechaPago" />
+                <ScalarProperty Name="tdnrodoc" ColumnName="tdnrodoc" />
+                <ScalarProperty Name="tdmonto" ColumnName="tdmonto" />
+                <ScalarProperty Name="observacion" ColumnName="observacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Mam_VentasEstadisticos" FunctionName="BDDistBHFModel.Store.sp_Mam_VentasEstadisticos" />
+          <FunctionImportMapping FunctionImportName="sp_Mam_VentasGraficas" FunctionName="BDDistBHFModel.Store.sp_Mam_VentasGraficas" />
+          <FunctionImportMapping FunctionImportName="sp_nfactura" FunctionName="BDDistBHFModel.Store.sp_nfactura" />
+          <FunctionImportMapping FunctionImportName="vis_promedioConsumo" FunctionName="BDDistBHFModel.Store.vis_promedioConsumo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.vis_promedioConsumo_Result">
+                <ScalarProperty Name="ccnumi" ColumnName="ccnumi" />
+                <ScalarProperty Name="ccdesc" ColumnName="ccdesc" />
+                <ScalarProperty Name="cczona" ColumnName="cczona" />
+                <ScalarProperty Name="cctelf1" ColumnName="cctelf1" />
+                <ScalarProperty Name="ccdirec" ColumnName="ccdirec" />
+                <ScalarProperty Name="ccest" ColumnName="ccest" />
+                <ScalarProperty Name="ccprconsu" ColumnName="ccprconsu" />
+                <ScalarProperty Name="fTentativa" ColumnName="fTentativa" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="vis_transacciones" FunctionName="BDDistBHFModel.Store.vis_transacciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDDistBHFModel.vis_transacciones_Result">
+                <ScalarProperty Name="numi" ColumnName="numi" />
+                <ScalarProperty Name="odnota" ColumnName="odnota" />
+                <ScalarProperty Name="fdoc" ColumnName="fdoc" />
+                <ScalarProperty Name="fact" ColumnName="fact" />
+                <ScalarProperty Name="hact" ColumnName="hact" />
+                <ScalarProperty Name="uact" ColumnName="uact" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="CM001">
             <EntityTypeMapping TypeName="BDDistBHFModel.CM001">
               <MappingFragment StoreEntitySet="CM001">
@@ -7179,12 +6938,12 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
                 <ScalarProperty Name="caaffactura" ColumnName="caaffactura" />
                 <ScalarProperty Name="caaasientoi" ColumnName="caaasientoi" />
                 <ScalarProperty Name="caaretenc" ColumnName="caaretenc" />
-                <ScalarProperty Name="caadesctot" ColumnName="caadesctot" />
-                <ScalarProperty Name="caadescpro2" ColumnName="caadescpro2" />
-                <ScalarProperty Name="caadescpro1" ColumnName="caadescpro1" />
                 <ScalarProperty Name="caaconsigna" ColumnName="caaconsigna" />
                 <ScalarProperty Name="caaemision" ColumnName="caaemision" />
                 <ScalarProperty Name="caatotal" ColumnName="caatotal" />
+                <ScalarProperty Name="caadesctot" ColumnName="caadesctot" />
+                <ScalarProperty Name="caadescpro2" ColumnName="caadescpro2" />
+                <ScalarProperty Name="caadescpro1" ColumnName="caadescpro1" />
                 <ScalarProperty Name="caadesc" ColumnName="caadesc" />
                 <ScalarProperty Name="caaest" ColumnName="caaest" />
                 <ScalarProperty Name="caamon" ColumnName="caamon" />
@@ -7198,6 +6957,35 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
                 <ScalarProperty Name="caaprov" ColumnName="caaprov" />
                 <ScalarProperty Name="caafdoc" ColumnName="caafdoc" />
                 <ScalarProperty Name="caanumi" ColumnName="caanumi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TCA0011">
+            <EntityTypeMapping TypeName="BDDistBHFModel.TCA0011">
+              <MappingFragment StoreEntitySet="TCA0011">
+                <ScalarProperty Name="cabtca1numi" ColumnName="cabtca1numi" />
+                <ScalarProperty Name="cabstockf" ColumnName="cabstockf" />
+                <ScalarProperty Name="cabstocka" ColumnName="cabstocka" />
+                <ScalarProperty Name="cabnfr" ColumnName="cabnfr" />
+                <ScalarProperty Name="cabpven" ColumnName="cabpven" />
+                <ScalarProperty Name="cabputi" ColumnName="cabputi" />
+                <ScalarProperty Name="cabpcostoun" ColumnName="cabpcostoun" />
+                <ScalarProperty Name="cabpcostocj" ColumnName="cabpcostocj" />
+                <ScalarProperty Name="cabtot" ColumnName="cabtot" />
+                <ScalarProperty Name="cabdescpro2un" ColumnName="cabdescpro2un" />
+                <ScalarProperty Name="cabdescpro2cj" ColumnName="cabdescpro2cj" />
+                <ScalarProperty Name="cabdescpro1un" ColumnName="cabdescpro1un" />
+                <ScalarProperty Name="cabdescpro1cj" ColumnName="cabdescpro1cj" />
+                <ScalarProperty Name="cabdescun" ColumnName="cabdescun" />
+                <ScalarProperty Name="cabdesccj" ColumnName="cabdesccj" />
+                <ScalarProperty Name="cabporc" ColumnName="cabporc" />
+                <ScalarProperty Name="cabpcomun" ColumnName="cabpcomun" />
+                <ScalarProperty Name="cabpcomcj" ColumnName="cabpcomcj" />
+                <ScalarProperty Name="cabsubtot" ColumnName="cabsubtot" />
+                <ScalarProperty Name="cabcantun" ColumnName="cabcantun" />
+                <ScalarProperty Name="cabcantcj" ColumnName="cabcantcj" />
+                <ScalarProperty Name="cabtc1numi" ColumnName="cabtc1numi" />
+                <ScalarProperty Name="cabnumi" ColumnName="cabnumi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7386,6 +7174,48 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
                 <ScalarProperty Name="plcon" ColumnName="plcon" />
                 <ScalarProperty Name="plnumi" ColumnName="plnumi" />
                 <ScalarProperty Name="plline" ColumnName="plline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TV001">
+            <EntityTypeMapping TypeName="BDDistBHFModel.TV001">
+              <MappingFragment StoreEntitySet="TV001">
+                <ScalarProperty Name="tauact" ColumnName="tauact" />
+                <ScalarProperty Name="tahact" ColumnName="tahact" />
+                <ScalarProperty Name="tafact" ColumnName="tafact" />
+                <ScalarProperty Name="tatotal" ColumnName="tatotal" />
+                <ScalarProperty Name="taest" ColumnName="taest" />
+                <ScalarProperty Name="tamon" ColumnName="tamon" />
+                <ScalarProperty Name="taclpr" ColumnName="taclpr" />
+                <ScalarProperty Name="tafvcr" ColumnName="tafvcr" />
+                <ScalarProperty Name="tatven" ColumnName="tatven" />
+                <ScalarProperty Name="taven" ColumnName="taven" />
+                <ScalarProperty Name="tafdoc" ColumnName="tafdoc" />
+                <ScalarProperty Name="taalm" ColumnName="taalm" />
+                <ScalarProperty Name="tanumi" ColumnName="tanumi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TV0011">
+            <EntityTypeMapping TypeName="BDDistBHFModel.TV0011">
+              <MappingFragment StoreEntitySet="TV0011">
+                <ScalarProperty Name="tbuact" ColumnName="tbuact" />
+                <ScalarProperty Name="tbhact" ColumnName="tbhact" />
+                <ScalarProperty Name="tbfact" ColumnName="tbfact" />
+                <ScalarProperty Name="tbptot2" ColumnName="tbptot2" />
+                <ScalarProperty Name="tbpcos" ColumnName="tbpcos" />
+                <ScalarProperty Name="tbobs" ColumnName="tbobs" />
+                <ScalarProperty Name="tbtotdesc" ColumnName="tbtotdesc" />
+                <ScalarProperty Name="tbdesc" ColumnName="tbdesc" />
+                <ScalarProperty Name="tbporc" ColumnName="tbporc" />
+                <ScalarProperty Name="tbptot" ColumnName="tbptot" />
+                <ScalarProperty Name="tbpbas" ColumnName="tbpbas" />
+                <ScalarProperty Name="tbumin" ColumnName="tbumin" />
+                <ScalarProperty Name="tbcmin" ColumnName="tbcmin" />
+                <ScalarProperty Name="tbest" ColumnName="tbest" />
+                <ScalarProperty Name="tbty5prod" ColumnName="tbty5prod" />
+                <ScalarProperty Name="tbtv1numi" ColumnName="tbtv1numi" />
+                <ScalarProperty Name="tbnumi" ColumnName="tbnumi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7824,6 +7654,16 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TS001">
+            <EntityTypeMapping TypeName="BDDistBHFModel.TS001">
+              <MappingFragment StoreEntitySet="TS001">
+                <ScalarProperty Name="sanom2" ColumnName="sanom2" />
+                <ScalarProperty Name="sanom1" ColumnName="sanom1" />
+                <ScalarProperty Name="sanit" ColumnName="sanit" />
+                <ScalarProperty Name="sanumi" ColumnName="sanumi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TV0013">
             <EntityTypeMapping TypeName="BDDistBHFModel.TV0013">
               <MappingFragment StoreEntitySet="TV0013">
@@ -8032,6 +7872,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="VR_GO_DespachoXCliente">
             <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_DespachoXCliente">
               <MappingFragment StoreEntitySet="VR_GO_DespachoXCliente">
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
                 <ScalarProperty Name="obptot" ColumnName="obptot" />
                 <ScalarProperty Name="oacnrofact" ColumnName="oacnrofact" />
                 <ScalarProperty Name="ccdesc" ColumnName="ccdesc" />
@@ -8101,6 +7942,40 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
                 <ScalarProperty Name="contacto" ColumnName="contacto" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
                 <ScalarProperty Name="codbd" ColumnName="codbd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VR_GO_Factura">
+            <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_Factura">
+              <MappingFragment StoreEntitySet="VR_GO_Factura">
+                <ScalarProperty Name="fvbnumi2" ColumnName="fvbnumi2" />
+                <ScalarProperty Name="fvbprecio" ColumnName="fvbprecio" />
+                <ScalarProperty Name="fvbcant" ColumnName="fvbcant" />
+                <ScalarProperty Name="fvbdesprod" ColumnName="fvbdesprod" />
+                <ScalarProperty Name="fvbcprod" ColumnName="fvbcprod" />
+                <ScalarProperty Name="fvbnumi" ColumnName="fvbnumi" />
+                <ScalarProperty Name="fvanumi2" ColumnName="fvanumi2" />
+                <ScalarProperty Name="fvaalm" ColumnName="fvaalm" />
+                <ScalarProperty Name="fvaimgqr" ColumnName="fvaimgqr" />
+                <ScalarProperty Name="fvaflim" ColumnName="fvaflim" />
+                <ScalarProperty Name="fvaccont" ColumnName="fvaccont" />
+                <ScalarProperty Name="fvadebfis" ColumnName="fvadebfis" />
+                <ScalarProperty Name="fvatotal" ColumnName="fvatotal" />
+                <ScalarProperty Name="fvadesc" ColumnName="fvadesc" />
+                <ScalarProperty Name="fvasubtotal" ColumnName="fvasubtotal" />
+                <ScalarProperty Name="fvaimptc" ColumnName="fvaimptc" />
+                <ScalarProperty Name="fvaimpeo" ColumnName="fvaimpeo" />
+                <ScalarProperty Name="fvaimpsi" ColumnName="fvaimpsi" />
+                <ScalarProperty Name="fvastot" ColumnName="fvastot" />
+                <ScalarProperty Name="fvadescli2" ColumnName="fvadescli2" />
+                <ScalarProperty Name="fvadescli1" ColumnName="fvadescli1" />
+                <ScalarProperty Name="fvacodcli" ColumnName="fvacodcli" />
+                <ScalarProperty Name="fvanitcli" ColumnName="fvanitcli" />
+                <ScalarProperty Name="fvaest" ColumnName="fvaest" />
+                <ScalarProperty Name="fvaautoriz" ColumnName="fvaautoriz" />
+                <ScalarProperty Name="fvanfac" ColumnName="fvanfac" />
+                <ScalarProperty Name="fvafec" ColumnName="fvafec" />
+                <ScalarProperty Name="fvanumi" ColumnName="fvanumi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8533,6 +8408,45 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VR_NotaCompra">
+            <EntityTypeMapping TypeName="BDDistBHFModel.VR_NotaCompra">
+              <MappingFragment StoreEntitySet="VR_NotaCompra">
+                <ScalarProperty Name="plazo" ColumnName="plazo" />
+                <ScalarProperty Name="fcaccont" ColumnName="fcaccont" />
+                <ScalarProperty Name="fcaautoriz" ColumnName="fcaautoriz" />
+                <ScalarProperty Name="fcanfac" ColumnName="fcanfac" />
+                <ScalarProperty Name="fcarsocial" ColumnName="fcarsocial" />
+                <ScalarProperty Name="cabtot" ColumnName="cabtot" />
+                <ScalarProperty Name="cabdescpro2cj" ColumnName="cabdescpro2cj" />
+                <ScalarProperty Name="cabdescpro1cj" ColumnName="cabdescpro1cj" />
+                <ScalarProperty Name="cabdesccj" ColumnName="cabdesccj" />
+                <ScalarProperty Name="cabsubtot" ColumnName="cabsubtot" />
+                <ScalarProperty Name="cabpcostoun" ColumnName="cabpcostoun" />
+                <ScalarProperty Name="cabpcostocj" ColumnName="cabpcostocj" />
+                <ScalarProperty Name="cabpcomun" ColumnName="cabpcomun" />
+                <ScalarProperty Name="cabpcomcj" ColumnName="cabpcomcj" />
+                <ScalarProperty Name="cabcantun" ColumnName="cabcantun" />
+                <ScalarProperty Name="cabcantcj" ColumnName="cabcantcj" />
+                <ScalarProperty Name="cadesc" ColumnName="cadesc" />
+                <ScalarProperty Name="cabtc1numi" ColumnName="cabtc1numi" />
+                <ScalarProperty Name="caaffactura" ColumnName="caaffactura" />
+                <ScalarProperty Name="caaemision" ColumnName="caaemision" />
+                <ScalarProperty Name="caatotal" ColumnName="caatotal" />
+                <ScalarProperty Name="caadesc" ColumnName="caadesc" />
+                <ScalarProperty Name="caafvcred" ColumnName="caafvcred" />
+                <ScalarProperty Name="tipocompra" ColumnName="tipocompra" />
+                <ScalarProperty Name="caatven" ColumnName="caatven" />
+                <ScalarProperty Name="caanfac" ColumnName="caanfac" />
+                <ScalarProperty Name="cmtelf" ColumnName="cmtelf" />
+                <ScalarProperty Name="cmnit" ColumnName="cmnit" />
+                <ScalarProperty Name="cmrsocial" ColumnName="cmrsocial" />
+                <ScalarProperty Name="cmdesc" ColumnName="cmdesc" />
+                <ScalarProperty Name="caaprov" ColumnName="caaprov" />
+                <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+                <ScalarProperty Name="caanumi" ColumnName="caanumi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="VR_Pagos">
             <EntityTypeMapping TypeName="BDDistBHFModel.VR_Pagos">
               <MappingFragment StoreEntitySet="VR_Pagos">
@@ -8593,6 +8507,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
               <MappingFragment StoreEntitySet="VR_stockActual">
                 <ScalarProperty Name="cedesc" ColumnName="cedesc" />
                 <ScalarProperty Name="cenum" ColumnName="cenum" />
+                <ScalarProperty Name="caconv" ColumnName="caconv" />
                 <ScalarProperty Name="iacant" ColumnName="iacant" />
                 <ScalarProperty Name="iacprod" ColumnName="iacprod" />
                 <ScalarProperty Name="caest" ColumnName="caest" />
@@ -8675,385 +8590,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
                 <ScalarProperty Name="codcliente" ColumnName="codcliente" />
                 <ScalarProperty Name="oafdoc" ColumnName="oafdoc" />
                 <ScalarProperty Name="oanumi" ColumnName="oanumi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TV001">
-            <EntityTypeMapping TypeName="BDDistBHFModel.TV001">
-              <MappingFragment StoreEntitySet="TV001">
-                <ScalarProperty Name="tauact" ColumnName="tauact" />
-                <ScalarProperty Name="tahact" ColumnName="tahact" />
-                <ScalarProperty Name="tafact" ColumnName="tafact" />
-                <ScalarProperty Name="tatotal" ColumnName="tatotal" />
-                <ScalarProperty Name="taest" ColumnName="taest" />
-                <ScalarProperty Name="tamon" ColumnName="tamon" />
-                <ScalarProperty Name="taclpr" ColumnName="taclpr" />
-                <ScalarProperty Name="tafvcr" ColumnName="tafvcr" />
-                <ScalarProperty Name="tatven" ColumnName="tatven" />
-                <ScalarProperty Name="taven" ColumnName="taven" />
-                <ScalarProperty Name="tafdoc" ColumnName="tafdoc" />
-                <ScalarProperty Name="taalm" ColumnName="taalm" />
-                <ScalarProperty Name="tanumi" ColumnName="tanumi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TV0011">
-            <EntityTypeMapping TypeName="BDDistBHFModel.TV0011">
-              <MappingFragment StoreEntitySet="TV0011">
-                <ScalarProperty Name="tbuact" ColumnName="tbuact" />
-                <ScalarProperty Name="tbhact" ColumnName="tbhact" />
-                <ScalarProperty Name="tbfact" ColumnName="tbfact" />
-                <ScalarProperty Name="tbptot2" ColumnName="tbptot2" />
-                <ScalarProperty Name="tbpcos" ColumnName="tbpcos" />
-                <ScalarProperty Name="tbobs" ColumnName="tbobs" />
-                <ScalarProperty Name="tbtotdesc" ColumnName="tbtotdesc" />
-                <ScalarProperty Name="tbdesc" ColumnName="tbdesc" />
-                <ScalarProperty Name="tbporc" ColumnName="tbporc" />
-                <ScalarProperty Name="tbptot" ColumnName="tbptot" />
-                <ScalarProperty Name="tbpbas" ColumnName="tbpbas" />
-                <ScalarProperty Name="tbumin" ColumnName="tbumin" />
-                <ScalarProperty Name="tbcmin" ColumnName="tbcmin" />
-                <ScalarProperty Name="tbest" ColumnName="tbest" />
-                <ScalarProperty Name="tbty5prod" ColumnName="tbty5prod" />
-                <ScalarProperty Name="tbtv1numi" ColumnName="tbtv1numi" />
-                <ScalarProperty Name="tbnumi" ColumnName="tbnumi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TS001">
-            <EntityTypeMapping TypeName="BDDistBHFModel.TS001">
-              <MappingFragment StoreEntitySet="TS001">
-                <ScalarProperty Name="sanom2" ColumnName="sanom2" />
-                <ScalarProperty Name="sanom1" ColumnName="sanom1" />
-                <ScalarProperty Name="sanit" ColumnName="sanit" />
-                <ScalarProperty Name="sanumi" ColumnName="sanumi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VR_GO_Factura">
-            <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_Factura">
-              <MappingFragment StoreEntitySet="VR_GO_Factura">
-                <ScalarProperty Name="fvbnumi2" ColumnName="fvbnumi2" />
-                <ScalarProperty Name="fvbprecio" ColumnName="fvbprecio" />
-                <ScalarProperty Name="fvbcant" ColumnName="fvbcant" />
-                <ScalarProperty Name="fvbdesprod" ColumnName="fvbdesprod" />
-                <ScalarProperty Name="fvbcprod" ColumnName="fvbcprod" />
-                <ScalarProperty Name="fvbnumi" ColumnName="fvbnumi" />
-                <ScalarProperty Name="fvanumi2" ColumnName="fvanumi2" />
-                <ScalarProperty Name="fvaalm" ColumnName="fvaalm" />
-                <ScalarProperty Name="fvaimgqr" ColumnName="fvaimgqr" />
-                <ScalarProperty Name="fvaflim" ColumnName="fvaflim" />
-                <ScalarProperty Name="fvaccont" ColumnName="fvaccont" />
-                <ScalarProperty Name="fvadebfis" ColumnName="fvadebfis" />
-                <ScalarProperty Name="fvatotal" ColumnName="fvatotal" />
-                <ScalarProperty Name="fvadesc" ColumnName="fvadesc" />
-                <ScalarProperty Name="fvasubtotal" ColumnName="fvasubtotal" />
-                <ScalarProperty Name="fvaimptc" ColumnName="fvaimptc" />
-                <ScalarProperty Name="fvaimpeo" ColumnName="fvaimpeo" />
-                <ScalarProperty Name="fvaimpsi" ColumnName="fvaimpsi" />
-                <ScalarProperty Name="fvastot" ColumnName="fvastot" />
-                <ScalarProperty Name="fvadescli2" ColumnName="fvadescli2" />
-                <ScalarProperty Name="fvadescli1" ColumnName="fvadescli1" />
-                <ScalarProperty Name="fvacodcli" ColumnName="fvacodcli" />
-                <ScalarProperty Name="fvanitcli" ColumnName="fvanitcli" />
-                <ScalarProperty Name="fvaest" ColumnName="fvaest" />
-                <ScalarProperty Name="fvaautoriz" ColumnName="fvaautoriz" />
-                <ScalarProperty Name="fvanfac" ColumnName="fvanfac" />
-                <ScalarProperty Name="fvafec" ColumnName="fvafec" />
-                <ScalarProperty Name="fvanumi" ColumnName="fvanumi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VR_NotaCompra">
-            <EntityTypeMapping TypeName="BDDistBHFModel.VR_NotaCompra">
-              <MappingFragment StoreEntitySet="VR_NotaCompra">
-                <ScalarProperty Name="plazo" ColumnName="plazo" />
-                <ScalarProperty Name="fcaccont" ColumnName="fcaccont" />
-                <ScalarProperty Name="fcaautoriz" ColumnName="fcaautoriz" />
-                <ScalarProperty Name="fcanfac" ColumnName="fcanfac" />
-                <ScalarProperty Name="fcarsocial" ColumnName="fcarsocial" />
-                <ScalarProperty Name="cabtot" ColumnName="cabtot" />
-                <ScalarProperty Name="cabdesc" ColumnName="cabdesc" />
-                <ScalarProperty Name="cabsubtot" ColumnName="cabsubtot" />
-                <ScalarProperty Name="cabpcosto" ColumnName="cabpcosto" />
-                <ScalarProperty Name="cabpcom" ColumnName="cabpcom" />
-                <ScalarProperty Name="cabcant" ColumnName="cabcant" />
-                <ScalarProperty Name="cadesc" ColumnName="cadesc" />
-                <ScalarProperty Name="cabtc1numi" ColumnName="cabtc1numi" />
-                <ScalarProperty Name="caafingreso" ColumnName="caafingreso" />
-                <ScalarProperty Name="caaemision" ColumnName="caaemision" />
-                <ScalarProperty Name="caatotal" ColumnName="caatotal" />
-                <ScalarProperty Name="caadesc" ColumnName="caadesc" />
-                <ScalarProperty Name="caafvcred" ColumnName="caafvcred" />
-                <ScalarProperty Name="tipocompra" ColumnName="tipocompra" />
-                <ScalarProperty Name="caatven" ColumnName="caatven" />
-                <ScalarProperty Name="caanfac" ColumnName="caanfac" />
-                <ScalarProperty Name="cmtelf" ColumnName="cmtelf" />
-                <ScalarProperty Name="cmnit" ColumnName="cmnit" />
-                <ScalarProperty Name="cmrsocial" ColumnName="cmrsocial" />
-                <ScalarProperty Name="cmdesc" ColumnName="cmdesc" />
-                <ScalarProperty Name="caaprov" ColumnName="caaprov" />
-                <ScalarProperty Name="caafdoc" ColumnName="caafdoc" />
-                <ScalarProperty Name="caanumi" ColumnName="caanumi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="PlanillaSueldo" FunctionName="BDDistBHFModel.Store.PlanillaSueldo" />
-          <FunctionImportMapping FunctionImportName="sp_dg_RAsistencia" FunctionName="BDDistBHFModel.Store.sp_dg_RAsistencia">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_dg_RAsistencia_Result">
-                <ScalarProperty Name="cbnumi" ColumnName="cbnumi" />
-                <ScalarProperty Name="cbdesc" ColumnName="cbdesc" />
-                <ScalarProperty Name="pjent" ColumnName="pjent" />
-                <ScalarProperty Name="pjsal" ColumnName="pjsal" />
-                <ScalarProperty Name="pjfecha" ColumnName="pjfecha" />
-                <ScalarProperty Name="dia" ColumnName="dia" />
-                <ScalarProperty Name="ing1" ColumnName="ing1" />
-                <ScalarProperty Name="sal1" ColumnName="sal1" />
-                <ScalarProperty Name="ing2" ColumnName="ing2" />
-                <ScalarProperty Name="sal2" ColumnName="sal2" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_dg_TC011" FunctionName="BDDistBHFModel.Store.sp_dg_TC011" />
-          <FunctionImportMapping FunctionImportName="sp_dg_TP007" FunctionName="BDDistBHFModel.Store.sp_dg_TP007" />
-          <FunctionImportMapping FunctionImportName="sp_dg_TP008" FunctionName="BDDistBHFModel.Store.sp_dg_TP008" />
-          <FunctionImportMapping FunctionImportName="sp_dg_TZ001" FunctionName="BDDistBHFModel.Store.sp_dg_TZ001" />
-          <FunctionImportMapping FunctionImportName="sp_dg_ZY002" FunctionName="BDDistBHFModel.Store.sp_dg_ZY002" />
-          <FunctionImportMapping FunctionImportName="Sp_GetClientes" FunctionName="BDDistBHFModel.Store.Sp_GetClientes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.Sp_GetClientes_Result">
-                <ScalarProperty Name="ccnumi" ColumnName="ccnumi" />
-                <ScalarProperty Name="cccod" ColumnName="cccod" />
-                <ScalarProperty Name="ccdesc" ColumnName="ccdesc" />
-                <ScalarProperty Name="ccdirec" ColumnName="ccdirec" />
-                <ScalarProperty Name="cctelf1" ColumnName="cctelf1" />
-                <ScalarProperty Name="cctelf2" ColumnName="cctelf2" />
-                <ScalarProperty Name="numZona" ColumnName="numZona" />
-                <ScalarProperty Name="descZona" ColumnName="descZona" />
-                <ScalarProperty Name="numDct" ColumnName="numDct" />
-                <ScalarProperty Name="descDct" ColumnName="descDct" />
-                <ScalarProperty Name="ccdctnum" ColumnName="ccdctnum" />
-                <ScalarProperty Name="numCat" ColumnName="numCat" />
-                <ScalarProperty Name="descCat" ColumnName="descCat" />
-                <ScalarProperty Name="ccest" ColumnName="ccest" />
-                <ScalarProperty Name="cclat" ColumnName="cclat" />
-                <ScalarProperty Name="cclongi" ColumnName="cclongi" />
-                <ScalarProperty Name="cceven" ColumnName="cceven" />
-                <ScalarProperty Name="ccobs" ColumnName="ccobs" />
-                <ScalarProperty Name="ccfnac" ColumnName="ccfnac" />
-                <ScalarProperty Name="ccnomfac" ColumnName="ccnomfac" />
-                <ScalarProperty Name="ccnit" ColumnName="ccnit" />
-                <ScalarProperty Name="ccfecing" ColumnName="ccfecing" />
-                <ScalarProperty Name="ccultped" ColumnName="ccultped" />
-                <ScalarProperty Name="ccuact" ColumnName="ccuact" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_go_CM001" FunctionName="BDDistBHFModel.Store.sp_go_CM001" />
-          <FunctionImportMapping FunctionImportName="sp_go_NV001" FunctionName="BDDistBHFModel.Store.sp_go_NV001">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_go_NV001_Result">
-                <ScalarProperty Name="oanumi" ColumnName="oanumi" />
-                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="CI" ColumnName="CI" />
-                <ScalarProperty Name="Celular" ColumnName="Celular" />
-                <ScalarProperty Name="CodProducto" ColumnName="CodProducto" />
-                <ScalarProperty Name="Producto" ColumnName="Producto" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
-                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_go_Reportes" FunctionName="BDDistBHFModel.Store.sp_go_Reportes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_go_Reportes_Result">
-                <ScalarProperty Name="CodDB" ColumnName="CodDB" />
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
-                <ScalarProperty Name="Carrito" ColumnName="Carrito" />
-                <ScalarProperty Name="Botellon" ColumnName="Botellon" />
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Monto" ColumnName="Monto" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_go_TC001" FunctionName="BDDistBHFModel.Store.sp_go_TC001" />
-          <FunctionImportMapping FunctionImportName="sp_go_TC002" FunctionName="BDDistBHFModel.Store.sp_go_TC002" />
-          <FunctionImportMapping FunctionImportName="sp_go_TC004" FunctionName="BDDistBHFModel.Store.sp_go_TC004" />
-          <FunctionImportMapping FunctionImportName="sp_go_TC004_appMovil" FunctionName="BDDistBHFModel.Store.sp_go_TC004_appMovil" />
-          <FunctionImportMapping FunctionImportName="sp_go_TC009" FunctionName="BDDistBHFModel.Store.sp_go_TC009" />
-          <FunctionImportMapping FunctionImportName="sp_go_TC010" FunctionName="BDDistBHFModel.Store.sp_go_TC010" />
-          <FunctionImportMapping FunctionImportName="sp_go_TCA001" FunctionName="BDDistBHFModel.Store.sp_go_TCA001" />
-          <FunctionImportMapping FunctionImportName="sp_go_TCI001" FunctionName="BDDistBHFModel.Store.sp_go_TCI001" />
-          <FunctionImportMapping FunctionImportName="sp_go_TCP001" FunctionName="BDDistBHFModel.Store.sp_go_TCP001" />
-          <FunctionImportMapping FunctionImportName="sp_go_TI002" FunctionName="BDDistBHFModel.Store.sp_go_TI002" />
-          <FunctionImportMapping FunctionImportName="sp_go_TO0023" FunctionName="BDDistBHFModel.Store.sp_go_TO0023" />
-          <FunctionImportMapping FunctionImportName="sp_go_TS002" FunctionName="BDDistBHFModel.Store.sp_go_TS002" />
-          <FunctionImportMapping FunctionImportName="sp_Insert_TC004" FunctionName="BDDistBHFModel.Store.sp_Insert_TC004" />
-          <FunctionImportMapping FunctionImportName="sp_Insert_TFV001" FunctionName="BDDistBHFModel.Store.sp_Insert_TFV001">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_Insert_TFV001_Result">
-                <ScalarProperty Name="fvanumi" ColumnName="fvanumi" />
-                <ScalarProperty Name="fvafec" ColumnName="fvafec" />
-                <ScalarProperty Name="fvanfac" ColumnName="fvanfac" />
-                <ScalarProperty Name="fvaautoriz" ColumnName="fvaautoriz" />
-                <ScalarProperty Name="fvaest" ColumnName="fvaest" />
-                <ScalarProperty Name="fvanitcli" ColumnName="fvanitcli" />
-                <ScalarProperty Name="fvacodcli" ColumnName="fvacodcli" />
-                <ScalarProperty Name="fvadescli1" ColumnName="fvadescli1" />
-                <ScalarProperty Name="fvadescli2" ColumnName="fvadescli2" />
-                <ScalarProperty Name="fvastot" ColumnName="fvastot" />
-                <ScalarProperty Name="fvaimpsi" ColumnName="fvaimpsi" />
-                <ScalarProperty Name="fvaimpeo" ColumnName="fvaimpeo" />
-                <ScalarProperty Name="fvaimptc" ColumnName="fvaimptc" />
-                <ScalarProperty Name="fvasubtotal" ColumnName="fvasubtotal" />
-                <ScalarProperty Name="fvadesc" ColumnName="fvadesc" />
-                <ScalarProperty Name="fvatotal" ColumnName="fvatotal" />
-                <ScalarProperty Name="fvadebfis" ColumnName="fvadebfis" />
-                <ScalarProperty Name="fvaccont" ColumnName="fvaccont" />
-                <ScalarProperty Name="fvaflim" ColumnName="fvaflim" />
-                <ScalarProperty Name="fvaimgqr" ColumnName="fvaimgqr" />
-                <ScalarProperty Name="fvaalm" ColumnName="fvaalm" />
-                <ScalarProperty Name="fvanumi2" ColumnName="fvanumi2" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Insert_TL002" FunctionName="BDDistBHFModel.Store.sp_Insert_TL002" />
-          <FunctionImportMapping FunctionImportName="sp_Insert_TO001" FunctionName="BDDistBHFModel.Store.sp_Insert_TO001">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_Insert_TO001_Result">
-                <ScalarProperty Name="oanumi" ColumnName="oanumi" />
-                <ScalarProperty Name="oafdoc" ColumnName="oafdoc" />
-                <ScalarProperty Name="oahora" ColumnName="oahora" />
-                <ScalarProperty Name="oaccli" ColumnName="oaccli" />
-                <ScalarProperty Name="oazona" ColumnName="oazona" />
-                <ScalarProperty Name="oarepa" ColumnName="oarepa" />
-                <ScalarProperty Name="oaobs" ColumnName="oaobs" />
-                <ScalarProperty Name="oaobs2" ColumnName="oaobs2" />
-                <ScalarProperty Name="oaest" ColumnName="oaest" />
-                <ScalarProperty Name="oaap" ColumnName="oaap" />
-                <ScalarProperty Name="oapg" ColumnName="oapg" />
-                <ScalarProperty Name="oafact" ColumnName="oafact" />
-                <ScalarProperty Name="oahact" ColumnName="oahact" />
-                <ScalarProperty Name="oauact" ColumnName="oauact" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Mam_Asiento" FunctionName="BDDistBHFModel.Store.sp_Mam_Asiento">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_Mam_Asiento_Result">
-                <ScalarProperty Name="canumi" ColumnName="canumi" />
-                <ScalarProperty Name="nro" ColumnName="nro" />
-                <ScalarProperty Name="cadesc" ColumnName="cadesc" />
-                <ScalarProperty Name="chporcen" ColumnName="chporcen" />
-                <ScalarProperty Name="chdebe" ColumnName="chdebe" />
-                <ScalarProperty Name="chhaber" ColumnName="chhaber" />
-                <ScalarProperty Name="tc" ColumnName="tc" />
-                <ScalarProperty Name="debe" ColumnName="debe" />
-                <ScalarProperty Name="haber" ColumnName="haber" />
-                <ScalarProperty Name="debesus" ColumnName="debesus" />
-                <ScalarProperty Name="habersus" ColumnName="habersus" />
-                <ScalarProperty Name="variable" ColumnName="variable" />
-                <ScalarProperty Name="linea" ColumnName="linea" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Mam_ReporteVentas" FunctionName="BDDistBHFModel.Store.sp_Mam_ReporteVentas" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TC002" FunctionName="BDDistBHFModel.Store.sp_Mam_TC002" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TC005C" FunctionName="BDDistBHFModel.Store.sp_Mam_TC005C" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TCA00121Cheque" FunctionName="BDDistBHFModel.Store.sp_Mam_TCA00121Cheque" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TI005" FunctionName="BDDistBHFModel.Store.sp_Mam_TI005" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TM001" FunctionName="BDDistBHFModel.Store.sp_Mam_TM001" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TM001SalidaChofer" FunctionName="BDDistBHFModel.Store.sp_Mam_TM001SalidaChofer" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TO004" FunctionName="BDDistBHFModel.Store.sp_Mam_TO004" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TO005" FunctionName="BDDistBHFModel.Store.sp_Mam_TO005" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TV00121" FunctionName="BDDistBHFModel.Store.sp_Mam_TV00121" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_TV00121Cheque" FunctionName="BDDistBHFModel.Store.sp_Mam_TV00121Cheque" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_VentasCredito" FunctionName="BDDistBHFModel.Store.sp_Mam_VentasCredito">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.sp_Mam_VentasCredito_Result">
-                <ScalarProperty Name="numicliente" ColumnName="numicliente" />
-                <ScalarProperty Name="cliente" ColumnName="cliente" />
-                <ScalarProperty Name="credito" ColumnName="credito" />
-                <ScalarProperty Name="aporte" ColumnName="aporte" />
-                <ScalarProperty Name="deuda" ColumnName="deuda" />
-                <ScalarProperty Name="numiventa" ColumnName="numiventa" />
-                <ScalarProperty Name="aabdes" ColumnName="aabdes" />
-                <ScalarProperty Name="fechaventa" ColumnName="fechaventa" />
-                <ScalarProperty Name="fechacredito" ColumnName="fechacredito" />
-                <ScalarProperty Name="tctotcre" ColumnName="tctotcre" />
-                <ScalarProperty Name="tdnrorecibo" ColumnName="tdnrorecibo" />
-                <ScalarProperty Name="tdfechaPago" ColumnName="tdfechaPago" />
-                <ScalarProperty Name="tdnrodoc" ColumnName="tdnrodoc" />
-                <ScalarProperty Name="tdmonto" ColumnName="tdmonto" />
-                <ScalarProperty Name="observacion" ColumnName="observacion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Mam_VentasEstadisticos" FunctionName="BDDistBHFModel.Store.sp_Mam_VentasEstadisticos" />
-          <FunctionImportMapping FunctionImportName="sp_Mam_VentasGraficas" FunctionName="BDDistBHFModel.Store.sp_Mam_VentasGraficas" />
-          <FunctionImportMapping FunctionImportName="sp_nfactura" FunctionName="BDDistBHFModel.Store.sp_nfactura" />
-          <FunctionImportMapping FunctionImportName="vis_promedioConsumo" FunctionName="BDDistBHFModel.Store.vis_promedioConsumo">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.vis_promedioConsumo_Result">
-                <ScalarProperty Name="ccnumi" ColumnName="ccnumi" />
-                <ScalarProperty Name="ccdesc" ColumnName="ccdesc" />
-                <ScalarProperty Name="cczona" ColumnName="cczona" />
-                <ScalarProperty Name="cctelf1" ColumnName="cctelf1" />
-                <ScalarProperty Name="ccdirec" ColumnName="ccdirec" />
-                <ScalarProperty Name="ccest" ColumnName="ccest" />
-                <ScalarProperty Name="ccprconsu" ColumnName="ccprconsu" />
-                <ScalarProperty Name="fTentativa" ColumnName="fTentativa" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="vis_transacciones" FunctionName="BDDistBHFModel.Store.vis_transacciones">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="BDDistBHFModel.vis_transacciones_Result">
-                <ScalarProperty Name="numi" ColumnName="numi" />
-                <ScalarProperty Name="odnota" ColumnName="odnota" />
-                <ScalarProperty Name="fdoc" ColumnName="fdoc" />
-                <ScalarProperty Name="fact" ColumnName="fact" />
-                <ScalarProperty Name="hact" ColumnName="hact" />
-                <ScalarProperty Name="uact" ColumnName="uact" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="TCA0011">
-            <EntityTypeMapping TypeName="BDDistBHFModel.TCA0011">
-              <MappingFragment StoreEntitySet="TCA0011">
-                <ScalarProperty Name="cabtca1numi" ColumnName="cabtca1numi" />
-                <ScalarProperty Name="cabstockf" ColumnName="cabstockf" />
-                <ScalarProperty Name="cabstocka" ColumnName="cabstocka" />
-                <ScalarProperty Name="cabnfr" ColumnName="cabnfr" />
-                <ScalarProperty Name="cabpven" ColumnName="cabpven" />
-                <ScalarProperty Name="cabputi" ColumnName="cabputi" />
-                <ScalarProperty Name="cabpcostoun" ColumnName="cabpcostoun" />
-                <ScalarProperty Name="cabpcostocj" ColumnName="cabpcostocj" />
-                <ScalarProperty Name="cabtot" ColumnName="cabtot" />
-                <ScalarProperty Name="cabdescpro2un" ColumnName="cabdescpro2un" />
-                <ScalarProperty Name="cabdescpro2cj" ColumnName="cabdescpro2cj" />
-                <ScalarProperty Name="cabdescpro1un" ColumnName="cabdescpro1un" />
-                <ScalarProperty Name="cabdescpro1cj" ColumnName="cabdescpro1cj" />
-                <ScalarProperty Name="cabdescun" ColumnName="cabdescun" />
-                <ScalarProperty Name="cabdesccj" ColumnName="cabdesccj" />
-                <ScalarProperty Name="cabporc" ColumnName="cabporc" />
-                <ScalarProperty Name="cabpcomun" ColumnName="cabpcomun" />
-                <ScalarProperty Name="cabpcomcj" ColumnName="cabpcomcj" />
-                <ScalarProperty Name="cabsubtot" ColumnName="cabsubtot" />
-                <ScalarProperty Name="cabcantun" ColumnName="cabcantun" />
-                <ScalarProperty Name="cabcantcj" ColumnName="cabcantcj" />
-                <ScalarProperty Name="cabtc1numi" ColumnName="cabtc1numi" />
-                <ScalarProperty Name="cabnumi" ColumnName="cabnumi" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

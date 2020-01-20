@@ -58,4 +58,13 @@
             _obptot = value
         End Set
     End Property
+    Private _IdZona As Integer
+    Public Property IdZona() As Integer
+        Get
+            Return _IdZona
+        End Get
+        Set(ByVal value As Integer)
+            _IdZona = value
+        End Set
+    End Property
 End Class

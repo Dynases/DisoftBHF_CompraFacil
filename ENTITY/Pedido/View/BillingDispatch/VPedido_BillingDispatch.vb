@@ -20,4 +20,22 @@
             _nroFactura = value
         End Set
     End Property
+    Private _idZona As Integer
+    Public Property idZona() As Integer
+        Get
+            Return _idZona
+        End Get
+        Set(ByVal value As Integer)
+            _idZona = value
+        End Set
+    End Property
+    Private _nombreZona As String
+    Public Property nombreZona() As String
+        Get
+            Return _nombreZona
+        End Get
+        Set(ByVal value As String)
+            _nombreZona = value
+        End Set
+    End Property
 End Class

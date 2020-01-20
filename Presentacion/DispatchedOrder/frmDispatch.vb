@@ -190,10 +190,17 @@ Public Class frmDispatch
 
             With dgjPedido.RootTable.Columns("NombreVendedor")
                 .Caption = "Vendedor"
-                .Width = 400
+                .Width = 250
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
                 .Visible = True
                 .Position = 3
+            End With
+            With dgjPedido.RootTable.Columns("idZona")
+                .Caption = "Zona"
+                .Width = 150
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .Visible = True
+                .Position = 4
             End With
 
             dgjPedido.RootTable.Columns.Add(New GridEXColumn("Check"))
@@ -203,7 +210,7 @@ Public Class frmDispatch
                 .ShowRowSelector = True
                 .UseHeaderSelector = True
                 .FilterEditType = FilterEditType.NoEdit
-                .Position = 4
+                .Position = 5
             End With
 
             With dgjPedido
