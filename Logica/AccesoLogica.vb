@@ -9996,5 +9996,27 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+    Public Shared Sub L_ActualizaTFV001(tbCodigo As String, tbNroFactura As String, tbNroAutoriz As String, est As String)
+        Dim _Err As Boolean
+        Dim Sql, _where As String
+
+        Sql = "fvanumi =" + "-" + tbCodigo + ", " +
+        "fvaest =" + est + ", " +
+        "fvanumi2 = " + "-" + tbCodigo + " "
+
+        _where = "fvanumi =" + tbCodigo + " and fvanfac=" + tbNroFactura + " and fvaautoriz=" + tbNroAutoriz
+
+        _Err = D_Modificar_Datos("TFV001", Sql, _where)
+    End Sub
+    Public Shared Sub L_ActualizaTFV0011(_Numi As String)
+        Dim _Err As Boolean
+        Dim Sql, _where As String
+        Sql = "fvbnumi =" + "-" + _Numi + ", " +
+        "fvbnumi2 = " + "-" + _Numi + " "
+
+        _where = "fvbnumi = " + _Numi
+
+        _Err = D_Modificar_Datos("TFV0011", Sql, _where)
+    End Sub
 #End Region
 End Class

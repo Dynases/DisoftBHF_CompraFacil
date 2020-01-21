@@ -70,6 +70,12 @@ Public Class F0_Ventas
         tbObservacion.Visible = False
         lbIce.Visible = False
         tbIce.Visible = False
+        LabelX13.Visible = False
+        tbSubTotal.Visible = False
+        LabelX9.Visible = False
+        tbMdesc.Visible = False
+        LabelX8.Visible = False
+        tbPdesc.Visible = False
 
         'Ocultar paneles de Facturación
         'GroupPanelFactura2.Visible = False
@@ -138,6 +144,8 @@ Public Class F0_Ventas
         tbFechaVenc.IsInputReadOnly = True
         swMoneda.IsReadOnly = True
         swTipoVenta.IsReadOnly = True
+        Sb1Estado.IsReadOnly = True
+        swEmision.IsReadOnly = True
 
         'Datos facturacion
         tbNroAutoriz.ReadOnly = True
@@ -281,7 +289,7 @@ Public Class F0_Ventas
 
 
             'If (gb_FacturaEmite) Then
-            Dim dt As DataTable = L_fnObtenerTabla("fvanitcli, fvadescli1, fvadescli2, fvaautoriz, fvanfac, fvaccont, fvafec", "TFV001", "fvanumi=" + tbCodigo.Text.Trim)
+            Dim dt As DataTable = L_fnObtenerTabla("fvanitcli, fvadescli1, fvadescli2, fvaautoriz, fvanfac, fvaccont, fvafec,fvaest", "TFV001", "fvanumi=" + tbCodigo.Text.Trim)
             If (dt.Rows.Count = 1) Then
                 TbNit.Text = dt.Rows(0).Item("fvanitcli").ToString
                 TbNombre1.Text = dt.Rows(0).Item("fvadescli1").ToString
@@ -291,6 +299,7 @@ Public Class F0_Ventas
                 tbNroFactura.Text = dt.Rows(0).Item("fvanfac").ToString
                 tbCodigoControl.Text = dt.Rows(0).Item("fvaccont").ToString
                 dtiFechaFactura.Value = dt.Rows(0).Item("fvafec")
+                Sb1Estado.Value = dt.Rows(0).Item("fvaest")
             Else
                 TbNit.Clear()
                 TbNombre1.Clear()
@@ -378,14 +387,14 @@ Public Class F0_Ventas
         With grdetalle.RootTable.Columns("tbporc")
             .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
+            .Visible = False
             .FormatString = "0.00"
             .Caption = "P.Desc(%)".ToUpper
         End With
         With grdetalle.RootTable.Columns("tbdesc")
             .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
+            .Visible = False
             .FormatString = "0.00"
             .Caption = "M.Desc".ToUpper
         End With
@@ -1173,21 +1182,16 @@ Public Class F0_Ventas
 
     End Sub
     Public Sub _prCalcularPrecioTotal()
-
-
         Dim montodesc As Double = tbMdesc.Value
         Dim pordesc As Double = ((montodesc * 100) / grdetalle.GetTotal(grdetalle.RootTable.Columns("tbtotdesc"), AggregateFunction.Sum))
         tbPdesc.Value = pordesc
         tbSubTotal.Value = grdetalle.GetTotal(grdetalle.RootTable.Columns("tbtotdesc"), AggregateFunction.Sum)
-        tbIce.Value = grdetalle.GetTotal(grdetalle.RootTable.Columns("tbptot2"), AggregateFunction.Sum) * (gi_ICE / 100)
+        'tbIce.Value = grdetalle.GetTotal(grdetalle.RootTable.Columns("tbptot2"), AggregateFunction.Sum) * (gi_ICE / 100)
         If (gb_FacturaIncluirICE = True) Then
             tbtotal.Value = grdetalle.GetTotal(grdetalle.RootTable.Columns("tbtotdesc"), AggregateFunction.Sum) - montodesc + tbIce.Value
         Else
             tbtotal.Value = grdetalle.GetTotal(grdetalle.RootTable.Columns("tbtotdesc"), AggregateFunction.Sum) - montodesc
         End If
-
-
-
 
     End Sub
     Public Sub _prEliminarFila()
@@ -2861,16 +2865,6 @@ salirIf:
         g_prValidarTextBox(1, e)
     End Sub
 
-    Private Sub swTipoVenta_KeyDown(sender As Object, e As KeyEventArgs) Handles swTipoVenta.KeyDown
-
-    End Sub
-
-    Private Sub ButtonX1_Click(sender As Object, e As EventArgs) Handles ButtonX1.Click
-        If (Not _fnAccesible()) Then
-            P_GenerarReporte(tbCodigo.Text)
-
-        End If
-    End Sub
 
     Private Sub swTipoVenta_Leave(sender As Object, e As EventArgs) Handles swTipoVenta.Leave
         grdetalle.Select()
@@ -2932,7 +2926,30 @@ salirIf:
         Table_Producto = Nothing
     End Sub
 
+    Private Sub btnAnularFact_Click(sender As Object, e As EventArgs) Handles btnAnularFact.Click
+        If (MessageBox.Show("Esta seguro de ANULAR la Factura " + tbNroFactura.Text + "?", "PREGUNTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes) Then
+            'L_Modificar_Factura("fvanumi = " + tbCodigo.Text + " and fvanfac = " + tbNroFactura.Text + " and fvaautoriz = " + tbNroAutoriz.Text, "", "", "", "0")
+            L_ActualizaTFV001(tbCodigo.Text, tbNroFactura.Text, tbNroAutoriz.Text, "0")
+            L_ActualizaTFV0011(tbCodigo.Text)
+            updateTO001C(tbCodigo.Text, "0")
+            Dim mensajeError As String = ""
+            Dim res As Boolean = L_fnEliminarVenta(tbCodigo.Text, mensajeError)
 
+            _prCargarVenta()
+
+            If res Then
+                ToastNotification.Show(Me, "La Factura " + tbNroFactura.Text + ", Se ANULADO correctamente",
+                                   My.Resources.OK, 3000,
+                                   eToastGlowColor.Blue, eToastPosition.BottomLeft)
+            Else
+
+                Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+                ToastNotification.Show(Me, "No se pudo realizar la anulación ", img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            End If
+
+
+        End If
+    End Sub
 
 
 #End Region

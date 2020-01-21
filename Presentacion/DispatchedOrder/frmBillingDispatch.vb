@@ -550,7 +550,7 @@ Public Class frmBillingDispatch
 
             With dgjPedido.RootTable.Columns("idZona")
                 .Caption = "Zona"
-                .Width = 150
+                .Width = 120
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
                 .Visible = True
                 .Position = 4
@@ -570,7 +570,13 @@ Public Class frmBillingDispatch
                 .Visible = True
                 .Position = 6
             End With
-
+            With dgjPedido.RootTable.Columns("nombreZona")
+                .Caption = "Nombre Zona"
+                .Width = 80
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = False
+                .Position = 7
+            End With
             With dgjPedido
                 .GroupByBoxVisible = False
                 .DefaultFilterRowComparison = FilterConditionOperator.Contains
