@@ -1619,7 +1619,17 @@ Public Class F0_PedidosAsignacion
     End Sub
 
     Private Sub ANULARPEDIDOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ANULARPEDIDOToolStripMenuItem.Click
+        Dim dt1 As New DataTable
+        Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
         Dim codPedido As Integer = JGr_Registros1.GetValue("CodPedido")
+        dt1 = L_VerificarPedidofacturado(codPedido)
+        If dt1.Rows.Count > 0 Then
+            If dt1.Rows(0).Item("oacnrofac") > 0 Then
+                ToastNotification.Show(Me, "No se puede anular este pedido, porque su factura está vigente".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            End If
+            Exit Sub
+        End If
+
 
         Dim frm As New F0_IngresarReclamo(codPedido, "1", "3")
         frm.GroupPanel2.Text = "INGRESE EL MOTIVO DE LA ANULACION DEL PEDIDO"
@@ -1643,7 +1653,17 @@ Public Class F0_PedidosAsignacion
     End Sub
 
     Private Sub ANULARPEDIDOToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ANULARPEDIDOToolStripMenuItem1.Click
+        Dim dt2 As New DataTable
+        Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
         Dim codPedido As Integer = JGr_Registros2.GetValue("CodPedido")
+
+        dt2 = L_VerificarPedidofacturado(codPedido)
+        If dt2.Rows.Count > 0 Then
+            If dt2.Rows(0).Item("oacnrofac") > 0 Then
+                ToastNotification.Show(Me, "No se puede anular este pedido, porque su factura está vigente".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            End If
+            Exit Sub
+        End If
 
         Dim frm As New F0_IngresarReclamo(codPedido, "2", "3")
         frm.GroupPanel2.Text = "INGRESE EL MOTIVO DE LA ANULACION DEL PEDIDO"

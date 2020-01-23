@@ -1926,11 +1926,18 @@ Public Class F02_Pedido
     End Sub
 
     Private Sub MBtModificar_Click(sender As Object, e As EventArgs) Handles MBtModificar.Click
-        Dim dt1 As New DataTable
+        Dim dt1, dt2 As New DataTable
+        Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
         dt1 = L_VerificarPedidoConsolidado(Tb_Id.Text)
+        If (P_fnValidarFacturaVigente()) Then
+            ToastNotification.Show(Me, "No se puede modificar el pedido con código ".ToUpper + Tb_Id.Text + ", su factura esta vigente, por favor primero anule la factura".ToUpper,
+                                          img, 4000,
+                                          eToastGlowColor.Green,
+                                          eToastPosition.TopCenter)
+            Exit Sub
+        End If
         If dt1.Rows.Count > 0 Then
             If dt1.Rows(0).Item("ieest") = 2 Or dt1.Rows(0).Item("ieest") = 3 Then
-                Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
                 ToastNotification.Show(Me, "Este pedido ya fue consolidado no puede modificarlo".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
             Else
                 _PModificarRegistro()
@@ -1939,7 +1946,10 @@ Public Class F02_Pedido
             _PModificarRegistro()
         End If
     End Sub
-
+    Private Function P_fnValidarFacturaVigente() As Boolean
+        Dim est As String = L_fnObtenerDatoTabla("TFV001", "fvaest", "fvanumi=" + Tb_Id.Text.Trim + " and fvanumi2=" + Tb_Id.Text.Trim + " or fvanumi=" + "-" + Tb_Id.Text.Trim + " and fvanumi2=" + "+" + Tb_Id.Text.Trim)
+        Return (est.Equals("1"))
+    End Function
     Private Sub MBtEliminar_Click(sender As Object, e As EventArgs) Handles MBtEliminar.Click
         _PEliminarRegistro()
     End Sub

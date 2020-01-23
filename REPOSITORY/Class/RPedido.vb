@@ -80,7 +80,7 @@ Public Class RPedido
         Try
             Using db = GetSchema()
                 Dim listResult = (From a In db.VR_GO_DespachoXCliente
-                                  Where a.oaccbnumi = idChofer
+                                  Where a.oaccbnumi = idChofer And a.oaest = ENEstadoPedido.DICTADO
                                   Select New RDespachoxCliente With {
                                       .oaccbnumi = a.oaccbnumi,
                                       .ccnumi = a.ccnumi,
@@ -102,7 +102,7 @@ Public Class RPedido
         Try
             Using db = GetSchema()
                 Dim listResult = (From a In db.VR_GO_DespachoXProducto
-                                  Where a.oaccbnumi = idChofer
+                                  Where a.oaccbnumi = idChofer And a.oaest = ENEstadoPedido.DICTADO
                                   Select New RDespachoXProducto With {
                                       .oaccbnumi = a.oaccbnumi,
                                       .canumi = a.canumi,

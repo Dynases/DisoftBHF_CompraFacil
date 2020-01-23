@@ -1161,6 +1161,17 @@ Public Class AccesoLogica
         Return _Tabla
 
     End Function
+    Public Shared Function L_VerificarPedidofacturado(_IdPedido As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String
+
+        _Where = "oacnrofac>0  and oacoanumi=" + _IdPedido
+
+        Dim campos As String = "oacoanumi, oacnrofac"
+        _Tabla = D_Datos_Tabla(campos, "TO001C", _Where)
+        Return _Tabla
+
+    End Function
 
     Public Shared Sub L_PedidoCabacera_ModificarExtencion(to1numi As String, numiprev As String)
         Dim _Err As Boolean
@@ -10006,6 +10017,15 @@ Public Class AccesoLogica
 
         _where = "fvanumi =" + tbCodigo + " and fvanfac=" + tbNroFactura + " and fvaautoriz=" + tbNroAutoriz
 
+        _Err = D_Modificar_Datos("TFV001", Sql, _where)
+    End Sub
+    Public Shared Sub L_ActualizaNegativosTFV001(tbCodigo As String, est As String)
+        Dim _Err As Boolean
+        Dim Sql, _where As String
+
+        Sql = "fvanumi =" + tbCodigo
+
+        _where = "fvanumi =" + "-" + tbCodigo + " and fvaest=" + est
         _Err = D_Modificar_Datos("TFV001", Sql, _where)
     End Sub
     Public Shared Sub L_ActualizaTFV0011(_Numi As String)

@@ -34,6 +34,8 @@ Partial Class F0_Ventas
         Me.PanelContentSup = New System.Windows.Forms.Panel()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Sb1Estado = New DevComponents.DotNetBar.Controls.SwitchButton()
+        Me.LabelX18 = New DevComponents.DotNetBar.LabelX()
         Me.swEmision = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.LabelX19 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX17 = New DevComponents.DotNetBar.LabelX()
@@ -91,8 +93,6 @@ Partial Class F0_Ventas
         Me.GPanelProductos = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.grProductos = New Janus.Windows.GridEX.GridEX()
-        Me.Sb1Estado = New DevComponents.DotNetBar.Controls.SwitchButton()
-        Me.LabelX18 = New DevComponents.DotNetBar.LabelX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -310,8 +310,8 @@ Partial Class F0_Ventas
         Me.MSuperTabControl.SelectedTabIndex = 1
         Me.MSuperTabControl.Size = New System.Drawing.Size(1215, 498)
         Me.MSuperTabControl.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem1})
-        Me.MSuperTabControl.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
         Me.MSuperTabControl.Controls.SetChildIndex(Me.MSuperTabControlPanel1, 0)
+        Me.MSuperTabControl.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
         '
         'PictureBox1
         '
@@ -331,7 +331,7 @@ Partial Class F0_Ventas
         Me.SuperTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabControlPanel2.Location = New System.Drawing.Point(0, 0)
         Me.SuperTabControlPanel2.Name = "SuperTabControlPanel2"
-        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(983, 498)
+        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(1182, 498)
         Me.SuperTabControlPanel2.TabIndex = 0
         Me.SuperTabControlPanel2.TabItem = Me.SuperTabItem1
         '
@@ -348,7 +348,7 @@ Partial Class F0_Ventas
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 498.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(983, 498)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1182, 498)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'PanelVentas
@@ -359,7 +359,7 @@ Partial Class F0_Ventas
         Me.PanelVentas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelVentas.Location = New System.Drawing.Point(3, 3)
         Me.PanelVentas.Name = "PanelVentas"
-        Me.PanelVentas.Size = New System.Drawing.Size(977, 492)
+        Me.PanelVentas.Size = New System.Drawing.Size(1176, 492)
         Me.PanelVentas.TabIndex = 0
         '
         'GroupPanel2
@@ -372,7 +372,7 @@ Partial Class F0_Ventas
         Me.GroupPanel2.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel2.Location = New System.Drawing.Point(0, 0)
         Me.GroupPanel2.Name = "GroupPanel2"
-        Me.GroupPanel2.Size = New System.Drawing.Size(977, 492)
+        Me.GroupPanel2.Size = New System.Drawing.Size(1176, 492)
         '
         '
         '
@@ -412,7 +412,7 @@ Partial Class F0_Ventas
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel6.Location = New System.Drawing.Point(0, 0)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(971, 469)
+        Me.Panel6.Size = New System.Drawing.Size(1170, 469)
         Me.Panel6.TabIndex = 0
         '
         'grVentas
@@ -434,7 +434,7 @@ Partial Class F0_Ventas
         Me.grVentas.SelectedFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grVentas.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
         Me.grVentas.SelectOnExpand = False
-        Me.grVentas.Size = New System.Drawing.Size(971, 469)
+        Me.grVentas.Size = New System.Drawing.Size(1170, 469)
         Me.grVentas.TabIndex = 0
         Me.grVentas.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -523,6 +523,38 @@ Partial Class F0_Ventas
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1176, 188)
         Me.Panel2.TabIndex = 234
+        '
+        'Sb1Estado
+        '
+        '
+        '
+        '
+        Me.Sb1Estado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Sb1Estado.Location = New System.Drawing.Point(637, 56)
+        Me.Sb1Estado.Name = "Sb1Estado"
+        Me.Sb1Estado.OffBackColor = System.Drawing.Color.IndianRed
+        Me.Sb1Estado.OffText = "ANULADA"
+        Me.Sb1Estado.OnBackColor = System.Drawing.Color.ForestGreen
+        Me.Sb1Estado.OnText = "VIGENTE"
+        Me.Sb1Estado.Size = New System.Drawing.Size(136, 22)
+        Me.Sb1Estado.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.Sb1Estado.TabIndex = 374
+        Me.Sb1Estado.Value = True
+        Me.Sb1Estado.ValueObject = "Y"
+        '
+        'LabelX18
+        '
+        '
+        '
+        '
+        Me.LabelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX18.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.LabelX18.Location = New System.Drawing.Point(484, 56)
+        Me.LabelX18.Name = "LabelX18"
+        Me.LabelX18.Size = New System.Drawing.Size(120, 23)
+        Me.LabelX18.TabIndex = 373
+        Me.LabelX18.Text = "Estado:"
         '
         'swEmision
         '
@@ -1619,38 +1651,6 @@ Partial Class F0_Ventas
         Me.grProductos.Size = New System.Drawing.Size(714, 17)
         Me.grProductos.TabIndex = 0
         Me.grProductos.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'Sb1Estado
-        '
-        '
-        '
-        '
-        Me.Sb1Estado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.Sb1Estado.Location = New System.Drawing.Point(637, 56)
-        Me.Sb1Estado.Name = "Sb1Estado"
-        Me.Sb1Estado.OffBackColor = System.Drawing.Color.IndianRed
-        Me.Sb1Estado.OffText = "ANULADA"
-        Me.Sb1Estado.OnBackColor = System.Drawing.Color.ForestGreen
-        Me.Sb1Estado.OnText = "VIGENTE"
-        Me.Sb1Estado.Size = New System.Drawing.Size(136, 22)
-        Me.Sb1Estado.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.Sb1Estado.TabIndex = 374
-        Me.Sb1Estado.Value = True
-        Me.Sb1Estado.ValueObject = "Y"
-        '
-        'LabelX18
-        '
-        '
-        '
-        '
-        Me.LabelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX18.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
-        Me.LabelX18.Location = New System.Drawing.Point(484, 56)
-        Me.LabelX18.Name = "LabelX18"
-        Me.LabelX18.Size = New System.Drawing.Size(120, 23)
-        Me.LabelX18.TabIndex = 373
-        Me.LabelX18.Text = "Estado:"
         '
         'F0_Ventas
         '

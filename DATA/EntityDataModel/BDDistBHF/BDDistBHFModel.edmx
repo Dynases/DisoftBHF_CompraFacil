@@ -408,7 +408,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TCP0011' no tiene definida 
           <Property Name="fvaest" Type="int" />
           <Property Name="fvanitcli" Type="nvarchar" MaxLength="15" />
           <Property Name="fvacodcli" Type="int" />
-          <Property Name="fvadescli1" Type="nvarchar" MaxLength="20" />
+          <Property Name="fvadescli1" Type="nvarchar" MaxLength="50" />
           <Property Name="fvadescli2" Type="nvarchar" MaxLength="30" />
           <Property Name="fvastot" Type="float" />
           <Property Name="fvaimpsi" Type="float" />
@@ -1212,6 +1212,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DespachoXCliente' no 
           <Property Name="oacnrofact" Type="bigint" Nullable="false" />
           <Property Name="obptot" Type="numeric" Precision="38" Scale="2" />
           <Property Name="IdZona" Type="int" />
+          <Property Name="oaest" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DespachoXProducto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -1228,6 +1229,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DespachoXProducto' no
           <Property Name="categoria" Type="nvarchar" MaxLength="200" />
           <Property Name="obpcant" Type="decimal" Precision="38" Scale="2" />
           <Property Name="oacnconc" Type="int" />
+          <Property Name="oaest" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DiferenciaPedidoNota' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -1296,7 +1298,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_Factura' no tiene def
           <Property Name="fvaest" Type="int" />
           <Property Name="fvanitcli" Type="nvarchar" MaxLength="15" />
           <Property Name="fvacodcli" Type="int" />
-          <Property Name="fvadescli1" Type="nvarchar" MaxLength="20" />
+          <Property Name="fvadescli1" Type="nvarchar" MaxLength="50" />
           <Property Name="fvadescli2" Type="nvarchar" MaxLength="30" />
           <Property Name="fvastot" Type="float" />
           <Property Name="fvaimpsi" Type="float" />
@@ -1317,6 +1319,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_Factura' no tiene def
           <Property Name="fvbcant" Type="int" />
           <Property Name="fvbprecio" Type="float" />
           <Property Name="fvbnumi2" Type="int" />
+          <Property Name="oazona" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_FacturaVsVenta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -3144,7 +3147,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_GO_DespachoXCliente].[ccdesc] AS [ccdesc], 
     [VR_GO_DespachoXCliente].[oacnrofact] AS [oacnrofact], 
     [VR_GO_DespachoXCliente].[obptot] AS [obptot], 
-    [VR_GO_DespachoXCliente].[IdZona] AS [IdZona]
+    [VR_GO_DespachoXCliente].[IdZona] AS [IdZona], 
+    [VR_GO_DespachoXCliente].[oaest] AS [oaest]
     FROM [dbo].[VR_GO_DespachoXCliente] AS [VR_GO_DespachoXCliente]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VR_GO_DespachoXProducto" EntityType="Self.VR_GO_DespachoXProducto" store:Type="Views" store:Schema="dbo">
@@ -3156,7 +3160,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_GO_DespachoXProducto].[cadesc2] AS [cadesc2], 
     [VR_GO_DespachoXProducto].[categoria] AS [categoria], 
     [VR_GO_DespachoXProducto].[obpcant] AS [obpcant], 
-    [VR_GO_DespachoXProducto].[oacnconc] AS [oacnconc]
+    [VR_GO_DespachoXProducto].[oacnconc] AS [oacnconc], 
+    [VR_GO_DespachoXProducto].[oaest] AS [oaest]
     FROM [dbo].[VR_GO_DespachoXProducto] AS [VR_GO_DespachoXProducto]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VR_GO_DiferenciaPedidoNota" EntityType="Self.VR_GO_DiferenciaPedidoNota" store:Type="Views" store:Schema="dbo">
@@ -3231,7 +3236,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_GO_Factura].[fvbdesprod] AS [fvbdesprod], 
     [VR_GO_Factura].[fvbcant] AS [fvbcant], 
     [VR_GO_Factura].[fvbprecio] AS [fvbprecio], 
-    [VR_GO_Factura].[fvbnumi2] AS [fvbnumi2]
+    [VR_GO_Factura].[fvbnumi2] AS [fvbnumi2], 
+    [VR_GO_Factura].[oazona] AS [oazona]
     FROM [dbo].[VR_GO_Factura] AS [VR_GO_Factura]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VR_GO_FacturaVsVenta" EntityType="Self.VR_GO_FacturaVsVenta" store:Type="Views" store:Schema="dbo">
@@ -4916,7 +4922,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="fvaest" Type="Int32" />
           <Property Name="fvanitcli" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="fvacodcli" Type="Int32" />
-          <Property Name="fvadescli1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fvadescli1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="fvadescli2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="fvastot" Type="Double" />
           <Property Name="fvaimpsi" Type="Double" />
@@ -5743,6 +5749,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="oacnrofact" Type="Int64" Nullable="false" />
           <Property Name="obptot" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="IdZona" Type="Int32" />
+          <Property Name="oaest" Type="Int32" />
         </EntityType>
         <EntityType Name="VR_GO_DespachoXProducto">
           <Key>
@@ -5757,6 +5764,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="categoria" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="obpcant" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="oacnconc" Type="Int32" />
+          <Property Name="oaest" Type="Int32" />
         </EntityType>
         <EntityType Name="VR_GO_DiferenciaPedidoNota">
           <Key>
@@ -5817,7 +5825,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="fvaest" Type="Int32" />
           <Property Name="fvanitcli" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="fvacodcli" Type="Int32" />
-          <Property Name="fvadescli1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fvadescli1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="fvadescli2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="fvastot" Type="Double" />
           <Property Name="fvaimpsi" Type="Double" />
@@ -5838,6 +5846,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="fvbcant" Type="Int32" />
           <Property Name="fvbprecio" Type="Double" />
           <Property Name="fvbnumi2" Type="Int32" />
+          <Property Name="oazona" Type="Int32" />
         </EntityType>
         <EntityType Name="VR_GO_FacturaVsVenta">
           <Key>
@@ -7872,6 +7881,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="VR_GO_DespachoXCliente">
             <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_DespachoXCliente">
               <MappingFragment StoreEntitySet="VR_GO_DespachoXCliente">
+                <ScalarProperty Name="oaest" ColumnName="oaest" />
                 <ScalarProperty Name="IdZona" ColumnName="IdZona" />
                 <ScalarProperty Name="obptot" ColumnName="obptot" />
                 <ScalarProperty Name="oacnrofact" ColumnName="oacnrofact" />
@@ -7885,6 +7895,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="VR_GO_DespachoXProducto">
             <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_DespachoXProducto">
               <MappingFragment StoreEntitySet="VR_GO_DespachoXProducto">
+                <ScalarProperty Name="oaest" ColumnName="oaest" />
                 <ScalarProperty Name="oacnconc" ColumnName="oacnconc" />
                 <ScalarProperty Name="obpcant" ColumnName="obpcant" />
                 <ScalarProperty Name="categoria" ColumnName="categoria" />
@@ -7948,6 +7959,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="VR_GO_Factura">
             <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_Factura">
               <MappingFragment StoreEntitySet="VR_GO_Factura">
+                <ScalarProperty Name="oazona" ColumnName="oazona" />
                 <ScalarProperty Name="fvbnumi2" ColumnName="fvbnumi2" />
                 <ScalarProperty Name="fvbprecio" ColumnName="fvbprecio" />
                 <ScalarProperty Name="fvbcant" ColumnName="fvbcant" />

@@ -121,6 +121,10 @@ Public Class frmBillingDispatch
                 L_Grabar_Nit(nit, "S/N", "")
             End If
         End If
+        Dim dtfv001 As DataTable = L_fnObtenerTabla("fvanitcli, fvadescli1, fvadescli2, fvaautoriz, fvanfac, fvaccont, fvafec,fvaest", "TFV001", "fvanumi=" + numi + " or fvanumi=" + "-" + numi)
+        If dtfv001.Rows.Count = 2 Then
+            L_ActualizaNegativosTFV001(numi, "0")
+        End If
 
         Return res
     End Function
