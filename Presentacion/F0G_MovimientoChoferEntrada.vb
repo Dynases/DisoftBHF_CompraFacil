@@ -823,7 +823,7 @@ Public Class F0G_MovimientoChoferEntrada
         Dim dtVer As DataTable = L_fnObtenerTabla("*", "TM0013", "idtm1id=" + lbcodigo.Text)
         Dim dtVentaMovil As DataTable
         If (dtVer.Rows.Count = 0) Then
-            dtVentaMovil = L_prConciliacionObtenerPedidoEntregado(_codChofer)
+            dtVentaMovil = L_prConciliacionObtenerPedidoEntregado(lbcodigo.Text)
         Else
             dtVentaMovil = L_prConciliacionObtenerPedidoEntregadoGrabado(lbcodigo.Text, _codChofer)
         End If

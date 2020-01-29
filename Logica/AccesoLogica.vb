@@ -6428,13 +6428,14 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
-    Public Shared Function L_prConciliacionObtenerPedidoEntregado(idrepa As String) As DataTable
+    Public Shared Function L_prConciliacionObtenerPedidoEntregado(nconci As String) As DataTable
         Dim _Tabla As DataTable
 
         Dim _listParam As New List(Of Datos.DParametro)
 
         _listParam.Add(New Datos.DParametro("@tipo", 20))
-        _listParam.Add(New Datos.DParametro("@ibidchof", idrepa))
+        '_listParam.Add(New Datos.DParametro("@ibidchof", idrepa))
+        _listParam.Add(New Datos.DParametro("@nconci", nconci))
         _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TM001SalidaChofer", _listParam)
 
