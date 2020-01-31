@@ -39,7 +39,7 @@ Public Class RPedido
                                   Join b In db.TC004 On a.oaccli Equals b.ccnumi
                                   Join c In db.TC002 On a1.oaanumiprev Equals c.cbnumi
                                   Join d In db.TO001C On a.oanumi Equals d.oacoanumi
-                                  Where a.oaest = ENEstadoPedido.DICTADO And d.oaccbnumi = idChofer
+                                  Where a.oaest = ENEstadoPedido.DICTADO And d.oaccbnumi = idChofer And a.oaap = 1
                                   Select New VPedido_BillingDispatch With {
                                       .Id = a.oanumi,
                                       .Fecha = a.oafdoc,
@@ -80,7 +80,7 @@ Public Class RPedido
         Try
             Using db = GetSchema()
                 Dim listResult = (From a In db.VR_GO_DespachoXCliente
-                                  Where a.oaccbnumi = idChofer And a.oaest = ENEstadoPedido.DICTADO
+                                  Where a.oaccbnumi = idChofer And a.oaest = ENEstadoPedido.DICTADO And a.oaap = 1
                                   Select New RDespachoxCliente With {
                                       .oaccbnumi = a.oaccbnumi,
                                       .ccnumi = a.ccnumi,
@@ -102,7 +102,7 @@ Public Class RPedido
         Try
             Using db = GetSchema()
                 Dim listResult = (From a In db.VR_GO_DespachoXProducto
-                                  Where a.oaccbnumi = idChofer And a.oaest = ENEstadoPedido.DICTADO
+                                  Where a.oaccbnumi = idChofer And a.oaest = ENEstadoPedido.DICTADO And a.oaap = 1
                                   Select New RDespachoXProducto With {
                                       .oaccbnumi = a.oaccbnumi,
                                       .canumi = a.canumi,
@@ -122,7 +122,7 @@ Public Class RPedido
         Try
             Using db = GetSchema()
                 Dim listResult = (From a In db.VR_GO_DespachoXProducto
-                                  Where a.oaccbnumi = idChofer And a.oacnconc = 0
+                                  Where a.oaccbnumi = idChofer And a.oacnconc = 0 And a.oaap = 1 And a.oaest = ENEstadoPedido.DICTADO
                                   Select New RDespachoXProducto With {
                                       .oaccbnumi = a.oaccbnumi,
                                       .canumi = a.canumi,

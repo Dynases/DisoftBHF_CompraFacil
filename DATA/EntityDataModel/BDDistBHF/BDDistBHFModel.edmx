@@ -1213,6 +1213,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DespachoXCliente' no 
           <Property Name="obptot" Type="numeric" Precision="38" Scale="2" />
           <Property Name="IdZona" Type="int" />
           <Property Name="oaest" Type="int" />
+          <Property Name="oaap" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DespachoXProducto' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -1230,6 +1231,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DespachoXProducto' no
           <Property Name="obpcant" Type="decimal" Precision="38" Scale="2" />
           <Property Name="oacnconc" Type="int" />
           <Property Name="oaest" Type="int" />
+          <Property Name="oaap" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DiferenciaPedidoNota' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -3148,7 +3150,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_GO_DespachoXCliente].[oacnrofact] AS [oacnrofact], 
     [VR_GO_DespachoXCliente].[obptot] AS [obptot], 
     [VR_GO_DespachoXCliente].[IdZona] AS [IdZona], 
-    [VR_GO_DespachoXCliente].[oaest] AS [oaest]
+    [VR_GO_DespachoXCliente].[oaest] AS [oaest], 
+    [VR_GO_DespachoXCliente].[oaap] AS [oaap]
     FROM [dbo].[VR_GO_DespachoXCliente] AS [VR_GO_DespachoXCliente]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VR_GO_DespachoXProducto" EntityType="Self.VR_GO_DespachoXProducto" store:Type="Views" store:Schema="dbo">
@@ -3161,7 +3164,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_GO_DespachoXProducto].[categoria] AS [categoria], 
     [VR_GO_DespachoXProducto].[obpcant] AS [obpcant], 
     [VR_GO_DespachoXProducto].[oacnconc] AS [oacnconc], 
-    [VR_GO_DespachoXProducto].[oaest] AS [oaest]
+    [VR_GO_DespachoXProducto].[oaest] AS [oaest], 
+    [VR_GO_DespachoXProducto].[oaap] AS [oaap]
     FROM [dbo].[VR_GO_DespachoXProducto] AS [VR_GO_DespachoXProducto]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VR_GO_DiferenciaPedidoNota" EntityType="Self.VR_GO_DiferenciaPedidoNota" store:Type="Views" store:Schema="dbo">
@@ -5750,6 +5754,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="obptot" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="IdZona" Type="Int32" />
           <Property Name="oaest" Type="Int32" />
+          <Property Name="oaap" Type="Int32" />
         </EntityType>
         <EntityType Name="VR_GO_DespachoXProducto">
           <Key>
@@ -5765,6 +5770,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="obpcant" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="oacnconc" Type="Int32" />
           <Property Name="oaest" Type="Int32" />
+          <Property Name="oaap" Type="Int32" />
         </EntityType>
         <EntityType Name="VR_GO_DiferenciaPedidoNota">
           <Key>
@@ -7881,6 +7887,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="VR_GO_DespachoXCliente">
             <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_DespachoXCliente">
               <MappingFragment StoreEntitySet="VR_GO_DespachoXCliente">
+                <ScalarProperty Name="oaap" ColumnName="oaap" />
                 <ScalarProperty Name="oaest" ColumnName="oaest" />
                 <ScalarProperty Name="IdZona" ColumnName="IdZona" />
                 <ScalarProperty Name="obptot" ColumnName="obptot" />
@@ -7895,6 +7902,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="VR_GO_DespachoXProducto">
             <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_DespachoXProducto">
               <MappingFragment StoreEntitySet="VR_GO_DespachoXProducto">
+                <ScalarProperty Name="oaap" ColumnName="oaap" />
                 <ScalarProperty Name="oaest" ColumnName="oaest" />
                 <ScalarProperty Name="oacnconc" ColumnName="oacnconc" />
                 <ScalarProperty Name="obpcant" ColumnName="obpcant" />

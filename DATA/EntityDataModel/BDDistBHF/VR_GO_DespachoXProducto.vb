@@ -32,5 +32,7 @@ Partial Public Class VR_GO_DespachoXProducto
 
     Public Property oaest As Nullable(Of Integer)
 
+    Public Property oaap As Nullable(Of Integer)
+
 
 End Class
