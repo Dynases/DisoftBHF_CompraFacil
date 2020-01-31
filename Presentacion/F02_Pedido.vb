@@ -1285,10 +1285,10 @@ Public Class F02_Pedido
             End If
         Next
         Dim dt As DataTable = CType(JGr_DetallePedido.DataSource, DataTable)
+
         Dim sumTotal As Double = 0
         For i = 0 To dt.Rows.Count - 1
             sumTotal = sumTotal + dt.Rows(i).Item(5)
-
         Next
         If (swTipoVenta.Value = False) Then
             If (tbMontoCredito.Text.Length > 0) Then
@@ -2227,10 +2227,17 @@ Public Class F02_Pedido
     Private Sub QuitarItemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitarItemToolStripMenuItem.Click
         If (MBtGrabar.Enabled) Then
             Try
-                JGr_DetallePedido.CurrentRow.EndEdit()
+                Dim dtt As DataTable
+                JGr_DetallePedido.CurrentRow.BeginEdit()
                 JGr_DetallePedido.CurrentRow.Delete()
-                JGr_DetallePedido.Refetch()
-                JGr_DetallePedido.Refresh()
+                dtt = CType(JGr_DetallePedido.DataSource, DataTable)
+                dtt.AcceptChanges()
+                JGr_DetallePedido.DataSource = dtt
+                JGr_DetallePedido.CurrentRow.EndEdit()
+
+                'JGr_DetallePedido.Refetch()
+                'JGr_DetallePedido.Refresh()
+
             Catch ex As Exception
                 'sms
                 'MsgBox(ex)

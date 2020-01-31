@@ -712,7 +712,9 @@ Public Class F0G_MovimientoChoferEntrada
         TablaPrincipal.Columns.Add("TOTAL")
 
         '''''''''''Aqui inserto los movimientos ya insertados para modificarlos
-        Dim ProductosMovimientoSalida As DataTable = L_prConciliacionObtenerProductoTI0021Idnumi(lbcodigo.Text) ''''Estado=3 Conciliacion Chofer
+        'Dim ProductosMovimientoSalida As DataTable = L_prConciliacionObtenerProductoTI0021Idnumi(lbcodigo.Text) ''''Estado=3 Conciliacion Chofer
+        Dim ProductosMovimientoSalida As DataTable = L_prConciliacionObtenerProductoTI0021IdnumiReporte(lbcodigo.Text) ''''Estado=3 Conciliacion Chofer
+
         For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
             Dim idprod As Integer = TablaPrincipal.Rows(j).Item("canumi")
             Dim result As DataRow() = ProductosMovimientoSalida.Select("iccprod=" + Str(idprod))

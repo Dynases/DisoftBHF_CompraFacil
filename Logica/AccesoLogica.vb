@@ -4138,7 +4138,7 @@ Public Class AccesoLogica
 
 #Region "CATEGORIAS PRECIOS"
 
-    Public Shared Function L_CategoriaPrecioGrabar(ByRef _numi As String, _abrev As String, _nom As String) As Boolean
+    Public Shared Function L_CategoriaPrecioGrabar(ByRef _numi As String, _abrev As String, _nom As String, _citcv As String) As Boolean
         Dim _Error As Boolean
 
         Dim _Tabla As DataTable
@@ -4148,7 +4148,7 @@ Public Class AccesoLogica
         Else
             _numi = "1"
         End If
-        Dim _Actualizacion As String = "'" + Date.Now.Date.ToString("yyyy/MM/dd") + "', '" + Now.Hour.ToString + ":" + Now.Minute.ToString + "' ,'" + L_Usuario + "'"
+        Dim _Actualizacion As String = "'" + Date.Now.Date.ToString("yyyy/MM/dd") + "', '" + Now.Hour.ToString + ":" + Now.Minute.ToString + "' ,'" + L_Usuario + "' ,'" + _citcv + "'"
         Dim _valores As String
         _valores = _numi + ",'" + _abrev + "','" + _nom + "'," + _Actualizacion
 
@@ -6409,6 +6409,18 @@ Public Class AccesoLogica
         Dim _listParam As New List(Of Datos.DParametro)
 
         _listParam.Add(New Datos.DParametro("@tipo", 14))
+        _listParam.Add(New Datos.DParametro("@ibid", _ibid))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TM001SalidaChofer", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prConciliacionObtenerProductoTI0021IdnumiReporte(_ibid As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 25))
         _listParam.Add(New Datos.DParametro("@ibid", _ibid))
         _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TM001SalidaChofer", _listParam)

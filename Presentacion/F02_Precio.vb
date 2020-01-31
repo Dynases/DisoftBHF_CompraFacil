@@ -641,7 +641,7 @@ Public Class F02_Precio
 
             If (Not catDesc = String.Empty) Then
                 Dim numi As String = ""
-                L_CategoriaPrecioGrabar(numi, sigCategoria, catDesc)
+                L_CategoriaPrecioGrabar(numi, sigCategoria, catDesc, 1) 'Se agregó un campo mas citcv en la tabla TC007
 
                 ToastNotification.Show(Me, "NUEVA CATEGORIA " + sigCategoria + " ADICIONADA CON EXITO", My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.BottomRight)
                 _PCargarDetalle(JCb_CatProducto.Value)
