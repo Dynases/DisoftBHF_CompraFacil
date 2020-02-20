@@ -88,7 +88,8 @@ Public Class RPedido
                                       .ccdesc = a.ccdesc,
                                       .oacnrofact = a.oacnrofact,
                                       .obptot = a.obptot,
-                                      .IdZona = a.IdZona
+                                      .IdZona = a.IdZona,
+                                      .oafdoc = a.oafdoc
                                       }).ToList()
                 Return listResult
 
@@ -110,7 +111,8 @@ Public Class RPedido
                                       .cadesc = a.cadesc,
                                       .cadesc2 = a.cadesc2,
                                       .categoria = a.categoria,
-                                      .obpcant = a.obpcant
+                                      .obpcant = a.obpcant,
+                                      .oafdoc = a.oafdoc
                                       }).ToList()
                 Return listResult
             End Using

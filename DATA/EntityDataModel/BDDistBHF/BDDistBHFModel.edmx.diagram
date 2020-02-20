@@ -118,10 +118,10 @@
         <EntityTypeShape EntityType="BDDistBHFModel.VR_SaldoCliente" Width="1.5" PointX="30.75" PointY="30.75" />
         <EntityTypeShape EntityType="BDDistBHFModel.VR_stockActual" Width="1.5" PointX="6.75" PointY="31.75" />
         <EntityTypeShape EntityType="BDDistBHFModel.VR_StockDisponible" Width="1.5" PointX="14.75" PointY="31.75" />
-        <EntityTypeShape EntityType="BDDistBHFModel.VR_UtilidadPorProducto" Width="1.5" PointX="33.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BDDistBHFModel.Vr_VentasVendedor12Meses" Width="1.5" PointX="0.75" PointY="33.75" />
-        <EntityTypeShape EntityType="BDDistBHFModel.Vr_VentasVendidas" Width="1.5" PointX="33.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BDDistBHFModel.VR_VistaPedido_PrecioCosto" Width="1.5" PointX="33.375" PointY="7.75" />
+        <EntityTypeShape EntityType="BDDistBHFModel.VR_UtilidadPorProducto" Width="1.5" PointX="32.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BDDistBHFModel.Vr_VentasVendedor12Meses" Width="1.5" PointX="32.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BDDistBHFModel.Vr_VentasVendidas" Width="1.5" PointX="32.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BDDistBHFModel.VR_VistaPedido_PrecioCosto" Width="1.5" PointX="32.75" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

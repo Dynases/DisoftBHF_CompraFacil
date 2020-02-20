@@ -88,7 +88,7 @@ Public Class F0_MCaja
         'TablaPrincipal.Columns.Add("DEVOLUCION")
 
         '''''''''''Aqui inserto las ventas realidas con el movil
-        Dim dtVentaMovil As DataTable = L_prListarProductosMovil(CType(grtotalpedidos.DataSource, DataTable))
+        Dim dtVentaMovil As DataTable = L_prListarProductosMovil(CType(Dgv_PedidoTotal.DataSource, DataTable))
 
 
         For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
@@ -109,7 +109,7 @@ Public Class F0_MCaja
 
 
         '''''''''''Aqui inserto las ventas realidas con el PC
-        Dim dtVentaPc As DataTable = L_prListarProductosPC(CType(grtotalpedidos.DataSource, DataTable))
+        Dim dtVentaPc As DataTable = L_prListarProductosPC(CType(Dgv_PedidoTotal.DataSource, DataTable))
 
 
         For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
@@ -150,12 +150,12 @@ Public Class F0_MCaja
         Dim dt As New DataTable
         dt = TablaPrincipal
         _prCargarIcono(dt)
-        grdetalle.DataSource = dt
-        grdetalle.RetrieveStructure()
-        grdetalle.AlternatingColors = True
+        Dgv_Corte.DataSource = dt
+        Dgv_Corte.RetrieveStructure()
+        Dgv_Corte.AlternatingColors = True
         For c As Integer = 0 To columnas.Rows.Count - 1 Step 1
             Dim colum As String = columnas.Rows(c).Item("ibid")
-            With grdetalle.RootTable.Columns(colum)
+            With Dgv_Corte.RootTable.Columns(colum)
                 .Width = 150
                 .Visible = False
                 .TextAlignment = TextAlignment.Far
@@ -164,28 +164,28 @@ Public Class F0_MCaja
             End With
         Next
 
-        With grdetalle.RootTable.Columns("canumi")
+        With Dgv_Corte.RootTable.Columns("canumi")
             .Width = 150
             .Visible = False
         End With
-        With grdetalle.RootTable.Columns("estado")
+        With Dgv_Corte.RootTable.Columns("estado")
             .Width = 150
             .Visible = False
         End With
-        With grdetalle.RootTable.Columns("icid")
+        With Dgv_Corte.RootTable.Columns("icid")
             .Width = 150
             .Visible = False
         End With
-        With grdetalle.RootTable.Columns("cadesc")
+        With Dgv_Corte.RootTable.Columns("cadesc")
             .Width = 200
             .Visible = True
             .Caption = "PRODUCTO"
         End With
-        With grdetalle.RootTable.Columns("ID_TO1")
+        With Dgv_Corte.RootTable.Columns("ID_TO1")
             .Width = 150
             .Visible = False
         End With
-        With grdetalle.RootTable.Columns("MOVIL")
+        With Dgv_Corte.RootTable.Columns("MOVIL")
             .Width = 150
             .Visible = False
             .FormatString = "0.00"
@@ -193,7 +193,7 @@ Public Class F0_MCaja
             .Caption = "MOVIL"
             '.CellStyle.BackColor = Color.CadetBlue
         End With
-        With grdetalle.RootTable.Columns("PC")
+        With Dgv_Corte.RootTable.Columns("PC")
             .Width = 150
             .Visible = True
             .FormatString = "0.00"
@@ -201,14 +201,14 @@ Public Class F0_MCaja
             .Caption = "ENTREGADOS"
             '.CellStyle.BackColor = Color.Gold
         End With
-        With grdetalle.RootTable.Columns("DEVOLUCION")
+        With Dgv_Corte.RootTable.Columns("DEVOLUCION")
             .Width = 150
             .Visible = False
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
             .Caption = "DEVOLUCION"
         End With
-        With grdetalle.RootTable.Columns("TOTAL")
+        With Dgv_Corte.RootTable.Columns("TOTAL")
             .Width = 150
             .Visible = True
             .FormatString = "0.00"
@@ -216,7 +216,7 @@ Public Class F0_MCaja
             .Caption = "TOTAL PEDIDOS"
             .CellStyle.BackColor = Color.CadetBlue
         End With
-        With grdetalle.RootTable.Columns("TOTAL_ENTREGADO")
+        With Dgv_Corte.RootTable.Columns("TOTAL_ENTREGADO")
             .Width = 150
             .Visible = True
             .FormatString = "0.00"
@@ -224,20 +224,20 @@ Public Class F0_MCaja
             .Caption = "TOTAL ENTREGADO"
             .CellStyle.BackColor = Color.CadetBlue
         End With
-        With grdetalle.RootTable.Columns("TOTALCOPIA")
+        With Dgv_Corte.RootTable.Columns("TOTALCOPIA")
             .Width = 150
             .Visible = False
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
         End With
 
-        With grdetalle.RootTable.Columns("img")
+        With Dgv_Corte.RootTable.Columns("img")
             .Width = 80
             .Caption = "ESTADO".ToUpper
             .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
             .Visible = False
         End With
-        With grdetalle
+        With Dgv_Corte
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
@@ -301,7 +301,7 @@ Public Class F0_MCaja
 
         GridEX1.Enabled = True
 
-        grtotalpedidos.AllowEdit = InheritableBoolean.False
+        Dgv_PedidoTotal.AllowEdit = InheritableBoolean.False
 
         tbdRecibido.IsInputReadOnly = True
         tbdSaldo.IsInputReadOnly = True
@@ -320,7 +320,7 @@ Public Class F0_MCaja
 
         GridEX1.Enabled = False
 
-        grtotalpedidos.AllowEdit = InheritableBoolean.True
+        Dgv_PedidoTotal.AllowEdit = InheritableBoolean.True
 
         tbdRecibido.IsInputReadOnly = False
     End Sub
@@ -421,59 +421,59 @@ Public Class F0_MCaja
         Dim dt As New DataTable
 
         dt = L_prObtenerDetalleDeCaja(_numi)
-        grtotalpedidos.DataSource = dt
-        grtotalpedidos.RetrieveStructure()
-        grtotalpedidos.AlternatingColors = True
+        Dgv_PedidoTotal.DataSource = dt
+        Dgv_PedidoTotal.RetrieveStructure()
+        Dgv_PedidoTotal.AlternatingColors = True
         'oanumi , oafdoc, oaccli, cliente, oarepa, oaest, oaap, oapg, total,contado,credito, estado
-        With grtotalpedidos.RootTable.Columns("oanumi")
+        With Dgv_PedidoTotal.RootTable.Columns("oanumi")
             .Width = 100
             .Caption = "CODIGO"
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("oafdoc")
+        With Dgv_PedidoTotal.RootTable.Columns("oafdoc")
             .Width = 90
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("oaest")
+        With Dgv_PedidoTotal.RootTable.Columns("oaest")
             .Width = 90
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("oaap")
+        With Dgv_PedidoTotal.RootTable.Columns("oaap")
             .Width = 90
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("oapg")
+        With Dgv_PedidoTotal.RootTable.Columns("oapg")
             .Width = 90
             .Visible = False
         End With
 
 
-        With grtotalpedidos.RootTable.Columns("oaccli")
+        With Dgv_PedidoTotal.RootTable.Columns("oaccli")
             .Width = 120
             .Caption = ""
             .Visible = False
         End With
 
-        With grtotalpedidos.RootTable.Columns("cliente")
+        With Dgv_PedidoTotal.RootTable.Columns("cliente")
             .Caption = "CLIENTE"
             .Width = 400
             .Visible = True
         End With
-        With grtotalpedidos.RootTable.Columns("total")
+        With Dgv_PedidoTotal.RootTable.Columns("total")
             .Caption = "TOTAL"
             .Width = 120
             .AggregateFunction = AggregateFunction.Sum
             .Visible = True
             .FormatString = "0.00"
         End With
-        With grtotalpedidos.RootTable.Columns("contado")
+        With Dgv_PedidoTotal.RootTable.Columns("contado")
             .Caption = "EFECTIVO"
             .Width = 120
             .AggregateFunction = AggregateFunction.Sum
             .Visible = True
             .FormatString = "0.00"
         End With
-        With grtotalpedidos.RootTable.Columns("credito")
+        With Dgv_PedidoTotal.RootTable.Columns("credito")
             .Caption = "CREDITO"
             .Width = 120
             .AggregateFunction = AggregateFunction.Sum
@@ -481,21 +481,21 @@ Public Class F0_MCaja
             .Visible = True
             .FormatString = "0.00"
         End With
-        With grtotalpedidos.RootTable.Columns("oarepa")
+        With Dgv_PedidoTotal.RootTable.Columns("oarepa")
             .Width = 160
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("tcre")
+        With Dgv_PedidoTotal.RootTable.Columns("tcre")
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("estado")
+        With Dgv_PedidoTotal.RootTable.Columns("estado")
             .Width = 50
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = False
         End With
 
-        With grtotalpedidos
+        With Dgv_PedidoTotal
             .GroupByBoxVisible = False
             'diseño de la grilla
             .TotalRow = InheritableBoolean.True
@@ -517,59 +517,59 @@ Public Class F0_MCaja
 
         'dt = L_prObtenerDetalleChofer(Numi_Chofer, tbFecha.Value.ToString("yyyy/MM/dd"))
         dt = L_prObtenerDetalleChofer(Numi_Chofer, tbFecha.Value.ToString("yyyy/MM/dd"), lbconciliacion.Text)
-        grtotalpedidos.DataSource = dt
-        grtotalpedidos.RetrieveStructure()
-        grtotalpedidos.AlternatingColors = True
+        Dgv_PedidoTotal.DataSource = dt
+        Dgv_PedidoTotal.RetrieveStructure()
+        Dgv_PedidoTotal.AlternatingColors = True
         'oanumi , oafdoc, oaccli, cliente, oarepa, oaest, oaap, oapg, total,contado,credito, estado
-        With grtotalpedidos.RootTable.Columns("oanumi")
+        With Dgv_PedidoTotal.RootTable.Columns("oanumi")
             .Width = 100
             .Caption = "CODIGO"
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("oafdoc")
+        With Dgv_PedidoTotal.RootTable.Columns("oafdoc")
             .Width = 90
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("oaest")
+        With Dgv_PedidoTotal.RootTable.Columns("oaest")
             .Width = 90
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("oaap")
+        With Dgv_PedidoTotal.RootTable.Columns("oaap")
             .Width = 90
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("oapg")
+        With Dgv_PedidoTotal.RootTable.Columns("oapg")
             .Width = 90
             .Visible = False
         End With
 
 
-        With grtotalpedidos.RootTable.Columns("oaccli")
+        With Dgv_PedidoTotal.RootTable.Columns("oaccli")
             .Width = 120
             .Caption = ""
             .Visible = False
         End With
 
-        With grtotalpedidos.RootTable.Columns("cliente")
+        With Dgv_PedidoTotal.RootTable.Columns("cliente")
             .Caption = "CLIENTE"
             .Width = 400
             .Visible = True
         End With
-        With grtotalpedidos.RootTable.Columns("total")
+        With Dgv_PedidoTotal.RootTable.Columns("total")
             .Caption = "TOTAL"
             .Width = 120
             .Visible = True
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
         End With
-        With grtotalpedidos.RootTable.Columns("contado")
+        With Dgv_PedidoTotal.RootTable.Columns("contado")
             .Caption = "EFECTIVO"
             .Width = 120
             .Visible = True
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
         End With
-        With grtotalpedidos.RootTable.Columns("credito")
+        With Dgv_PedidoTotal.RootTable.Columns("credito")
             .Caption = "CREDITO"
             .Width = 120
             '.Visible = (gi_vcre2 = 1)
@@ -577,21 +577,21 @@ Public Class F0_MCaja
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
         End With
-        With grtotalpedidos.RootTable.Columns("oarepa")
+        With Dgv_PedidoTotal.RootTable.Columns("oarepa")
             .Width = 160
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("tcre")
+        With Dgv_PedidoTotal.RootTable.Columns("tcre")
             .Visible = False
         End With
-        With grtotalpedidos.RootTable.Columns("estado")
+        With Dgv_PedidoTotal.RootTable.Columns("estado")
             .Width = 50
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = False
         End With
 
-        With grtotalpedidos
+        With Dgv_PedidoTotal
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
@@ -685,8 +685,8 @@ Public Class F0_MCaja
     End Sub
 
     Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, numi As Integer)
-        For i As Integer = 0 To CType(grtotalpedidos.DataSource, DataTable).Rows.Count - 1 Step 1
-            Dim _numi As Integer = CType(grtotalpedidos.DataSource, DataTable).Rows(i).Item("oanumi")
+        For i As Integer = 0 To CType(Dgv_PedidoTotal.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _numi As Integer = CType(Dgv_PedidoTotal.DataSource, DataTable).Rows(i).Item("oanumi")
             If (_numi = numi) Then
                 pos = i
                 Return
@@ -727,7 +727,7 @@ Public Class F0_MCaja
         'TablaPrincipal.Columns.Add("estado")
         'TablaPrincipal.Columns.Add("icid")
 
-        Dim dt As DataTable = CType(grdetalle.DataSource, DataTable)
+        Dim dt As DataTable = CType(Dgv_Corte.DataSource, DataTable)
         For i As Integer = 0 To dt.Rows.Count - 1 Step 1
 
             Dim totalSacado As Double = dt.Rows(i).Item("TOTAL")
@@ -772,7 +772,7 @@ Public Class F0_MCaja
 
 
         'Colocar el total del contado en el tbdRecibido.Text
-        tbdRecibido.Text = grtotalpedidos.GetTotal(grtotalpedidos.RootTable.Columns("contado"), AggregateFunction.Sum)
+        tbdRecibido.Text = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("contado"), AggregateFunction.Sum)
     End Sub
 
     Private Sub F0_Caja_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -800,7 +800,7 @@ Public Class F0_MCaja
         'ByRef _olnumi As String, _olnumichof As String, _olnumiconci As Integer, _olfecha As String, _dt As DataTable
         Dim numi As String = ""
 
-        Dim res As Boolean = L_prCajaGrabar(numi, Numi_Chofer, Numi_Conciliacion, tbFecha.Value.ToString("yyyy/MM/dd"), tbdRecibido.Value.ToString, CType(grtotalpedidos.DataSource, DataTable))
+        Dim res As Boolean = L_prCajaGrabar(numi, Numi_Chofer, Numi_Conciliacion, tbFecha.Value.ToString("yyyy/MM/dd"), tbdRecibido.Value.ToString, CType(Dgv_PedidoTotal.DataSource, DataTable))
 
         If res Then
 
@@ -859,7 +859,7 @@ Public Class F0_MCaja
             bandera = ef.band
             If (bandera = True) Then
                 Dim mensajeError As String = ""
-                Dim res As Boolean = L_fnCajaEliminar(TbCodigo.Text, CType(grtotalpedidos.DataSource, DataTable))
+                Dim res As Boolean = L_fnCajaEliminar(TbCodigo.Text, CType(Dgv_PedidoTotal.DataSource, DataTable))
                 If res Then
 
 
@@ -920,11 +920,11 @@ Public Class F0_MCaja
         _PrimerRegistro()
     End Sub
 
-    Private Sub grtotalpedidos_KeyDown(sender As Object, e As KeyEventArgs) Handles grtotalpedidos.KeyDown
+    Private Sub grtotalpedidos_KeyDown(sender As Object, e As KeyEventArgs) Handles Dgv_PedidoTotal.KeyDown
 
-        If (e.KeyData = Keys.Control + Keys.Enter And grtotalpedidos.Row >= 0) Then
+        If (e.KeyData = Keys.Control + Keys.Enter And Dgv_PedidoTotal.Row >= 0) Then
 
-            P_prArmarDetallePedido(grtotalpedidos.GetValue("oanumi"))
+            P_prArmarDetallePedido(Dgv_PedidoTotal.GetValue("oanumi"))
 
 
 
@@ -971,7 +971,7 @@ Public Class F0_MCaja
 
 
     Function F_GenerarTablaProductoReporte() As DataTable
-        Dim dt As DataTable = CType(grdetalle.DataSource, DataTable)
+        Dim dt As DataTable = CType(Dgv_Corte.DataSource, DataTable)
         Dim TablaPrincipal As DataTable = New DataTable
         'Select Case'Hielo de 35 kg' AS producto, 20 AS totalpedidos, 10 AS movil, 10 AS pc, 20 AS totalentregado
         TablaPrincipal.Columns.Add("producto", Type.GetType("System.String"))
@@ -982,25 +982,25 @@ Public Class F0_MCaja
         For i As Integer = 0 To dt.Rows.Count - 1 Step 1
             TablaPrincipal.Rows.Add()
             Dim n As Integer = TablaPrincipal.Rows.Count - 1
-            TablaPrincipal.Rows(n).Item("producto") = CType(grdetalle.DataSource, DataTable).Rows(i).Item("cadesc")
-            TablaPrincipal.Rows(n).Item("totalpedidos") = CType(grdetalle.DataSource, DataTable).Rows(i).Item("TOTAL")
+            TablaPrincipal.Rows(n).Item("producto") = CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("cadesc")
+            TablaPrincipal.Rows(n).Item("totalpedidos") = CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("TOTAL")
 
 
-            If (CType(grdetalle.DataSource, DataTable).Rows(i).Item("MOVIL").ToString.Equals("")) Then
+            If (CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("MOVIL").ToString.Equals("")) Then
                 TablaPrincipal.Rows(n).Item("movil") = 0
             Else
-                TablaPrincipal.Rows(n).Item("movil") = CInt(CType(grdetalle.DataSource, DataTable).Rows(i).Item("MOVIL"))
+                TablaPrincipal.Rows(n).Item("movil") = CInt(CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("MOVIL"))
             End If
 
 
-            If (CType(grdetalle.DataSource, DataTable).Rows(i).Item("PC").ToString.Equals("")) Then
+            If (CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("PC").ToString.Equals("")) Then
                 TablaPrincipal.Rows(n).Item("pc") = 0
             Else
-                TablaPrincipal.Rows(n).Item("pc") = CInt(CType(grdetalle.DataSource, DataTable).Rows(i).Item("PC"))
+                TablaPrincipal.Rows(n).Item("pc") = CInt(CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("PC"))
             End If
 
 
-            TablaPrincipal.Rows(n).Item("totalentregado") = CType(grdetalle.DataSource, DataTable).Rows(i).Item("TOTAL_ENTREGADO")
+            TablaPrincipal.Rows(n).Item("totalentregado") = CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("TOTAL_ENTREGADO")
 
         Next
 
@@ -1010,7 +1010,7 @@ Public Class F0_MCaja
 
     Private Sub P_GenerarReporte()
         Dim dtProducto As DataTable = F_GenerarTablaProductoReporte()
-        Dim dtCliente As DataTable = CType(grtotalpedidos.DataSource, DataTable)
+        Dim dtCliente As DataTable = CType(Dgv_PedidoTotal.DataSource, DataTable)
 
 
         If Not IsNothing(P_Global.Visualizador) Then
@@ -1039,7 +1039,7 @@ Public Class F0_MCaja
         End If
     End Sub
 
-    Private Sub grtotalpedidos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles grtotalpedidos.EditingCell
+    Private Sub grtotalpedidos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles Dgv_PedidoTotal.EditingCell
         If (e.Column.Key = "credito") Then
             e.Cancel = False
         Else
@@ -1048,18 +1048,18 @@ Public Class F0_MCaja
 
     End Sub
 
-    Private Sub grtotalpedidos_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles grtotalpedidos.CellEdited
+    Private Sub grtotalpedidos_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles Dgv_PedidoTotal.CellEdited
         If (e.Column.Key = "credito") Then
-            If (Not IsNumeric(grtotalpedidos.GetValue("credito"))) Then
-                grtotalpedidos.SetValue("credito", 0)
+            If (Not IsNumeric(Dgv_PedidoTotal.GetValue("credito"))) Then
+                Dgv_PedidoTotal.SetValue("credito", 0)
             Else
-                If (grtotalpedidos.GetValue("credito") < 0) Then
-                    grtotalpedidos.SetValue("credito", 0)
+                If (Dgv_PedidoTotal.GetValue("credito") < 0) Then
+                    Dgv_PedidoTotal.SetValue("credito", 0)
                 End If
-                If (grtotalpedidos.GetValue("credito") > grtotalpedidos.GetValue("contado")) Then
-                    grtotalpedidos.SetValue("credito", grtotalpedidos.GetValue("contado"))
+                If (Dgv_PedidoTotal.GetValue("credito") > Dgv_PedidoTotal.GetValue("contado")) Then
+                    Dgv_PedidoTotal.SetValue("credito", Dgv_PedidoTotal.GetValue("contado"))
                 End If
-                grtotalpedidos.SetValue("contado", grtotalpedidos.GetValue("total") - grtotalpedidos.GetValue("credito"))
+                Dgv_PedidoTotal.SetValue("contado", Dgv_PedidoTotal.GetValue("total") - Dgv_PedidoTotal.GetValue("credito"))
             End If
 
         End If
@@ -1070,6 +1070,6 @@ Public Class F0_MCaja
     End Sub
 
     Private Sub tbdRecibido_ValueChanged(sender As Object, e As EventArgs) Handles tbdRecibido.ValueChanged
-        tbdSaldo.Value = IIf(IsDBNull(CType(grtotalpedidos.DataSource, DataTable).Compute("sum(total)", "1=1")), 0, CType(grtotalpedidos.DataSource, DataTable).Compute("sum(total)", "1=1")) - tbdRecibido.Value
+        tbdSaldo.Value = IIf(IsDBNull(CType(Dgv_PedidoTotal.DataSource, DataTable).Compute("sum(total)", "1=1")), 0, CType(Dgv_PedidoTotal.DataSource, DataTable).Compute("sum(total)", "1=1")) - tbdRecibido.Value
     End Sub
 End Class

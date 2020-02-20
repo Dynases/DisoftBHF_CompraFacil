@@ -22,8 +22,8 @@ Partial Class frmBillingDispatch
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBillingDispatch))
         Dim cbChoferes_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBillingDispatch))
         Me.PanelBase = New System.Windows.Forms.Panel()
         Me.PanelPedido = New System.Windows.Forms.Panel()
         Me.dgjPedido = New Janus.Windows.GridEX.GridEX()
@@ -36,6 +36,8 @@ Partial Class frmBillingDispatch
         Me.btReporteDespachoLinea = New DevComponents.DotNetBar.ButtonX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.cbChoferes = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.Tb_Fecha = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
+        Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.PanelBase.SuspendLayout()
         Me.PanelPedido.SuspendLayout()
         CType(Me.dgjPedido, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,6 +46,7 @@ Partial Class frmBillingDispatch
         CType(Me.dgjProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelSuperior.SuspendLayout()
         CType(Me.cbChoferes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tb_Fecha, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelBase
@@ -109,6 +112,8 @@ Partial Class frmBillingDispatch
         '
         'PanelSuperior
         '
+        Me.PanelSuperior.Controls.Add(Me.LabelX1)
+        Me.PanelSuperior.Controls.Add(Me.Tb_Fecha)
         Me.PanelSuperior.Controls.Add(Me.btFacturar)
         Me.PanelSuperior.Controls.Add(Me.btReporteDespachoCliente)
         Me.PanelSuperior.Controls.Add(Me.btReporteDespachoLinea)
@@ -188,6 +193,64 @@ Partial Class frmBillingDispatch
         Me.cbChoferes.Size = New System.Drawing.Size(200, 20)
         Me.cbChoferes.TabIndex = 2
         '
+        'Tb_Fecha
+        '
+        '
+        '
+        '
+        Me.Tb_Fecha.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_Fecha.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_Fecha.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
+        Me.Tb_Fecha.ButtonDropDown.Visible = True
+        Me.Tb_Fecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Tb_Fecha.IsPopupCalendarOpen = False
+        Me.Tb_Fecha.Location = New System.Drawing.Point(351, 12)
+        '
+        '
+        '
+        '
+        '
+        '
+        Me.Tb_Fecha.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_Fecha.MonthCalendar.CalendarDimensions = New System.Drawing.Size(1, 1)
+        Me.Tb_Fecha.MonthCalendar.ClearButtonVisible = True
+        '
+        '
+        '
+        Me.Tb_Fecha.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2
+        Me.Tb_Fecha.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90
+        Me.Tb_Fecha.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground
+        Me.Tb_Fecha.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.Tb_Fecha.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder
+        Me.Tb_Fecha.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1
+        Me.Tb_Fecha.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_Fecha.MonthCalendar.DisplayMonth = New Date(2017, 2, 1, 0, 0, 0, 0)
+        Me.Tb_Fecha.MonthCalendar.FirstDayOfWeek = System.DayOfWeek.Monday
+        '
+        '
+        '
+        Me.Tb_Fecha.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.Tb_Fecha.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90
+        Me.Tb_Fecha.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.Tb_Fecha.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_Fecha.MonthCalendar.TodayButtonVisible = True
+        Me.Tb_Fecha.Name = "Tb_Fecha"
+        Me.Tb_Fecha.Size = New System.Drawing.Size(120, 22)
+        Me.Tb_Fecha.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.Tb_Fecha.TabIndex = 232
+        '
+        'LabelX1
+        '
+        '
+        '
+        '
+        Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX1.Location = New System.Drawing.Point(290, 12)
+        Me.LabelX1.Name = "LabelX1"
+        Me.LabelX1.Size = New System.Drawing.Size(55, 23)
+        Me.LabelX1.TabIndex = 233
+        Me.LabelX1.Text = "Fecha:"
+        '
         'frmBillingDispatch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -205,6 +268,7 @@ Partial Class frmBillingDispatch
         Me.PanelSuperior.ResumeLayout(False)
         Me.PanelSuperior.PerformLayout()
         CType(Me.cbChoferes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tb_Fecha, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -221,4 +285,6 @@ Partial Class frmBillingDispatch
     Friend WithEvents dgjProducto As Janus.Windows.GridEX.GridEX
     Friend WithEvents btReporteDespachoCliente As DevComponents.DotNetBar.ButtonX
     Friend WithEvents QrFactura As Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl
+    Friend WithEvents LabelX1 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents Tb_Fecha As DevComponents.Editors.DateTimeAdv.DateTimeInput
 End Class

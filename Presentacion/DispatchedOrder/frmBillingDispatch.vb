@@ -379,7 +379,9 @@ Public Class frmBillingDispatch
             End If
 
             Dim listResult = New LPedido().ListarDespachoXClienteDeChofer(idChofer)
-            If (listResult.Count = 0) Then
+            Dim lista = (From a In listResult
+                         Where a.oafdoc = Tb_Fecha.Value).ToList
+            If (lista.Count = 0) Then
                 Throw New Exception("No registros para generar el reporte.")
             End If
 
@@ -390,9 +392,10 @@ Public Class frmBillingDispatch
             P_Global.Visualizador = New Visualizador
             Dim objrep As New DespachoXCliente
 
-            objrep.SetDataSource(listResult)
+            objrep.SetDataSource(lista)
             objrep.SetParameterValue("nroDespacho", String.Empty)
             objrep.SetParameterValue("nombreDistribuidor", cbChoferes.Text)
+            objrep.SetParameterValue("FechaDocumento", Tb_Fecha.Value)
             objrep.SetParameterValue("nombreUsuario", P_Global.gs_user)
 
             P_Global.Visualizador.CRV1.ReportSource = objrep
@@ -414,7 +417,9 @@ Public Class frmBillingDispatch
             End If
 
             Dim listResult = New LPedido().ListarDespachoXProductoDeChofer(idChofer)
-            If (listResult.Count = 0) Then
+            Dim lista = (From a In listResult
+                         Where a.oafdoc = Tb_Fecha.Value).ToList
+            If (lista.Count = 0) Then
                 Throw New Exception("No registros para generar el reporte.")
             End If
 
@@ -425,9 +430,10 @@ Public Class frmBillingDispatch
             P_Global.Visualizador = New Visualizador
             Dim objrep As New DespachoXProducto
 
-            objrep.SetDataSource(listResult)
+            objrep.SetDataSource(lista)
             objrep.SetParameterValue("nroDespacho", String.Empty)
             objrep.SetParameterValue("nombreDistribuidor", cbChoferes.Text)
+            objrep.SetParameterValue("FechaDocumento", Tb_Fecha.Value)
             objrep.SetParameterValue("nombreUsuario", P_Global.gs_user)
 
             P_Global.Visualizador.CRV1.ReportSource = objrep
@@ -450,6 +456,15 @@ Public Class frmBillingDispatch
             MostrarMensajeError(ex.Message)
         End Try
     End Sub
+    Private Sub Tb_Fecha_ValueChanged(sender As Object, e As EventArgs) Handles Tb_Fecha.ValueChanged
+        Try
+            If (_cargaCompleta) Then
+                CargarPedidos()
+            End If
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+    End Sub
 #End Region
 
 #Region "Privado, metodos y funciones"
@@ -457,6 +472,7 @@ Public Class frmBillingDispatch
         Try
             ConfigForm()
             CargarChoferes()
+            Tb_Fecha.Value = DateTime.Today
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
         End Try
@@ -515,9 +531,10 @@ Public Class frmBillingDispatch
             End If
 
             Dim listResult = New LPedido().ListarPedidoAsignadoAChofer(idChofer)
-
+            Dim lista = (From a In listResult
+                         Where a.Fecha = Tb_Fecha.Value).ToList
             dgjPedido.BoundMode = Janus.Data.BoundMode.Bound
-            dgjPedido.DataSource = listResult
+            dgjPedido.DataSource = lista
             dgjPedido.RetrieveStructure()
 
             With dgjPedido.RootTable.Columns("Fecha")
@@ -678,5 +695,7 @@ Public Class frmBillingDispatch
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
+
+
 #End Region
 End Class

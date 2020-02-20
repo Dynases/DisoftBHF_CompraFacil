@@ -68,4 +68,13 @@
             _obpcant = value
         End Set
     End Property
+    Private _oafdoc As DateTime
+    Public Property oafdoc() As DateTime
+        Get
+            Return _oafdoc
+        End Get
+        Set(ByVal value As DateTime)
+            _oafdoc = value
+        End Set
+    End Property
 End Class
