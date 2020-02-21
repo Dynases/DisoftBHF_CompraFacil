@@ -23,20 +23,21 @@ Partial Class F0_MCaja
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F0_MCaja))
+        Dim cbbanco_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.GroupPanel4 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.LabelX11 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX12 = New DevComponents.DotNetBar.LabelX()
-        Me.DoubleInput5 = New DevComponents.Editors.DoubleInput()
-        Me.DoubleInput6 = New DevComponents.Editors.DoubleInput()
+        Me.Tb_TCredito = New DevComponents.Editors.DoubleInput()
+        Me.Tb_TDiferencia = New DevComponents.Editors.DoubleInput()
         Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX10 = New DevComponents.DotNetBar.LabelX()
-        Me.DoubleInput3 = New DevComponents.Editors.DoubleInput()
-        Me.DoubleInput4 = New DevComponents.Editors.DoubleInput()
+        Me.Tb_TDeposito = New DevComponents.Editors.DoubleInput()
+        Me.Tb_TConsiliacion = New DevComponents.Editors.DoubleInput()
         Me.LabelX7 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
-        Me.DoubleInput1 = New DevComponents.Editors.DoubleInput()
-        Me.DoubleInput2 = New DevComponents.Editors.DoubleInput()
+        Me.Tb_TEfectivo = New DevComponents.Editors.DoubleInput()
+        Me.Tb_TGeneral = New DevComponents.Editors.DoubleInput()
         Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX6 = New DevComponents.DotNetBar.LabelX()
         Me.tbdRecibido = New DevComponents.Editors.DoubleInput()
@@ -46,12 +47,13 @@ Partial Class F0_MCaja
         Me.GroupPanel3 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.SuperTabControl2 = New DevComponents.DotNetBar.SuperTabControl()
         Me.SuperTabControlPanel3 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.Dgv_Corte = New Janus.Windows.GridEX.GridEX()
+        Me.Dgv_Cortes = New Janus.Windows.GridEX.GridEX()
         Me.SuperTabItem2 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanel4 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.Dgv_Deposito = New Janus.Windows.GridEX.GridEX()
         Me.DEPOSITO = New DevComponents.DotNetBar.SuperTabItem()
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.LabelX13 = New DevComponents.DotNetBar.LabelX()
+        Me.Tb_TipoCambio = New DevComponents.Editors.DoubleInput()
         Me.btBuscarChofer = New DevComponents.DotNetBar.ButtonX()
         Me.tbFecha = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
@@ -61,6 +63,8 @@ Partial Class F0_MCaja
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.TbCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.cbbanco = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.Dgv_Depositos = New Janus.Windows.GridEX.GridEX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,12 +86,12 @@ Partial Class F0_MCaja
         Me.SuperTabControl1.SuspendLayout()
         Me.GroupPanel4.SuspendLayout()
         Me.Panel4.SuspendLayout()
-        CType(Me.DoubleInput5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleInput6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleInput3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleInput4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleInput1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DoubleInput2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tb_TCredito, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tb_TDiferencia, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tb_TDeposito, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tb_TConsiliacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tb_TEfectivo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tb_TGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbdRecibido, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbdSaldo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Dgv_PedidoTotal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,11 +100,13 @@ Partial Class F0_MCaja
         CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControl2.SuspendLayout()
         Me.SuperTabControlPanel3.SuspendLayout()
-        CType(Me.Dgv_Corte, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Dgv_Cortes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControlPanel4.SuspendLayout()
-        CType(Me.Dgv_Deposito, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel2.SuspendLayout()
+        CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFecha, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelSuperior
@@ -349,16 +355,16 @@ Partial Class F0_MCaja
         Me.Panel4.BackColor = System.Drawing.Color.Transparent
         Me.Panel4.Controls.Add(Me.LabelX11)
         Me.Panel4.Controls.Add(Me.LabelX12)
-        Me.Panel4.Controls.Add(Me.DoubleInput5)
-        Me.Panel4.Controls.Add(Me.DoubleInput6)
+        Me.Panel4.Controls.Add(Me.Tb_TCredito)
+        Me.Panel4.Controls.Add(Me.Tb_TDiferencia)
         Me.Panel4.Controls.Add(Me.LabelX9)
         Me.Panel4.Controls.Add(Me.LabelX10)
-        Me.Panel4.Controls.Add(Me.DoubleInput3)
-        Me.Panel4.Controls.Add(Me.DoubleInput4)
+        Me.Panel4.Controls.Add(Me.Tb_TDeposito)
+        Me.Panel4.Controls.Add(Me.Tb_TConsiliacion)
         Me.Panel4.Controls.Add(Me.LabelX7)
         Me.Panel4.Controls.Add(Me.LabelX8)
-        Me.Panel4.Controls.Add(Me.DoubleInput1)
-        Me.Panel4.Controls.Add(Me.DoubleInput2)
+        Me.Panel4.Controls.Add(Me.Tb_TEfectivo)
+        Me.Panel4.Controls.Add(Me.Tb_TGeneral)
         Me.Panel4.Controls.Add(Me.LabelX5)
         Me.Panel4.Controls.Add(Me.LabelX6)
         Me.Panel4.Controls.Add(Me.tbdRecibido)
@@ -400,37 +406,37 @@ Partial Class F0_MCaja
         Me.LabelX12.TabIndex = 35
         Me.LabelX12.Text = "Diferencia"
         '
-        'DoubleInput5
+        'Tb_TCredito
         '
-        Me.DoubleInput5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        '
-        '
-        '
-        Me.DoubleInput5.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput5.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DoubleInput5.Increment = 1.0R
-        Me.DoubleInput5.Location = New System.Drawing.Point(616, 15)
-        Me.DoubleInput5.Name = "DoubleInput5"
-        Me.DoubleInput5.Size = New System.Drawing.Size(120, 23)
-        Me.DoubleInput5.TabIndex = 33
-        '
-        'DoubleInput6
-        '
-        Me.DoubleInput6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Tb_TCredito.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         '
         '
         '
-        Me.DoubleInput6.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput6.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DoubleInput6.Increment = 1.0R
-        Me.DoubleInput6.Location = New System.Drawing.Point(614, 44)
-        Me.DoubleInput6.Name = "DoubleInput6"
-        Me.DoubleInput6.Size = New System.Drawing.Size(120, 23)
-        Me.DoubleInput6.TabIndex = 32
+        Me.Tb_TCredito.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_TCredito.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_TCredito.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.Tb_TCredito.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Tb_TCredito.Increment = 1.0R
+        Me.Tb_TCredito.Location = New System.Drawing.Point(616, 15)
+        Me.Tb_TCredito.Name = "Tb_TCredito"
+        Me.Tb_TCredito.Size = New System.Drawing.Size(120, 23)
+        Me.Tb_TCredito.TabIndex = 33
+        '
+        'Tb_TDiferencia
+        '
+        Me.Tb_TDiferencia.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        '
+        '
+        '
+        Me.Tb_TDiferencia.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_TDiferencia.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_TDiferencia.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.Tb_TDiferencia.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Tb_TDiferencia.Increment = 1.0R
+        Me.Tb_TDiferencia.Location = New System.Drawing.Point(614, 44)
+        Me.Tb_TDiferencia.Name = "Tb_TDiferencia"
+        Me.Tb_TDiferencia.Size = New System.Drawing.Size(120, 23)
+        Me.Tb_TDiferencia.TabIndex = 32
         '
         'LabelX9
         '
@@ -462,37 +468,37 @@ Partial Class F0_MCaja
         Me.LabelX10.TabIndex = 31
         Me.LabelX10.Text = "Total Conciliación"
         '
-        'DoubleInput3
+        'Tb_TDeposito
         '
-        Me.DoubleInput3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        '
-        '
-        '
-        Me.DoubleInput3.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput3.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DoubleInput3.Increment = 1.0R
-        Me.DoubleInput3.Location = New System.Drawing.Point(360, 13)
-        Me.DoubleInput3.Name = "DoubleInput3"
-        Me.DoubleInput3.Size = New System.Drawing.Size(120, 23)
-        Me.DoubleInput3.TabIndex = 29
-        '
-        'DoubleInput4
-        '
-        Me.DoubleInput4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Tb_TDeposito.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         '
         '
         '
-        Me.DoubleInput4.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput4.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DoubleInput4.Increment = 1.0R
-        Me.DoubleInput4.Location = New System.Drawing.Point(358, 42)
-        Me.DoubleInput4.Name = "DoubleInput4"
-        Me.DoubleInput4.Size = New System.Drawing.Size(120, 23)
-        Me.DoubleInput4.TabIndex = 28
+        Me.Tb_TDeposito.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_TDeposito.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_TDeposito.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.Tb_TDeposito.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Tb_TDeposito.Increment = 1.0R
+        Me.Tb_TDeposito.Location = New System.Drawing.Point(360, 13)
+        Me.Tb_TDeposito.Name = "Tb_TDeposito"
+        Me.Tb_TDeposito.Size = New System.Drawing.Size(120, 23)
+        Me.Tb_TDeposito.TabIndex = 29
+        '
+        'Tb_TConsiliacion
+        '
+        Me.Tb_TConsiliacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        '
+        '
+        '
+        Me.Tb_TConsiliacion.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_TConsiliacion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_TConsiliacion.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.Tb_TConsiliacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Tb_TConsiliacion.Increment = 1.0R
+        Me.Tb_TConsiliacion.Location = New System.Drawing.Point(358, 42)
+        Me.Tb_TConsiliacion.Name = "Tb_TConsiliacion"
+        Me.Tb_TConsiliacion.Size = New System.Drawing.Size(120, 23)
+        Me.Tb_TConsiliacion.TabIndex = 28
         '
         'LabelX7
         '
@@ -524,37 +530,37 @@ Partial Class F0_MCaja
         Me.LabelX8.TabIndex = 27
         Me.LabelX8.Text = "Total General"
         '
-        'DoubleInput1
+        'Tb_TEfectivo
         '
-        Me.DoubleInput1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        '
-        '
-        '
-        Me.DoubleInput1.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput1.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DoubleInput1.Increment = 1.0R
-        Me.DoubleInput1.Location = New System.Drawing.Point(104, 15)
-        Me.DoubleInput1.Name = "DoubleInput1"
-        Me.DoubleInput1.Size = New System.Drawing.Size(120, 23)
-        Me.DoubleInput1.TabIndex = 25
-        '
-        'DoubleInput2
-        '
-        Me.DoubleInput2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Tb_TEfectivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         '
         '
         '
-        Me.DoubleInput2.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.DoubleInput2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.DoubleInput2.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.DoubleInput2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DoubleInput2.Increment = 1.0R
-        Me.DoubleInput2.Location = New System.Drawing.Point(102, 44)
-        Me.DoubleInput2.Name = "DoubleInput2"
-        Me.DoubleInput2.Size = New System.Drawing.Size(120, 23)
-        Me.DoubleInput2.TabIndex = 24
+        Me.Tb_TEfectivo.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_TEfectivo.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_TEfectivo.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.Tb_TEfectivo.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Tb_TEfectivo.Increment = 1.0R
+        Me.Tb_TEfectivo.Location = New System.Drawing.Point(104, 15)
+        Me.Tb_TEfectivo.Name = "Tb_TEfectivo"
+        Me.Tb_TEfectivo.Size = New System.Drawing.Size(120, 23)
+        Me.Tb_TEfectivo.TabIndex = 25
+        '
+        'Tb_TGeneral
+        '
+        Me.Tb_TGeneral.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        '
+        '
+        '
+        Me.Tb_TGeneral.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_TGeneral.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_TGeneral.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.Tb_TGeneral.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Tb_TGeneral.Increment = 1.0R
+        Me.Tb_TGeneral.Location = New System.Drawing.Point(102, 44)
+        Me.Tb_TGeneral.Name = "Tb_TGeneral"
+        Me.Tb_TGeneral.Size = New System.Drawing.Size(120, 23)
+        Me.Tb_TGeneral.TabIndex = 24
         '
         'LabelX5
         '
@@ -704,8 +710,8 @@ Partial Class F0_MCaja
         Me.SuperTabControl2.ControlBox.MenuBox.Name = ""
         Me.SuperTabControl2.ControlBox.Name = ""
         Me.SuperTabControl2.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabControl2.ControlBox.MenuBox, Me.SuperTabControl2.ControlBox.CloseBox})
-        Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel3)
         Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel4)
+        Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel3)
         Me.SuperTabControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabControl2.Location = New System.Drawing.Point(0, 0)
         Me.SuperTabControl2.Margin = New System.Windows.Forms.Padding(2)
@@ -721,7 +727,7 @@ Partial Class F0_MCaja
         '
         'SuperTabControlPanel3
         '
-        Me.SuperTabControlPanel3.Controls.Add(Me.Dgv_Corte)
+        Me.SuperTabControlPanel3.Controls.Add(Me.Dgv_Cortes)
         Me.SuperTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabControlPanel3.Location = New System.Drawing.Point(0, 26)
         Me.SuperTabControlPanel3.Margin = New System.Windows.Forms.Padding(2)
@@ -730,16 +736,13 @@ Partial Class F0_MCaja
         Me.SuperTabControlPanel3.TabIndex = 1
         Me.SuperTabControlPanel3.TabItem = Me.SuperTabItem2
         '
-        'Dgv_Corte
+        'Dgv_Cortes
         '
-        Me.Dgv_Corte.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
-        Me.Dgv_Corte.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Dgv_Corte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv_Corte.Location = New System.Drawing.Point(0, 0)
-        Me.Dgv_Corte.Margin = New System.Windows.Forms.Padding(2)
-        Me.Dgv_Corte.Name = "Dgv_Corte"
-        Me.Dgv_Corte.Size = New System.Drawing.Size(699, 196)
-        Me.Dgv_Corte.TabIndex = 0
+        Me.Dgv_Cortes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Dgv_Cortes.Location = New System.Drawing.Point(0, 0)
+        Me.Dgv_Cortes.Name = "Dgv_Cortes"
+        Me.Dgv_Cortes.Size = New System.Drawing.Size(699, 196)
+        Me.Dgv_Cortes.TabIndex = 0
         '
         'SuperTabItem2
         '
@@ -750,24 +753,13 @@ Partial Class F0_MCaja
         '
         'SuperTabControlPanel4
         '
-        Me.SuperTabControlPanel4.Controls.Add(Me.Dgv_Deposito)
+        Me.SuperTabControlPanel4.Controls.Add(Me.Dgv_Depositos)
         Me.SuperTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabControlPanel4.Location = New System.Drawing.Point(0, 26)
         Me.SuperTabControlPanel4.Name = "SuperTabControlPanel4"
-        Me.SuperTabControlPanel4.Size = New System.Drawing.Size(548, 196)
+        Me.SuperTabControlPanel4.Size = New System.Drawing.Size(699, 196)
         Me.SuperTabControlPanel4.TabIndex = 0
         Me.SuperTabControlPanel4.TabItem = Me.DEPOSITO
-        '
-        'Dgv_Deposito
-        '
-        Me.Dgv_Deposito.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
-        Me.Dgv_Deposito.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Dgv_Deposito.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv_Deposito.Location = New System.Drawing.Point(0, 0)
-        Me.Dgv_Deposito.Margin = New System.Windows.Forms.Padding(2)
-        Me.Dgv_Deposito.Name = "Dgv_Deposito"
-        Me.Dgv_Deposito.Size = New System.Drawing.Size(548, 196)
-        Me.Dgv_Deposito.TabIndex = 1
         '
         'DEPOSITO
         '
@@ -780,6 +772,9 @@ Partial Class F0_MCaja
         '
         Me.GroupPanel2.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.GroupPanel2.Controls.Add(Me.cbbanco)
+        Me.GroupPanel2.Controls.Add(Me.LabelX13)
+        Me.GroupPanel2.Controls.Add(Me.Tb_TipoCambio)
         Me.GroupPanel2.Controls.Add(Me.btBuscarChofer)
         Me.GroupPanel2.Controls.Add(Me.tbFecha)
         Me.GroupPanel2.Controls.Add(Me.LabelX4)
@@ -826,6 +821,37 @@ Partial Class F0_MCaja
         Me.GroupPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.GroupPanel2.TabIndex = 0
         Me.GroupPanel2.Text = "DATOS"
+        '
+        'LabelX13
+        '
+        Me.LabelX13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.LabelX13.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX13.Location = New System.Drawing.Point(6, 176)
+        Me.LabelX13.Name = "LabelX13"
+        Me.LabelX13.Size = New System.Drawing.Size(90, 23)
+        Me.LabelX13.TabIndex = 28
+        Me.LabelX13.Text = "Tipo Cambio"
+        '
+        'Tb_TipoCambio
+        '
+        Me.Tb_TipoCambio.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        '
+        '
+        '
+        Me.Tb_TipoCambio.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_TipoCambio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_TipoCambio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.Tb_TipoCambio.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Tb_TipoCambio.Increment = 1.0R
+        Me.Tb_TipoCambio.Location = New System.Drawing.Point(104, 176)
+        Me.Tb_TipoCambio.Name = "Tb_TipoCambio"
+        Me.Tb_TipoCambio.Size = New System.Drawing.Size(120, 23)
+        Me.Tb_TipoCambio.TabIndex = 27
         '
         'btBuscarChofer
         '
@@ -993,6 +1019,27 @@ Partial Class F0_MCaja
         Me.TbCodigo.Size = New System.Drawing.Size(100, 23)
         Me.TbCodigo.TabIndex = 10
         '
+        'cbbanco
+        '
+        cbbanco_DesignTimeLayout.LayoutString = resources.GetString("cbbanco_DesignTimeLayout.LayoutString")
+        Me.cbbanco.DesignTimeLayout = cbbanco_DesignTimeLayout
+        Me.cbbanco.Location = New System.Drawing.Point(248, 178)
+        Me.cbbanco.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbbanco.Name = "cbbanco"
+        Me.cbbanco.SelectedIndex = -1
+        Me.cbbanco.SelectedItem = Nothing
+        Me.cbbanco.Size = New System.Drawing.Size(142, 21)
+        Me.cbbanco.TabIndex = 235
+        Me.cbbanco.Visible = False
+        '
+        'Dgv_Depositos
+        '
+        Me.Dgv_Depositos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Dgv_Depositos.Location = New System.Drawing.Point(0, 0)
+        Me.Dgv_Depositos.Name = "Dgv_Depositos"
+        Me.Dgv_Depositos.Size = New System.Drawing.Size(699, 196)
+        Me.Dgv_Depositos.TabIndex = 0
+        '
         'F0_MCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1025,12 +1072,12 @@ Partial Class F0_MCaja
         Me.SuperTabControl1.ResumeLayout(False)
         Me.GroupPanel4.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
-        CType(Me.DoubleInput5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleInput6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleInput3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleInput4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleInput1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DoubleInput2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tb_TCredito, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tb_TDiferencia, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tb_TDeposito, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tb_TConsiliacion, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tb_TEfectivo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tb_TGeneral, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbdRecibido, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbdSaldo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Dgv_PedidoTotal, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1039,12 +1086,14 @@ Partial Class F0_MCaja
         CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControl2.ResumeLayout(False)
         Me.SuperTabControlPanel3.ResumeLayout(False)
-        CType(Me.Dgv_Corte, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Dgv_Cortes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControlPanel4.ResumeLayout(False)
-        CType(Me.Dgv_Deposito, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanel2.ResumeLayout(False)
         Me.GroupPanel2.PerformLayout()
+        CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFecha, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1055,7 +1104,6 @@ Partial Class F0_MCaja
     Friend WithEvents GroupPanel3 As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents SuperTabControl2 As DevComponents.DotNetBar.SuperTabControl
     Friend WithEvents SuperTabControlPanel3 As DevComponents.DotNetBar.SuperTabControlPanel
-    Friend WithEvents Dgv_Corte As Janus.Windows.GridEX.GridEX
     Friend WithEvents SuperTabItem2 As DevComponents.DotNetBar.SuperTabItem
     Friend WithEvents GroupPanel2 As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents tbFecha As DevComponents.Editors.DateTimeAdv.DateTimeInput
@@ -1073,18 +1121,22 @@ Partial Class F0_MCaja
     Friend WithEvents tbdRecibido As DevComponents.Editors.DoubleInput
     Friend WithEvents Panel4 As Panel
     Friend WithEvents SuperTabControlPanel4 As DevComponents.DotNetBar.SuperTabControlPanel
-    Friend WithEvents Dgv_Deposito As Janus.Windows.GridEX.GridEX
     Friend WithEvents DEPOSITO As DevComponents.DotNetBar.SuperTabItem
     Friend WithEvents LabelX11 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX12 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents DoubleInput5 As DevComponents.Editors.DoubleInput
-    Friend WithEvents DoubleInput6 As DevComponents.Editors.DoubleInput
+    Friend WithEvents Tb_TCredito As DevComponents.Editors.DoubleInput
+    Friend WithEvents Tb_TDiferencia As DevComponents.Editors.DoubleInput
     Friend WithEvents LabelX9 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX10 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents DoubleInput3 As DevComponents.Editors.DoubleInput
-    Friend WithEvents DoubleInput4 As DevComponents.Editors.DoubleInput
+    Friend WithEvents Tb_TDeposito As DevComponents.Editors.DoubleInput
+    Friend WithEvents Tb_TConsiliacion As DevComponents.Editors.DoubleInput
     Friend WithEvents LabelX7 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX8 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents DoubleInput1 As DevComponents.Editors.DoubleInput
-    Friend WithEvents DoubleInput2 As DevComponents.Editors.DoubleInput
+    Friend WithEvents Tb_TEfectivo As DevComponents.Editors.DoubleInput
+    Friend WithEvents Tb_TGeneral As DevComponents.Editors.DoubleInput
+    Friend WithEvents LabelX13 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents Tb_TipoCambio As DevComponents.Editors.DoubleInput
+    Friend WithEvents Dgv_Cortes As Janus.Windows.GridEX.GridEX
+    Friend WithEvents cbbanco As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents Dgv_Depositos As Janus.Windows.GridEX.GridEX
 End Class

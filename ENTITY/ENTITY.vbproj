@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Bitacora.vb" />
+    <Compile Include="Caja\CajaCorte\View\VCajaCambio.vb" />
+    <Compile Include="Caja\CajaDeposito\View\VCajaDeposito.vb" />
     <Compile Include="Global\View\VCombo.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

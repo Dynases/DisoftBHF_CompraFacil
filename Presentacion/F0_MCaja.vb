@@ -3,6 +3,9 @@ Imports Janus.Windows.GridEX
 Imports DevComponents.DotNetBar
 Imports DevComponents.DotNetBar.Controls
 Imports System.IO
+Imports LOGIC
+Imports ENTITY
+
 Public Class F0_MCaja
 
 #Region "VARIABLES GLOBALES"
@@ -12,13 +15,14 @@ Public Class F0_MCaja
     Public _nameButton As String
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
-
     Private boShow As Boolean = False
     Private boAdd As Boolean = False
     Private boModif As Boolean = False
     Private boDel As Boolean = False
-
     Private InDuracion As Byte = 5
+    Private ListaCambio As List(Of VCajaCambio)
+    Private ListaDeposito As List(Of VCajaDeposito) = New List(Of VCajaDeposito)
+
 
 #End Region
 
@@ -28,7 +32,7 @@ Public Class F0_MCaja
 
         ''L_prAbrirConexion(gs_Ip, gs_UsuarioSql, gs_ClaveSql, gs_NombreBD)
         Me.WindowState = FormWindowState.Maximized
-
+        _prCargarComboLibreria(cbbanco, 6, 1)
         _prInhabiliitar()
         _prCargarVenta()
         'Dim blah As New Bitmap(New Bitmap(My.Resources.compra), 20, 20)
@@ -43,208 +47,441 @@ Public Class F0_MCaja
         End If
         SuperTabControl1.SelectedTabIndex = 0
     End Sub
-
-    Public Sub _prCrearTablaConciliacion()
-
-        Dim TablaPrincipal As DataTable = L_prConciliacionObtenerProducto(Numi_Conciliacion) ''2=Chofer   1=Concepto
-        Dim columnas As DataTable = L_prConciliacionObtenerIdNumiTI002(Numi_Conciliacion)
-        For Each fila As DataRow In columnas.Rows
-            TablaPrincipal.Columns.Add(fila.Item("ibid").ToString.Trim)
-        Next
-        Dim Productos As DataTable = L_prConciliacionObtenerProductoTI0021(Numi_Conciliacion)
-        For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
-            Dim idprod As Integer = TablaPrincipal.Rows(j).Item("canumi")
-            Dim result As DataRow() = Productos.Select("iccprod=" + Str(idprod))
-            For i As Integer = 0 To result.Length - 1 Step 1
-                Dim rowIndex As Integer = TablaPrincipal.Rows.IndexOf(result(i))
-                Dim columnnumi As String = result(i).Item("ibid")
-
-                TablaPrincipal.Rows(j).Item(columnnumi) = result(i).Item("iccant")
-
-            Next
-        Next
-        TablaPrincipal.Columns.Add("ID_TO1", Type.GetType("System.String"))
-        TablaPrincipal.Columns.Add("DEVOLUCION")
-        TablaPrincipal.Columns.Add("TOTAL")
-        TablaPrincipal.Columns.Add("MOVIL")
-        TablaPrincipal.Columns.Add("PC")
-        TablaPrincipal.Columns.Add("TOTAL_ENTREGADO")
-        TablaPrincipal.Columns.Add("TOTALCOPIA")
-        TablaPrincipal.Columns.Add("estado")
-        TablaPrincipal.Columns.Add("icid")
-        TablaPrincipal.Columns.Add("img", Type.GetType("System.Byte[]"))
-        '''''''''''Aqui inserto los movimientos ya insertados para modificarlos
-        Dim ProductosMovimientoSalida As DataTable = L_prConciliacionObtenerProductoTI0021IdnumiCaja(Numi_Conciliacion) ''''Estado=3 Conciliacion Chofer
-        For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
-            Dim idprod As Integer = TablaPrincipal.Rows(j).Item("canumi")
-            Dim result As DataRow() = ProductosMovimientoSalida.Select("iccprod=" + Str(idprod))
-            For i As Integer = 0 To result.Length - 1 Step 1
-                Dim rowIndex As Integer = TablaPrincipal.Rows.IndexOf(result(i))
-                TablaPrincipal.Rows(j).Item("DEVOLUCION") = result(i).Item("iccant")
-                TablaPrincipal.Rows(j).Item("estado") = 1
-                TablaPrincipal.Rows(j).Item("icid") = result(i).Item("icid")
-            Next
-        Next
-        'TablaPrincipal.Columns.Add("DEVOLUCION")
-
-        '''''''''''Aqui inserto las ventas realidas con el movil
-        Dim dtVentaMovil As DataTable = L_prListarProductosMovil(CType(Dgv_PedidoTotal.DataSource, DataTable))
-
-
-        For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
-            Dim codProd As String = TablaPrincipal.Rows(j).Item("canumi")
-            Dim result As DataRow() = dtVentaMovil.Select("obcprod=" + "'" + codProd + "'")
-            For i As Integer = 0 To result.Length - 1 Step 1
-                Dim rowIndex As Integer = TablaPrincipal.Rows.IndexOf(result(i))
-                TablaPrincipal.Rows(j).Item("MOVIL") = IIf(IsDBNull(TablaPrincipal.Rows(j).Item("MOVIL")), 0, TablaPrincipal.Rows(j).Item("MOVIL")) + result(i).Item("obpcant")
-                'If (TablaPrincipal.Rows(j).Item("ID_TO1").ToString.Trim = String.Empty Or IsDBNull(TablaPrincipal.Rows(j).Item("ID_TO1"))) Then
-                '    TablaPrincipal.Rows(j).Item("ID_TO1") = result(i).Item("oanumi").ToString
-                'Else
-                '    TablaPrincipal.Rows(j).Item("ID_TO1") = TablaPrincipal.Rows(j).Item("ID_TO1").ToString + "," + result(i).Item("oanumi").ToString
-                'End If
-
-            Next
-        Next
-
-
-
-        '''''''''''Aqui inserto las ventas realidas con el PC
-        Dim dtVentaPc As DataTable = L_prListarProductosPC(CType(Dgv_PedidoTotal.DataSource, DataTable))
-
-
-        For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
-            Dim idprod As String = TablaPrincipal.Rows(j).Item("canumi")
-            Dim result As DataRow() = dtVentaPc.Select("obcprod=" + "'" + idprod + "'")
-            For i As Integer = 0 To result.Length - 1 Step 1
-                Dim rowIndex As Integer = TablaPrincipal.Rows.IndexOf(result(i))
-                TablaPrincipal.Rows(j).Item("PC") = IIf(IsDBNull(TablaPrincipal.Rows(j).Item("PC")), 0, TablaPrincipal.Rows(j).Item("PC")) + result(i).Item("obpcant")
-
-
-            Next
-        Next
-        '''''''Suma de Totales
-        For i As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
-            Dim suma As Double = 0
-            Dim sumaMovil As Double = 0
-            For c As Integer = 0 To columnas.Rows.Count - 1 Step 1
-                Dim colum As String = columnas.Rows(c).Item("ibid")
-                suma = suma + IIf(IsDBNull(TablaPrincipal.Rows(i).Item(colum)), 0, TablaPrincipal.Rows(i).Item(colum))
-            Next
-            sumaMovil = IIf(IsDBNull(TablaPrincipal.Rows(i).Item("MOVIL")), 0, TablaPrincipal.Rows(i).Item("MOVIL"))
-            TablaPrincipal.Rows(i).Item("TOTALCOPIA") = suma '- sumaMovil
-            suma = suma - IIf(IsDBNull(TablaPrincipal.Rows(i).Item("DEVOLUCION")), 0, TablaPrincipal.Rows(i).Item("DEVOLUCION"))
-            TablaPrincipal.Rows(i).Item("TOTAL") = suma '- sumaMovil
-
-        Next
-
-
-        For i As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
-            Dim movil As Double = IIf(IsDBNull(TablaPrincipal.Rows(i).Item("MOVIL")), 0, TablaPrincipal.Rows(i).Item("MOVIL"))
-            Dim pc As Double = If(IsDBNull(TablaPrincipal.Rows(i).Item("PC")), 0, TablaPrincipal.Rows(i).Item("PC"))
-
-
-            TablaPrincipal.Rows(i).Item("TOTAL_ENTREGADO") = movil + pc '- sumaMovil
-            Next
-
-
+    Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
         Dim dt As New DataTable
-        dt = TablaPrincipal
-        _prCargarIcono(dt)
-        Dgv_Corte.DataSource = dt
-        Dgv_Corte.RetrieveStructure()
-        Dgv_Corte.AlternatingColors = True
-        For c As Integer = 0 To columnas.Rows.Count - 1 Step 1
-            Dim colum As String = columnas.Rows(c).Item("ibid")
-            With Dgv_Corte.RootTable.Columns(colum)
-                .Width = 150
-                .Visible = False
-                .TextAlignment = TextAlignment.Far
-                .FormatString = "0"
-                .Caption = "Salida " + Str(c + 1)
-            End With
-        Next
+        dt = L_prLibreriaClienteLGeneral()
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("cenum").Width = 70
+            .DropDownList.Columns("cenum").Caption = "COD"
+            .DropDownList.Columns.Add("cedesc").Width = 200
+            .DropDownList.Columns("cedesc").Caption = "DESCRIPCION"
+            .ValueMember = "cedesc"
+            .DisplayMember = "cedesc"
+            .DataSource = dt
+            .Refresh()
+        End With
+    End Sub
+    Private Function _prArmarListaCambio() As List(Of VCajaCambio)
+        ListaCambio = New List(Of VCajaCambio)
+        Dim Lista As VCajaCambio = Nothing
+        _prLlenarListaCambio(Lista, 200, 100)
+        ListaCambio.Add(Lista)
 
-        With Dgv_Corte.RootTable.Columns("canumi")
-            .Width = 150
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 100, 50)
+        ListaCambio.Add(Lista)
+
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 50, 20)
+        ListaCambio.Add(Lista)
+
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 20, 10)
+        ListaCambio.Add(Lista)
+
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 10, 5)
+        ListaCambio.Add(Lista)
+
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 5, 1)
+        ListaCambio.Add(Lista)
+
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 2, 0)
+        ListaCambio.Add(Lista)
+
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 1, 0)
+        ListaCambio.Add(Lista)
+
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 0.5, 0)
+        ListaCambio.Add(Lista)
+
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 0.2, 0)
+        ListaCambio.Add(Lista)
+
+        Lista = Nothing
+        _prLlenarListaCambio(Lista, 0.1, 0)
+        ListaCambio.Add(Lista)
+
+        'Dim Lista3 As VCajaCambio = New VCajaCambio() With {.Id = 0, .IdCaja = 0, .TipoCambio = Tb_TipoCambio.Value,
+        '        .CorteBol = 200, .CantidadBo = 0, .TotalBo = 0,
+        '        .CorteDolares = 100, .CantidadDo = 0, .TotalD = 0}
+
+
+
+    End Function
+
+    Private Sub _prLlenarListaCambio(ByRef Lista As VCajaCambio, CorteBolivianos As Decimal, CordeDolares As Decimal)
+        Lista = New VCajaCambio() With {.Id = 0, .IdCaja = 0, .TipoCambio = Tb_TipoCambio.Value,
+                .CorteBol = CorteBolivianos, .CantidadBo = 0, .TotalBo = 0,
+                .CorteDolares = CordeDolares, .CantidadDo = 0, .TotalD = 0}
+    End Sub
+
+    Public Sub _prCrearListaCambio(tipo As Integer, IdCaja As Integer)
+        If tipo = 1 Then
+            ListaCambio = New LCajaCambio().Listar(IdCaja)
+        End If
+        Dgv_Cortes.BoundMode = Janus.Data.BoundMode.Bound
+        Dgv_Cortes.DataSource = ListaCambio
+        Dgv_Cortes.RetrieveStructure()
+
+        With Dgv_Cortes.RootTable.Columns("Id")
             .Visible = False
-        End With
-        With Dgv_Corte.RootTable.Columns("estado")
-            .Width = 150
-            .Visible = False
-        End With
-        With Dgv_Corte.RootTable.Columns("icid")
-            .Width = 150
-            .Visible = False
-        End With
-        With Dgv_Corte.RootTable.Columns("cadesc")
-            .Width = 200
-            .Visible = True
-            .Caption = "PRODUCTO"
-        End With
-        With Dgv_Corte.RootTable.Columns("ID_TO1")
-            .Width = 150
-            .Visible = False
-        End With
-        With Dgv_Corte.RootTable.Columns("MOVIL")
-            .Width = 150
-            .Visible = False
-            .FormatString = "0.00"
-            .TextAlignment = TextAlignment.Far
-            .Caption = "MOVIL"
-            '.CellStyle.BackColor = Color.CadetBlue
-        End With
-        With Dgv_Corte.RootTable.Columns("PC")
-            .Width = 150
-            .Visible = True
-            .FormatString = "0.00"
-            .TextAlignment = TextAlignment.Far
-            .Caption = "ENTREGADOS"
-            '.CellStyle.BackColor = Color.Gold
-        End With
-        With Dgv_Corte.RootTable.Columns("DEVOLUCION")
-            .Width = 150
-            .Visible = False
-            .FormatString = "0.00"
-            .TextAlignment = TextAlignment.Far
-            .Caption = "DEVOLUCION"
-        End With
-        With Dgv_Corte.RootTable.Columns("TOTAL")
-            .Width = 150
-            .Visible = True
-            .FormatString = "0.00"
-            .TextAlignment = TextAlignment.Far
-            .Caption = "TOTAL PEDIDOS"
-            .CellStyle.BackColor = Color.CadetBlue
-        End With
-        With Dgv_Corte.RootTable.Columns("TOTAL_ENTREGADO")
-            .Width = 150
-            .Visible = True
-            .FormatString = "0.00"
-            .TextAlignment = TextAlignment.Far
-            .Caption = "TOTAL ENTREGADO"
-            .CellStyle.BackColor = Color.CadetBlue
-        End With
-        With Dgv_Corte.RootTable.Columns("TOTALCOPIA")
-            .Width = 150
-            .Visible = False
-            .FormatString = "0.00"
-            .TextAlignment = TextAlignment.Far
+
         End With
 
-        With Dgv_Corte.RootTable.Columns("img")
-            .Width = 80
-            .Caption = "ESTADO".ToUpper
-            .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+        With Dgv_Cortes.RootTable.Columns("IdCaja")
             .Visible = False
         End With
-        With Dgv_Corte
+        With Dgv_Cortes.RootTable.Columns("Estado")
+            .Visible = False
+        End With
+        With Dgv_Cortes.RootTable.Columns("TipoCambio")
+            .Visible = False
+        End With
+
+        With Dgv_Cortes.RootTable.Columns("CorteBol")
+            .Caption = "CORTE BOL."
+            .Width = 130
+            .FormatString = "0.00"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Position = 3
+        End With
+        With Dgv_Cortes.RootTable.Columns("CantidadBo")
+            .Caption = "CANTIDAD BO."
+            .Width = 130
+            .FormatString = "0.00"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Position = 4
+        End With
+        With Dgv_Cortes.RootTable.Columns("TotalBo")
+            .Caption = "TOTAL BOL."
+            .Width = 170
+            .FormatString = "0.00"
+            .AggregateFunction = AggregateFunction.Sum
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Position = 5
+        End With
+        With Dgv_Cortes.RootTable.Columns("CorteDolares")
+            .Caption = "CORTE DOL."
+            .Width = 130
+            .FormatString = "0"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Position = 6
+        End With
+
+        With Dgv_Cortes.RootTable.Columns("CantidadDo")
+            .Caption = "CANTIDAD DOL."
+            .Width = 130
+            .FormatString = "0"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Position = 7
+        End With
+        With Dgv_Cortes.RootTable.Columns("TotalD")
+            .Caption = "TOTAL DOL."
+            .Width = 170
+            .FormatString = "0.00"
+            .AggregateFunction = AggregateFunction.Sum
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Position = 8
+        End With
+        With Dgv_Cortes
             .GroupByBoxVisible = False
             'diseño de la grilla
+            .TotalRow = InheritableBoolean.True
+            .TotalRowFormatStyle.BackColor = Color.Gold
+            .TotalRowPosition = TotalRowPosition.BottomFixed
             .VisualStyle = VisualStyle.Office2007
-            .RootTable.RowHeight = 30
 
         End With
     End Sub
+
+    Private Sub _prArmarListaDeposito()
+        cbbanco.SelectedIndex = 0
+        Dim lista As VCajaDeposito = New VCajaDeposito() With {.Id = ListaDeposito.Count + 1, .IdCaja = 0, .Estado = 1, .Banco = cbbanco.Text, .Moneda = "", .Depos = "", .Fecha = DateTime.Today, .Monto = 0}
+        ListaDeposito.Insert(ListaDeposito.Count, lista)
+    End Sub
+    Public Sub _prCrearListaDeposito(tipo As Integer, IdCaja As Integer)
+        If tipo = 1 Then
+            ListaDeposito = New LCajaDeposito().Listar(IdCaja)
+        End If
+        _prArmarDeposito()
+    End Sub
+
+    Private Sub _prArmarDeposito()
+        Dgv_Depositos.BoundMode = Janus.Data.BoundMode.Bound
+        Dgv_Depositos.DataSource = ListaDeposito
+        Dgv_Depositos.RetrieveStructure()
+
+        With Dgv_Depositos.RootTable.Columns("Id")
+            .Visible = False
+
+        End With
+        With Dgv_Depositos.RootTable.Columns("IdCaja")
+            .Visible = False
+        End With
+        With Dgv_Depositos.RootTable.Columns("Estado")
+            .Visible = False
+        End With
+        With Dgv_Depositos.RootTable.Columns("Banco")
+            .Caption = "BANCO"
+            .EditType = EditType.MultiColumnDropDown
+            .DropDown = cbbanco.DropDownList
+            .Width = 250
+            .Visible = True
+            .Position = 3
+        End With
+        With Dgv_Depositos.RootTable.Columns("Moneda")
+            .Caption = "MONEDA"
+            .Width = 100
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = True
+            .Position = 4
+        End With
+        With Dgv_Depositos.RootTable.Columns("Depos")
+            .Caption = "NRO. DEPOSITO"
+            .Width = 180
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Position = 5
+        End With
+        With Dgv_Depositos.RootTable.Columns("Fecha")
+            .Caption = "FECHA"
+            .Width = 150
+            .Visible = True
+            .FormatString = "dd/MM/yyyy"
+
+        End With
+        With Dgv_Depositos.RootTable.Columns("Monto")
+            .Caption = "MONTO"
+            .Width = 150
+            .AggregateFunction = AggregateFunction.Sum
+            .FormatString = "0.00"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Position = 7
+        End With
+        With Dgv_Depositos
+            .GroupByBoxVisible = False
+            'diseño de la grilla
+            .TotalRow = InheritableBoolean.True
+            .TotalRowFormatStyle.BackColor = Color.Gold
+            .TotalRowPosition = TotalRowPosition.BottomFixed
+            .VisualStyle = VisualStyle.Office2007
+        End With
+    End Sub
+    'Public Sub _prCrearTablaConciliacion()
+
+    '    Dim TablaPrincipal As DataTable = L_prConciliacionObtenerProducto(Numi_Conciliacion) ''2=Chofer   1=Concepto
+    '    Dim columnas As DataTable = L_prConciliacionObtenerIdNumiTI002(Numi_Conciliacion)
+    '    For Each fila As DataRow In columnas.Rows
+    '        TablaPrincipal.Columns.Add(fila.Item("ibid").ToString.Trim)
+    '    Next
+    '    Dim Productos As DataTable = L_prConciliacionObtenerProductoTI0021(Numi_Conciliacion)
+    '    For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
+    '        Dim idprod As Integer = TablaPrincipal.Rows(j).Item("canumi")
+    '        Dim result As DataRow() = Productos.Select("iccprod=" + Str(idprod))
+    '        For i As Integer = 0 To result.Length - 1 Step 1
+    '            Dim rowIndex As Integer = TablaPrincipal.Rows.IndexOf(result(i))
+    '            Dim columnnumi As String = result(i).Item("ibid")
+
+    '            TablaPrincipal.Rows(j).Item(columnnumi) = result(i).Item("iccant")
+
+    '        Next
+    '    Next
+    '    TablaPrincipal.Columns.Add("ID_TO1", Type.GetType("System.String"))
+    '    TablaPrincipal.Columns.Add("DEVOLUCION")
+    '    TablaPrincipal.Columns.Add("TOTAL")
+    '    TablaPrincipal.Columns.Add("MOVIL")
+    '    TablaPrincipal.Columns.Add("PC")
+    '    TablaPrincipal.Columns.Add("TOTAL_ENTREGADO")
+    '    TablaPrincipal.Columns.Add("TOTALCOPIA")
+    '    TablaPrincipal.Columns.Add("estado")
+    '    TablaPrincipal.Columns.Add("icid")
+    '    TablaPrincipal.Columns.Add("img", Type.GetType("System.Byte[]"))
+    '    '''''''''''Aqui inserto los movimientos ya insertados para modificarlos
+    '    Dim ProductosMovimientoSalida As DataTable = L_prConciliacionObtenerProductoTI0021IdnumiCaja(Numi_Conciliacion) ''''Estado=3 Conciliacion Chofer
+    '    For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
+    '        Dim idprod As Integer = TablaPrincipal.Rows(j).Item("canumi")
+    '        Dim result As DataRow() = ProductosMovimientoSalida.Select("iccprod=" + Str(idprod))
+    '        For i As Integer = 0 To result.Length - 1 Step 1
+    '            Dim rowIndex As Integer = TablaPrincipal.Rows.IndexOf(result(i))
+    '            TablaPrincipal.Rows(j).Item("DEVOLUCION") = result(i).Item("iccant")
+    '            TablaPrincipal.Rows(j).Item("estado") = 1
+    '            TablaPrincipal.Rows(j).Item("icid") = result(i).Item("icid")
+    '        Next
+    '    Next
+    '    'TablaPrincipal.Columns.Add("DEVOLUCION")
+
+    '    '''''''''''Aqui inserto las ventas realidas con el movil
+    '    Dim dtVentaMovil As DataTable = L_prListarProductosMovil(CType(Dgv_PedidoTotal.DataSource, DataTable))
+
+
+    '    For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
+    '        Dim codProd As String = TablaPrincipal.Rows(j).Item("canumi")
+    '        Dim result As DataRow() = dtVentaMovil.Select("obcprod=" + "'" + codProd + "'")
+    '        For i As Integer = 0 To result.Length - 1 Step 1
+    '            Dim rowIndex As Integer = TablaPrincipal.Rows.IndexOf(result(i))
+    '            TablaPrincipal.Rows(j).Item("MOVIL") = IIf(IsDBNull(TablaPrincipal.Rows(j).Item("MOVIL")), 0, TablaPrincipal.Rows(j).Item("MOVIL")) + result(i).Item("obpcant")
+    '            'If (TablaPrincipal.Rows(j).Item("ID_TO1").ToString.Trim = String.Empty Or IsDBNull(TablaPrincipal.Rows(j).Item("ID_TO1"))) Then
+    '            '    TablaPrincipal.Rows(j).Item("ID_TO1") = result(i).Item("oanumi").ToString
+    '            'Else
+    '            '    TablaPrincipal.Rows(j).Item("ID_TO1") = TablaPrincipal.Rows(j).Item("ID_TO1").ToString + "," + result(i).Item("oanumi").ToString
+    '            'End If
+
+    '        Next
+    '    Next
+
+
+
+    '    '''''''''''Aqui inserto las ventas realidas con el PC
+    '    Dim dtVentaPc As DataTable = L_prListarProductosPC(CType(Dgv_PedidoTotal.DataSource, DataTable))
+
+
+    '    For j As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
+    '        Dim idprod As String = TablaPrincipal.Rows(j).Item("canumi")
+    '        Dim result As DataRow() = dtVentaPc.Select("obcprod=" + "'" + idprod + "'")
+    '        For i As Integer = 0 To result.Length - 1 Step 1
+    '            Dim rowIndex As Integer = TablaPrincipal.Rows.IndexOf(result(i))
+    '            TablaPrincipal.Rows(j).Item("PC") = IIf(IsDBNull(TablaPrincipal.Rows(j).Item("PC")), 0, TablaPrincipal.Rows(j).Item("PC")) + result(i).Item("obpcant")
+
+
+    '        Next
+    '    Next
+    '    '''''''Suma de Totales
+    '    For i As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
+    '        Dim suma As Double = 0
+    '        Dim sumaMovil As Double = 0
+    '        For c As Integer = 0 To columnas.Rows.Count - 1 Step 1
+    '            Dim colum As String = columnas.Rows(c).Item("ibid")
+    '            suma = suma + IIf(IsDBNull(TablaPrincipal.Rows(i).Item(colum)), 0, TablaPrincipal.Rows(i).Item(colum))
+    '        Next
+    '        sumaMovil = IIf(IsDBNull(TablaPrincipal.Rows(i).Item("MOVIL")), 0, TablaPrincipal.Rows(i).Item("MOVIL"))
+    '        TablaPrincipal.Rows(i).Item("TOTALCOPIA") = suma '- sumaMovil
+    '        suma = suma - IIf(IsDBNull(TablaPrincipal.Rows(i).Item("DEVOLUCION")), 0, TablaPrincipal.Rows(i).Item("DEVOLUCION"))
+    '        TablaPrincipal.Rows(i).Item("TOTAL") = suma '- sumaMovil
+
+    '    Next
+
+
+    '    For i As Integer = 0 To TablaPrincipal.Rows.Count - 1 Step 1
+    '        Dim movil As Double = IIf(IsDBNull(TablaPrincipal.Rows(i).Item("MOVIL")), 0, TablaPrincipal.Rows(i).Item("MOVIL"))
+    '        Dim pc As Double = If(IsDBNull(TablaPrincipal.Rows(i).Item("PC")), 0, TablaPrincipal.Rows(i).Item("PC"))
+
+
+    '        TablaPrincipal.Rows(i).Item("TOTAL_ENTREGADO") = movil + pc '- sumaMovil
+    '        Next
+
+
+    '    Dim dt As New DataTable
+    '    dt = TablaPrincipal
+    '    _prCargarIcono(dt)
+    '    Dgv_Cortes.DataSource = dt
+    '    Dgv_Cortes.RetrieveStructure()
+    '    Dgv_Cortes.AlternatingColors = True
+    '    For c As Integer = 0 To columnas.Rows.Count - 1 Step 1
+    '        Dim colum As String = columnas.Rows(c).Item("ibid")
+    '        With Dgv_Cortes.RootTable.Columns(colum)
+    '            .Width = 150
+    '            .Visible = False
+    '            .TextAlignment = TextAlignment.Far
+    '            .FormatString = "0"
+    '            .Caption = "Salida " + Str(c + 1)
+    '        End With
+    '    Next
+
+    '    With Dgv_Cortes.RootTable.Columns("canumi")
+    '        .Width = 150
+    '        .Visible = False
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("estado")
+    '        .Width = 150
+    '        .Visible = False
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("icid")
+    '        .Width = 150
+    '        .Visible = False
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("cadesc")
+    '        .Width = 200
+    '        .Visible = True
+    '        .Caption = "PRODUCTO"
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("ID_TO1")
+    '        .Width = 150
+    '        .Visible = False
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("MOVIL")
+    '        .Width = 150
+    '        .Visible = False
+    '        .FormatString = "0.00"
+    '        .TextAlignment = TextAlignment.Far
+    '        .Caption = "MOVIL"
+    '        '.CellStyle.BackColor = Color.CadetBlue
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("PC")
+    '        .Width = 150
+    '        .Visible = True
+    '        .FormatString = "0.00"
+    '        .TextAlignment = TextAlignment.Far
+    '        .Caption = "ENTREGADOS"
+    '        '.CellStyle.BackColor = Color.Gold
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("DEVOLUCION")
+    '        .Width = 150
+    '        .Visible = False
+    '        .FormatString = "0.00"
+    '        .TextAlignment = TextAlignment.Far
+    '        .Caption = "DEVOLUCION"
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("TOTAL")
+    '        .Width = 150
+    '        .Visible = True
+    '        .FormatString = "0.00"
+    '        .TextAlignment = TextAlignment.Far
+    '        .Caption = "TOTAL PEDIDOS"
+    '        .CellStyle.BackColor = Color.CadetBlue
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("TOTAL_ENTREGADO")
+    '        .Width = 150
+    '        .Visible = True
+    '        .FormatString = "0.00"
+    '        .TextAlignment = TextAlignment.Far
+    '        .Caption = "TOTAL ENTREGADO"
+    '        .CellStyle.BackColor = Color.CadetBlue
+    '    End With
+    '    With Dgv_Cortes.RootTable.Columns("TOTALCOPIA")
+    '        .Width = 150
+    '        .Visible = False
+    '        .FormatString = "0.00"
+    '        .TextAlignment = TextAlignment.Far
+    '    End With
+
+    '    With Dgv_Cortes.RootTable.Columns("img")
+    '        .Width = 80
+    '        .Caption = "ESTADO".ToUpper
+    '        .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+    '        .Visible = False
+    '    End With
+    '    With Dgv_Cortes
+    '        .GroupByBoxVisible = False
+    '        'diseño de la grilla
+    '        .VisualStyle = VisualStyle.Office2007
+    '        .RootTable.RowHeight = 30
+
+    '    End With
+    'End Sub
 
 
     Public Sub _prCargarIcono(dt As DataTable)
@@ -305,6 +542,13 @@ Public Class F0_MCaja
 
         tbdRecibido.IsInputReadOnly = True
         tbdSaldo.IsInputReadOnly = True
+        Tb_TipoCambio.IsInputReadOnly = True
+        Tb_TConsiliacion.IsInputReadOnly = True
+        Tb_TCredito.IsInputReadOnly = True
+        Tb_TDeposito.IsInputReadOnly = True
+        Tb_TDiferencia.IsInputReadOnly = True
+        Tb_TGeneral.IsInputReadOnly = True
+        Tb_TEfectivo.IsInputReadOnly = True
     End Sub
 
     Private Sub _prhabilitar()
@@ -323,6 +567,16 @@ Public Class F0_MCaja
         Dgv_PedidoTotal.AllowEdit = InheritableBoolean.True
 
         tbdRecibido.IsInputReadOnly = False
+
+        Tb_TipoCambio.IsInputReadOnly = False
+        Tb_TConsiliacion.IsInputReadOnly = False
+        Tb_TCredito.IsInputReadOnly = False
+        Tb_TDeposito.IsInputReadOnly = False
+        Tb_TDiferencia.IsInputReadOnly = False
+        Tb_TGeneral.IsInputReadOnly = False
+        Tb_TEfectivo.IsInputReadOnly = False
+
+
     End Sub
 
     Public Sub _prFiltrar()
@@ -344,13 +598,17 @@ Public Class F0_MCaja
         _prCargarDetalleVenta(-1)
         Numi_Chofer = 0
         Numi_Conciliacion = 0
-
-
-
         lbconciliacion.Text = 0
         tbchofer.Focus()
         tbdRecibido.Value = 0
         tbdSaldo.Value = 0
+        Tb_TConsiliacion.Value = 0
+        Tb_TCredito.Value = 0
+        Tb_TDeposito.Value = 0
+        Tb_TDiferencia.Value = 0
+        Tb_TEfectivo.Value = 0
+        Tb_TGeneral.Value = 0
+        Tb_TipoCambio.Value = 6.96
     End Sub
 
 
@@ -369,10 +627,10 @@ Public Class F0_MCaja
         End With
 
         _prCargarDetalleVenta(TbCodigo.Text)
-        _prCrearTablaConciliacion()
-
+        _prCrearListaCambio(1, Convert.ToInt32(TbCodigo.Text))
+        _prCrearListaDeposito(1, Convert.ToInt32(TbCodigo.Text))
         tbdRecibido.Value = GridEX1.GetValue("olmrec")
-
+        _prCalcular()
         LblPaginacion.Text = Str(GridEX1.Row + 1) + "/" + GridEX1.RowCount.ToString
 
     End Sub
@@ -448,34 +706,34 @@ Public Class F0_MCaja
         End With
 
 
-        With Dgv_PedidoTotal.RootTable.Columns("oaccli")
-            .Width = 120
-            .Caption = ""
-            .Visible = False
+        With Dgv_PedidoTotal.RootTable.Columns("oacnrofac")
+            .Width = 150
+            .Caption = "Nro. Factura"
+            .Visible = True
         End With
 
         With Dgv_PedidoTotal.RootTable.Columns("cliente")
             .Caption = "CLIENTE"
             .Width = 400
-            .Visible = True
+            .Visible = False
         End With
         With Dgv_PedidoTotal.RootTable.Columns("total")
             .Caption = "TOTAL"
-            .Width = 120
+            .Width = 200
             .AggregateFunction = AggregateFunction.Sum
             .Visible = True
             .FormatString = "0.00"
         End With
         With Dgv_PedidoTotal.RootTable.Columns("contado")
-            .Caption = "EFECTIVO"
-            .Width = 120
+            .Caption = "COBRADO"
+            .Width = 200
             .AggregateFunction = AggregateFunction.Sum
             .Visible = True
             .FormatString = "0.00"
         End With
         With Dgv_PedidoTotal.RootTable.Columns("credito")
             .Caption = "CREDITO"
-            .Width = 120
+            .Width = 200
             .AggregateFunction = AggregateFunction.Sum
             '.Visible = (gi_vcre2 = 1)
             .Visible = True
@@ -544,34 +802,34 @@ Public Class F0_MCaja
         End With
 
 
-        With Dgv_PedidoTotal.RootTable.Columns("oaccli")
-            .Width = 120
-            .Caption = ""
-            .Visible = False
+        With Dgv_PedidoTotal.RootTable.Columns("oacnrofac")
+            .Width = 150
+            .Caption = "Nro Factura"
+            .Visible = True
         End With
 
         With Dgv_PedidoTotal.RootTable.Columns("cliente")
-            .Caption = "CLIENTE"
-            .Width = 400
-            .Visible = True
+            .Caption = "cliente"
+            .Width = 150
+            .Visible = False
         End With
         With Dgv_PedidoTotal.RootTable.Columns("total")
             .Caption = "TOTAL"
-            .Width = 120
+            .Width = 200
             .Visible = True
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
         End With
         With Dgv_PedidoTotal.RootTable.Columns("contado")
-            .Caption = "EFECTIVO"
-            .Width = 120
+            .Caption = "COBRADO"
+            .Width = 200
             .Visible = True
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
         End With
         With Dgv_PedidoTotal.RootTable.Columns("credito")
             .Caption = "CREDITO"
-            .Width = 120
+            .Width = 200
             '.Visible = (gi_vcre2 = 1)
             .Visible = True
             .FormatString = "0.00"
@@ -716,7 +974,7 @@ Public Class F0_MCaja
         End If
     End Sub
 
-    Public Function _fnValidarTotal()As Boolean
+    Public Function _fnValidarTotal() As Boolean
         'TablaPrincipal.Columns.Add("ID_TO1", Type.GetType("System.String"))
         'TablaPrincipal.Columns.Add("DEVOLUCION")
         'TablaPrincipal.Columns.Add("TOTAL")
@@ -727,7 +985,7 @@ Public Class F0_MCaja
         'TablaPrincipal.Columns.Add("estado")
         'TablaPrincipal.Columns.Add("icid")
 
-        Dim dt As DataTable = CType(Dgv_Corte.DataSource, DataTable)
+        Dim dt As DataTable = CType(Dgv_Cortes.DataSource, DataTable)
         For i As Integer = 0 To dt.Rows.Count - 1 Step 1
 
             Dim totalSacado As Double = dt.Rows(i).Item("TOTAL")
@@ -768,9 +1026,10 @@ Public Class F0_MCaja
     Private Sub P_BuscarChofer()
         P_prArmarAyudaConciliacion()
         cargarDetalleConciliacion()
-        _prCrearTablaConciliacion()
-
-
+        _prArmarListaCambio()
+        _prArmarListaDeposito()
+        _prCrearListaCambio(2, 0)
+        _prCrearListaDeposito(2, 0)
         'Colocar el total del contado en el tbdRecibido.Text
         tbdRecibido.Text = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("contado"), AggregateFunction.Sum)
     End Sub
@@ -801,9 +1060,9 @@ Public Class F0_MCaja
         Dim numi As String = ""
 
         Dim res As Boolean = L_prCajaGrabar(numi, Numi_Chofer, Numi_Conciliacion, tbFecha.Value.ToString("yyyy/MM/dd"), tbdRecibido.Value.ToString, CType(Dgv_PedidoTotal.DataSource, DataTable))
-
         If res Then
-
+            Dim ListaCambios = New LCajaCambio().GuardarCajaCambio(ListaCambio, Convert.ToInt32(numi))
+            Dim ListaDepositos = New LCajaDeposito().GuardarDepositoCambio(ListaDeposito, Convert.ToInt32(numi))
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
             ToastNotification.Show(Me, "Código de Caja ".ToUpper + TbCodigo.Text + " Grabado con Exito.".ToUpper,
                                       img, 2000,
@@ -971,7 +1230,7 @@ Public Class F0_MCaja
 
 
     Function F_GenerarTablaProductoReporte() As DataTable
-        Dim dt As DataTable = CType(Dgv_Corte.DataSource, DataTable)
+        Dim dt As DataTable = CType(Dgv_Cortes.DataSource, DataTable)
         Dim TablaPrincipal As DataTable = New DataTable
         'Select Case'Hielo de 35 kg' AS producto, 20 AS totalpedidos, 10 AS movil, 10 AS pc, 20 AS totalentregado
         TablaPrincipal.Columns.Add("producto", Type.GetType("System.String"))
@@ -982,25 +1241,25 @@ Public Class F0_MCaja
         For i As Integer = 0 To dt.Rows.Count - 1 Step 1
             TablaPrincipal.Rows.Add()
             Dim n As Integer = TablaPrincipal.Rows.Count - 1
-            TablaPrincipal.Rows(n).Item("producto") = CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("cadesc")
-            TablaPrincipal.Rows(n).Item("totalpedidos") = CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("TOTAL")
+            TablaPrincipal.Rows(n).Item("producto") = CType(Dgv_Cortes.DataSource, DataTable).Rows(i).Item("cadesc")
+            TablaPrincipal.Rows(n).Item("totalpedidos") = CType(Dgv_Cortes.DataSource, DataTable).Rows(i).Item("TOTAL")
 
 
-            If (CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("MOVIL").ToString.Equals("")) Then
+            If (CType(Dgv_Cortes.DataSource, DataTable).Rows(i).Item("MOVIL").ToString.Equals("")) Then
                 TablaPrincipal.Rows(n).Item("movil") = 0
             Else
-                TablaPrincipal.Rows(n).Item("movil") = CInt(CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("MOVIL"))
+                TablaPrincipal.Rows(n).Item("movil") = CInt(CType(Dgv_Cortes.DataSource, DataTable).Rows(i).Item("MOVIL"))
             End If
 
 
-            If (CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("PC").ToString.Equals("")) Then
+            If (CType(Dgv_Cortes.DataSource, DataTable).Rows(i).Item("PC").ToString.Equals("")) Then
                 TablaPrincipal.Rows(n).Item("pc") = 0
             Else
-                TablaPrincipal.Rows(n).Item("pc") = CInt(CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("PC"))
+                TablaPrincipal.Rows(n).Item("pc") = CInt(CType(Dgv_Cortes.DataSource, DataTable).Rows(i).Item("PC"))
             End If
 
 
-            TablaPrincipal.Rows(n).Item("totalentregado") = CType(Dgv_Corte.DataSource, DataTable).Rows(i).Item("TOTAL_ENTREGADO")
+            TablaPrincipal.Rows(n).Item("totalentregado") = CType(Dgv_Cortes.DataSource, DataTable).Rows(i).Item("TOTAL_ENTREGADO")
 
         Next
 
@@ -1061,7 +1320,7 @@ Public Class F0_MCaja
                 End If
                 Dgv_PedidoTotal.SetValue("contado", Dgv_PedidoTotal.GetValue("total") - Dgv_PedidoTotal.GetValue("credito"))
             End If
-
+            _prCalcular()
         End If
     End Sub
 
@@ -1071,5 +1330,92 @@ Public Class F0_MCaja
 
     Private Sub tbdRecibido_ValueChanged(sender As Object, e As EventArgs) Handles tbdRecibido.ValueChanged
         tbdSaldo.Value = IIf(IsDBNull(CType(Dgv_PedidoTotal.DataSource, DataTable).Compute("sum(total)", "1=1")), 0, CType(Dgv_PedidoTotal.DataSource, DataTable).Compute("sum(total)", "1=1")) - tbdRecibido.Value
+    End Sub
+
+
+    Private Sub Dgv_Cortes_EditingCell(sender As Object, e As EditingCellEventArgs)
+
+    End Sub
+
+    Private Sub Dgv_Cortes_EditingCell_1(sender As Object, e As EditingCellEventArgs) Handles Dgv_Cortes.EditingCell
+
+        If TbCodigo.ReadOnly = True Then
+            If (e.Column.Index = Dgv_Cortes.RootTable.Columns("CantidadBo").Index Or
+                e.Column.Index = Dgv_Cortes.RootTable.Columns("CantidadDo").Index) Then
+                e.Cancel = False
+            Else
+                e.Cancel = True
+            End If
+        End If
+    End Sub
+
+    Private Sub Dgv_Cortes_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles Dgv_Cortes.CellEdited
+        If (e.Column.Key = "CantidadBo" Or e.Column.Key = "CantidadDo") Then
+            Dim CorteBo, CantidadBo, CorteDo, CantidadDo, totalDo, tatalBo As Double
+            CorteBo = Convert.ToDouble(Dgv_Cortes.CurrentRow.Cells("CorteBol").Value)
+            CantidadBo = Convert.ToDouble(Dgv_Cortes.CurrentRow.Cells("CantidadBo").Value)
+            tatalBo = CorteBo * CantidadBo
+            Dgv_Cortes.CurrentRow.Cells("TotalBo").Value = tatalBo
+
+            CorteDo = Convert.ToDouble(Dgv_Cortes.CurrentRow.Cells("CorteDolares").Value)
+            CantidadDo = Convert.ToDouble(Dgv_Cortes.CurrentRow.Cells("CantidadDo").Value)
+            totalDo = CorteDo * CantidadDo
+            Dgv_Cortes.CurrentRow.Cells("TotalD").Value = totalDo
+            _prCalcular()
+        End If
+    End Sub
+    Private Sub _prCalcular()
+        Dim totalCorteDol, totalCorteBol, TotalDeposito, TotalCredito, totalConciliacion As Double
+        totalCorteBol = Dgv_Cortes.GetTotal(Dgv_Cortes.RootTable.Columns("TotalBo"), AggregateFunction.Sum)
+        totalCorteDol = Dgv_Cortes.GetTotal(Dgv_Cortes.RootTable.Columns("TotalD"), AggregateFunction.Sum)
+        TotalDeposito = Dgv_Depositos.GetTotal(Dgv_Depositos.RootTable.Columns("Monto"), AggregateFunction.Sum)
+        TotalCredito = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("credito"), AggregateFunction.Sum)
+        totalConciliacion = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("contado"), AggregateFunction.Sum)
+        Tb_TEfectivo.Value = totalCorteBol + (totalCorteDol * Tb_TipoCambio.Value)
+        Tb_TDeposito.Value = TotalDeposito
+        Tb_TCredito.Value = TotalCredito
+        Tb_TGeneral.Value = Tb_TEfectivo.Value + Tb_TDeposito.Value + Tb_TCredito.Value
+        Tb_TConsiliacion.Value = totalConciliacion
+        Tb_TDiferencia.Value = Tb_TConsiliacion.Value - Tb_TGeneral.Value
+    End Sub
+
+    Private Sub Dgv_Depositos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles Dgv_Depositos.EditingCell
+        If TbCodigo.ReadOnly = True Then
+            If (e.Column.Index = Dgv_Depositos.RootTable.Columns("Banco").Index Or
+                e.Column.Index = Dgv_Depositos.RootTable.Columns("Moneda").Index Or
+                e.Column.Index = Dgv_Depositos.RootTable.Columns("Depos").Index Or
+                e.Column.Index = Dgv_Depositos.RootTable.Columns("Fecha").Index Or
+                e.Column.Index = Dgv_Depositos.RootTable.Columns("Monto").Index) Then
+                e.Cancel = False
+            Else
+                e.Cancel = True
+            End If
+        End If
+    End Sub
+
+    Private Sub Dgv_Depositos_KeyDown(sender As Object, e As KeyEventArgs) Handles Dgv_Depositos.KeyDown
+        If (_fnAccesible()) Then
+            If e.KeyData = Keys.Enter Then
+                If (Dgv_Depositos.Col = Dgv_Depositos.RootTable.Columns("Banco").Index) Then
+                    ListaDeposito = Dgv_Depositos.DataSource
+                    Dgv_Depositos.Select()
+                    Dgv_Depositos.Refresh()
+                    Dgv_Depositos.Refetch()
+                    _prArmarListaDeposito()
+                    _prArmarDeposito()
+                End If
+            End If
+            'If e.KeyData = Keys.Escape Then
+            '    'Dim Id = Dgv_Depositos.GetValue("Id")
+            '    'ListaDeposito = Dgv_Depositos.DataSource
+            '    'Dim lista As VCajaDeposito = ListaDeposito.Select(Function(x) x.Id = Id)
+            '    'ListaDeposito.RemoveAt(ListaDeposito.IndexOf(lista))
+            '    '_prArmarListaDeposito()
+            '    '_prArmarDeposito()
+            '    'Dgv_Depositos.Select()
+            '    'Dgv_Depositos.Refresh()
+            '    'Dgv_Depositos.Refetch()
+            'End If
+        End If
     End Sub
 End Class

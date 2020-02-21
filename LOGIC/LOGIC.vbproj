@@ -64,11 +64,13 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\LCajaCambio.vb" />
     <Compile Include="Class\LCombo.vb" />
     <Compile Include="Class\LPedido.vb" />
     <Compile Include="Class\LPersonal.vb" />
     <Compile Include="Class\LProducto.vb" />
     <Compile Include="Class\LZona.vb" />
+    <Compile Include="LCajaDeposito.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

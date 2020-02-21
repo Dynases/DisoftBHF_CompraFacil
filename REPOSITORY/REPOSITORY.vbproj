@@ -79,15 +79,19 @@
   <ItemGroup>
     <Compile Include="Base\RBasePrincipal.vb" />
     <Compile Include="Base\RBaseTSM.vb" />
+    <Compile Include="Class\RCajaCambio.vb" />
+    <Compile Include="Class\RCajaDeposito.vb" />
     <Compile Include="Class\RPedido.vb" />
     <Compile Include="Class\RPersonal.vb" />
     <Compile Include="Class\RProducto.vb" />
     <Compile Include="Class\RZona.vb" />
+    <Compile Include="Interface\ICajaDeposito.vb" />
     <Compile Include="Interface\IPedido.vb" />
     <Compile Include="Interface\IPersonal.vb" />
     <Compile Include="Interface\ICliente.vb" />
     <Compile Include="Interface\IProducto.vb" />
     <Compile Include="Interface\IZona.vb" />
+    <Compile Include="Interface\ICajaCambio.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

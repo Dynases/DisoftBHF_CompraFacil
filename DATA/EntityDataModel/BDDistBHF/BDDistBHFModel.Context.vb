@@ -141,6 +141,9 @@ Partial Public Class BDDistBHFEntities
     Public Overridable Property Vr_VentasVendedor12Meses() As DbSet(Of Vr_VentasVendedor12Meses)
     Public Overridable Property Vr_VentasVendidas() As DbSet(Of Vr_VentasVendidas)
     Public Overridable Property VR_VistaPedido_PrecioCosto() As DbSet(Of VR_VistaPedido_PrecioCosto)
+    Public Overridable Property TO005() As DbSet(Of TO005)
+    Public Overridable Property TO0051() As DbSet(Of TO0051)
+    Public Overridable Property TO0052() As DbSet(Of TO0052)
 
     Public Overridable Function PlanillaSueldo(fecha As Nullable(Of Date)) As Integer
         Dim fechaParameter As ObjectParameter = If(fecha.HasValue, New ObjectParameter("fecha", fecha), New ObjectParameter("fecha", GetType(Date)))
