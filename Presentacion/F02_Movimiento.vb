@@ -7,7 +7,7 @@ Public Class F02_Movimiento
 
 #Region "Atributos generales"
 
-    Private stTitulo As String = "M O V I M I E N T O   D E   E Q U I P O"
+    Private stTitulo As String = "M O V I M I E N T O   D E   P R O D U C T O S"
     Private inTipo As Byte = 1 '1=Equipos, 2=Productos
 
     Private stEst As String = "1"

@@ -1212,6 +1212,26 @@ Public Class P_Principal
         frm.Show()
         tab3.Text = frm.Text
     End Sub
+
+    Private Sub btMovPack_Click(sender As Object, e As EventArgs) Handles btMovPack.Click
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New F02_MovimientoPack
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+        frm.titulo = "M O V I M I E N T O   D E   P A C K"
+        frm.tipo = 2
+        frm._nameButton = btMovPack.Name
+        frm._tab = tab3
+        frm._modulo = FP_Inventario
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+        'tab3.Icon = frm.Icon
+    End Sub
+
+
 #End Region
 
 #End Region
