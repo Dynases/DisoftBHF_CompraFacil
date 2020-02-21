@@ -140,6 +140,8 @@ Public Class F02_Movimiento
     End Sub
 
     Private Sub dgjDetalle_KeyDown(sender As Object, e As KeyEventArgs) Handles dgjDetalle.KeyDown
+        
+
         If (BoNuevo Or BoModificar) Then
             If (e.KeyData = Keys.Control + Keys.Enter) Then
                 Dim dt As DataTable

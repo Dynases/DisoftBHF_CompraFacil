@@ -10,6 +10,7 @@ Public Class F01_Producto
 
     Dim StTitulo As String = "P R O D U C T O"
     Dim InTipoForm As Byte = 1
+    Dim DtPack As DataTable
 
     Private stCod As String = "0"
 
@@ -213,6 +214,8 @@ Public Class F01_Producto
 
         'Usuario del sistema
         MTbUsuario.Text = gs_user
+
+        JGProdPack.ContextMenuStrip = CmDetalle
     End Sub
 
     Private Sub P_prCambiarFuenteComponentes()
@@ -277,6 +280,9 @@ Public Class F01_Producto
         CbUnidMax.ReadOnly = Not flat
         TbConversion.IsInputReadOnly = Not flat
 
+        swPack.IsReadOnly = Not flat
+        JGProdPack.Enabled = flat
+
     End Sub
 
     Private Sub P_prLimpiar()
@@ -291,6 +297,7 @@ Public Class F01_Producto
         SbEstado.Value = True
         SbEquipo.Value = False
         DaFecha = Now.Date
+        swPack.Value = False
 
         If (Limpiar = False) Then
             _prSeleccionarCombo(cbgrupo1)
@@ -307,6 +314,9 @@ Public Class F01_Producto
 
         UcImagen.Image = My.Resources.imageDefault
         MBtGrabar.Tooltip = "GRABAR"
+
+        P_prArmarGrillaPack(-1)
+
     End Sub
 
     Private Sub P_prArmarCombos()
@@ -328,6 +338,7 @@ Public Class F01_Producto
 
     Private Sub P_PrArmarGrillas()
         P_prArmarGrillaBusqueda()
+        P_prArmarGrillaPack(-1)
     End Sub
 
     Private Sub P_prActualizarPaginacion(ByVal index As Integer)
@@ -372,6 +383,7 @@ Public Class F01_Producto
                     Me.CbUnidVenta.Value = .GetValue("cauventa")
                     Me.CbUnidMax.Value = .GetValue("caumax")
                     Me.TbConversion.Value = .GetValue("caconv")
+                    Me.swPack.Value = .GetValue("capack")
 
                     Dim s As String = .GetValue("nimg").ToString
                     If (.GetValue("nimg").ToString.Equals("")) Then
@@ -386,6 +398,11 @@ Public Class F01_Producto
                             UcImagen.Image = My.Resources.imageDefault
                             UcImagen.Tag = ""
                         End If
+                    End If
+
+                    ''Para mostrar si es Pack
+                    If swPack.Value = True Then
+                        P_prArmarGrillaPack(TbCodigo.Text)
                     End If
 
                     MLbFecha.Text = CType(.GetValue("fact").ToString, Date).ToString("dd/MM/yyyy")
@@ -406,12 +423,14 @@ Public Class F01_Producto
         P_prLimpiar()
         P_prEstadoNueModEli(1)
         P_prHDComponentes(BoNuevo)
+        P_prAddFilaDetalle()
         TbNombre.Select()
     End Sub
 
     Private Sub P_prModificarRegistro()
         P_prEstadoNueModEli(2)
         P_prHDComponentes(BoModificar)
+        P_prAddFilaDetalle()
         TbNombre.SelectAll()
     End Sub
 
@@ -478,7 +497,8 @@ Public Class F01_Producto
         Dim umed As String
         Dim umin As String
         Dim umax As String
-        Dim conv As Int32
+        Dim conv As Integer
+        Dim pack As Integer
 
 
         If (BoNuevo) Then
@@ -505,6 +525,7 @@ Public Class F01_Producto
                 umed = cbUMed.Value
                 umin = CbUnidVenta.Value
                 umax = CbUnidMax.Value
+                pack = IIf(swPack.Value, "1", "0")
                 If (TbConversion.Text.Trim = "") Then
                     conv = 0
                 Else
@@ -518,7 +539,7 @@ Public Class F01_Producto
                 End If
 
                 'Grabar
-                Dim res As Boolean = L_fnProductoGrabar(numi, cod, desc, desc2, cat, img, stc, est, serie, pcom, fing, cemp, barra, smin, gr1, gr2, gr3, gr4, umed, umin, umax, conv)
+                Dim res As Boolean = L_fnProductoGrabar(numi, cod, desc, desc2, cat, img, stc, est, serie, pcom, fing, cemp, barra, smin, gr1, gr2, gr3, gr4, umed, umin, umax, conv, pack, CType(JGProdPack.DataSource, DataTable))
 
                 If (res) Then
                     If (IsNothing(vlImagen) = False) Then
@@ -573,14 +594,13 @@ Public Class F01_Producto
                 umed = cbUMed.Value
                 umin = CbUnidVenta.Value
                 umax = CbUnidMax.Value
+                pack = IIf(swPack.Value, "1", "0")
 
                 If (TbConversion.Text.Trim = "") Then
                     conv = 0
                 Else
                     conv = TbConversion.Text.Trim
                 End If
-
-
 
                 If (IsNothing(vlImagen) = True) Then
                     If (UcImagen.Tag.ToString = String.Empty) Then
@@ -593,8 +613,12 @@ Public Class F01_Producto
                     img = P_fnObtenerID()
                 End If
 
+                Dim dt As New DataTable
+                dt = CType(JGProdPack.DataSource, DataTable).DefaultView.ToTable(False, "cbnumi", "cbtccanumi", "cbtccanumi1", "cadesc", "cbcant", "estado")
+
+
                 'Grabar
-                Dim res As Boolean = L_fnProductoModificar(numi, cod, desc, desc2, cat, img, stc, est, serie, pcom, fing, cemp, barra, smin, gr1, gr2, gr3, gr4, umed, umin, umax, conv)
+                Dim res As Boolean = L_fnProductoModificar(numi, cod, desc, desc2, cat, img, stc, est, serie, pcom, fing, cemp, barra, smin, gr1, gr2, gr3, gr4, umed, umin, umax, conv, pack, dt)
 
                 If (res) Then
                     If (IsNothing(vlImagen) = False) Then
@@ -1195,6 +1219,89 @@ Public Class F01_Producto
         End With
     End Sub
 
+    Private Sub P_prArmarGrillaPack(id_prod As String)
+        DtPack = New DataTable
+        DtPack = L_fnProductosPack(id_prod)
+
+        JGProdPack.BoundMode = Janus.Data.BoundMode.Bound
+        JGProdPack.DataSource = DtPack
+        JGProdPack.RetrieveStructure()
+
+        'dar formato a las columnas
+        With JGProdPack.RootTable.Columns(0)
+            .Caption = "Código"
+            .Key = "cbnumi"
+            .Width = 80
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+        With JGProdPack.RootTable.Columns(1)
+            .Caption = "Cod.Prod"
+            .Key = "cbtccanumi"
+            .Width = 70
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+        With JGProdPack.RootTable.Columns(2)
+            .Caption = "Cod. Prod"
+            .Key = "cbtccanumi1"
+            .Width = 70
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = True
+        End With
+        With JGProdPack.RootTable.Columns(3)
+            .Caption = "Descripción"
+            .Key = "cadesc"
+            .Width = 180
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = True
+        End With
+        With JGProdPack.RootTable.Columns(4)
+            .Caption = "Cantidad"
+            .Key = "cbcant"
+            .Width = 80
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = True
+        End With
+        With JGProdPack.RootTable.Columns(5)
+            .Caption = "Estado"
+            .Key = "estado"
+            .Width = 90
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        'Habilitar Filtradores
+        With JGProdPack
+            .GroupByBoxVisible = False
+            '.FilterRowFormatStyle.BackColor = Color.Blue
+            .DefaultFilterRowComparison = FilterConditionOperator.Contains
+            '.FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            'Diseño de la tabla
+            .VisualStyle = VisualStyle.Office2007
+            .SelectionMode = SelectionMode.MultipleSelection
+            .AlternatingColors = True
+            .RecordNavigator = True
+        End With
+    End Sub
     Private Function P_fnValidarGrabacion() As Boolean
         Dim res As Boolean = True
         MEP.Clear()
@@ -1384,6 +1491,142 @@ Public Class F01_Producto
         End If
     End Sub
 
+    Private Sub swPack_ValueChanged(sender As Object, e As EventArgs) Handles swPack.ValueChanged
+        If swPack.Value = True Then
+            SuperTabControl_Imagenes_DetalleProducto.SelectedTabIndex = 1
+            JGProdPack.Select()
+            JGProdPack.Col = 2
+        Else
+            SuperTabControl_Imagenes_DetalleProducto.SelectedTabIndex = 0
+        End If
+    End Sub
+
+
+    Private Sub P_prAddFilaDetalle()
+        Dim fil As DataRow
+        fil = DtPack.NewRow
+        fil.Item("cbnumi") = 0
+        fil.Item("cbtccanumi") = 0
+        fil.Item("cbtccanumi1") = 0
+        fil.Item("cadesc") = "Nuevo"
+        fil.Item("cbcant") = 0
+        fil.Item("estado") = 0
+        DtPack.Rows.Add(fil)
+        'Dim Bin As New MemoryStream
+        'Dim img As New Bitmap(My.Resources.delete, 20, 20)
+        'img.Save(Bin, Imaging.ImageFormat.Png)
+        'CType(JGProdPack.DataSource, DataTable).Rows.Add(_fnSiguienteNumi() + 1, 0, 0, "", 0)
+    End Sub
+
+    Public Function _fnSiguienteNumi()
+        Dim dt As DataTable = CType(JGProdPack.DataSource, DataTable)
+        Dim rows() As DataRow = dt.Select("cbnumi=MAX(cbnumi)")
+        If (rows.Count > 0) Then
+            Return rows(rows.Count - 1).Item("cbnumi")
+        End If
+        Return 1
+    End Function
+
+    Private Sub JGProdPack_KeyDown(sender As Object, e As KeyEventArgs) Handles JGProdPack.KeyDown
+        If (e.KeyData = Keys.Control + Keys.Enter) Then
+            Dim dt As DataTable
+            dt = L_fnObtenerTabla("a.canumi as numi, a.cadesc as [desc]",
+                                      "TC001 a",
+                                      "a.caserie='False' and caest=1 order by a.canumi asc")
+
+            Dim listEstCeldas As New List(Of Modelo.MCelda)
+            listEstCeldas.Add(New Modelo.MCelda("numi,", True, "Código", 80))
+            listEstCeldas.Add(New Modelo.MCelda("desc", True, "Descripción", 270))
+
+            Dim ef = New Efecto
+            ef.tipo = 3
+            ef.dt = dt
+            ef.SeleclCol = 2
+            ef.listEstCeldas = listEstCeldas
+            ef.alto = 450
+            ef.ancho = 150
+            ef.Context = "Seleccione Producto".ToUpper
+            ef.Height = 361
+            ef.ShowDialog()
+
+            'ef.StartPosition = FormStartPosition.CenterParent
+            Dim bandera As Boolean = False
+            bandera = ef.band
+            If (bandera = True) Then
+                Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+
+                JGProdPack.Col = JGProdPack.RootTable.Columns("cbcant").Index
+                DtPack.Rows(JGProdPack.Row).Item("cbtccanumi1") = Row.Cells("numi").Value
+                DtPack.Rows(JGProdPack.Row).Item("cadesc") = Row.Cells("desc").Value
+            End If
+        ElseIf (e.KeyData = Keys.Enter And JGProdPack.Col = JGProdPack.RootTable.Columns("cbcant").Index) Then
+            Dim filIndex As Integer = JGProdPack.Row
+            If (filIndex = JGProdPack.RowCount - 1) Then
+                P_prAddFilaDetalle()
+
+                Dim dt As DataTable
+                dt = L_fnObtenerTabla("a.canumi as numi, a.cadesc as [desc]",
+                                          "TC001 a",
+                                          "a.caserie='False' and caest=1 order by a.canumi asc")
+
+                Dim listEstCeldas As New List(Of Modelo.MCelda)
+                listEstCeldas.Add(New Modelo.MCelda("numi,", True, "Código", 80))
+                listEstCeldas.Add(New Modelo.MCelda("desc", True, "Descripción", 270))
+
+                Dim ef = New Efecto
+                ef.tipo = 3
+                ef.dt = dt
+                ef.SeleclCol = 2
+                ef.listEstCeldas = listEstCeldas
+                ef.alto = 450
+                ef.ancho = 150
+                ef.Context = "Seleccione Producto".ToUpper
+                ef.ShowDialog()
+                'ef.StartPosition = FormStartPosition.CenterScreen
+                Dim bandera As Boolean = False
+                bandera = ef.band
+                If (bandera = True) Then
+                    Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+
+                    JGProdPack.Row = filIndex + 1
+                    JGProdPack.Col = JGProdPack.RootTable.Columns("cbcant").Index
+
+                    'dgjDetalle.SetValue("cprod", Row.Cells("numi").Value)
+                    'dgjDetalle.SetValue("ncprod", Row.Cells("desc").Value)
+                    DtPack.Rows(JGProdPack.Row).Item("cbtccanumi1") = Row.Cells("numi").Value
+                    DtPack.Rows(JGProdPack.Row).Item("cadesc") = Row.Cells("desc").Value
+                End If
+
+            End If
+        End If
+    End Sub
+
+    Private Sub JGProdPack_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles JGProdPack.CellEdited
+        If (BoModificar And e.Column.Key.Equals("cbcant")) Then
+            If (JGProdPack.GetValue("cbnumi") <> 0) Then
+                JGProdPack.SetValue("estado", 2)
+            End If
+        End If
+    End Sub
+
+    Private Sub QuitarProductoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitarProductoToolStripMenuItem.Click
+        Try
+            JGProdPack.CurrentRow.EndEdit()
+            JGProdPack.CurrentRow.Delete()
+            JGProdPack.Refetch()
+            JGProdPack.Refresh()
+        Catch ex As Exception
+            'sms
+            'MsgBox(ex)
+        End Try
+    End Sub
+    Private Sub JGProdPack_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGProdPack.EditingCell
+        If (e.Column.Key.Equals("cbcant")) Then
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
+    End Sub
 
 #End Region
 End Class
