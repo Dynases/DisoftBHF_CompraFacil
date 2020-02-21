@@ -124,8 +124,8 @@
         <EntityTypeShape EntityType="BDDistBHFModel.VR_VistaPedido_PrecioCosto" Width="1.5" PointX="31.75" PointY="25.75" />
         <EntityTypeShape EntityType="BDDistBHFModel.TO005" Width="1.5" PointX="32.375" PointY="32" />
         <EntityTypeShape EntityType="BDDistBHFModel.TO0051" Width="1.5" PointX="34.625" PointY="33.625" />
-        <EntityTypeShape EntityType="BDDistBHFModel.TO0052" Width="1.5" PointX="34.625" PointY="30.125" />
         <AssociationConnector Association="BDDistBHFModel.FK_TO0051_TO005" />
+        <EntityTypeShape EntityType="BDDistBHFModel.TO0052" Width="1.5" PointX="34.625" PointY="30.125" />
         <AssociationConnector Association="BDDistBHFModel.FK_TO0052_TO005" />
       </Diagram>
     </edmx:Diagrams>

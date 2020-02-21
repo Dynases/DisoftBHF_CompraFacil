@@ -4560,11 +4560,11 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySet Name="VR_VistaPedido_PrecioCosto" EntityType="BDDistBHFModel.VR_VistaPedido_PrecioCosto" />
           <EntitySet Name="TO005" EntityType="BDDistBHFModel.TO005" />
           <EntitySet Name="TO0051" EntityType="BDDistBHFModel.TO0051" />
-          <EntitySet Name="TO0052" EntityType="BDDistBHFModel.TO0052" />
           <AssociationSet Name="FK_TO0051_TO005" Association="BDDistBHFModel.FK_TO0051_TO005">
             <End Role="TO005" EntitySet="TO005" />
             <End Role="TO0051" EntitySet="TO0051" />
           </AssociationSet>
+          <EntitySet Name="TO0052" EntityType="BDDistBHFModel.TO0052" />
           <AssociationSet Name="FK_TO0052_TO005" Association="BDDistBHFModel.FK_TO0052_TO005">
             <End Role="TO005" EntitySet="TO005" />
             <End Role="TO0052" EntitySet="TO0052" />
@@ -6595,6 +6595,18 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="omTotalB" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="TO005" Relationship="BDDistBHFModel.FK_TO0051_TO005" FromRole="TO0051" ToRole="TO005" />
         </EntityType>
+        <Association Name="FK_TO0051_TO005">
+          <End Type="BDDistBHFModel.TO005" Role="TO005" Multiplicity="1" />
+          <End Type="BDDistBHFModel.TO0051" Role="TO0051" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TO005">
+              <PropertyRef Name="olnumi" />
+            </Principal>
+            <Dependent Role="TO0051">
+              <PropertyRef Name="omolnumi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="TO0052">
           <Key>
             <PropertyRef Name="onnumi" />
@@ -6609,18 +6621,6 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="onMonto" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="TO005" Relationship="BDDistBHFModel.FK_TO0052_TO005" FromRole="TO0052" ToRole="TO005" />
         </EntityType>
-        <Association Name="FK_TO0051_TO005">
-          <End Type="BDDistBHFModel.TO005" Role="TO005" Multiplicity="1" />
-          <End Type="BDDistBHFModel.TO0051" Role="TO0051" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TO005">
-              <PropertyRef Name="olnumi" />
-            </Principal>
-            <Dependent Role="TO0051">
-              <PropertyRef Name="omolnumi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TO0052_TO005">
           <End Type="BDDistBHFModel.TO005" Role="TO005" Multiplicity="1" />
           <End Type="BDDistBHFModel.TO0052" Role="TO0052" Multiplicity="*" />
