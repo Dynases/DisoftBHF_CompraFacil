@@ -8101,7 +8101,7 @@ Public Class AccesoLogica
 #Region "TO005 Caja"
 
 
-    Public Shared Function L_prCajaGrabar(ByRef _olnumi As String, _olnumichof As String, _olnumiconci As Integer, _olfecha As String, olmrec As String, _dt As DataTable) As Boolean
+    Public Shared Function L_prCajaGrabar(ByRef _olnumi As String, _olnumichof As String, _olnumiconci As Integer, _olfecha As String, olmrec As String, _dt As DataTable, olCredito As Decimal, olTipoCambio As Decimal) As Boolean
         Dim _resultado As Boolean
         '@olnumi,@olnumichof ,@olnumiconci ,@olfecha ,@newFecha ,@newHora ,@oluact
         Dim _Tabla As DataTable
@@ -8113,6 +8113,8 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@olnumiconci", _olnumiconci))
         _listParam.Add(New Datos.DParametro("@olfecha", _olfecha))
         _listParam.Add(New Datos.DParametro("@mrec", olmrec))
+        _listParam.Add(New Datos.DParametro("@olCredito", olCredito))
+        _listParam.Add(New Datos.DParametro("@olTipoCambio", olTipoCambio))
         _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@TO001", "", _dt))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TO005", _listParam)

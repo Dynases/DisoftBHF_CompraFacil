@@ -1,7 +1,7 @@
 USE [BDDistBHF_CF]
 GO
 
-/****** Object:  Table [dbo].[TO0051]    Script Date: 21/02/2020 2:33:04 ******/
+/****** Object:  Table [dbo].[TO0051]    Script Date: 21/02/2020 14:53:14 ******/
 SET ANSI_NULLS ON
 GO
 

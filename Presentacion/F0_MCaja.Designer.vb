@@ -46,12 +46,14 @@ Partial Class F0_MCaja
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.GroupPanel3 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.SuperTabControl2 = New DevComponents.DotNetBar.SuperTabControl()
+        Me.SuperTabControlPanel4 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.Dgv_Depositos = New Janus.Windows.GridEX.GridEX()
+        Me.DEPOSITO = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanel3 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.Dgv_Cortes = New Janus.Windows.GridEX.GridEX()
         Me.SuperTabItem2 = New DevComponents.DotNetBar.SuperTabItem()
-        Me.SuperTabControlPanel4 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.DEPOSITO = New DevComponents.DotNetBar.SuperTabItem()
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.cbbanco = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.LabelX13 = New DevComponents.DotNetBar.LabelX()
         Me.Tb_TipoCambio = New DevComponents.Editors.DoubleInput()
         Me.btBuscarChofer = New DevComponents.DotNetBar.ButtonX()
@@ -63,8 +65,6 @@ Partial Class F0_MCaja
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.TbCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.cbbanco = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
-        Me.Dgv_Depositos = New Janus.Windows.GridEX.GridEX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,14 +99,14 @@ Partial Class F0_MCaja
         Me.GroupPanel3.SuspendLayout()
         CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControl2.SuspendLayout()
+        Me.SuperTabControlPanel4.SuspendLayout()
+        CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControlPanel3.SuspendLayout()
         CType(Me.Dgv_Cortes, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuperTabControlPanel4.SuspendLayout()
         Me.GroupPanel2.SuspendLayout()
+        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFecha, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelSuperior
@@ -576,6 +576,7 @@ Partial Class F0_MCaja
         Me.LabelX5.Size = New System.Drawing.Size(120, 23)
         Me.LabelX5.TabIndex = 22
         Me.LabelX5.Text = "Recibido"
+        Me.LabelX5.Visible = False
         '
         'LabelX6
         '
@@ -591,6 +592,7 @@ Partial Class F0_MCaja
         Me.LabelX6.Size = New System.Drawing.Size(120, 23)
         Me.LabelX6.TabIndex = 23
         Me.LabelX6.Text = "Saldo"
+        Me.LabelX6.Visible = False
         '
         'tbdRecibido
         '
@@ -607,6 +609,7 @@ Partial Class F0_MCaja
         Me.tbdRecibido.Name = "tbdRecibido"
         Me.tbdRecibido.Size = New System.Drawing.Size(120, 23)
         Me.tbdRecibido.TabIndex = 21
+        Me.tbdRecibido.Visible = False
         '
         'tbdSaldo
         '
@@ -623,6 +626,7 @@ Partial Class F0_MCaja
         Me.tbdSaldo.Name = "tbdSaldo"
         Me.tbdSaldo.Size = New System.Drawing.Size(120, 23)
         Me.tbdSaldo.TabIndex = 20
+        Me.tbdSaldo.Visible = False
         '
         'Dgv_PedidoTotal
         '
@@ -710,8 +714,8 @@ Partial Class F0_MCaja
         Me.SuperTabControl2.ControlBox.MenuBox.Name = ""
         Me.SuperTabControl2.ControlBox.Name = ""
         Me.SuperTabControl2.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabControl2.ControlBox.MenuBox, Me.SuperTabControl2.ControlBox.CloseBox})
-        Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel4)
         Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel3)
+        Me.SuperTabControl2.Controls.Add(Me.SuperTabControlPanel4)
         Me.SuperTabControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabControl2.Location = New System.Drawing.Point(0, 0)
         Me.SuperTabControl2.Margin = New System.Windows.Forms.Padding(2)
@@ -724,6 +728,33 @@ Partial Class F0_MCaja
         Me.SuperTabControl2.TabIndex = 0
         Me.SuperTabControl2.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem2, Me.DEPOSITO})
         Me.SuperTabControl2.Text = "AYUDA"
+        '
+        'SuperTabControlPanel4
+        '
+        Me.SuperTabControlPanel4.Controls.Add(Me.Dgv_Depositos)
+        Me.SuperTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel4.Location = New System.Drawing.Point(0, 26)
+        Me.SuperTabControlPanel4.Name = "SuperTabControlPanel4"
+        Me.SuperTabControlPanel4.Size = New System.Drawing.Size(699, 196)
+        Me.SuperTabControlPanel4.TabIndex = 0
+        Me.SuperTabControlPanel4.TabItem = Me.DEPOSITO
+        '
+        'Dgv_Depositos
+        '
+        Me.Dgv_Depositos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Dgv_Depositos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv_Depositos.Location = New System.Drawing.Point(0, 0)
+        Me.Dgv_Depositos.Name = "Dgv_Depositos"
+        Me.Dgv_Depositos.Size = New System.Drawing.Size(699, 196)
+        Me.Dgv_Depositos.TabIndex = 0
+        Me.Dgv_Depositos.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'DEPOSITO
+        '
+        Me.DEPOSITO.AttachedControl = Me.SuperTabControlPanel4
+        Me.DEPOSITO.GlobalItem = False
+        Me.DEPOSITO.Name = "DEPOSITO"
+        Me.DEPOSITO.Text = "DEPOSITO"
         '
         'SuperTabControlPanel3
         '
@@ -739,10 +770,12 @@ Partial Class F0_MCaja
         'Dgv_Cortes
         '
         Me.Dgv_Cortes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Dgv_Cortes.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Dgv_Cortes.Location = New System.Drawing.Point(0, 0)
         Me.Dgv_Cortes.Name = "Dgv_Cortes"
         Me.Dgv_Cortes.Size = New System.Drawing.Size(699, 196)
         Me.Dgv_Cortes.TabIndex = 0
+        Me.Dgv_Cortes.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'SuperTabItem2
         '
@@ -750,23 +783,6 @@ Partial Class F0_MCaja
         Me.SuperTabItem2.GlobalItem = False
         Me.SuperTabItem2.Name = "SuperTabItem2"
         Me.SuperTabItem2.Text = "CORTES"
-        '
-        'SuperTabControlPanel4
-        '
-        Me.SuperTabControlPanel4.Controls.Add(Me.Dgv_Depositos)
-        Me.SuperTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControlPanel4.Location = New System.Drawing.Point(0, 26)
-        Me.SuperTabControlPanel4.Name = "SuperTabControlPanel4"
-        Me.SuperTabControlPanel4.Size = New System.Drawing.Size(699, 196)
-        Me.SuperTabControlPanel4.TabIndex = 0
-        Me.SuperTabControlPanel4.TabItem = Me.DEPOSITO
-        '
-        'DEPOSITO
-        '
-        Me.DEPOSITO.AttachedControl = Me.SuperTabControlPanel4
-        Me.DEPOSITO.GlobalItem = False
-        Me.DEPOSITO.Name = "DEPOSITO"
-        Me.DEPOSITO.Text = "DEPOSITO"
         '
         'GroupPanel2
         '
@@ -822,6 +838,19 @@ Partial Class F0_MCaja
         Me.GroupPanel2.TabIndex = 0
         Me.GroupPanel2.Text = "DATOS"
         '
+        'cbbanco
+        '
+        cbbanco_DesignTimeLayout.LayoutString = resources.GetString("cbbanco_DesignTimeLayout.LayoutString")
+        Me.cbbanco.DesignTimeLayout = cbbanco_DesignTimeLayout
+        Me.cbbanco.Location = New System.Drawing.Point(248, 178)
+        Me.cbbanco.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbbanco.Name = "cbbanco"
+        Me.cbbanco.SelectedIndex = -1
+        Me.cbbanco.SelectedItem = Nothing
+        Me.cbbanco.Size = New System.Drawing.Size(142, 21)
+        Me.cbbanco.TabIndex = 235
+        Me.cbbanco.Visible = False
+        '
         'LabelX13
         '
         Me.LabelX13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -831,7 +860,7 @@ Partial Class F0_MCaja
         '
         Me.LabelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX13.Location = New System.Drawing.Point(6, 176)
+        Me.LabelX13.Location = New System.Drawing.Point(6, 172)
         Me.LabelX13.Name = "LabelX13"
         Me.LabelX13.Size = New System.Drawing.Size(90, 23)
         Me.LabelX13.TabIndex = 28
@@ -848,7 +877,7 @@ Partial Class F0_MCaja
         Me.Tb_TipoCambio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.Tb_TipoCambio.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Tb_TipoCambio.Increment = 1.0R
-        Me.Tb_TipoCambio.Location = New System.Drawing.Point(104, 176)
+        Me.Tb_TipoCambio.Location = New System.Drawing.Point(104, 172)
         Me.Tb_TipoCambio.Name = "Tb_TipoCambio"
         Me.Tb_TipoCambio.Size = New System.Drawing.Size(120, 23)
         Me.Tb_TipoCambio.TabIndex = 27
@@ -1019,27 +1048,6 @@ Partial Class F0_MCaja
         Me.TbCodigo.Size = New System.Drawing.Size(100, 23)
         Me.TbCodigo.TabIndex = 10
         '
-        'cbbanco
-        '
-        cbbanco_DesignTimeLayout.LayoutString = resources.GetString("cbbanco_DesignTimeLayout.LayoutString")
-        Me.cbbanco.DesignTimeLayout = cbbanco_DesignTimeLayout
-        Me.cbbanco.Location = New System.Drawing.Point(248, 178)
-        Me.cbbanco.Margin = New System.Windows.Forms.Padding(2)
-        Me.cbbanco.Name = "cbbanco"
-        Me.cbbanco.SelectedIndex = -1
-        Me.cbbanco.SelectedItem = Nothing
-        Me.cbbanco.Size = New System.Drawing.Size(142, 21)
-        Me.cbbanco.TabIndex = 235
-        Me.cbbanco.Visible = False
-        '
-        'Dgv_Depositos
-        '
-        Me.Dgv_Depositos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Dgv_Depositos.Location = New System.Drawing.Point(0, 0)
-        Me.Dgv_Depositos.Name = "Dgv_Depositos"
-        Me.Dgv_Depositos.Size = New System.Drawing.Size(699, 196)
-        Me.Dgv_Depositos.TabIndex = 0
-        '
         'F0_MCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1085,15 +1093,15 @@ Partial Class F0_MCaja
         Me.GroupPanel3.ResumeLayout(False)
         CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControl2.ResumeLayout(False)
+        Me.SuperTabControlPanel4.ResumeLayout(False)
+        CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControlPanel3.ResumeLayout(False)
         CType(Me.Dgv_Cortes, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SuperTabControlPanel4.ResumeLayout(False)
         Me.GroupPanel2.ResumeLayout(False)
         Me.GroupPanel2.PerformLayout()
+        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFecha, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

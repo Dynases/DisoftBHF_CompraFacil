@@ -33,8 +33,8 @@ Public Class RCajaCambio
     Public Function GuardarCajaCambio(listIdCaja As List(Of VCajaCambio), idCaja As Integer) As Boolean Implements ICajaCambio.GuardarCajaCambio
         Try
             Using db = GetSchema()
-                Dim listaResu = db.TO0051.Select(Function(x) x.omolnumi = idCaja)
-                If listaResu.Count <> 0 Then
+                Dim listaResu = db.TO0051.Where(Function(x) x.omolnumi = idCaja).FirstOrDefault()
+                If Not listaResu Is Nothing Then
                     db.TO0051.RemoveRange(listaResu)
                 End If
                 For Each Lista As VCajaCambio In listIdCaja

@@ -568,15 +568,13 @@ Public Class F0_MCaja
 
         tbdRecibido.IsInputReadOnly = False
 
-        Tb_TipoCambio.IsInputReadOnly = False
-        Tb_TConsiliacion.IsInputReadOnly = False
-        Tb_TCredito.IsInputReadOnly = False
-        Tb_TDeposito.IsInputReadOnly = False
-        Tb_TDiferencia.IsInputReadOnly = False
-        Tb_TGeneral.IsInputReadOnly = False
-        Tb_TEfectivo.IsInputReadOnly = False
-
-
+        'Tb_TipoCambio.IsInputReadOnly = False
+        'Tb_TConsiliacion.IsInputReadOnly = False
+        'Tb_TCredito.IsInputReadOnly = False
+        'Tb_TDeposito.IsInputReadOnly = False
+        'Tb_TDiferencia.IsInputReadOnly = False
+        'Tb_TGeneral.IsInputReadOnly = False
+        'Tb_TEfectivo.IsInputReadOnly = False
     End Sub
 
     Public Sub _prFiltrar()
@@ -629,7 +627,8 @@ Public Class F0_MCaja
         _prCargarDetalleVenta(TbCodigo.Text)
         _prCrearListaCambio(1, Convert.ToInt32(TbCodigo.Text))
         _prCrearListaDeposito(1, Convert.ToInt32(TbCodigo.Text))
-        tbdRecibido.Value = GridEX1.GetValue("olmrec")
+        Tb_TConsiliacion.Value = GridEX1.GetValue("olmrec")
+        Tb_TipoCambio.Value = GridEX1.GetValue("olTipoCambio")
         _prCalcular()
         LblPaginacion.Text = Str(GridEX1.Row + 1) + "/" + GridEX1.RowCount.ToString
 
@@ -927,7 +926,11 @@ Public Class F0_MCaja
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = False
         End With
-
+        With GridEX1.RootTable.Columns("olCredito")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
         With GridEX1
             .DefaultFilterRowComparison = FilterConditionOperator.Contains
             .FilterMode = FilterMode.Automatic
@@ -1059,7 +1062,7 @@ Public Class F0_MCaja
         'ByRef _olnumi As String, _olnumichof As String, _olnumiconci As Integer, _olfecha As String, _dt As DataTable
         Dim numi As String = ""
 
-        Dim res As Boolean = L_prCajaGrabar(numi, Numi_Chofer, Numi_Conciliacion, tbFecha.Value.ToString("yyyy/MM/dd"), tbdRecibido.Value.ToString, CType(Dgv_PedidoTotal.DataSource, DataTable))
+        Dim res As Boolean = L_prCajaGrabar(numi, Numi_Chofer, Numi_Conciliacion, tbFecha.Value.ToString("yyyy/MM/dd"), Tb_TConsiliacion.Value.ToString, CType(Dgv_PedidoTotal.DataSource, DataTable), Tb_TCredito.Value, Tb_TipoCambio.Value)
         If res Then
             Dim ListaCambios = New LCajaCambio().GuardarCajaCambio(ListaCambio, Convert.ToInt32(numi))
             Dim ListaDepositos = New LCajaDeposito().GuardarDepositoCambio(ListaDeposito, Convert.ToInt32(numi))
@@ -1320,6 +1323,7 @@ Public Class F0_MCaja
                 End If
                 Dgv_PedidoTotal.SetValue("contado", Dgv_PedidoTotal.GetValue("total") - Dgv_PedidoTotal.GetValue("credito"))
             End If
+            Dgv_PedidoTotal.UpdateData()
             _prCalcular()
         End If
     End Sub
@@ -1361,6 +1365,14 @@ Public Class F0_MCaja
             CantidadDo = Convert.ToDouble(Dgv_Cortes.CurrentRow.Cells("CantidadDo").Value)
             totalDo = CorteDo * CantidadDo
             Dgv_Cortes.CurrentRow.Cells("TotalD").Value = totalDo
+            Dgv_Cortes.UpdateData()
+
+            _prCalcular()
+        End If
+    End Sub
+    Private Sub Dgv_Depositos_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles Dgv_Depositos.CellEdited
+        If (e.Column.Key = "Monto") Then
+            Dgv_Depositos.UpdateData()
             _prCalcular()
         End If
     End Sub
@@ -1370,7 +1382,7 @@ Public Class F0_MCaja
         totalCorteDol = Dgv_Cortes.GetTotal(Dgv_Cortes.RootTable.Columns("TotalD"), AggregateFunction.Sum)
         TotalDeposito = Dgv_Depositos.GetTotal(Dgv_Depositos.RootTable.Columns("Monto"), AggregateFunction.Sum)
         TotalCredito = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("credito"), AggregateFunction.Sum)
-        totalConciliacion = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("contado"), AggregateFunction.Sum)
+        totalConciliacion = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("total"), AggregateFunction.Sum)
         Tb_TEfectivo.Value = totalCorteBol + (totalCorteDol * Tb_TipoCambio.Value)
         Tb_TDeposito.Value = TotalDeposito
         Tb_TCredito.Value = TotalCredito
@@ -1397,25 +1409,34 @@ Public Class F0_MCaja
         If (_fnAccesible()) Then
             If e.KeyData = Keys.Enter Then
                 If (Dgv_Depositos.Col = Dgv_Depositos.RootTable.Columns("Banco").Index) Then
+                    Dgv_Depositos.UpdateData()
+                    'Dgv_PedidoTotal.Select()
+                    'Dgv_Depositos.Select()
+                    'Dgv_Depositos.Refresh()
+                    'Dgv_Depositos.Refetch()
                     ListaDeposito = Dgv_Depositos.DataSource
-                    Dgv_Depositos.Select()
-                    Dgv_Depositos.Refresh()
-                    Dgv_Depositos.Refetch()
                     _prArmarListaDeposito()
                     _prArmarDeposito()
                 End If
             End If
-            'If e.KeyData = Keys.Escape Then
-            '    'Dim Id = Dgv_Depositos.GetValue("Id")
-            '    'ListaDeposito = Dgv_Depositos.DataSource
-            '    'Dim lista As VCajaDeposito = ListaDeposito.Select(Function(x) x.Id = Id)
-            '    'ListaDeposito.RemoveAt(ListaDeposito.IndexOf(lista))
-            '    '_prArmarListaDeposito()
-            '    '_prArmarDeposito()
-            '    'Dgv_Depositos.Select()
-            '    'Dgv_Depositos.Refresh()
-            '    'Dgv_Depositos.Refetch()
-            'End If
+            If e.KeyData = Keys.Escape Then
+                Dim Id = Dgv_Depositos.GetValue("Id")
+                Dgv_Depositos.UpdateData()
+                ListaDeposito = Dgv_Depositos.DataSource
+                Dim lista = ListaDeposito.Where(Function(x) x.Id = Id).FirstOrDefault()
+                ListaDeposito.Remove(lista)
+                '_prArmarListaDeposito()
+                _prArmarDeposito()
+            End If
         End If
     End Sub
+
+    Private Sub Tb_TipoCambio_ValueChanged(sender As Object, e As EventArgs) Handles Tb_TipoCambio.ValueChanged
+        Dgv_Depositos.UpdateData()
+        Dgv_Depositos.UpdateData()
+        Dgv_PedidoTotal.UpdateData()
+        _prCalcular()
+    End Sub
+
+
 End Class
