@@ -356,6 +356,9 @@
     <Compile Include="EntityDataModel\BDDistBHF\VR_FacturasChacaltaya.vb">
       <DependentUpon>BDDistBHFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityDataModel\BDDistBHF\VR_GO_CajaGeneral.vb">
+      <DependentUpon>BDDistBHFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityDataModel\BDDistBHF\vr_go_comprobanteSalidaItems.vb">
       <DependentUpon>BDDistBHFModel.tt</DependentUpon>
     </Compile>

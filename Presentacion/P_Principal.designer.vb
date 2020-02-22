@@ -194,6 +194,7 @@ Partial Class P_Principal
         Me.MetroTileItem1 = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btEscRepCronoClasesPrac = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btEscRepHorasTrabajadas = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btVentRepVentaCajaGeneral = New DevComponents.DotNetBar.Metro.MetroTileItem()
         MetroTileFrame1 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         MetroTileFrame2 = New DevComponents.DotNetBar.Metro.MetroTileFrame()
         Me.SideNav1.SuspendLayout()
@@ -253,11 +254,11 @@ Partial Class P_Principal
         'SideNav1
         '
         Me.SideNav1.BackColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.SideNav1.Controls.Add(Me.SideNavPanelInventario)
-        Me.SideNav1.Controls.Add(Me.SideNavPanelCompra)
-        Me.SideNav1.Controls.Add(Me.SideNavPanelPedido)
         Me.SideNav1.Controls.Add(Me.SideNavPanelVenta)
+        Me.SideNav1.Controls.Add(Me.SideNavPanelPedido)
+        Me.SideNav1.Controls.Add(Me.SideNavPanelInventario)
         Me.SideNav1.Controls.Add(Me.SideNavPanelRRHH)
+        Me.SideNav1.Controls.Add(Me.SideNavPanelCompra)
         Me.SideNav1.Controls.Add(Me.SideNavPaenlConf)
         Me.SideNav1.Controls.Add(Me.SideNavPanelLogistica)
         Me.SideNav1.Controls.Add(Me.SideNavPanelCerrarSesion)
@@ -265,7 +266,7 @@ Partial Class P_Principal
         Me.SideNav1.Controls.Add(Me.SideNavPanel1)
         Me.SideNav1.Controls.Add(Me.SideNavPanel2)
         Me.SideNav1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNav1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SideNavItem1, Me.Separator1, Me.FP_Configuracion, Me.FP_Logistica, Me.FP_Pedido, Me.FP_Venta, Me.FP_Inventario, Me.FP_RecursosHumanos, Me.FP_Pedidos, Me.SideNavItem2, Me.FP_Compras, Me.Separator2, Me.FP_Ventana, Me.FP_CerrarSesion})
+        Me.SideNav1.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SideNavItem1, Me.Separator1, Me.FP_Configuracion, Me.FP_Logistica, Me.FP_Pedido, Me.FP_Inventario, Me.FP_Venta, Me.FP_RecursosHumanos, Me.FP_Pedidos, Me.SideNavItem2, Me.FP_Compras, Me.Separator2, Me.FP_Ventana, Me.FP_CerrarSesion})
         Me.SideNav1.Location = New System.Drawing.Point(0, 0)
         Me.SideNav1.Name = "SideNav1"
         Me.SideNav1.Padding = New System.Windows.Forms.Padding(1)
@@ -282,6 +283,7 @@ Partial Class P_Principal
         Me.SideNavPanelInventario.Name = "SideNavPanelInventario"
         Me.SideNavPanelInventario.Size = New System.Drawing.Size(875, 565)
         Me.SideNavPanelInventario.TabIndex = 87
+        Me.SideNavPanelInventario.Visible = False
         '
         'PanelInventario
         '
@@ -1073,7 +1075,6 @@ Partial Class P_Principal
         Me.SideNavPanelVenta.Name = "SideNavPanelVenta"
         Me.SideNavPanelVenta.Size = New System.Drawing.Size(875, 565)
         Me.SideNavPanelVenta.TabIndex = 134
-        Me.SideNavPanelVenta.Visible = False
         '
         'PanelVenta
         '
@@ -1098,7 +1099,7 @@ Partial Class P_Principal
         Me.MetroTilePanelVenta.ContainerControlProcessDialogKey = True
         Me.MetroTilePanelVenta.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MetroTilePanelVenta.DragDropSupport = True
-        Me.MetroTilePanelVenta.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ItemContainerVentTransacciones, Me.ItemContainerVentReportes, Me.btNotaVenta})
+        Me.MetroTilePanelVenta.Items.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.ItemContainerVentTransacciones, Me.ItemContainerVentReportes, Me.btNotaVenta, Me.btVentRepVentaCajaGeneral})
         Me.MetroTilePanelVenta.ItemSpacing = 10
         Me.MetroTilePanelVenta.Location = New System.Drawing.Point(0, 0)
         Me.MetroTilePanelVenta.MultiLine = True
@@ -2784,6 +2785,7 @@ Partial Class P_Principal
         '
         'FP_Venta
         '
+        Me.FP_Venta.Checked = True
         Me.FP_Venta.Name = "FP_Venta"
         Me.FP_Venta.Panel = Me.SideNavPanelVenta
         Me.FP_Venta.Symbol = ""
@@ -2791,7 +2793,6 @@ Partial Class P_Principal
         '
         'FP_Inventario
         '
-        Me.FP_Inventario.Checked = True
         Me.FP_Inventario.Name = "FP_Inventario"
         Me.FP_Inventario.Panel = Me.SideNavPanelInventario
         Me.FP_Inventario.Symbol = ""
@@ -3068,6 +3069,27 @@ Partial Class P_Principal
         Me.btEscRepHorasTrabajadas.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.btEscRepHorasTrabajadas.TitleText = "VEHICULO"
         '
+        'btVentRepVentaCajaGeneral
+        '
+        Me.btVentRepVentaCajaGeneral.Image = CType(resources.GetObject("btVentRepVentaCajaGeneral.Image"), System.Drawing.Image)
+        Me.btVentRepVentaCajaGeneral.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btVentRepVentaCajaGeneral.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center
+        Me.btVentRepVentaCajaGeneral.Name = "btVentRepVentaCajaGeneral"
+        Me.btVentRepVentaCajaGeneral.SymbolColor = System.Drawing.Color.Empty
+        Me.btVentRepVentaCajaGeneral.Text = "CAJA GENERAL"
+        Me.btVentRepVentaCajaGeneral.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Plum
+        Me.btVentRepVentaCajaGeneral.TileSize = New System.Drawing.Size(250, 135)
+        '
+        '
+        '
+        Me.btVentRepVentaCajaGeneral.TileStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btVentRepVentaCajaGeneral.TileStyle.BackColor2 = System.Drawing.Color.BlueViolet
+        Me.btVentRepVentaCajaGeneral.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btVentRepVentaCajaGeneral.TileStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btVentRepVentaCajaGeneral.TileStyle.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Far
+        Me.btVentRepVentaCajaGeneral.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
+        Me.btVentRepVentaCajaGeneral.TitleTextColor = System.Drawing.Color.Red
+        '
         'P_Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3280,4 +3302,5 @@ Partial Class P_Principal
     Friend WithEvents btPagosCompras As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btVentas As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btMovPack As DevComponents.DotNetBar.Metro.MetroTileItem
+    Friend WithEvents btVentRepVentaCajaGeneral As DevComponents.DotNetBar.Metro.MetroTileItem
 End Class

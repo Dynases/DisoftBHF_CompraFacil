@@ -83,6 +83,7 @@
           <Property Name="cauventa" Type="int" />
           <Property Name="caumax" Type="int" />
           <Property Name="caconv" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="capack" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TC0011' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -775,6 +776,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TO0043' no tiene definida n
           <Property Name="olfact" Type="date" />
           <Property Name="olhact" Type="nvarchar" MaxLength="5" />
           <Property Name="oluact" Type="nvarchar" MaxLength="10" />
+          <Property Name="olCredito" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="olTipoCambio" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TO0051">
           <Key>
@@ -1195,6 +1198,24 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_FacturasChacaltaya' no t
           <Property Name="odnota" Type="int" />
           <Property Name="oenfac" Type="nvarchar" MaxLength="12" />
           <Property Name="oeefec" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_CajaGeneral' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VR_GO_CajaGeneral">
+          <Key>
+            <PropertyRef Name="IdCaja" />
+          </Key>
+          <Property Name="IdCaja" Type="int" Nullable="false" />
+          <Property Name="FechaCaja" Type="date" />
+          <Property Name="Conciliacion" Type="int" />
+          <Property Name="FechaPedido" Type="date" />
+          <Property Name="Repartidor" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalConciliacion" Type="numeric" Precision="38" Scale="2" />
+          <Property Name="TotalEfectivo" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="TotalCredito" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalDeposito" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="TotalGeneral" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Diferencia" Type="numeric" Precision="38" Scale="2" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.vr_go_comprobanteSalidaItems' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -2189,6 +2210,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Parameter Name="conv" Type="int" Mode="In" />
           <Parameter Name="cecon" Type="int" Mode="In" />
           <Parameter Name="cedesc" Type="nvarchar" Mode="In" />
+          <Parameter Name="pack" Type="int" Mode="In" />
+          <Parameter Name="numipro" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_go_TC002" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo" Type="int" Mode="In" />
@@ -2595,6 +2618,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Parameter Name="oanumi" Type="int" Mode="In" />
           <Parameter Name="credito" Type="decimal" Mode="In" />
           <Parameter Name="chofer" Type="int" Mode="In" />
+          <Parameter Name="olCredito" Type="decimal" Mode="In" />
+          <Parameter Name="olTipoCambio" Type="decimal" Mode="In" />
         </Function>
         <Function Name="sp_Mam_TV00121" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo" Type="int" Mode="In" />
@@ -3176,6 +3201,21 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_FacturasChacaltaya].[oenfac] AS [oenfac], 
     [VR_FacturasChacaltaya].[oeefec] AS [oeefec]
     FROM [dbo].[VR_FacturasChacaltaya] AS [VR_FacturasChacaltaya]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VR_GO_CajaGeneral" EntityType="Self.VR_GO_CajaGeneral" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VR_GO_CajaGeneral].[IdCaja] AS [IdCaja], 
+    [VR_GO_CajaGeneral].[FechaCaja] AS [FechaCaja], 
+    [VR_GO_CajaGeneral].[Conciliacion] AS [Conciliacion], 
+    [VR_GO_CajaGeneral].[FechaPedido] AS [FechaPedido], 
+    [VR_GO_CajaGeneral].[Repartidor] AS [Repartidor], 
+    [VR_GO_CajaGeneral].[TotalConciliacion] AS [TotalConciliacion], 
+    [VR_GO_CajaGeneral].[TotalEfectivo] AS [TotalEfectivo], 
+    [VR_GO_CajaGeneral].[TotalCredito] AS [TotalCredito], 
+    [VR_GO_CajaGeneral].[TotalDeposito] AS [TotalDeposito], 
+    [VR_GO_CajaGeneral].[TotalGeneral] AS [TotalGeneral], 
+    [VR_GO_CajaGeneral].[Diferencia] AS [Diferencia]
+    FROM [dbo].[VR_GO_CajaGeneral] AS [VR_GO_CajaGeneral]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vr_go_comprobanteSalidaItems" EntityType="Self.vr_go_comprobanteSalidaItems" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -3980,6 +4020,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
             <Parameter Name="conv" Mode="In" Type="Int32" />
             <Parameter Name="cecon" Mode="In" Type="Int32" />
             <Parameter Name="cedesc" Mode="In" Type="String" />
+            <Parameter Name="pack" Mode="In" Type="Int32" />
+            <Parameter Name="numipro" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_go_TC002" ReturnType="Collection(Int32)">
             <Parameter Name="tipo" Mode="In" Type="Int32" />
@@ -4386,6 +4428,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
             <Parameter Name="oanumi" Mode="In" Type="Int32" />
             <Parameter Name="credito" Mode="In" Type="Decimal" />
             <Parameter Name="chofer" Mode="In" Type="Int32" />
+            <Parameter Name="olCredito" Mode="In" Type="Decimal" />
+            <Parameter Name="olTipoCambio" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_Mam_TV00121">
             <Parameter Name="tipo" Mode="In" Type="Int32" />
@@ -4569,6 +4613,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
             <End Role="TO005" EntitySet="TO005" />
             <End Role="TO0052" EntitySet="TO0052" />
           </AssociationSet>
+          <EntitySet Name="VR_GO_CajaGeneral" EntityType="BDDistBHFModel.VR_GO_CajaGeneral" />
           </EntityContainer>
         <ComplexType Name="sp_dg_RAsistencia_Result">
           <Property Type="Int32" Name="cbnumi" Nullable="false" />
@@ -4803,6 +4848,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="cauventa" Type="Int32" />
           <Property Name="caumax" Type="Int32" />
           <Property Name="caconv" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="capack" Type="Int32" />
         </EntityType>
         <EntityType Name="TC002">
           <Key>
@@ -6578,6 +6624,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="oluact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TO0051" Relationship="BDDistBHFModel.FK_TO0051_TO005" FromRole="TO005" ToRole="TO0051" />
           <NavigationProperty Name="TO0052" Relationship="BDDistBHFModel.FK_TO0052_TO005" FromRole="TO005" ToRole="TO0052" />
+          <Property Name="olCredito" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="olTipoCambio" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TO0051">
           <Key>
@@ -6633,6 +6681,22 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="VR_GO_CajaGeneral">
+          <Key>
+            <PropertyRef Name="IdCaja" />
+          </Key>
+          <Property Name="IdCaja" Type="Int32" Nullable="false" />
+          <Property Name="FechaCaja" Type="DateTime" Precision="0" />
+          <Property Name="Conciliacion" Type="Int32" />
+          <Property Name="FechaPedido" Type="DateTime" Precision="0" />
+          <Property Name="Repartidor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalConciliacion" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="TotalEfectivo" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="TotalCredito" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalDeposito" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="TotalGeneral" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="Diferencia" Type="Decimal" Precision="38" Scale="2" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6925,6 +6989,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="TC001">
             <EntityTypeMapping TypeName="BDDistBHFModel.TC001">
               <MappingFragment StoreEntitySet="TC001">
+                <ScalarProperty Name="capack" ColumnName="capack" />
                 <ScalarProperty Name="caconv" ColumnName="caconv" />
                 <ScalarProperty Name="caumax" ColumnName="caumax" />
                 <ScalarProperty Name="cauventa" ColumnName="cauventa" />
@@ -8780,6 +8845,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="TO005">
             <EntityTypeMapping TypeName="BDDistBHFModel.TO005">
               <MappingFragment StoreEntitySet="TO005">
+                <ScalarProperty Name="olTipoCambio" ColumnName="olTipoCambio" />
+                <ScalarProperty Name="olCredito" ColumnName="olCredito" />
                 <ScalarProperty Name="oluact" ColumnName="oluact" />
                 <ScalarProperty Name="olhact" ColumnName="olhact" />
                 <ScalarProperty Name="olfact" ColumnName="olfact" />
@@ -8818,6 +8885,23 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
                 <ScalarProperty Name="onestado" ColumnName="onestado" />
                 <ScalarProperty Name="onolnumi" ColumnName="onolnumi" />
                 <ScalarProperty Name="onnumi" ColumnName="onnumi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VR_GO_CajaGeneral">
+            <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_CajaGeneral">
+              <MappingFragment StoreEntitySet="VR_GO_CajaGeneral">
+                <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
+                <ScalarProperty Name="TotalGeneral" ColumnName="TotalGeneral" />
+                <ScalarProperty Name="TotalDeposito" ColumnName="TotalDeposito" />
+                <ScalarProperty Name="TotalCredito" ColumnName="TotalCredito" />
+                <ScalarProperty Name="TotalEfectivo" ColumnName="TotalEfectivo" />
+                <ScalarProperty Name="TotalConciliacion" ColumnName="TotalConciliacion" />
+                <ScalarProperty Name="Repartidor" ColumnName="Repartidor" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="Conciliacion" ColumnName="Conciliacion" />
+                <ScalarProperty Name="FechaCaja" ColumnName="FechaCaja" />
+                <ScalarProperty Name="IdCaja" ColumnName="IdCaja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

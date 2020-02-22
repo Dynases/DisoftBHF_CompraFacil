@@ -418,6 +418,12 @@
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmCajaGeneral.Designer.vb">
+      <DependentUpon>frmCajaGeneral.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCajaGeneral.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Mapas\F1_Dosificacion.designer.vb">
       <DependentUpon>F1_Dosificacion.vb</DependentUpon>
     </Compile>
@@ -673,6 +679,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>R_CajaGeneral.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_CajaGeneralConciliacion.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_CajaGeneralConciliacion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\R_CajaProducto.vb">
@@ -1213,6 +1225,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCajaGeneral.resx">
+      <DependentUpon>frmCajaGeneral.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mapas\F1_Dosificacion.resx">
       <DependentUpon>F1_Dosificacion.vb</DependentUpon>
     </EmbeddedResource>
@@ -1340,6 +1355,10 @@
     <EmbeddedResource Include="Reportes\R_CajaGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_CajaGeneral.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_CajaGeneralConciliacion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_CajaGeneralConciliacion.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_CajaProducto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

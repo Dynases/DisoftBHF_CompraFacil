@@ -22,5 +22,13 @@ Public Class LCajaCambio
         End Try
     End Function
 
+    Public Function ListarCajaGeneral_Report(FechaDesde As DateTime, fechaHasta As DateTime) As List(Of VCajaGeneral)
+        Try
+            Return iCajaCambio.ListarCajaGeneral_Report(FechaDesde, fechaHasta)
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        End Try
+    End Function
+
 
 End Class

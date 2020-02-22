@@ -686,6 +686,20 @@ Public Class P_Principal
         tab3.Text = frm.Text
         'tab3.Icon = frm.Icon
     End Sub
+    Private Sub btVentRepVentaCajaGeneral_Click(sender As Object, e As EventArgs) Handles btVentRepVentaCajaGeneral.Click
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New frmCajaGeneral
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+        frm._nameButton = btVentRepVentaCajaGeneral.Name
+        frm._tab = tab3
+        frm._modulo = FP_Pedido
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+    End Sub
 
 #End Region
 
@@ -1230,6 +1244,8 @@ Public Class P_Principal
         tab3.Text = frm.Text
         'tab3.Icon = frm.Icon
     End Sub
+
+
 
 
 #End Region

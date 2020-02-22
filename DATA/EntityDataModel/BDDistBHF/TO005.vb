@@ -19,6 +19,8 @@ Partial Public Class TO005
     Public Property olfact As Nullable(Of Date)
     Public Property olhact As String
     Public Property oluact As String
+    Public Property olCredito As Nullable(Of Decimal)
+    Public Property olTipoCambio As Nullable(Of Decimal)
 
     Public Overridable Property TO0051 As ICollection(Of TO0051) = New HashSet(Of TO0051)
     Public Overridable Property TO0052 As ICollection(Of TO0052) = New HashSet(Of TO0052)

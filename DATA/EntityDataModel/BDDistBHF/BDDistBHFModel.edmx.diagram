@@ -127,6 +127,7 @@
         <AssociationConnector Association="BDDistBHFModel.FK_TO0051_TO005" />
         <EntityTypeShape EntityType="BDDistBHFModel.TO0052" Width="1.5" PointX="34.625" PointY="30.125" />
         <AssociationConnector Association="BDDistBHFModel.FK_TO0052_TO005" />
+        <EntityTypeShape EntityType="BDDistBHFModel.VR_GO_CajaGeneral" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -36,5 +36,6 @@ Partial Public Class TC001
     Public Property cauventa As Nullable(Of Integer)
     Public Property caumax As Nullable(Of Integer)
     Public Property caconv As Nullable(Of Decimal)
+    Public Property capack As Nullable(Of Integer)
 
 End Class
