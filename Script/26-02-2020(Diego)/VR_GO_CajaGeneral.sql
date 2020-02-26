@@ -1,7 +1,7 @@
 USE [BDDistBHF_CF]
 GO
 
-/****** Object:  View [dbo].[VR_GO_CajaGeneral]    Script Date: 22/02/2020 9:44:56 ******/
+/****** Object:  View [dbo].[VR_GO_CajaGeneral]    Script Date: 26/02/2020 10:48:22 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -32,9 +32,9 @@ SELECT        TOP (100) PERCENT caja.olnumi AS IdCaja, caja.olfecha AS FechaCaja
 FROM            dbo.TO005 AS caja INNER JOIN
                          dbo.TO001A AS a ON a.oaacaja = caja.olnumi INNER JOIN
                          dbo.TO001 AS pedido ON pedido.oanumi = a.oaato1numi INNER JOIN
-                         dbo.TC002 AS repartidor ON repartidor.cbnumi = pedido.oarepa INNER JOIN
                          dbo.TO0011 AS detalle ON detalle.obnumi = pedido.oanumi INNER JOIN
-                         dbo.TO001C AS conci ON conci.oacoanumi = pedido.oanumi
+                         dbo.TO001C AS conci ON conci.oacoanumi = pedido.oanumi INNER JOIN
+                         dbo.TC002 AS repartidor ON repartidor.cbnumi = conci.oaccbnumi
 GROUP BY pedido.oafdoc, pedido.oafdoc, repartidor.cbdesc, conci.oacnconc, caja.olTipoCambio, caja.olnumi, caja.olCredito, caja.olfecha
 
 GO
@@ -140,6 +140,16 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
+         Begin Table = "repartidor"
+            Begin Extent = 
+               Top = 6
+               Left = 827
+               Bottom = 136
+               Right = 1052
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
          Begin Table = "detalle"
             Begin Extent = 
                Top = 138
@@ -156,16 +166,6 @@ Begin DesignProperties =
                Left = 301
                Bottom = 268
                Right = 526
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "repartidor"
-            Begin Extent = 
-               Top = 6
-               Left = 827
-               Bottom = 136
-               Right = 1052
             End
             DisplayFlags = 280
             TopColumn = 0
