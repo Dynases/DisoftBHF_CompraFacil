@@ -26,8 +26,20 @@ Partial Class F02_MovimientoPack
         Dim cbConcepto_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F02_MovimientoPack))
         Me.TableLayoutPanelPrincipal = New System.Windows.Forms.TableLayoutPanel()
+        Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
+        Me.dgjDesArmPack = New Janus.Windows.GridEX.GridEX()
         Me.GroupPanelDatosGenerales = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.PanelExDatosGenerales = New DevComponents.DotNetBar.PanelEx()
+        Me.tbCantP = New DevComponents.Editors.IntegerInput()
+        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
+        Me.btnAsignarFicha = New DevComponents.DotNetBar.ButtonX()
+        Me.tbPcosto = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
+        Me.LabelX7 = New DevComponents.DotNetBar.LabelX()
+        Me.tbCodPack = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.tbProdPack = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX6 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX3 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
@@ -43,19 +55,7 @@ Partial Class F02_MovimientoPack
         Me.dgjBusqueda = New Janus.Windows.GridEX.GridEX()
         Me.CmDetalle = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.QuitarProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LabelX6 = New DevComponents.DotNetBar.LabelX()
-        Me.tbProdPack = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.tbCodPack = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.LabelX7 = New DevComponents.DotNetBar.LabelX()
-        Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.dgjDesArmPack = New Janus.Windows.GridEX.GridEX()
-        Me.tbCantArm = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
-        Me.tbPcosto = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
-        Me.btnAsignarFicha = New DevComponents.DotNetBar.ButtonX()
-        Me.tbCantDesarm = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
+        Me.tbCantNP = New DevComponents.Editors.IntegerInput()
         CType(Me.MSuperTabControlPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MSuperTabControlPrincipal.SuspendLayout()
         Me.MSuperTabControlPanelBusqueda.SuspendLayout()
@@ -70,8 +70,11 @@ Partial Class F02_MovimientoPack
         Me.MPnUsuario.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanelPrincipal.SuspendLayout()
+        Me.GroupPanel1.SuspendLayout()
+        CType(Me.dgjDesArmPack, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanelDatosGenerales.SuspendLayout()
         Me.PanelExDatosGenerales.SuspendLayout()
+        CType(Me.tbCantP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbConcepto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtiFechaDoc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanelDetalle.SuspendLayout()
@@ -79,8 +82,7 @@ Partial Class F02_MovimientoPack
         Me.GroupPanelBusqueda.SuspendLayout()
         CType(Me.dgjBusqueda, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.CmDetalle.SuspendLayout()
-        Me.GroupPanel1.SuspendLayout()
-        CType(Me.dgjDesArmPack, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tbCantNP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MSuperTabControlPrincipal
@@ -232,6 +234,56 @@ Partial Class F02_MovimientoPack
         Me.TableLayoutPanelPrincipal.Size = New System.Drawing.Size(1276, 555)
         Me.TableLayoutPanelPrincipal.TabIndex = 29
         '
+        'GroupPanel1
+        '
+        Me.GroupPanel1.CanvasColor = System.Drawing.SystemColors.Control
+        Me.GroupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
+        Me.GroupPanel1.Controls.Add(Me.dgjDesArmPack)
+        Me.GroupPanel1.DisabledBackColor = System.Drawing.Color.Empty
+        Me.GroupPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupPanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupPanel1.Location = New System.Drawing.Point(3, 377)
+        Me.GroupPanel1.Name = "GroupPanel1"
+        Me.GroupPanel1.Size = New System.Drawing.Size(1270, 175)
+        '
+        '
+        '
+        Me.GroupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
+        Me.GroupPanel1.Style.BackColorGradientAngle = 90
+        Me.GroupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
+        Me.GroupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel1.Style.BorderBottomWidth = 1
+        Me.GroupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
+        Me.GroupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel1.Style.BorderLeftWidth = 1
+        Me.GroupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel1.Style.BorderRightWidth = 1
+        Me.GroupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
+        Me.GroupPanel1.Style.BorderTopWidth = 1
+        Me.GroupPanel1.Style.CornerDiameter = 4
+        Me.GroupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
+        Me.GroupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
+        Me.GroupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
+        Me.GroupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
+        '
+        '
+        '
+        Me.GroupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        '
+        '
+        Me.GroupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.GroupPanel1.TabIndex = 2
+        Me.GroupPanel1.Text = "DETALLE MOVIMIENTO DE DESARMADO DE PACK"
+        '
+        'dgjDesArmPack
+        '
+        Me.dgjDesArmPack.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgjDesArmPack.Location = New System.Drawing.Point(0, 0)
+        Me.dgjDesArmPack.Name = "dgjDesArmPack"
+        Me.dgjDesArmPack.Size = New System.Drawing.Size(1264, 151)
+        Me.dgjDesArmPack.TabIndex = 0
+        '
         'GroupPanelDatosGenerales
         '
         Me.GroupPanelDatosGenerales.CanvasColor = System.Drawing.SystemColors.Control
@@ -279,12 +331,12 @@ Partial Class F02_MovimientoPack
         Me.PanelExDatosGenerales.AutoScroll = True
         Me.PanelExDatosGenerales.CanvasColor = System.Drawing.SystemColors.Control
         Me.PanelExDatosGenerales.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.PanelExDatosGenerales.Controls.Add(Me.tbCantDesarm)
+        Me.PanelExDatosGenerales.Controls.Add(Me.tbCantNP)
+        Me.PanelExDatosGenerales.Controls.Add(Me.tbCantP)
         Me.PanelExDatosGenerales.Controls.Add(Me.LabelX5)
         Me.PanelExDatosGenerales.Controls.Add(Me.btnAsignarFicha)
         Me.PanelExDatosGenerales.Controls.Add(Me.tbPcosto)
         Me.PanelExDatosGenerales.Controls.Add(Me.LabelX9)
-        Me.PanelExDatosGenerales.Controls.Add(Me.tbCantArm)
         Me.PanelExDatosGenerales.Controls.Add(Me.LabelX8)
         Me.PanelExDatosGenerales.Controls.Add(Me.LabelX7)
         Me.PanelExDatosGenerales.Controls.Add(Me.tbCodPack)
@@ -311,6 +363,142 @@ Partial Class F02_MovimientoPack
         Me.PanelExDatosGenerales.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.PanelExDatosGenerales.Style.GradientAngle = 90
         Me.PanelExDatosGenerales.TabIndex = 0
+        '
+        'tbCantP
+        '
+        '
+        '
+        '
+        Me.tbCantP.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.tbCantP.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbCantP.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.tbCantP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbCantP.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.tbCantP.Location = New System.Drawing.Point(543, 46)
+        Me.tbCantP.Name = "tbCantP"
+        Me.tbCantP.Size = New System.Drawing.Size(66, 21)
+        Me.tbCantP.TabIndex = 266
+        '
+        'LabelX5
+        '
+        '
+        '
+        '
+        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX5.FontBold = True
+        Me.LabelX5.Location = New System.Drawing.Point(971, 59)
+        Me.LabelX5.Name = "LabelX5"
+        Me.LabelX5.Size = New System.Drawing.Size(60, 23)
+        Me.LabelX5.TabIndex = 263
+        Me.LabelX5.Text = "Cantidad:"
+        '
+        'btnAsignarFicha
+        '
+        Me.btnAsignarFicha.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnAsignarFicha.BackColor = System.Drawing.Color.White
+        Me.btnAsignarFicha.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
+        Me.btnAsignarFicha.FadeEffect = False
+        Me.btnAsignarFicha.FocusCuesEnabled = False
+        Me.btnAsignarFicha.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAsignarFicha.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right
+        Me.btnAsignarFicha.Location = New System.Drawing.Point(971, 13)
+        Me.btnAsignarFicha.Name = "btnAsignarFicha"
+        Me.btnAsignarFicha.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.btnAsignarFicha.Size = New System.Drawing.Size(166, 30)
+        Me.btnAsignarFicha.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
+        Me.btnAsignarFicha.TabIndex = 262
+        Me.btnAsignarFicha.Text = "DESARMAR    PACK"
+        '
+        'tbPcosto
+        '
+        '
+        '
+        '
+        Me.tbPcosto.Border.Class = "TextBoxBorder"
+        Me.tbPcosto.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbPcosto.Location = New System.Drawing.Point(543, 74)
+        Me.tbPcosto.MaxLength = 15
+        Me.tbPcosto.Name = "tbPcosto"
+        Me.tbPcosto.Size = New System.Drawing.Size(66, 23)
+        Me.tbPcosto.TabIndex = 225
+        '
+        'LabelX9
+        '
+        '
+        '
+        '
+        Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX9.FontBold = True
+        Me.LabelX9.Location = New System.Drawing.Point(472, 73)
+        Me.LabelX9.Name = "LabelX9"
+        Me.LabelX9.Size = New System.Drawing.Size(65, 23)
+        Me.LabelX9.TabIndex = 224
+        Me.LabelX9.Text = "P. Costo:"
+        '
+        'LabelX8
+        '
+        '
+        '
+        '
+        Me.LabelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX8.FontBold = True
+        Me.LabelX8.Location = New System.Drawing.Point(472, 45)
+        Me.LabelX8.Name = "LabelX8"
+        Me.LabelX8.Size = New System.Drawing.Size(65, 23)
+        Me.LabelX8.TabIndex = 222
+        Me.LabelX8.Text = "Cantidad:"
+        '
+        'LabelX7
+        '
+        '
+        '
+        '
+        Me.LabelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX7.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX7.Location = New System.Drawing.Point(543, 3)
+        Me.LabelX7.Name = "LabelX7"
+        Me.LabelX7.Size = New System.Drawing.Size(51, 10)
+        Me.LabelX7.TabIndex = 221
+        Me.LabelX7.Text = "Ctrl+Enter:"
+        '
+        'tbCodPack
+        '
+        '
+        '
+        '
+        Me.tbCodPack.Border.Class = "TextBoxBorder"
+        Me.tbCodPack.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbCodPack.Location = New System.Drawing.Point(543, 16)
+        Me.tbCodPack.MaxLength = 15
+        Me.tbCodPack.Name = "tbCodPack"
+        Me.tbCodPack.Size = New System.Drawing.Size(66, 23)
+        Me.tbCodPack.TabIndex = 220
+        '
+        'tbProdPack
+        '
+        '
+        '
+        '
+        Me.tbProdPack.Border.Class = "TextBoxBorder"
+        Me.tbProdPack.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbProdPack.Location = New System.Drawing.Point(616, 16)
+        Me.tbProdPack.MaxLength = 15
+        Me.tbProdPack.Name = "tbProdPack"
+        Me.tbProdPack.Size = New System.Drawing.Size(200, 23)
+        Me.tbProdPack.TabIndex = 219
+        '
+        'LabelX6
+        '
+        '
+        '
+        '
+        Me.LabelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX6.FontBold = True
+        Me.LabelX6.Location = New System.Drawing.Point(472, 15)
+        Me.LabelX6.Name = "LabelX6"
+        Me.LabelX6.Size = New System.Drawing.Size(49, 23)
+        Me.LabelX6.TabIndex = 218
+        Me.LabelX6.Text = "Pack:"
         '
         'LabelX4
         '
@@ -575,202 +763,20 @@ Partial Class F02_MovimientoPack
         Me.QuitarProductoToolStripMenuItem.Size = New System.Drawing.Size(168, 32)
         Me.QuitarProductoToolStripMenuItem.Text = "Quitar Producto"
         '
-        'LabelX6
+        'tbCantNP
         '
         '
         '
         '
-        Me.LabelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX6.FontBold = True
-        Me.LabelX6.Location = New System.Drawing.Point(472, 15)
-        Me.LabelX6.Name = "LabelX6"
-        Me.LabelX6.Size = New System.Drawing.Size(49, 23)
-        Me.LabelX6.TabIndex = 218
-        Me.LabelX6.Text = "Pack:"
-        '
-        'tbProdPack
-        '
-        '
-        '
-        '
-        Me.tbProdPack.Border.Class = "TextBoxBorder"
-        Me.tbProdPack.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbProdPack.Location = New System.Drawing.Point(616, 16)
-        Me.tbProdPack.MaxLength = 15
-        Me.tbProdPack.Name = "tbProdPack"
-        Me.tbProdPack.Size = New System.Drawing.Size(200, 23)
-        Me.tbProdPack.TabIndex = 219
-        '
-        'tbCodPack
-        '
-        '
-        '
-        '
-        Me.tbCodPack.Border.Class = "TextBoxBorder"
-        Me.tbCodPack.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbCodPack.Location = New System.Drawing.Point(543, 16)
-        Me.tbCodPack.MaxLength = 15
-        Me.tbCodPack.Name = "tbCodPack"
-        Me.tbCodPack.Size = New System.Drawing.Size(66, 23)
-        Me.tbCodPack.TabIndex = 220
-        '
-        'LabelX7
-        '
-        '
-        '
-        '
-        Me.LabelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX7.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX7.Location = New System.Drawing.Point(543, 3)
-        Me.LabelX7.Name = "LabelX7"
-        Me.LabelX7.Size = New System.Drawing.Size(51, 10)
-        Me.LabelX7.TabIndex = 221
-        Me.LabelX7.Text = "Ctrl+Enter:"
-        '
-        'GroupPanel1
-        '
-        Me.GroupPanel1.CanvasColor = System.Drawing.SystemColors.Control
-        Me.GroupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.GroupPanel1.Controls.Add(Me.dgjDesArmPack)
-        Me.GroupPanel1.DisabledBackColor = System.Drawing.Color.Empty
-        Me.GroupPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupPanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel1.Location = New System.Drawing.Point(3, 377)
-        Me.GroupPanel1.Name = "GroupPanel1"
-        Me.GroupPanel1.Size = New System.Drawing.Size(1270, 175)
-        '
-        '
-        '
-        Me.GroupPanel1.Style.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2
-        Me.GroupPanel1.Style.BackColorGradientAngle = 90
-        Me.GroupPanel1.Style.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground
-        Me.GroupPanel1.Style.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.GroupPanel1.Style.BorderBottomWidth = 1
-        Me.GroupPanel1.Style.BorderColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder
-        Me.GroupPanel1.Style.BorderLeft = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.GroupPanel1.Style.BorderLeftWidth = 1
-        Me.GroupPanel1.Style.BorderRight = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.GroupPanel1.Style.BorderRightWidth = 1
-        Me.GroupPanel1.Style.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid
-        Me.GroupPanel1.Style.BorderTopWidth = 1
-        Me.GroupPanel1.Style.CornerDiameter = 4
-        Me.GroupPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Rounded
-        Me.GroupPanel1.Style.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center
-        Me.GroupPanel1.Style.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
-        Me.GroupPanel1.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near
-        '
-        '
-        '
-        Me.GroupPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        '
-        '
-        '
-        Me.GroupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.GroupPanel1.TabIndex = 2
-        Me.GroupPanel1.Text = "DETALLE MOVIMIENTO DE DESARMADO DE PACK"
-        '
-        'dgjDesArmPack
-        '
-        Me.dgjDesArmPack.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgjDesArmPack.Location = New System.Drawing.Point(0, 0)
-        Me.dgjDesArmPack.Name = "dgjDesArmPack"
-        Me.dgjDesArmPack.Size = New System.Drawing.Size(1264, 151)
-        Me.dgjDesArmPack.TabIndex = 0
-        '
-        'tbCantArm
-        '
-        '
-        '
-        '
-        Me.tbCantArm.Border.Class = "TextBoxBorder"
-        Me.tbCantArm.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbCantArm.Location = New System.Drawing.Point(543, 45)
-        Me.tbCantArm.MaxLength = 15
-        Me.tbCantArm.Name = "tbCantArm"
-        Me.tbCantArm.Size = New System.Drawing.Size(66, 23)
-        Me.tbCantArm.TabIndex = 223
-        '
-        'LabelX8
-        '
-        '
-        '
-        '
-        Me.LabelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX8.FontBold = True
-        Me.LabelX8.Location = New System.Drawing.Point(472, 44)
-        Me.LabelX8.Name = "LabelX8"
-        Me.LabelX8.Size = New System.Drawing.Size(65, 23)
-        Me.LabelX8.TabIndex = 222
-        Me.LabelX8.Text = "Cantidad:"
-        '
-        'tbPcosto
-        '
-        '
-        '
-        '
-        Me.tbPcosto.Border.Class = "TextBoxBorder"
-        Me.tbPcosto.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbPcosto.Location = New System.Drawing.Point(543, 74)
-        Me.tbPcosto.MaxLength = 15
-        Me.tbPcosto.Name = "tbPcosto"
-        Me.tbPcosto.Size = New System.Drawing.Size(66, 23)
-        Me.tbPcosto.TabIndex = 225
-        '
-        'LabelX9
-        '
-        '
-        '
-        '
-        Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX9.FontBold = True
-        Me.LabelX9.Location = New System.Drawing.Point(472, 73)
-        Me.LabelX9.Name = "LabelX9"
-        Me.LabelX9.Size = New System.Drawing.Size(65, 23)
-        Me.LabelX9.TabIndex = 224
-        Me.LabelX9.Text = "P. Costo:"
-        '
-        'btnAsignarFicha
-        '
-        Me.btnAsignarFicha.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btnAsignarFicha.BackColor = System.Drawing.Color.White
-        Me.btnAsignarFicha.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
-        Me.btnAsignarFicha.FadeEffect = False
-        Me.btnAsignarFicha.FocusCuesEnabled = False
-        Me.btnAsignarFicha.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAsignarFicha.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right
-        Me.btnAsignarFicha.Location = New System.Drawing.Point(971, 13)
-        Me.btnAsignarFicha.Name = "btnAsignarFicha"
-        Me.btnAsignarFicha.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.btnAsignarFicha.Size = New System.Drawing.Size(166, 30)
-        Me.btnAsignarFicha.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010
-        Me.btnAsignarFicha.TabIndex = 262
-        Me.btnAsignarFicha.Text = "DESARMAR    PACK"
-        '
-        'tbCantDesarm
-        '
-        '
-        '
-        '
-        Me.tbCantDesarm.Border.Class = "TextBoxBorder"
-        Me.tbCantDesarm.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbCantDesarm.Location = New System.Drawing.Point(1040, 59)
-        Me.tbCantDesarm.MaxLength = 15
-        Me.tbCantDesarm.Name = "tbCantDesarm"
-        Me.tbCantDesarm.Size = New System.Drawing.Size(97, 23)
-        Me.tbCantDesarm.TabIndex = 264
-        '
-        'LabelX5
-        '
-        '
-        '
-        '
-        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX5.FontBold = True
-        Me.LabelX5.Location = New System.Drawing.Point(971, 59)
-        Me.LabelX5.Name = "LabelX5"
-        Me.LabelX5.Size = New System.Drawing.Size(60, 23)
-        Me.LabelX5.TabIndex = 263
-        Me.LabelX5.Text = "Cantidad:"
+        Me.tbCantNP.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.tbCantNP.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbCantNP.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.tbCantNP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbCantNP.InputHorizontalAlignment = DevComponents.Editors.eHorizontalAlignment.Left
+        Me.tbCantNP.Location = New System.Drawing.Point(1040, 59)
+        Me.tbCantNP.Name = "tbCantNP"
+        Me.tbCantNP.Size = New System.Drawing.Size(97, 21)
+        Me.tbCantNP.TabIndex = 267
         '
         'F02_MovimientoPack
         '
@@ -798,9 +804,12 @@ Partial Class F02_MovimientoPack
         Me.MPnUsuario.PerformLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanelPrincipal.ResumeLayout(False)
+        Me.GroupPanel1.ResumeLayout(False)
+        CType(Me.dgjDesArmPack, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanelDatosGenerales.ResumeLayout(False)
         Me.PanelExDatosGenerales.ResumeLayout(False)
         Me.PanelExDatosGenerales.PerformLayout()
+        CType(Me.tbCantP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbConcepto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtiFechaDoc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanelDetalle.ResumeLayout(False)
@@ -808,8 +817,7 @@ Partial Class F02_MovimientoPack
         Me.GroupPanelBusqueda.ResumeLayout(False)
         CType(Me.dgjBusqueda, System.ComponentModel.ISupportInitialize).EndInit()
         Me.CmDetalle.ResumeLayout(False)
-        Me.GroupPanel1.ResumeLayout(False)
-        CType(Me.dgjDesArmPack, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tbCantNP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -839,9 +847,9 @@ Partial Class F02_MovimientoPack
     Friend WithEvents dgjDesArmPack As Janus.Windows.GridEX.GridEX
     Friend WithEvents tbPcosto As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents LabelX9 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents tbCantArm As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents LabelX8 As DevComponents.DotNetBar.LabelX
     Friend WithEvents btnAsignarFicha As DevComponents.DotNetBar.ButtonX
-    Friend WithEvents tbCantDesarm As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents LabelX5 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents tbCantP As DevComponents.Editors.IntegerInput
+    Friend WithEvents tbCantNP As DevComponents.Editors.IntegerInput
 End Class

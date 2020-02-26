@@ -482,7 +482,8 @@ Public Class F02_MovimientoPack
         P_prLimpiar()
         P_prEstadoNueModEli(1)
         P_prHDComponentes(BoNuevo)
-        dtiFechaDoc.Select()
+        'dtiFechaDoc.Select()
+        tbCodPack.Select()
         P_prAddFilaDetalle()
     End Sub
 
@@ -533,14 +534,18 @@ Public Class F02_MovimientoPack
     End Sub
 
     Private Sub P_prGrabarRegistro()
-        Dim id As String
-        Dim fdoc As String
-        Dim obs As String
-        Dim est As String
-        Dim alm As String
-        Dim iddc As String
+        'Dim id As String
+        'Dim fdoc As String
+        'Dim obs As String
+        'Dim codpack As String
+        'Dim cantP As Integer
+        'Dim pcosto As String
+        'Dim cantNP As Integer
+        'Dim est As String
+        'Dim alm As String
+        'Dim iddc As String
 
-        dgjDetalle.Refetch()
+        'dgjDetalle.Refetch()
 
         'If (BoNuevo) Then
         '    If (P_fnValidarGrabacion()) Then
@@ -548,11 +553,15 @@ Public Class F02_MovimientoPack
         '        id = ""
         '        fdoc = dtiFechaDoc.Value.ToString("yyyy/MM/dd")
         '        obs = tbObs.Text.Trim
+        '        codpack = tbCodPack.Text
+        '        cantP = tbCantP.Value
+        '        pcosto = tbPcosto.Text
+        '        cantNP = IIf(tbCantNP.Value = "", 0, tbCantNP.Value)
         '        est = IIf(tipo = 1, "1", "11")
         '        alm = stAlm
         '        iddc = stIddc
 
-        '        dtiFechaDoc.Select()
+        '        'dtiFechaDoc.Select()
 
         '        Dim dt As New DataTable
         '        dt = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "icid", "icibid", "iccprod", "iccant", "estado")
@@ -866,7 +875,7 @@ Public Class F02_MovimientoPack
             .CellStyle.Font = FtNormal
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
-            .FormatString = 0.00
+            .FormatString = "0.00"
         End With
         With dgjDetalle.RootTable.Columns("stock")
             .Caption = "Stock"
@@ -984,13 +993,28 @@ Public Class F02_MovimientoPack
                 dgjDetalle.SetValue("ihcodpro", dt.Rows(i).Item("cbtccanumi1"))
                 dgjDetalle.SetValue("cadesc", dt.Rows(i).Item("cadesc"))
                 dgjDetalle.SetValue("ihcant", dt.Rows(i).Item("cbcant"))
+                dgjDetalle.SetValue("ihpcosto", dt.Rows(i).Item("chprecio"))
                 dgjDetalle.SetValue("stock", iccven)
 
             Next
             CType(dgjDetalle.DataSource, DataTable).AcceptChanges()
+            tbPcosto.Text = dgjDetalle.GetTotal(dgjDetalle.RootTable.Columns("ihpcosto"), AggregateFunction.Sum)
             dgjDetalle.Select()
 
         End If
+    End Sub
+
+    Private Sub tbCantP_ValueChanged(sender As Object, e As EventArgs) Handles tbCantP.ValueChanged
+        Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable)
+        If (dt.Rows.Count > 0) Then
+            For i As Integer = 0 To dt.Rows.Count - 1
+
+                dgjDetalle.Row = i
+                'dgjDetalle.SetValue("ihtotcant", dgjDetalle.GetValue("ihcant") * tbCantArm.Value)
+                dgjDetalle.SetValue("ihtotcant", dt.Rows(i).Item("ihcant") * tbCantP.Value)
+            Next
+        End If
+        dgjDetalle.UpdateData()
     End Sub
 #End Region
 
