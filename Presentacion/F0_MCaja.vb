@@ -622,6 +622,7 @@ Public Class F0_MCaja
             lbFecha.Text = CType(.GetValue("olfact"), Date).ToString("dd/MM/yyyy")
             lbHora.Text = .GetValue("olhact").ToString
             lbUsuario.Text = .GetValue("oluact").ToString
+            Tb_TCredito.Text = .GetValue("olCredito")
         End With
 
         _prCargarDetalleVenta(TbCodigo.Text)
@@ -629,7 +630,7 @@ Public Class F0_MCaja
         _prCrearListaDeposito(1, Convert.ToInt32(TbCodigo.Text))
         Tb_TConsiliacion.Value = GridEX1.GetValue("olmrec")
         Tb_TipoCambio.Value = GridEX1.GetValue("olTipoCambio")
-        _prCalcular()
+        _prCalcular(Tb_TCredito.Value, 2)
         LblPaginacion.Text = Str(GridEX1.Row + 1) + "/" + GridEX1.RowCount.ToString
 
     End Sub
@@ -1324,7 +1325,7 @@ Public Class F0_MCaja
                 Dgv_PedidoTotal.SetValue("contado", Dgv_PedidoTotal.GetValue("total") - Dgv_PedidoTotal.GetValue("credito"))
             End If
             Dgv_PedidoTotal.UpdateData()
-            _prCalcular()
+            _prCalcular(0, 1)
         End If
     End Sub
 
@@ -1367,28 +1368,32 @@ Public Class F0_MCaja
             Dgv_Cortes.CurrentRow.Cells("TotalD").Value = totalDo
             Dgv_Cortes.UpdateData()
 
-            _prCalcular()
+            _prCalcular(0, 1)
         End If
     End Sub
     Private Sub Dgv_Depositos_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles Dgv_Depositos.CellEdited
         If (e.Column.Key = "Monto") Then
             Dgv_Depositos.UpdateData()
-            _prCalcular()
+            _prCalcular(0, 1)
         End If
     End Sub
-    Private Sub _prCalcular()
-        Dim totalCorteDol, totalCorteBol, TotalDeposito, TotalCredito, totalConciliacion As Double
+    Private Sub _prCalcular(credito As Double, tipo As Integer)
+        Dim totalCorteDol, totalCorteBol, TotalDeposito, totalConciliacion As Double
         totalCorteBol = Dgv_Cortes.GetTotal(Dgv_Cortes.RootTable.Columns("TotalBo"), AggregateFunction.Sum)
+        If tipo = 1 Then
+            credito = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("credito"), AggregateFunction.Sum)
+        Else
+            credito = credito
+        End If
         totalCorteDol = Dgv_Cortes.GetTotal(Dgv_Cortes.RootTable.Columns("TotalD"), AggregateFunction.Sum)
         TotalDeposito = Dgv_Depositos.GetTotal(Dgv_Depositos.RootTable.Columns("Monto"), AggregateFunction.Sum)
-        TotalCredito = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("credito"), AggregateFunction.Sum)
         totalConciliacion = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("total"), AggregateFunction.Sum)
         Tb_TEfectivo.Value = totalCorteBol + (totalCorteDol * Tb_TipoCambio.Value)
         Tb_TDeposito.Value = TotalDeposito
-        Tb_TCredito.Value = TotalCredito
+        Tb_TCredito.Value = credito
         Tb_TGeneral.Value = Tb_TEfectivo.Value + Tb_TDeposito.Value + Tb_TCredito.Value
         Tb_TConsiliacion.Value = totalConciliacion
-        Tb_TDiferencia.Value = Tb_TConsiliacion.Value - Tb_TGeneral.Value
+        Tb_TDiferencia.Value = Tb_TGeneral.Value - Tb_TConsiliacion.Value
     End Sub
 
     Private Sub Dgv_Depositos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles Dgv_Depositos.EditingCell
@@ -1435,7 +1440,7 @@ Public Class F0_MCaja
         Dgv_Depositos.UpdateData()
         Dgv_Depositos.UpdateData()
         Dgv_PedidoTotal.UpdateData()
-        _prCalcular()
+        _prCalcular(0, 1)
     End Sub
 
 

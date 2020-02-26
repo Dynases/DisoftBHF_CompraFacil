@@ -50,7 +50,7 @@ Public Class frmCajaGeneral
             .Caption = "Codigo"
             .Width = 80
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .Visible = True
+            .Visible = False
             .Position = 0
         End With
 
@@ -64,7 +64,7 @@ Public Class frmCajaGeneral
 
         With Dgv_Caja.RootTable.Columns("Conciliacion")
             .Caption = "Nro. Conciliacion"
-            .Width = 80
+            .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .Position = 2
@@ -79,15 +79,15 @@ Public Class frmCajaGeneral
 
         With Dgv_Caja.RootTable.Columns("Repartidor")
             .Caption = "Repartidor"
-            .Width = 250
+            .Width = 270
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = True
             .Position = 4
         End With
         With Dgv_Caja.RootTable.Columns("TotalConciliacion")
             .Caption = "Total Conciliacion"
-            .Width = 130
-
+            .Width = 150
+            .AggregateFunction = AggregateFunction.Sum
             .FormatString = "0.00"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
@@ -96,7 +96,7 @@ Public Class frmCajaGeneral
         With Dgv_Caja.RootTable.Columns("TotalEfectivo")
             .Caption = "Total Efectivo"
             .Width = 130
-
+            .AggregateFunction = AggregateFunction.Sum
             .FormatString = "0.00"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
@@ -106,6 +106,7 @@ Public Class frmCajaGeneral
             .Caption = "Total Credto"
             .Width = 130
             .FormatString = "0.00"
+            .AggregateFunction = AggregateFunction.Sum
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .Position = 7
@@ -114,13 +115,14 @@ Public Class frmCajaGeneral
             .Caption = "Total Deopsito"
             .Width = 130
             .FormatString = "0.00"
+            .AggregateFunction = AggregateFunction.Sum
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .Position = 8
         End With
         With Dgv_Caja.RootTable.Columns("TotalGeneral")
             .Caption = "Total General"
-            .Width = 140
+            .Width = 150
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -130,6 +132,7 @@ Public Class frmCajaGeneral
         With Dgv_Caja.RootTable.Columns("Diferencia")
             .Caption = "Diferencia"
             .Width = 140
+            .AggregateFunction = AggregateFunction.Sum
             .FormatString = "0.00"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
@@ -147,8 +150,9 @@ Public Class frmCajaGeneral
             .AllowColumnDrag = False
             .AutomaticSort = False
             .TotalRow = InheritableBoolean.True
+            .TotalRowFormatStyle.FontBold = TriState.True
             .TotalRowFormatStyle.BackColor = Color.Gold
-            .TotalRowPosition = TotalRowPosition.BottomFixed
+            .TotalRowPosition = TotalRowPosition.BottomScrollable
             '.ColumnHeaders = InheritableBoolean.False
         End With
     End Sub
