@@ -17,6 +17,7 @@ Public Class F02_MovimientoPack
     Public _nameButton As String
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
+    Dim mostrarStock As Boolean
 
     Private boShow As Boolean = False
     Private boAdd As Boolean = False
@@ -53,6 +54,7 @@ Public Class F02_MovimientoPack
 
     Dim DtBusqueda As DataTable
     Dim DtDetalle As DataTable
+    Dim DtDetalle1 As DataTable
     Dim InDuracion As Byte = 5
 
     Dim BoNuevo As Boolean = False
@@ -73,11 +75,11 @@ Public Class F02_MovimientoPack
     End Sub
 
     Private Sub MBtModificar_Click(sender As Object, e As EventArgs) Handles MBtModificar.Click
-        P_prModificarRegistro()
+        'P_prModificarRegistro()
     End Sub
 
     Private Sub MBtEliminar_Click(sender As Object, e As EventArgs) Handles MBtEliminar.Click
-        P_prEliminarRegistro()
+        'P_prEliminarRegistro()
     End Sub
 
     Private Sub MBtGrabar_Click(sender As Object, e As EventArgs) Handles MBtGrabar.Click
@@ -265,8 +267,6 @@ Public Class F02_MovimientoPack
         'Habilitar/Deshabilitar compotentes del formulario
         P_prHDComponentes(False)
 
-        'Armar todo los combobox 
-        P_prArmarCombos()
 
         'Armar todo las grillas
         BoNavegar = False
@@ -302,7 +302,6 @@ Public Class F02_MovimientoPack
 
         'Visible
         MBtImprimir.Visible = False
-        btAddConcepto.Visible = False
         QuitarProductoToolStripMenuItem.Visible = False
 
         'Enabled
@@ -366,16 +365,15 @@ Public Class F02_MovimientoPack
     Private Sub P_prHDComponentes(ByVal flat As Boolean)
         'TextBox
         tbObs.ReadOnly = Not flat
-
-        'ComboBox
-        cbConcepto.ReadOnly = Not flat
+        tbCodPack.ReadOnly = Not flat
+        tbProdPack.ReadOnly = Not flat
+        tbCantP.IsInputReadOnly = Not flat
+        tbPcosto.ReadOnly = Not flat
+        tbCantNP.IsInputReadOnly = Not flat
 
         'DateTimer
         dtiFechaDoc.IsInputReadOnly = Not flat
         dtiFechaDoc.ButtonDropDown.Enabled = flat
-
-        'Button
-        btAddConcepto.Enabled = flat
 
         'Switch Button
 
@@ -389,13 +387,12 @@ Public Class F02_MovimientoPack
         'TextBox
         tbCodigo.Clear()
         tbObs.Clear()
-
-        'ComboBox
-        If (CType(cbConcepto.DataSource, DataTable).Rows.Count > 0) Then
-            cbConcepto.SelectedIndex = 0
-        Else
-            cbConcepto.Clear()
-        End If
+        tbCodPack.Clear()
+        tbProdPack.Clear()
+        tbCantP.Value = 0
+        tbPcosto.Clear()
+        tbPcosto.Enabled = False
+        tbCantNP.Value = 0
 
         'DateTimer
         dtiFechaDoc.Value = Now.Date
@@ -410,13 +407,10 @@ Public Class F02_MovimientoPack
         MBtGrabar.Tooltip = "GRABAR"
     End Sub
 
-    Private Sub P_prArmarCombos()
-        P_prArmarComboConcepto()
-    End Sub
-
     Private Sub P_prArmarGrillas()
         P_prArmarGrillaBusqueda()
         P_prArmarGrillaDetalle("-1")
+        P_prArmarGrillaDetalleDesarmado("-1")
     End Sub
 
     Private Sub P_prActualizarPaginacion(ByVal index As Integer)
@@ -446,15 +440,26 @@ Public Class F02_MovimientoPack
                     Me.tbCodigo.Text = .GetValue("id").ToString
                     Me.dtiFechaDoc.Value = .GetValue("fdoc")
                     Me.tbObs.Text = .GetValue("obs").ToString
-                    Me.cbConcepto.Clear()
-                    Me.cbConcepto.SelectedText = .GetValue("nconcep").ToString
+                    Me.tbCodPack.Text = .GetValue("codpack").ToString
+                    Me.tbProdPack.Text = .GetValue("cadesc").ToString
+                    Me.tbCantP.Value = .GetValue("cantP")
+                    Me.tbPcosto.Text = .GetValue("pcosto").ToString
+                    Me.tbCantNP.Value = .GetValue("cantNP")
 
                     stEst = .GetValue("est").ToString
                     stAlm = .GetValue("alm").ToString
-                    stIddc = .GetValue("iddc").ToString
+                    'stIddc = .GetValue("iddc").ToString
 
                     'Aqui se coloca los datos de la grilla de los Equipos
                     P_prArmarGrillaDetalle(tbCodigo.Text)
+
+                    If tbCantNP.Value = 0 Then
+                        tbCantNP.Value = 0
+                        GroupPanelDesarmado.Visible = False
+                    Else
+                        GroupPanelDesarmado.Visible = True
+                        tbCantNP.Value = .GetValue("cantNP")
+                    End If
 
                     MLbFecha.Text = CType(.GetValue("fact").ToString, Date).ToString("dd/MM/yyyy")
                     MLbHora.Text = .GetValue("hact").ToString
@@ -506,9 +511,9 @@ Public Class F02_MovimientoPack
         Dim result As eTaskDialogResult = TaskDialog.Show(info)
         If result = eTaskDialogResult.Yes Then
             Dim mensajeError As String = ""
-            Dim resEliminar As Boolean = L_fnbValidarEliminacion(numi, "TI002", "ibid", mensajeError)
+            Dim resEliminar As Boolean = L_fnbValidarEliminacion(numi, "TI005", "ibid", mensajeError)
             If (resEliminar) Then
-                Dim res As Boolean = L_fnMovimientoBorrar(numi) 'Medoto de lógica para eliminar
+                Dim res As Boolean = L_fnMovimientoPackBorrar(numi) 'Medoto de lógica para eliminar
                 If (res) Then
                     ToastNotification.Show(Me, "Codigo de movimiento: ".ToUpper + numi + " eliminado con Exito.".ToUpper,
                                            My.Resources.GRABACION_EXITOSA, InDuracion * 1000,
@@ -534,104 +539,108 @@ Public Class F02_MovimientoPack
     End Sub
 
     Private Sub P_prGrabarRegistro()
-        'Dim id As String
-        'Dim fdoc As String
-        'Dim obs As String
-        'Dim codpack As String
-        'Dim cantP As Integer
-        'Dim pcosto As String
-        'Dim cantNP As Integer
-        'Dim est As String
-        'Dim alm As String
-        'Dim iddc As String
+        Dim id As String
+        Dim fdoc As String
+        Dim obs As String
+        Dim codpack As String
+        Dim cantP As Integer
+        Dim pcosto As String
+        Dim cantNP As Integer
+        Dim est As String
+        Dim alm As String
+        Dim iddc As String
 
-        'dgjDetalle.Refetch()
+        dgjDetalle.Refetch()
 
-        'If (BoNuevo) Then
-        '    If (P_fnValidarGrabacion()) Then
+        If (BoNuevo) Then
+            If (P_fnValidarGrabacion()) Then
 
-        '        id = ""
-        '        fdoc = dtiFechaDoc.Value.ToString("yyyy/MM/dd")
-        '        obs = tbObs.Text.Trim
-        '        codpack = tbCodPack.Text
-        '        cantP = tbCantP.Value
-        '        pcosto = tbPcosto.Text
-        '        cantNP = IIf(tbCantNP.Value = "", 0, tbCantNP.Value)
-        '        est = IIf(tipo = 1, "1", "11")
-        '        alm = stAlm
-        '        iddc = stIddc
+                id = ""
+                fdoc = dtiFechaDoc.Value.ToString("yyyy/MM/dd")
+                obs = tbObs.Text.Trim
+                codpack = tbCodPack.Text
+                cantP = tbCantP.Value
+                pcosto = tbPcosto.Text
+                cantNP = tbCantNP.Value
+                est = "1"
+                alm = stAlm
 
-        '        'dtiFechaDoc.Select()
+                'dtiFechaDoc.Select()
 
-        '        Dim dt As New DataTable
-        '        dt = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "icid", "icibid", "iccprod", "iccant", "estado")
 
-        '        'Grabar
-        '        Dim res As Boolean = L_fnMovimientoGrabar(id, fdoc, obs, est, alm, iddc, dt)
+                Dim dt As New DataTable
+                dt = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "ihid", "ihigid", "ihcodpro", "cadesc", "ihcant", "ihtotcant", "ihpcosto", "stock", "estado")
 
-        '        If (res) Then
-        '            P_prLimpiar()
-        '            BoNavegar = False
-        '            P_prArmarGrillaBusqueda()
-        '            BoNavegar = True
+                'Grabar
+                Dim res As Boolean = L_fnMovimientoPackGrabar(id, fdoc, obs, codpack, cantP, pcosto, cantNP, est, alm, dt)
 
-        '            ToastNotification.Show(Me, "Codigo de movimiento ".ToUpper + tbCodigo.Text + " Grabado con Exito.".ToUpper,
-        '                               My.Resources.GRABACION_EXITOSA,
-        '                               InDuracion * 1000,
-        '                               eToastGlowColor.Green,
-        '                               eToastPosition.TopCenter)
-        '        Else
-        '            ToastNotification.Show(Me, "No se pudo grabar el codigo de movimiento ".ToUpper + tbCodigo.Text + ", intente nuevamente.".ToUpper,
-        '                               My.Resources.WARNING,
-        '                               InDuracion * 1000,
-        '                               eToastGlowColor.Red,
-        '                               eToastPosition.TopCenter)
-        '        End If
-        '    End If
-        'ElseIf (BoModificar) Then
-        '    If (P_fnValidarGrabacion()) Then
+                If (res) Then
+                    P_prLimpiar()
+                    BoNavegar = False
+                    P_prArmarGrillaBusqueda()
+                    tbCodPack.Select()
+                    BoNavegar = True
 
-        '        id = tbCodigo.Text.Trim
-        '        fdoc = dtiFechaDoc.Value.ToString("yyyy/MM/dd")
-        '        concep = cbConcepto.Value.ToString
-        '        obs = tbObs.Text.Trim
-        '        est = stEst
-        '        alm = stAlm
-        '        iddc = stIddc
+                    ToastNotification.Show(Me, "Codigo de movimiento Pack ".ToUpper + tbCodigo.Text + " Grabado con éxito.".ToUpper,
+                                       My.Resources.GRABACION_EXITOSA,
+                                       InDuracion * 1000,
+                                       eToastGlowColor.Green,
+                                       eToastPosition.TopCenter)
+                Else
+                    ToastNotification.Show(Me, "No se pudo grabar el codigo de movimiento Pack".ToUpper + tbCodigo.Text + ", intente nuevamente.".ToUpper,
+                                       My.Resources.WARNING,
+                                       InDuracion * 1000,
+                                       eToastGlowColor.Red,
+                                       eToastPosition.TopCenter)
+                End If
+            End If
+        ElseIf (BoModificar) Then
+            If (P_fnValidarGrabacion()) Then
+                id = tbCodigo.Text.Trim
+                fdoc = dtiFechaDoc.Value.ToString("yyyy/MM/dd")
+                obs = tbObs.Text.Trim
+                codpack = tbCodPack.Text
+                cantP = tbCantP.Value
+                pcosto = tbPcosto.Text
+                cantNP = tbCantNP.Value
+                est = "1"
+                alm = stAlm
 
-        '        dtiFechaDoc.Select()
 
-        '        Dim dt As New DataTable
-        '        dt = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "icid", "icibid", "iccprod", "iccant", "estado")
+                dtiFechaDoc.Select()
 
-        '        'Grabar
-        '        Dim res As Boolean = L_fnMovimientoModificar(id, fdoc, concep, obs, est, alm, iddc, dt)
+                Dim dt As New DataTable
+                dt = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "ihid", "ihigid", "ihcodpro", "cadesc", "ihcant", "ihtotcant", "ihpcosto", "stock", "estado")
 
-        '        If (res) Then
+                'Grabar
+                Dim res As Boolean = L_fnMovimientoPackModificar(id, fdoc, obs, codpack, cantP, pcosto, cantNP, est, alm, dt)
 
-        '            BoNavegar = False
-        '            P_prArmarGrillaBusqueda()
-        '            BoNavegar = True
+                If (res) Then
 
-        '            P_prMoverIndexActual()
+                    BoNavegar = False
+                    P_prArmarGrillaBusqueda()
+                    BoNavegar = True
 
-        '            dtiFechaDoc.Select()
-        '            MBtSalir.PerformClick()
+                    P_prMoverIndexActual()
 
-        '            ToastNotification.Show(Me, "Codigo de cliente ".ToUpper + tbCodigo.Text + " Modificado con Exito.".ToUpper,
-        '                               My.Resources.GRABACION_EXITOSA,
-        '                               InDuracion * 1000,
-        '                               eToastGlowColor.Green,
-        '                               eToastPosition.TopCenter)
-        '        Else
-        '            ToastNotification.Show(Me, "No se pudo modificar el codigo de cliente ".ToUpper + tbCodigo.Text + ", intente nuevamente.".ToUpper,
-        '                               My.Resources.WARNING,
-        '                               InDuracion * 1000,
-        '                               eToastGlowColor.Red,
-        '                               eToastPosition.TopCenter)
-        '        End If
-        '    End If
-        'End If
+                    tbCodPack.Select()
+                    'dtiFechaDoc.Select()
+                    MBtSalir.PerformClick()
+
+                    ToastNotification.Show(Me, "Codigo de cliente ".ToUpper + tbCodigo.Text + " Modificado con Exito.".ToUpper,
+                                       My.Resources.GRABACION_EXITOSA,
+                                       InDuracion * 1000,
+                                       eToastGlowColor.Green,
+                                       eToastPosition.TopCenter)
+                Else
+                    ToastNotification.Show(Me, "No se pudo modificar el codigo de cliente ".ToUpper + tbCodigo.Text + ", intente nuevamente.".ToUpper,
+                                       My.Resources.WARNING,
+                                       InDuracion * 1000,
+                                       eToastGlowColor.Red,
+                                       eToastPosition.TopCenter)
+                End If
+            End If
+        End If
     End Sub
 
     Private Sub P_prCancelarRegistro()
@@ -694,124 +703,100 @@ Public Class F02_MovimientoPack
 
 #Region "Metodos y funciones generales"
 
-    Private Sub P_prArmarComboConcepto()
-        Dim Dt As New DataTable
-        'select a.cpnumi as numi, ROW_NUMBER() OVER(ORDER BY a.cpnumi ASC) AS [row], a.cpdesc as [desc]
-        'from TCI001 a
-        'where a.cptipo=2
-        Dt = L_fnObtenerTabla("a.cpnumi as numi, ROW_NUMBER() OVER(ORDER BY a.cpnumi ASC) AS [row], a.cpdesc as [desc]",
-                              "TCI001 a", "a.cptipo=" + IIf(tipo = 1, "2", "3"))
+    Private Sub P_prArmarGrillaBusqueda()
+        DtBusqueda = New DataTable
+        DtBusqueda = L_fnMovimientoPackGeneral()
 
-        With cbConcepto.DropDownList
-            .Columns.Add(Dt.Columns("numi").ToString)
-            .Columns(0).Visible = False
+        dgjBusqueda.BoundMode = Janus.Data.BoundMode.Bound
+        dgjBusqueda.DataSource = DtBusqueda
+        dgjBusqueda.RetrieveStructure()
 
-            .Columns.Add(Dt.Columns("row").ToString).Width = 80
-            .Columns(1).Caption = "Nro."
-
-            .Columns.Add(Dt.Columns("desc").ToString).Width = 150
-            .Columns(2).Caption = "Descripción"
+        'dar formato a las columnas
+        With dgjBusqueda.RootTable.Columns("id")
+            .Caption = "Código"
+            .Width = 80
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            '.CellStyle.BackColor = Color.AliceBlue
         End With
 
-        cbConcepto.ValueMember = Dt.Columns("numi").ToString
-        cbConcepto.DisplayMember = Dt.Columns("desc").ToString
-        cbConcepto.DataSource = Dt
-        cbConcepto.Refresh()
-    End Sub
+        With dgjBusqueda.RootTable.Columns("fdoc")
+            .Caption = "Fecha"
+            .Width = 100
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = True
+            '.CellStyle.BackColor = Color.AliceBlue
+        End With
+        With dgjBusqueda.RootTable.Columns("obs")
+            .Caption = "Observación"
+            .Width = 200
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = True
+            .Position = 2
+            '.CellStyle.BackColor = Color.AliceBlue
+        End With
 
-    Private Sub P_prArmarGrillaBusqueda()
-        'DtBusqueda = New DataTable
-        'DtBusqueda = L_fnMovimientoGeneral(IIf(tipo = 1, "1", "11"))
+        With dgjBusqueda.RootTable.Columns("codpack")
+            .Caption = "Cod. Pack"
+            .Visible = True
+        End With
+        With dgjBusqueda.RootTable.Columns("cadesc")
+            .Caption = "Pack"
+            .Visible = True
+        End With
+        With dgjBusqueda.RootTable.Columns("cantP")
+            .Visible = False
+        End With
 
-        'dgjBusqueda.BoundMode = Janus.Data.BoundMode.Bound
-        'dgjBusqueda.DataSource = DtBusqueda
-        'dgjBusqueda.RetrieveStructure()
+        With dgjBusqueda.RootTable.Columns("pcosto")
+            .Visible = False
+        End With
 
-        ''dar formato a las columnas
-        'With dgjBusqueda.RootTable.Columns("id")
-        '    .Caption = "Código"
-        '    .Width = 80
-        '    .HeaderStyle.Font = FtTitulo
-        '    .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-        '    .CellStyle.Font = FtNormal
-        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-        '    .Visible = True
-        '    '.CellStyle.BackColor = Color.AliceBlue
-        'End With
+        With dgjBusqueda.RootTable.Columns("cantNP")
+            .Visible = False
+        End With
 
-        'With dgjBusqueda.RootTable.Columns("fdoc")
-        '    .Caption = "Fecha"
-        '    .Width = 100
-        '    .HeaderStyle.Font = FtTitulo
-        '    .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-        '    .CellStyle.Font = FtNormal
-        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-        '    .Visible = True
-        '    '.CellStyle.BackColor = Color.AliceBlue
-        'End With
+        With dgjBusqueda.RootTable.Columns("est")
+            .Visible = False
+        End With
 
-        'With dgjBusqueda.RootTable.Columns("concep")
-        '    .Visible = False
-        'End With
+        With dgjBusqueda.RootTable.Columns("alm")
+            .Visible = False
+        End With
 
-        'With dgjBusqueda.RootTable.Columns("nconcep")
-        '    .Caption = "Concepto"
-        '    .Width = 150
-        '    .HeaderStyle.Font = FtTitulo
-        '    .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-        '    .CellStyle.Font = FtNormal
-        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-        '    .Visible = True
-        '    '.CellStyle.BackColor = Color.AliceBlue
-        'End With
-        'With dgjBusqueda.RootTable.Columns("obs")
-        '    .Caption = "Observación"
-        '    .Width = 200
-        '    .HeaderStyle.Font = FtTitulo
-        '    .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-        '    .CellStyle.Font = FtNormal
-        '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-        '    .Visible = True
-        '    .Position = 2
-        '    '.CellStyle.BackColor = Color.AliceBlue
-        'End With
+        With dgjBusqueda.RootTable.Columns("fact")
+            .Visible = False
+        End With
 
-        'With dgjBusqueda.RootTable.Columns("est")
-        '    .Visible = False
-        'End With
+        With dgjBusqueda.RootTable.Columns("hact")
+            .Visible = False
+        End With
 
-        'With dgjBusqueda.RootTable.Columns("alm")
-        '    .Visible = False
-        'End With
-
-        'With dgjBusqueda.RootTable.Columns("iddc")
-        '    .Visible = False
-        'End With
-
-        'With dgjBusqueda.RootTable.Columns("fact")
-        '    .Visible = False
-        'End With
-
-        'With dgjBusqueda.RootTable.Columns("hact")
-        '    .Visible = False
-        'End With
-
-        'With dgjBusqueda.RootTable.Columns("uact")
-        '    .Visible = False
-        'End With
-        ''Habilitar Filtradores
-        'With dgjBusqueda
-        '    .GroupByBoxVisible = False
-        '    '.FilterRowFormatStyle.BackColor = Color.Blue
-        '    .DefaultFilterRowComparison = FilterConditionOperator.Contains
-        '    .FilterMode = FilterMode.Automatic
-        '    .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
-        '    'Diseño de la tabla
-        '    .VisualStyle = VisualStyle.Office2007
-        '    .SelectionMode = SelectionMode.MultipleSelection
-        '    .AlternatingColors = True
-        '    .RecordNavigator = True
-        'End With
+        With dgjBusqueda.RootTable.Columns("uact")
+            .Visible = False
+        End With
+        'Habilitar Filtradores
+        With dgjBusqueda
+            .GroupByBoxVisible = False
+            '.FilterRowFormatStyle.BackColor = Color.Blue
+            .DefaultFilterRowComparison = FilterConditionOperator.Contains
+            .FilterMode = FilterMode.Automatic
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+            'Diseño de la tabla
+            .VisualStyle = VisualStyle.Office2007
+            .SelectionMode = SelectionMode.MultipleSelection
+            .AlternatingColors = True
+            .RecordNavigator = True
+        End With
     End Sub
 
     Private Sub P_prArmarGrillaDetalle(numi As String)
@@ -823,6 +808,9 @@ Public Class F02_MovimientoPack
         dgjDetalle.RetrieveStructure()
 
         'dar formato a las columnas
+        With dgjDetalle.RootTable.Columns("ihid")
+            .Visible = False
+        End With
         With dgjDetalle.RootTable.Columns("ihigid")
             .Visible = False
         End With
@@ -877,6 +865,7 @@ Public Class F02_MovimientoPack
             .Visible = True
             .FormatString = "0.00"
         End With
+
         With dgjDetalle.RootTable.Columns("stock")
             .Caption = "Stock"
             .Width = 100
@@ -886,6 +875,7 @@ Public Class F02_MovimientoPack
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = False
         End With
+
         With dgjDetalle.RootTable.Columns("estado")
             .Visible = False
             '.CellStyle.BackColor = Color.AliceBlue
@@ -905,35 +895,168 @@ Public Class F02_MovimientoPack
         End With
     End Sub
 
+    Private Sub P_prArmarGrillaDetalleDesarmado(numi As String)
+        DtDetalle1 = New DataTable
+        DtDetalle1 = L_fnMovimientoPackDetalleTI0052(numi)
+
+        dgjDesArmPack.BoundMode = Janus.Data.BoundMode.Bound
+        dgjDesArmPack.DataSource = DtDetalle1
+        dgjDesArmPack.RetrieveStructure()
+
+        'dar formato a las columnas
+        With dgjDesArmPack.RootTable.Columns("iiid")
+            .Visible = False
+        End With
+        With dgjDesArmPack.RootTable.Columns("iiigid")
+            .Visible = False
+        End With
+        With dgjDesArmPack.RootTable.Columns("iicodpro")
+            .Caption = "Cód Prod."
+            .Width = 100
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            '.CellStyle.BackColor = Color.AliceBlue
+        End With
+
+        With dgjDesArmPack.RootTable.Columns("cadesc")
+            .Caption = "Descripción"
+            .Width = 200
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = True
+            '.CellStyle.BackColor = Color.AliceBlue
+        End With
+
+        With dgjDesArmPack.RootTable.Columns("iicant")
+            .Caption = "Cantidad"
+            .Width = 100
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+        End With
+
+        With dgjDesArmPack.RootTable.Columns("iitotcant")
+            .Caption = "Total Cant."
+            .Width = 100
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+        End With
+        With dgjDesArmPack.RootTable.Columns("iipcosto")
+            .Caption = "P. Costo"
+            .Width = 100
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .FormatString = "0.00"
+        End With
+
+        With dgjDesArmPack.RootTable.Columns("stock")
+            .Caption = "Stock"
+            .Width = 100
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = False
+        End With
+
+
+        With dgjDesArmPack.RootTable.Columns("estado")
+            .Visible = False
+            '.CellStyle.BackColor = Color.AliceBlue
+        End With
+
+        'Habilitar Filtradores
+        With dgjDesArmPack
+            .GroupByBoxVisible = False
+            .DefaultFilterRowComparison = FilterConditionOperator.Contains
+            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+
+            'Diseño de la tabla
+            .VisualStyle = VisualStyle.Office2007
+            .SelectionMode = SelectionMode.MultipleSelection
+            .AlternatingColors = True
+            '.RecordNavigator = True
+        End With
+    End Sub
+
     Private Function P_fnValidarGrabacion() As Boolean
         Dim res As Boolean = True
         MEP.Clear()
 
-        If (Not IsNumeric(cbConcepto.Value)) Then
-            cbConcepto.BackColor = Color.Red
-            MEP.SetError(cbConcepto, "elija un concepto valido.".ToUpper)
+        If (tbCodPack.Text = String.Empty) Then
+            tbCodPack.BackColor = Color.Red
+            MEP.SetError(tbCodPack, "ingrese Código del producto Pack!".ToUpper)
             res = False
         Else
-            cbConcepto.BackColor = Color.White
-            MEP.SetError(cbConcepto, "")
+            tbCodPack.BackColor = Color.White
+            MEP.SetError(tbCodPack, "")
         End If
 
+        If (Not IsNumeric(tbCantP.Value) < 0) Then
+            tbCantP.BackColor = Color.Red
+            MEP.SetError(tbCantP, "La cantidad debe ser mayor a cero!".ToUpper)
+            res = False
+        Else
+            tbCantP.BackColor = Color.White
+            MEP.SetError(tbCantP, "")
+        End If
+        Return res
+    End Function
+    Private Function P_fnValidarGrabacionDesarmado() As Boolean
+        Dim res As Boolean = True
+        'MEP.Clear()
+
+        If (Not IsNumeric(tbCantNP.Value) < 0) Then
+            tbCantNP.BackColor = Color.Red
+            MEP.SetError(tbCantNP, "La cantidad debe ser mayor a cero!".ToUpper)
+            res = False
+        Else
+            tbCantNP.BackColor = Color.White
+            MEP.SetError(tbCantNP, "")
+        End If
         Return res
     End Function
 
     Private Sub P_prAddFilaDetalle()
         Dim fil As DataRow
         fil = DtDetalle.NewRow
+        fil.Item("ihid") = 0
         fil.Item("ihigid") = 0
         fil.Item("ihcodpro") = 0
         fil.Item("cadesc") = "Nuevo"
         fil.Item("ihcant") = 0
         fil.Item("ihtotcant") = 0
-        fil.Item("ihtotcant") = 0
         fil.Item("ihpcosto") = 0
         fil.Item("stock") = 0
         fil.Item("estado") = 0
         DtDetalle.Rows.Add(fil)
+    End Sub
+    Private Sub P_prAddFilaDetalleDesarmado()
+        Dim fil As DataRow
+        fil = DtDetalle1.NewRow
+        fil.Item("iiid") = 0
+        fil.Item("iiigid") = 0
+        fil.Item("iicodpro") = 0
+        fil.Item("cadesc") = "Nuevo"
+        fil.Item("iicant") = 0
+        fil.Item("iitotcant") = 0
+        fil.Item("iipcosto") = 0
+        fil.Item("stock") = 0
+        fil.Item("estado") = 0
+        DtDetalle1.Rows.Add(fil)
     End Sub
 
     Private Sub tbCodPack_KeyDown(sender As Object, e As KeyEventArgs) Handles tbCodPack.KeyDown
@@ -972,20 +1095,18 @@ Public Class F02_MovimientoPack
     End Sub
     Sub _prCargarProductoPack(numi As Integer)
         Dim dt As DataTable = L_fnDetallePack(numi)
-
+        With dgjDetalle.RootTable.Columns("stock")
+            .Caption = "Stock"
+            .Width = 100
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+        End With
         If (dt.Rows.Count > 0) Then
             CType(dgjDetalle.DataSource, DataTable).Rows.Clear()
             For i As Integer = 0 To dt.Rows.Count - 1
-                'Dim numiproducto As Integer = dt.Rows(i).Item("pbty5prod")
-                'Dim numimanual As String = dt.Rows(i).Item("yfcprod")
-                'Dim nameproducto As String = dt.Rows(i).Item("producto")
-                'Dim lote As String = ""
-                'Dim FechaVenc As Date = Now.Date
-                'Dim cantu As Double = dt.Rows(i).Item("pbcmin")
-                'Dim ccaja As Double = dt.Rows(i).Item("pbccaja")
-                'Dim cantc As Double = dt.Rows(i).Item("pbcantc")
-                'Dim cant As Double = dt.Rows(i).Item("pbcantu")
-                Dim iccven As Double = 0
 
                 P_prAddFilaDetalle()
                 dgjDetalle.Row = dgjDetalle.RowCount - 1
@@ -994,12 +1115,12 @@ Public Class F02_MovimientoPack
                 dgjDetalle.SetValue("cadesc", dt.Rows(i).Item("cadesc"))
                 dgjDetalle.SetValue("ihcant", dt.Rows(i).Item("cbcant"))
                 dgjDetalle.SetValue("ihpcosto", dt.Rows(i).Item("chprecio"))
-                dgjDetalle.SetValue("stock", iccven)
-
+                dgjDetalle.SetValue("stock", dt.Rows(i).Item("iacant"))
             Next
             CType(dgjDetalle.DataSource, DataTable).AcceptChanges()
             tbPcosto.Text = dgjDetalle.GetTotal(dgjDetalle.RootTable.Columns("ihpcosto"), AggregateFunction.Sum)
-            dgjDetalle.Select()
+            'dgjDetalle.Select()
+            tbCantP.Select()
 
         End If
     End Sub
@@ -1012,9 +1133,96 @@ Public Class F02_MovimientoPack
                 dgjDetalle.Row = i
                 'dgjDetalle.SetValue("ihtotcant", dgjDetalle.GetValue("ihcant") * tbCantArm.Value)
                 dgjDetalle.SetValue("ihtotcant", dt.Rows(i).Item("ihcant") * tbCantP.Value)
+                If (dgjDetalle.GetValue("ihtotcant") > dt.Rows(i).Item("stock")) Then
+
+                    Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+                    MessageBox.Show(Me, "La cantidad para armar el pack no debe ser mayor al del stock disponible, Producto: " + (dgjDetalle.GetValue("cadesc")) & vbCrLf &
+                    "Stock=" + Str(dgjDetalle.GetValue("stock")).ToUpper, "AVISO!!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    'ToastNotification.Show(Me, "La cantidad para armar el pack no debe ser mayor al del stock disponible" & vbCrLf &
+                    '"Stock=" + Str(dgjDetalle.GetValue("stock")).ToUpper, img, 6000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+
+
+                End If
             Next
+
         End If
         dgjDetalle.UpdateData()
+    End Sub
+
+    Private Sub btnDesarmarPack_Click(sender As Object, e As EventArgs) Handles btnDesarmarPack.Click
+        Dim dt As DataTable
+
+        GroupPanelDesarmado.Visible = True
+        tbCantNP.IsInputReadOnly = False
+        tbCantNP.Select()
+        dtiFechaDesarm.Visible = True
+        dtiFechaDesarm.Value = Now.Date
+        P_prArmarGrillaDetalleDesarmado(-1)
+        dt = dgjDetalle.DataSource
+
+        'dgjDesArmPack.DataSource = dt.Copy
+        'CType(dgjDesArmPack.DataSource, DataTable).AcceptChanges()
+
+        If (dt.Rows.Count > 0) Then
+            'CType(dgjDesArmPack.DataSource, DataTable).Rows.Clear()
+            For i As Integer = 0 To dt.Rows.Count - 1
+
+                P_prAddFilaDetalleDesarmado()
+                dgjDesArmPack.Row = dgjDesArmPack.RowCount - 1
+
+                dgjDesArmPack.SetValue("iiigid", dt.Rows(i).Item("ihigid"))
+                dgjDesArmPack.SetValue("iicodpro", dt.Rows(i).Item("ihcodpro"))
+                dgjDesArmPack.SetValue("cadesc", dt.Rows(i).Item("cadesc"))
+                dgjDesArmPack.SetValue("iicant", dt.Rows(i).Item("ihcant"))
+                dgjDesArmPack.SetValue("iipcosto", dt.Rows(i).Item("ihpcosto"))
+                'dgjDesArmPack.SetValue("stock", dt.Rows(i).Item("stock"))
+            Next
+            CType(dgjDesArmPack.DataSource, DataTable).AcceptChanges()
+
+        End If
+    End Sub
+
+    Private Sub tbCantNP_ValueChanged(sender As Object, e As EventArgs) Handles tbCantNP.ValueChanged
+        Dim dt As DataTable = CType(dgjDesArmPack.DataSource, DataTable)
+        If (dt.Rows.Count > 0) Then
+            For i As Integer = 0 To dt.Rows.Count - 1
+                dgjDesArmPack.Row = i
+                dgjDesArmPack.SetValue("iitotcant", dt.Rows(i).Item("iicant") * tbCantNP.Value)
+            Next
+
+        End If
+        dgjDesArmPack.UpdateData()
+    End Sub
+
+    Private Sub btnGrabarDesarm_Click(sender As Object, e As EventArgs) Handles btnGrabarDesarm.Click
+        If (P_fnValidarGrabacionDesarmado()) Then
+
+            Dim dt As New DataTable
+            dt = CType(dgjDesArmPack.DataSource, DataTable).DefaultView.ToTable(False, "iiid", "iiigid", "iicodpro", "cadesc", "iicant", "iitotcant", "iipcosto", "stock", "estado")
+
+            'Grabar
+            Dim res As Boolean = L_fnGrabarDesarmado(tbCodigo.Text, tbCodPack.Text, tbCantNP.Value, dtiFechaDesarm.Value, dt)
+
+            If (res) Then
+                P_prLimpiar()
+                BoNavegar = False
+                P_prArmarGrillaBusqueda()
+                tbCodPack.Select()
+                'BoNavegar = True
+
+                ToastNotification.Show(Me, "Desarmado de Pack ".ToUpper + tbCodigo.Text + " Grabado con éxito.".ToUpper,
+                                   My.Resources.GRABACION_EXITOSA,
+                                   InDuracion * 1000,
+                                   eToastGlowColor.Green,
+                                   eToastPosition.TopCenter)
+            Else
+                ToastNotification.Show(Me, "No se pudo grabar el desarmado del Pack".ToUpper + tbCodigo.Text + ", intente nuevamente.".ToUpper,
+                                   My.Resources.WARNING,
+                                   InDuracion * 1000,
+                                   eToastGlowColor.Red,
+                                   eToastPosition.TopCenter)
+            End If
+        End If
     End Sub
 #End Region
 

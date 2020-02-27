@@ -7503,19 +7503,17 @@ Public Class AccesoLogica
 
 #Region "TI005 Movimientos Pack"
 
-    'Public Shared Function L_fnMovimientoGeneral(est As String) As DataTable
-    '    Dim _Tabla As DataTable
+    Public Shared Function L_fnMovimientoPackGeneral() As DataTable
+        Dim _Tabla As DataTable
 
-    '    Dim _listParam As New List(Of Datos.DParametro)
+        Dim _listParam As New List(Of Datos.DParametro)
 
-    '    _listParam.Add(New Datos.DParametro("@tipo", 3))
-    '    _listParam.Add(New Datos.DParametro("@est", est))
-    '    _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
 
-    '    _Tabla = D_ProcedimientoConParam("sp_go_TI002", _listParam)
-
-    '    Return _Tabla
-    'End Function
+        Return _Tabla
+    End Function
 
     Public Shared Function L_fnMovimientoPackDetalle(id As String) As DataTable
         Dim _Tabla As DataTable
@@ -7544,86 +7542,128 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
-    'Public Shared Function L_fnMovimientoGrabar(ByRef id As String, fdoc As String, concep As String, obs As String,
-    '                                            est As String, alm As String, iddc As String, TI0021 As DataTable) As Boolean
-    '    Dim _resultado As Boolean
+    Public Shared Function L_fnMovimientoPackGrabar(ByRef id As String, fdoc As String, obs As String, codpack As String, cantP As Integer, pcosto As String,
+                                                    cantNP As Integer, est As String, alm As String, TI0051 As DataTable) As Boolean
+        Dim _resultado As Boolean
 
-    '    Dim _Tabla As DataTable
-    '    Dim _listParam As New List(Of Datos.DParametro)
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
 
-    '    _listParam.Add(New Datos.DParametro("@tipo", 1))
-    '    _listParam.Add(New Datos.DParametro("@id", id))
-    '    _listParam.Add(New Datos.DParametro("@fdoc", fdoc))
-    '    _listParam.Add(New Datos.DParametro("@concep", concep))
-    '    _listParam.Add(New Datos.DParametro("@obs", obs))
-    '    _listParam.Add(New Datos.DParametro("@est", est))
-    '    _listParam.Add(New Datos.DParametro("@alm", alm))
-    '    _listParam.Add(New Datos.DParametro("@iddc", iddc))
-    '    _listParam.Add(New Datos.DParametro("@TI0021", "", TI0021))
-    '    _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@id", id))
+        _listParam.Add(New Datos.DParametro("@fdoc", fdoc))
+        _listParam.Add(New Datos.DParametro("@obs", obs))
+        _listParam.Add(New Datos.DParametro("@codpack", codpack))
+        _listParam.Add(New Datos.DParametro("@cantP", cantP))
+        _listParam.Add(New Datos.DParametro("@pcosto", pcosto))
+        _listParam.Add(New Datos.DParametro("@cantNP", cantNP))
+        _listParam.Add(New Datos.DParametro("@est", 1))
+        _listParam.Add(New Datos.DParametro("@alm", alm))
+        _listParam.Add(New Datos.DParametro("@TI0051", "", TI0051))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
 
-    '    _Tabla = D_ProcedimientoConParam("sp_go_TI002", _listParam)
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
 
-    '    If _Tabla.Rows.Count > 0 Then
-    '        id = _Tabla.Rows(0).Item(0)
-    '        _resultado = True
-    '    Else
-    '        _resultado = False
-    '    End If
+        If _Tabla.Rows.Count > 0 Then
+            id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
 
-    '    Return _resultado
-    'End Function
+        Return _resultado
+    End Function
 
-    'Public Shared Function L_fnMovimientoModificar(ByRef id As String, fdoc As String, concep As String, obs As String,
-    '                                               est As String, alm As String, iddc As String, TI0021 As DataTable) As Boolean
-    '    Dim _resultado As Boolean
+    Public Shared Function L_fnMovimientoPackModificar(ByRef id As String, fdoc As String, obs As String, codpack As String, cantP As Integer, pcosto As String,
+                                                    cantNP As Integer, est As String, alm As String, TI0051 As DataTable) As Boolean
+        Dim _resultado As Boolean
 
-    '    Dim _Tabla As DataTable
-    '    Dim _listParam As New List(Of Datos.DParametro)
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
 
-    '    _listParam.Add(New Datos.DParametro("@tipo", 2))
-    '    _listParam.Add(New Datos.DParametro("@id", id))
-    '    _listParam.Add(New Datos.DParametro("@fdoc", fdoc))
-    '    _listParam.Add(New Datos.DParametro("@concep", concep))
-    '    _listParam.Add(New Datos.DParametro("@obs", obs))
-    '    _listParam.Add(New Datos.DParametro("@est", est))
-    '    _listParam.Add(New Datos.DParametro("@alm", alm))
-    '    _listParam.Add(New Datos.DParametro("@iddc", iddc))
-    '    _listParam.Add(New Datos.DParametro("@TI0021", "", TI0021))
-    '    _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@tipo", 2))
+        _listParam.Add(New Datos.DParametro("@id", id))
+        _listParam.Add(New Datos.DParametro("@fdoc", fdoc))
+        _listParam.Add(New Datos.DParametro("@obs", obs))
+        _listParam.Add(New Datos.DParametro("@codpack", codpack))
+        _listParam.Add(New Datos.DParametro("@cantP", cantP))
+        _listParam.Add(New Datos.DParametro("@pcosto", pcosto))
+        _listParam.Add(New Datos.DParametro("@cantNP", cantNP))
+        _listParam.Add(New Datos.DParametro("@est", est))
+        _listParam.Add(New Datos.DParametro("@alm", alm))
+        _listParam.Add(New Datos.DParametro("@TI0051", "", TI0051))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
 
-    '    _Tabla = D_ProcedimientoConParam("sp_go_TI002", _listParam)
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
 
-    '    If _Tabla.Rows.Count > 0 Then
-    '        id = _Tabla.Rows(0).Item(0)
-    '        _resultado = True
-    '    Else
-    '        _resultado = False
-    '    End If
+        If _Tabla.Rows.Count > 0 Then
+            id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
 
-    '    Return _resultado
-    'End Function
+        Return _resultado
+    End Function
 
-    'Public Shared Function L_fnMovimientoBorrar(id As String) As Boolean
-    '    Dim _resultado As Boolean
-    '    Dim _Tabla As DataTable
-    '    Dim _listParam As New List(Of Datos.DParametro)
+    Public Shared Function L_fnMovimientoPackBorrar(id As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
 
-    '    _listParam.Add(New Datos.DParametro("@tipo", -1))
-    '    _listParam.Add(New Datos.DParametro("@id", id))
-    '    _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@id", id))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
 
-    '    _Tabla = D_ProcedimientoConParam("sp_go_TI002", _listParam)
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
 
-    '    If _Tabla.Rows.Count > 0 Then
-    '        id = _Tabla.Rows(0).Item(0)
-    '        _resultado = True
-    '    Else
-    '        _resultado = False
-    '    End If
+        If _Tabla.Rows.Count > 0 Then
+            id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
 
-    '    Return _resultado
-    'End Function
+        Return _resultado
+    End Function
+    Public Shared Function L_fnMovimientoPackDetalleTI0052(id As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@id", id))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGrabarDesarmado(ByRef id As String, codpack As String, cantNP As Integer, fechaNP As String, TI0052 As DataTable) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _listParam.Add(New Datos.DParametro("@id", id))
+        _listParam.Add(New Datos.DParametro("@codpack", codpack))
+        _listParam.Add(New Datos.DParametro("@cantNP", cantNP))
+        _listParam.Add(New Datos.DParametro("@fechaNP", fechaNP))
+        _listParam.Add(New Datos.DParametro("@TI0052", "", TI0052))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
 
 #End Region
 #Region "TCA001 Compra"
