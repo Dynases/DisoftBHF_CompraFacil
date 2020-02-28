@@ -374,6 +374,8 @@ Public Class F02_MovimientoPack
         'DateTimer
         dtiFechaDoc.IsInputReadOnly = Not flat
         dtiFechaDoc.ButtonDropDown.Enabled = flat
+        dtiFechaDesarm.IsInputReadOnly = Not flat
+
 
         'Switch Button
 
@@ -396,6 +398,7 @@ Public Class F02_MovimientoPack
 
         'DateTimer
         dtiFechaDoc.Value = Now.Date
+        dtiFechaDesarm.Text = ""
 
         'Switch Button
 
@@ -405,6 +408,10 @@ Public Class F02_MovimientoPack
         P_prArmarGrillaDetalle("-1")
 
         MBtGrabar.Tooltip = "GRABAR"
+
+        'Ocultar el GroupPanel Desarmado
+        GroupPanelDesarmado.Visible = False
+
     End Sub
 
     Private Sub P_prArmarGrillas()
@@ -446,6 +453,7 @@ Public Class F02_MovimientoPack
                     Me.tbPcosto.Text = .GetValue("pcosto").ToString
                     Me.tbCantNP.Value = .GetValue("cantNP")
 
+
                     stEst = .GetValue("est").ToString
                     stAlm = .GetValue("alm").ToString
                     'stIddc = .GetValue("iddc").ToString
@@ -456,9 +464,14 @@ Public Class F02_MovimientoPack
                     If tbCantNP.Value = 0 Then
                         tbCantNP.Value = 0
                         GroupPanelDesarmado.Visible = False
+                        dtiFechaDesarm.Text = ""
+                        btnGrabarDesarm.Enabled = True
                     Else
                         GroupPanelDesarmado.Visible = True
                         tbCantNP.Value = .GetValue("cantNP")
+                        dtiFechaDesarm.Value = .GetValue("fechaNP")
+                        P_prArmarGrillaDetalleDesarmado(tbCodigo.Text)
+                        btnGrabarDesarm.Enabled = False
                     End If
 
                     MLbFecha.Text = CType(.GetValue("fact").ToString, Date).ToString("dd/MM/yyyy")
@@ -548,7 +561,6 @@ Public Class F02_MovimientoPack
         Dim cantNP As Integer
         Dim est As String
         Dim alm As String
-        Dim iddc As String
 
         dgjDetalle.Refetch()
 
@@ -747,10 +759,20 @@ Public Class F02_MovimientoPack
 
         With dgjBusqueda.RootTable.Columns("codpack")
             .Caption = "Cod. Pack"
+            .Width = 80
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = True
         End With
         With dgjBusqueda.RootTable.Columns("cadesc")
             .Caption = "Pack"
+            .Width = 350
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = True
         End With
         With dgjBusqueda.RootTable.Columns("cantP")
@@ -764,7 +786,9 @@ Public Class F02_MovimientoPack
         With dgjBusqueda.RootTable.Columns("cantNP")
             .Visible = False
         End With
-
+        With dgjBusqueda.RootTable.Columns("fechaNP")
+            .Visible = False
+        End With
         With dgjBusqueda.RootTable.Columns("est")
             .Visible = False
         End With
@@ -856,7 +880,7 @@ Public Class F02_MovimientoPack
             .Visible = True
         End With
         With dgjDetalle.RootTable.Columns("ihpcosto")
-            .Caption = "P. Costo"
+            .Caption = "P. Costo Un."
             .Width = 100
             .HeaderStyle.Font = FtTitulo
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
@@ -952,7 +976,7 @@ Public Class F02_MovimientoPack
             .Visible = True
         End With
         With dgjDesArmPack.RootTable.Columns("iipcosto")
-            .Caption = "P. Costo"
+            .Caption = "P. Costo Un."
             .Width = 100
             .HeaderStyle.Font = FtTitulo
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
@@ -1005,7 +1029,7 @@ Public Class F02_MovimientoPack
             MEP.SetError(tbCodPack, "")
         End If
 
-        If (Not IsNumeric(tbCantP.Value) < 0) Then
+        If (tbCantP.Value < 0) Then
             tbCantP.BackColor = Color.Red
             MEP.SetError(tbCantP, "La cantidad debe ser mayor a cero!".ToUpper)
             res = False
@@ -1059,6 +1083,7 @@ Public Class F02_MovimientoPack
         DtDetalle1.Rows.Add(fil)
     End Sub
 
+
     Private Sub tbCodPack_KeyDown(sender As Object, e As KeyEventArgs) Handles tbCodPack.KeyDown
         If (e.KeyData = Keys.Control + Keys.Enter) Then
             Dim dt As DataTable
@@ -1095,6 +1120,7 @@ Public Class F02_MovimientoPack
     End Sub
     Sub _prCargarProductoPack(numi As Integer)
         Dim dt As DataTable = L_fnDetallePack(numi)
+        Dim pcostotot As Decimal = 0
         With dgjDetalle.RootTable.Columns("stock")
             .Caption = "Stock"
             .Width = 100
@@ -1116,9 +1142,13 @@ Public Class F02_MovimientoPack
                 dgjDetalle.SetValue("ihcant", dt.Rows(i).Item("cbcant"))
                 dgjDetalle.SetValue("ihpcosto", dt.Rows(i).Item("chprecio"))
                 dgjDetalle.SetValue("stock", dt.Rows(i).Item("iacant"))
+                pcostotot = pcostotot + (dgjDetalle.GetValue("ihcant") * dgjDetalle.GetValue("ihpcosto"))
             Next
             CType(dgjDetalle.DataSource, DataTable).AcceptChanges()
-            tbPcosto.Text = dgjDetalle.GetTotal(dgjDetalle.RootTable.Columns("ihpcosto"), AggregateFunction.Sum)
+            'Dim pcostotot As Decimal = (dgjDetalle.GetValue("ihcant") * dgjDetalle.GetValue("ihpcosto"))
+            tbPcosto.Text = pcostotot
+            'tbPcosto.Text = dgjDetalle.GetTotal(dgjDetalle.RootTable.Columns("ihpcosto"), AggregateFunction.Sum)
+
             'dgjDetalle.Select()
             tbCantP.Select()
 
@@ -1127,76 +1157,93 @@ Public Class F02_MovimientoPack
 
     Private Sub tbCantP_ValueChanged(sender As Object, e As EventArgs) Handles tbCantP.ValueChanged
         Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable)
-        If (dt.Rows.Count > 0) Then
-            For i As Integer = 0 To dt.Rows.Count - 1
+        If (tbCantP.Focused) Then
+            If (dt.Rows.Count > 0) Then
+                For i As Integer = 0 To dt.Rows.Count - 1
 
-                dgjDetalle.Row = i
-                'dgjDetalle.SetValue("ihtotcant", dgjDetalle.GetValue("ihcant") * tbCantArm.Value)
-                dgjDetalle.SetValue("ihtotcant", dt.Rows(i).Item("ihcant") * tbCantP.Value)
-                If (dgjDetalle.GetValue("ihtotcant") > dt.Rows(i).Item("stock")) Then
+                    dgjDetalle.Row = i
+                    'dgjDetalle.SetValue("ihtotcant", dgjDetalle.GetValue("ihcant") * tbCantArm.Value)
+                    dgjDetalle.SetValue("ihtotcant", dt.Rows(i).Item("ihcant") * tbCantP.Value)
+                    If (dgjDetalle.GetValue("ihtotcant") > dt.Rows(i).Item("stock")) Then
 
-                    Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-                    MessageBox.Show(Me, "La cantidad para armar el pack no debe ser mayor al del stock disponible, Producto: " + (dgjDetalle.GetValue("cadesc")) & vbCrLf &
-                    "Stock=" + Str(dgjDetalle.GetValue("stock")).ToUpper, "AVISO!!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                    'ToastNotification.Show(Me, "La cantidad para armar el pack no debe ser mayor al del stock disponible" & vbCrLf &
-                    '"Stock=" + Str(dgjDetalle.GetValue("stock")).ToUpper, img, 6000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+                        MessageBox.Show(Me, "La cantidad para armar el pack no debe ser mayor al del stock disponible, Producto: " + (dgjDetalle.GetValue("cadesc")) & vbCrLf &
+                        "Stock=" + Str(dgjDetalle.GetValue("stock")).ToUpper, "AVISO!!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
 
+                        tbCantP.Value = 0
 
-                End If
-            Next
+                    End If
+                Next
 
+            End If
+            dgjDetalle.UpdateData()
         End If
-        dgjDetalle.UpdateData()
     End Sub
 
     Private Sub btnDesarmarPack_Click(sender As Object, e As EventArgs) Handles btnDesarmarPack.Click
         Dim dt As DataTable
+        If tbCantNP.Value > 0 Then
+            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+            ToastNotification.Show(Me, "Usted ya desarmó el Pack, no puede volver a desarmar.".ToUpper, img, 6000, eToastGlowColor.Red, eToastPosition.TopCenter)
+        Else
+            GroupPanelDesarmado.Visible = True
+            tbCantNP.IsInputReadOnly = False
+            tbCantNP.Select()
+            dtiFechaDesarm.Visible = True
+            dtiFechaDesarm.Value = Now.Date
+            P_prArmarGrillaDetalleDesarmado(-1)
+            dt = dgjDetalle.DataSource
 
-        GroupPanelDesarmado.Visible = True
-        tbCantNP.IsInputReadOnly = False
-        tbCantNP.Select()
-        dtiFechaDesarm.Visible = True
-        dtiFechaDesarm.Value = Now.Date
-        P_prArmarGrillaDetalleDesarmado(-1)
-        dt = dgjDetalle.DataSource
+            If (dt.Rows.Count > 0) Then
+                For i As Integer = 0 To dt.Rows.Count - 1
+                    P_prAddFilaDetalleDesarmado()
+                    dgjDesArmPack.Row = dgjDesArmPack.RowCount - 1
 
-        'dgjDesArmPack.DataSource = dt.Copy
-        'CType(dgjDesArmPack.DataSource, DataTable).AcceptChanges()
+                    dgjDesArmPack.SetValue("iiigid", dt.Rows(i).Item("ihigid"))
+                    dgjDesArmPack.SetValue("iicodpro", dt.Rows(i).Item("ihcodpro"))
+                    dgjDesArmPack.SetValue("cadesc", dt.Rows(i).Item("cadesc"))
+                    dgjDesArmPack.SetValue("iicant", dt.Rows(i).Item("ihcant"))
+                    dgjDesArmPack.SetValue("iipcosto", dt.Rows(i).Item("ihpcosto"))
+                    'dgjDesArmPack.SetValue("stock", dt.Rows(i).Item("stock"))
+                Next
+                CType(dgjDesArmPack.DataSource, DataTable).AcceptChanges()
 
-        If (dt.Rows.Count > 0) Then
-            'CType(dgjDesArmPack.DataSource, DataTable).Rows.Clear()
-            For i As Integer = 0 To dt.Rows.Count - 1
-
-                P_prAddFilaDetalleDesarmado()
-                dgjDesArmPack.Row = dgjDesArmPack.RowCount - 1
-
-                dgjDesArmPack.SetValue("iiigid", dt.Rows(i).Item("ihigid"))
-                dgjDesArmPack.SetValue("iicodpro", dt.Rows(i).Item("ihcodpro"))
-                dgjDesArmPack.SetValue("cadesc", dt.Rows(i).Item("cadesc"))
-                dgjDesArmPack.SetValue("iicant", dt.Rows(i).Item("ihcant"))
-                dgjDesArmPack.SetValue("iipcosto", dt.Rows(i).Item("ihpcosto"))
-                'dgjDesArmPack.SetValue("stock", dt.Rows(i).Item("stock"))
-            Next
-            CType(dgjDesArmPack.DataSource, DataTable).AcceptChanges()
-
+            End If
         End If
     End Sub
 
     Private Sub tbCantNP_ValueChanged(sender As Object, e As EventArgs) Handles tbCantNP.ValueChanged
         Dim dt As DataTable = CType(dgjDesArmPack.DataSource, DataTable)
-        If (dt.Rows.Count > 0) Then
-            For i As Integer = 0 To dt.Rows.Count - 1
-                dgjDesArmPack.Row = i
-                dgjDesArmPack.SetValue("iitotcant", dt.Rows(i).Item("iicant") * tbCantNP.Value)
-            Next
+        Dim dt1 As DataTable = L_fnVerificarStockPack(tbCodPack.Text)
+        If (tbCantNP.Focused) Then
 
+            If (dt1.Rows.Count > 0) Then
+                If (tbCantNP.Value > dt1.Rows(0).Item("iacant")) Then
+                    Dim stock1 As Double = dt1.Rows(0).Item("iacant")
+                    ToastNotification.Show(Me, "La cantidad no puede ser mayor al stock actual del pack. Stock Pack:".ToUpper + stock1.ToString,
+                                           My.Resources.WARNING,
+                                           InDuracion * 1100,
+                                           eToastGlowColor.Red,
+                                           eToastPosition.TopCenter)
+                    tbCantNP.Value = 0
+                Else
+                    If (dt.Rows.Count > 0) Then
+                        For i As Integer = 0 To dt.Rows.Count - 1
+                            dgjDesArmPack.Row = i
+                            dgjDesArmPack.SetValue("iitotcant", dt.Rows(i).Item("iicant") * tbCantNP.Value)
+                        Next
+
+                    End If
+                    dgjDesArmPack.UpdateData()
+
+                End If
+            End If
         End If
-        dgjDesArmPack.UpdateData()
     End Sub
 
     Private Sub btnGrabarDesarm_Click(sender As Object, e As EventArgs) Handles btnGrabarDesarm.Click
-        If (P_fnValidarGrabacionDesarmado()) Then
 
+        If (P_fnValidarGrabacionDesarmado()) Then
             Dim dt As New DataTable
             dt = CType(dgjDesArmPack.DataSource, DataTable).DefaultView.ToTable(False, "iiid", "iiigid", "iicodpro", "cadesc", "iicant", "iitotcant", "iipcosto", "stock", "estado")
 
@@ -1223,6 +1270,10 @@ Public Class F02_MovimientoPack
                                    eToastPosition.TopCenter)
             End If
         End If
+    End Sub
+
+    Private Sub dgjDesArmPack_EditingCell(sender As Object, e As EditingCellEventArgs) Handles dgjDesArmPack.EditingCell
+        e.Cancel = True
     End Sub
 #End Region
 

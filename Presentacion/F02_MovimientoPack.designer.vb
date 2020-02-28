@@ -276,7 +276,7 @@ Partial Class F02_MovimientoPack
         '
         Me.GroupPanelDesarmado.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.GroupPanelDesarmado.TabIndex = 2
-        Me.GroupPanelDesarmado.Text = "DETALLE MOVIMIENTO DE DESARMADO DE PACK"
+        Me.GroupPanelDesarmado.Text = "DETALLE MOVIMIENTO DESARMADO DE PACK"
         '
         'dgjDesArmPack
         '

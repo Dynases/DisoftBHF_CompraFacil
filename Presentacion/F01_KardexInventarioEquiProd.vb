@@ -225,7 +225,7 @@ Public Class F01_KardexInventarioEquiProd
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = True
+            .Visible = False
             '.CellStyle.BackColor = Color.AliceBlue
         End With
         With Dgj1Datos.RootTable.Columns(10)
@@ -349,7 +349,7 @@ Public Class F01_KardexInventarioEquiProd
     Private Sub P_ArmarGrillaAyuda() 'Grilla para Buscar Clientes
         'Busqueda
         Dim dt As New DataTable
-        dt = L_GetProductos(" caest=1 AND caserie=" + IIf(Tipo = 1, "1", "0")).Tables(0)
+        dt = L_GetProductos(" a.caest=1 AND a.caserie=" + IIf(Tipo = 1, "1", "0")).Tables(0)
 
         Dgj2Busqueda.BoundMode = Janus.Data.BoundMode.Bound
         Dgj2Busqueda.DataSource = dt

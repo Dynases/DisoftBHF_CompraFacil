@@ -2064,12 +2064,12 @@ Public Class AccesoLogica
     Public Shared Function L_GetProductos(_Where As String) As DataSet
         Dim _Tabla As DataTable
         Dim _Ds As New DataSet
-        _Where = " cacat = TC0051.cenum " _
-        + " and TC005.cdcon = TC0051.cecon " _
-        + " and TC005.cdcon = 5 " + IIf(_Where.Equals(""), "", " and " + _Where) _
+        _Where = " cacat = TC005C.canumi " _
+        + IIf(_Where.Equals(""), "", " and " + _Where) _
         & " order by canumi"
-        _Tabla = D_Datos_Tabla("canumi, cacod, cadesc, cadesc2, cacat, TC0051.cedesc, caimg, castc, caest, caserie, capcom, cafing, cafact, cahact, cauact",
-                               "TC001, TC005, TC0051", _Where)
+        '_Tabla = D_Datos_Tabla("canumi, cacod, cadesc, cadesc2, cacat, TC0051.cedesc, caimg, castc, caest, caserie, capcom, cafing, cafact, cahact, cauact", "TC001, TC005, TC0051", _Where)
+        _Tabla = D_Datos_Tabla("a.canumi, cacod, a.cadesc, cadesc2, cacat, TC005C.cadesc, a.caimg, castc, a.caest, caserie, capcom, cafing, a.cafact, a.cahact, a.cauact", "TC001 a, TC005C", _Where)
+
         _Ds.Tables.Add(_Tabla)
         Return _Ds
     End Function
@@ -7503,45 +7503,6 @@ Public Class AccesoLogica
 
 #Region "TI005 Movimientos Pack"
 
-    Public Shared Function L_fnMovimientoPackGeneral() As DataTable
-        Dim _Tabla As DataTable
-
-        Dim _listParam As New List(Of Datos.DParametro)
-
-        _listParam.Add(New Datos.DParametro("@tipo", 3))
-        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
-        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
-
-        Return _Tabla
-    End Function
-
-    Public Shared Function L_fnMovimientoPackDetalle(id As String) As DataTable
-        Dim _Tabla As DataTable
-
-        Dim _listParam As New List(Of Datos.DParametro)
-
-        _listParam.Add(New Datos.DParametro("@tipo", 4))
-        _listParam.Add(New Datos.DParametro("@id", id))
-        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
-
-        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
-
-        Return _Tabla
-    End Function
-    Public Shared Function L_fnDetallePack(id As String) As DataTable
-        Dim _Tabla As DataTable
-
-        Dim _listParam As New List(Of Datos.DParametro)
-
-        _listParam.Add(New Datos.DParametro("@tipo", 5))
-        _listParam.Add(New Datos.DParametro("@id", id))
-        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
-
-        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
-
-        Return _Tabla
-    End Function
-
     Public Shared Function L_fnMovimientoPackGrabar(ByRef id As String, fdoc As String, obs As String, codpack As String, cantP As Integer, pcosto As String,
                                                     cantNP As Integer, est As String, alm As String, TI0051 As DataTable) As Boolean
         Dim _resultado As Boolean
@@ -7605,26 +7566,43 @@ Public Class AccesoLogica
 
         Return _resultado
     End Function
-
-    Public Shared Function L_fnMovimientoPackBorrar(id As String) As Boolean
-        Dim _resultado As Boolean
+    Public Shared Function L_fnMovimientoPackGeneral() As DataTable
         Dim _Tabla As DataTable
+
         Dim _listParam As New List(Of Datos.DParametro)
 
-        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnMovimientoPackDetalle(id As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
         _listParam.Add(New Datos.DParametro("@id", id))
         _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
 
         _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
 
-        If _Tabla.Rows.Count > 0 Then
-            id = _Tabla.Rows(0).Item(0)
-            _resultado = True
-        Else
-            _resultado = False
-        End If
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnDetallePack(id As String) As DataTable
+        Dim _Tabla As DataTable
 
-        Return _resultado
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@id", id))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
+
+        Return _Tabla
     End Function
     Public Shared Function L_fnMovimientoPackDetalleTI0052(id As String) As DataTable
         Dim _Tabla As DataTable
@@ -7664,6 +7642,42 @@ Public Class AccesoLogica
 
         Return _resultado
     End Function
+
+    Public Shared Function L_fnVerificarStockPack(codpack As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@codpack", codpack))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnMovimientoPackBorrar(id As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@id", id))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_go_TI005", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            id = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
 
 #End Region
 #Region "TCA001 Compra"
