@@ -140,4 +140,23 @@ Public Class RPedido
             Throw New Exception(ex.Message)
         End Try
     End Function
+    Public Function VolverPedidoDistribucion(listIdPedido As List(Of Integer), idChofer As Integer) As Boolean Implements IPedido.VolverPedidoDistribucion
+        Try
+            Using db = GetSchema()
+                For Each id As String In listIdPedido
+                    Dim data = (From a In db.TO001C
+                                Where a.oaccbnumi = idChofer And a.oacoanumi = id
+                                Select a)
+                    db.TO001C.RemoveRange(data)
+                Next
+
+                db.SaveChanges()
+
+                Return True
+            End Using
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        End Try
+    End Function
+
 End Class

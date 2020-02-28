@@ -598,6 +598,15 @@ Public Class frmBillingDispatch
                 .Visible = False
                 .Position = 7
             End With
+            dgjPedido.RootTable.Columns.Add(New GridEXColumn("Check"))
+            With dgjPedido.RootTable.Columns("Check")
+                .Caption = "Volver a Dist."
+                .Width = 100
+                .ShowRowSelector = True
+                .UseHeaderSelector = True
+                .FilterEditType = FilterEditType.NoEdit
+                .Position = 8
+            End With
             With dgjPedido
                 .GroupByBoxVisible = False
                 .DefaultFilterRowComparison = FilterConditionOperator.Contains
@@ -685,6 +694,14 @@ Public Class frmBillingDispatch
                                eToastGlowColor.Red,
                                eToastPosition.TopCenter)
     End Sub
+    Private Sub MostrarMensajeOk(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.OK,
+                               ENMensaje.MEDIANO,
+                               eToastGlowColor.Green,
+                               eToastPosition.TopCenter)
+    End Sub
 #End Region
 
 #Region "Publico, metodos y funciones"
@@ -696,6 +713,31 @@ Public Class frmBillingDispatch
 
     End Sub
 
+    Private Sub btVolverDist_Click(sender As Object, e As EventArgs) Handles btVolverDist.Click
+        Try
+            VolverPedidoDistribucion()
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+    End Sub
+    Private Sub VolverPedidoDistribucion()
+        Try
+            Dim checks = Me.dgjPedido.GetCheckedRows()
+            Dim listIdPedido = checks.Select(Function(a) Convert.ToInt32(a.Cells("Id").Value)).ToList()
+            If (listIdPedido.Count = 0) Then
+                Throw New Exception("Debe seleccionar por lo menos un pedido.")
+            End If
+            Dim idChofer = Me.cbChoferes.Value
+
+            Dim result = New LPedido().VolverPedidoDistribucion(listIdPedido, idChofer)
+            If (result) Then
+                CargarPedidos()
+                MostrarMensajeOk("Pedidos volvieron a Distribución correctamente")
+            End If
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        End Try
+    End Sub
 
 #End Region
 End Class
