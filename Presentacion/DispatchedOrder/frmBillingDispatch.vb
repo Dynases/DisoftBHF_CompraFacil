@@ -724,11 +724,19 @@ Public Class frmBillingDispatch
         Try
             Dim checks = Me.dgjPedido.GetCheckedRows()
             Dim listIdPedido = checks.Select(Function(a) Convert.ToInt32(a.Cells("Id").Value)).ToList()
+            Dim listFacPedido = checks.Select(Function(a) Convert.ToInt32(a.Cells("NroFactura").Value)).ToList()
+
             If (listIdPedido.Count = 0) Then
                 Throw New Exception("Debe seleccionar por lo menos un pedido.")
             End If
+            For Each nfact As Integer In listFacPedido
+                Dim nro As Integer = nfact
+                If nro > 0 Then
+                    MostrarMensajeError("Debe de seleccionar solo los pedidos que no hayan sido facturados")
+                    Exit Sub
+                End If
+            Next
             Dim idChofer = Me.cbChoferes.Value
-
             Dim result = New LPedido().VolverPedidoDistribucion(listIdPedido, idChofer)
             If (result) Then
                 CargarPedidos()

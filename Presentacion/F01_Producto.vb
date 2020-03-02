@@ -1203,7 +1203,16 @@ Public Class F01_Producto
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = False
         End With
-
+        With DgjBusqueda.RootTable.Columns(28)
+            .Caption = ""
+            .Key = "capack"
+            .Width = 0
+            .HeaderStyle.Font = FtTitulo
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.Font = FtNormal
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
         'Habilitar Filtradores
         With DgjBusqueda
             .GroupByBoxVisible = False

@@ -1029,7 +1029,7 @@ Public Class F02_MovimientoPack
             MEP.SetError(tbCodPack, "")
         End If
 
-        If (tbCantP.Value < 0) Then
+        If (tbCantP.Value <= 0) Then
             tbCantP.BackColor = Color.Red
             MEP.SetError(tbCantP, "La cantidad debe ser mayor a cero!".ToUpper)
             res = False

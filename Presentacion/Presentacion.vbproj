@@ -376,6 +376,12 @@
     <Compile Include="F02_Compra.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F02_Descuento.designer.vb">
+      <DependentUpon>F02_Descuento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F02_Descuento.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F02_MovimientoPack.designer.vb">
       <DependentUpon>F02_MovimientoPack.vb</DependentUpon>
     </Compile>
@@ -1204,6 +1210,9 @@
     <EmbeddedResource Include="F02_Compra.resx">
       <DependentUpon>F02_Compra.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F02_Descuento.resx">
+      <DependentUpon>F02_Descuento.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F02_MovimientoPack.resx">
       <DependentUpon>F02_MovimientoPack.vb</DependentUpon>
     </EmbeddedResource>
@@ -1788,6 +1797,7 @@
     <Content Include="Resources\add.png" />
     <Content Include="Resources\asiento.png" />
     <Content Include="Resources\cobro.png" />
+    <None Include="Resources\descuentos.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

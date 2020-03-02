@@ -978,6 +978,18 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+    Public Shared Function L_Productos_GeneralFiltrado3(_Modo As Integer, Optional _Cadena As String = "") As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String
+        If _Modo = 0 Then
+            _Where = "canumi=canumi"
+        Else
+            _Where = _Cadena
+        End If
+        _Tabla = D_Datos_Tabla("canumi, cacod, cadesc, cedesc", "TC001, TC0051", _Where + " order by canumi")
+
+        Return _Tabla
+    End Function
 #End Region
 
 #Region "Pedidos"
@@ -4227,6 +4239,10 @@ Public Class AccesoLogica
         _Error = D_Eliminar_Datos("TO003", _Where)
         Return Not _Error
     End Function
+
+#End Region
+
+#Region "CATEGORIA DESCUENTOS"
 
 #End Region
 
