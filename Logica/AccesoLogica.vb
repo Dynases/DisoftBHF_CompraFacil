@@ -978,18 +978,7 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
-    Public Shared Function L_Productos_GeneralFiltrado3(_Modo As Integer, Optional _Cadena As String = "") As DataTable
-        Dim _Tabla As DataTable
-        Dim _Where As String
-        If _Modo = 0 Then
-            _Where = "canumi=canumi"
-        Else
-            _Where = _Cadena
-        End If
-        _Tabla = D_Datos_Tabla("canumi, cacod, cadesc, cedesc", "TC001, TC0051", _Where + " order by canumi")
 
-        Return _Tabla
-    End Function
 #End Region
 
 #Region "Pedidos"
@@ -4242,7 +4231,68 @@ Public Class AccesoLogica
 
 #End Region
 
-#Region "CATEGORIA DESCUENTOS"
+#Region "CATEGORIA DESCUENTOS PRECIOS"
+    Public Shared Function L_Productos_GeneralFiltrado3(_Modo As Integer, Optional _Cadena As String = "") As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String
+        If _Modo = 0 Then
+            _Where = "canumi=canumi"
+        Else
+            _Where = _Cadena
+        End If
+        _Tabla = D_Datos_Tabla("canumi, cacod, cadesc, cedesc", "TC001, TC0051", _Where + " order by canumi")
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarDescuentosPrecios(cod As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@codpro", cod))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_go_TD001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnActualizarEstadoPrecios(cod As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@codpro", cod))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_go_TD001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnGrabarPreciosDescuentos(ByRef numi As String, codpro As String, finicio As String, ffin As String, PrecioDesc As DataTable) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@codpro", codpro))
+        _listParam.Add(New Datos.DParametro("@fechaini", finicio))
+        _listParam.Add(New Datos.DParametro("@fechafin", ffin))
+        _listParam.Add(New Datos.DParametro("@TD001", "", PrecioDesc))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_go_TD001", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            numi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+
 
 #End Region
 

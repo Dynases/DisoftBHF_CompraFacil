@@ -21,6 +21,8 @@ Public Class F02_Descuento
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
 
+    Dim dtPreciosDesc As New DataTable
+
 #End Region
 
 #Region "Metodos"
@@ -29,18 +31,17 @@ Public Class F02_Descuento
             L_prAbrirConexion()
         End If
         P_prArmarComboCategoria()
-        '' _PCargarComboLibreria(JCb_CatProducto, 5)
-        _PCargarGridCategoriasPrecios()
+        _PCargarGridCategoriasPrecios(-1)
         _Filtrar()
 
         MBtNuevo.Visible = False
         MBtModificar.Visible = False
         MBtEliminar.Visible = False
 
-        Me.Text = " P R E C I O S    D E    P R O D U C T O S "
+        Me.Text = " P R E C I O S  -  D E S C U E N T O S "
         Me.WindowState = FormWindowState.Maximized
 
-        btAddCategoria.Image = My.Resources.ADICIONAR
+        btNuevoP.Image = My.Resources.ADICIONAR
 
         MBtPrimero.PerformClick()
 
@@ -267,8 +268,8 @@ Public Class F02_Descuento
 
         'dar formato a las columnas
         With JGr_Detalle.RootTable.Columns(0)
-            .Caption = "ID Producto"
-            .Width = 70
+            .Caption = "Cod. Producto"
+            .Width = 80
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -277,7 +278,7 @@ Public Class F02_Descuento
 
         With JGr_Detalle.RootTable.Columns(1)
             .Caption = "Codigo Flex"
-            .Width = 70
+            .Width = 80
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -287,7 +288,7 @@ Public Class F02_Descuento
         ''JGr_Detalle.RootTable.Columns.Add()
         With JGr_Detalle.RootTable.Columns(2)
             .Caption = "Descripcion"
-            .Width = 300
+            .Width = 350
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.BackColor = Color.AliceBlue
@@ -313,7 +314,7 @@ Public Class F02_Descuento
         End With
         With JGr_Detalle.RootTable.Columns(3)
             .Caption = "Familia"
-            .Width = 150
+            .Width = 200
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .TextAlignment = TextAlignment.Near
             .CellStyle.FontSize = gi_fuenteTamano
@@ -548,44 +549,75 @@ Public Class F02_Descuento
     'End Sub
 
 
-    Private Sub _PCargarGridCategoriasPrecios()
-        Dim dtCatPrecios As New DataTable
-        dtCatPrecios = L_CategoriaPrecioGeneral()
+    Private Sub _PCargarGridCategoriasPrecios(cod As String)
 
-        JGr_Descuentos.DataSource = dtCatPrecios
+        dtPreciosDesc = L_fnMostrarDescuentosPrecios(cod)
+
+        JGr_Descuentos.DataSource = dtPreciosDesc
         JGr_Descuentos.RetrieveStructure()
 
-        'dar formato a las columnas
-        With JGr_Descuentos.RootTable.Columns("cinumi")
+        With JGr_Descuentos.RootTable.Columns("danumi")
             .Visible = False
         End With
-        With JGr_Descuentos.RootTable.Columns("cicod")
-            .Caption = "Cod"
+        With JGr_Descuentos.RootTable.Columns("dacanumi")
+            .Caption = "Cod Prod."
             .Width = 50
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .CellStyle.BackColor = Color.AliceBlue
+            .Visible = False
         End With
-
-        ''JGr_Categorias.RootTable.Columns.Add()
-        With JGr_Descuentos.RootTable.Columns("cidesc")
-            .Caption = "Descripcion"
-            .Width = 180
+        With JGr_Descuentos.RootTable.Columns("dacant1")
+            .Caption = "Desde"
+            .Width = 100
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.BackColor = Color.AliceBlue
         End With
-
+        With JGr_Descuentos.RootTable.Columns("dacant2")
+            .Caption = "Hasta"
+            .Width = 100
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.FontSize = gi_fuenteTamano
+            .CellStyle.BackColor = Color.AliceBlue
+        End With
+        With JGr_Descuentos.RootTable.Columns("dapreciou")
+            .Caption = "Precio"
+            .Width = 120
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.FontSize = gi_fuenteTamano
+            .CellStyle.BackColor = Color.AliceBlue
+            .FormatString = "0.00"
+        End With
+        With JGr_Descuentos.RootTable.Columns("dafinicio")
+            .Caption = "Fecha Inicio"
+            .Width = 180
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.FontSize = gi_fuenteTamano
+            .CellStyle.BackColor = Color.AliceBlue
+            .Visible = False
+        End With
+        With JGr_Descuentos.RootTable.Columns("daffin")
+            .Caption = "Fecha Fin"
+            .Width = 180
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.FontSize = gi_fuenteTamano
+            .CellStyle.BackColor = Color.AliceBlue
+            .Visible = False
+        End With
+        With JGr_Descuentos.RootTable.Columns("estado")
+            .Visible = False
+        End With
         'Habilitar Filtradores
         With JGr_Descuentos
             .DefaultFilterRowComparison = FilterConditionOperator.Contains
-            .FilterMode = FilterMode.Automatic
+            '.FilterMode = FilterMode.Automatic
             .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
             .GroupByBoxVisible = False
             'diseño de la grilla
             .VisualStyle = VisualStyle.Office2007
-            .AllowEdit = InheritableBoolean.False
+            '.AllowEdit = InheritableBoolean.False
         End With
 
 
@@ -635,29 +667,29 @@ Public Class F02_Descuento
 
 
     Private Sub _PAdicionarCategoria()
-        Dim dtCatPrecios As DataTable
-        dtCatPrecios = L_CategoriaPrecioGeneral()
-        Dim sigCategoria = ""
-        If (dtCatPrecios.Rows.Count > 0) Then
-            sigCategoria = _FSiguienteLetra(dtCatPrecios.Rows(dtCatPrecios.Rows.Count - 1).Item("cicod").ToString)
-        Else
-            sigCategoria = "A"
-        End If
-        If sigCategoria = "" Then
-            ToastNotification.Show(Me, "YA NO SE PUEDE INGRESAR CATEGORIA DE PRECIOS", My.Resources.WARNING, 5000, eToastGlowColor.Red, eToastPosition.BottomRight)
-        Else
+        'Dim dtCatPrecios As DataTable
+        'dtCatPrecios = L_CategoriaPrecioGeneral()
+        'Dim sigCategoria = ""
+        'If (dtCatPrecios.Rows.Count > 0) Then
+        '    sigCategoria = _FSiguienteLetra(dtCatPrecios.Rows(dtCatPrecios.Rows.Count - 1).Item("cicod").ToString)
+        'Else
+        '    sigCategoria = "A"
+        'End If
+        'If sigCategoria = "" Then
+        '    ToastNotification.Show(Me, "YA NO SE PUEDE INGRESAR CATEGORIA DE PRECIOS", My.Resources.WARNING, 5000, eToastGlowColor.Red, eToastPosition.BottomRight)
+        'Else
 
-            Dim catDesc As String = InputBox("INGRESE LA DESCRIPCION DE LA NUEVA CATEGORIA", "NUEVA CATEGORIA", "").ToUpper
+        '    Dim catDesc As String = InputBox("INGRESE LA DESCRIPCION DE LA NUEVA CATEGORIA", "NUEVA CATEGORIA", "").ToUpper
 
-            If (Not catDesc = String.Empty) Then
-                Dim numi As String = ""
-                L_CategoriaPrecioGrabar(numi, sigCategoria, catDesc, 1) 'Se agregó un campo mas citcv en la tabla TC007
+        '    If (Not catDesc = String.Empty) Then
+        '        Dim numi As String = ""
+        '        L_CategoriaPrecioGrabar(numi, sigCategoria, catDesc, 1) 'Se agregó un campo mas citcv en la tabla TC007
 
-                ToastNotification.Show(Me, "NUEVA CATEGORIA " + sigCategoria + " ADICIONADA CON EXITO", My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.BottomRight)
-                _PCargarDetalle(JCb_CatProducto.Value)
-                _PCargarGridCategoriasPrecios()
-            End If
-        End If
+        '        ToastNotification.Show(Me, "NUEVA CATEGORIA " + sigCategoria + " ADICIONADA CON EXITO", My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.BottomRight)
+        '        _PCargarDetalle(JCb_CatProducto.Value)
+        '        _PCargarGridCategoriasPrecios()
+        '    End If
+        'End If
 
     End Sub
 
@@ -682,53 +714,7 @@ Public Class F02_Descuento
     '        _PCargarGridCategoriasPrecios()
     '    End If
     'End Sub
-    Private Function _FSiguienteLetra(palabra As String) As String
-        Dim alfabeto As New List(Of String)
-        alfabeto.Add("A")
-        alfabeto.Add("B")
-        alfabeto.Add("C")
-        alfabeto.Add("D")
-        alfabeto.Add("E")
-        alfabeto.Add("F")
-        alfabeto.Add("G")
-        alfabeto.Add("H")
-        alfabeto.Add("I")
-        alfabeto.Add("J")
-        alfabeto.Add("K")
-        alfabeto.Add("L")
-        alfabeto.Add("M")
-        alfabeto.Add("N")
-        alfabeto.Add("O")
-        alfabeto.Add("P")
-        alfabeto.Add("Q")
-        alfabeto.Add("R")
-        alfabeto.Add("S")
-        alfabeto.Add("T")
-        alfabeto.Add("U")
-        alfabeto.Add("V")
-        alfabeto.Add("W")
-        alfabeto.Add("X")
-        alfabeto.Add("Y")
-        alfabeto.Add("Z")
-        Dim letra As String
-        If palabra.Length = 1 Then
-            letra = palabra(0)
-            '26 letras en el alphabeto
-            If alfabeto.IndexOf(letra) = 25 Then
-                palabra = "AA"
-            Else
-                palabra = alfabeto(alfabeto.IndexOf(letra) + 1)
-            End If
-        Else
-            letra = palabra(1)
-            If alfabeto.IndexOf(letra) = 25 Then
-                palabra = ""
-            Else
-                palabra = palabra(0) + alfabeto(alfabeto.IndexOf(letra) + 1)
-            End If
-        End If
-        Return palabra
-    End Function
+
 
     Private Sub _Filtrar()
         _Dsencabezado = New DataSet
@@ -826,10 +812,6 @@ Public Class F02_Descuento
         _PGrabarRegistro()
     End Sub
 
-    Private Sub btAddCategoria_Click(sender As Object, e As EventArgs) Handles btAddCategoria.Click
-        _PAdicionarCategoria()
-    End Sub
-
     Private Sub MBtImprimir_Click(sender As Object, e As EventArgs) Handles MBtImprimir.Click
         Try
             Dim myppd As New PrintPreviewDialog
@@ -922,5 +904,111 @@ Public Class F02_Descuento
         End Try
     End Sub
 
+    Private Sub JGr_Detalle_Click(sender As Object, e As EventArgs) Handles JGr_Detalle.Click
 
+
+        If JGr_Detalle.Focused Then
+                If JGr_Detalle.GetValue("canumi") > 0 Then
+                    ' Dim CodPro As String = JGr_Detalle.CurrentRow.Cells("canumi").Value.ToString
+                    tbCodPro.Text = JGr_Detalle.CurrentRow.Cells("canumi").Value.ToString
+                    lbProducto.Text = JGr_Detalle.CurrentRow.Cells("cadesc").Value.ToString
+
+                    _PCargarGridCategoriasPrecios(tbCodPro.Text)
+
+
+
+                    'P_prAddFilaDetallePrecio()
+                    'CType(JGr_Descuentos.DataSource, DataTable).Rows(0).Item("dacant1") = JGr_Detalle.CurrentRow.Cells("canumi").Value.ToString
+                End If
+            End If
+
+
+    End Sub
+
+    Private Sub btNuevoP_Click(sender As Object, e As EventArgs) Handles btNuevoP.Click
+        If JGr_Descuentos.RowCount > 0 Then
+            L_fnActualizarEstadoPrecios(tbCodPro.Text)
+            _PCargarGridCategoriasPrecios(tbCodPro.Text)
+        End If
+        dtiFechaIni.Value = Now.Date
+        dtiFechaFin.Value = Now.Date
+        '_PCargarGridCategoriasPrecios(tbCodPro.Text)
+        P_prAddFilaDetallePrecio()
+    End Sub
+
+    Private Sub JGr_Descuentos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGr_Descuentos.EditingCell
+        If (e.Column.Key.Equals("dacant1") Or e.Column.Key.Equals("dacant2") Or e.Column.Key.Equals("dapreciou")) Then
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
+    End Sub
+    Private Sub P_prAddFilaDetallePrecio()
+        Dim fil As DataRow
+        fil = dtPreciosDesc.NewRow
+        fil.Item("danumi") = 0
+        fil.Item("dacanumi") = 0
+        fil.Item("dacant1") = 0
+        fil.Item("dacant2") = 0
+        fil.Item("dapreciou") = 0.00
+        fil.Item("dafinicio") = Now.Date
+        fil.Item("daffin") = Now.Date
+        fil.Item("estado") = 0
+
+        dtPreciosDesc.Rows.Add(fil)
+    End Sub
+
+    Private Sub JGr_Descuentos_KeyDown(sender As Object, e As KeyEventArgs) Handles JGr_Descuentos.KeyDown
+        If (e.KeyData = Keys.Enter And JGr_Descuentos.Col = JGr_Descuentos.RootTable.Columns("dapreciou").Index) Then
+            Dim filIndex As Integer = JGr_Descuentos.Row
+            If (filIndex = JGr_Descuentos.RowCount - 1) Then
+                P_prAddFilaDetallePrecio()
+            End If
+        End If
+    End Sub
+
+    Private Sub btGrabarP_Click(sender As Object, e As EventArgs) Handles btGrabarP.Click
+        Dim dt As DataTable = CType(JGr_Descuentos.DataSource, DataTable)
+        Dim numi As String = ""
+        If (_ValidarCampos()) Then
+
+            'Grabar
+            Dim res As Boolean = L_fnGrabarPreciosDescuentos(numi, tbCodPro.Text, dtiFechaIni.Value, dtiFechaFin.Value, CType(JGr_Descuentos.DataSource, DataTable))
+
+            If (res) Then
+
+                ToastNotification.Show(Me, "Descuento de Producto Grabado con éxito.".ToUpper,
+                                   My.Resources.GRABACION_EXITOSA,
+                                   3000,
+                                   eToastGlowColor.Green,
+                                   eToastPosition.TopCenter)
+            Else
+                ToastNotification.Show(Me, "No se pudo grabar los descuentos.".ToUpper,
+                                   My.Resources.WARNING,
+                                   3000,
+                                   eToastGlowColor.Red,
+                                   eToastPosition.TopCenter)
+            End If
+        End If
+    End Sub
+    Public Function _ValidarCampos() As Boolean
+        If (tbCodPro.Text <= 0) Then
+            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+            ToastNotification.Show(Me, "Por Favor debe dar click a un producto".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            Return False
+        End If
+
+        'For Each aux In JGr_Descuentos.GetRows
+        '    MessageBox.Show(aux.Cells(2).Value)
+        '    'If Convert.ToInt32(aux.Cells(2)) <= 0 Then
+        '    '    Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+        '    '    ToastNotification.Show(Me, "Las cantidades no pueden ser 0 por favor coloque las cantidades correctas".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+        '    'End If
+
+        'Next
+
+
+
+        Return True
+    End Function
 End Class
