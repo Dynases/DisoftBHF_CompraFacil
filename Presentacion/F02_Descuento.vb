@@ -47,6 +47,9 @@ Public Class F02_Descuento
 
         'activar los permisos del rol
         _PAsignarPermisos()
+
+        'Asignar el menustrip quitar al grid JGr_Descuentos
+        JGr_Descuentos.ContextMenuStrip = CmDetalle
     End Sub
 
     Private Sub _PAsignarPermisos()
@@ -583,12 +586,12 @@ Public Class F02_Descuento
             .CellStyle.BackColor = Color.AliceBlue
         End With
         With JGr_Descuentos.RootTable.Columns("dapreciou")
-            .Caption = "Precio"
+            .Caption = "Precio Un."
             .Width = 120
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.BackColor = Color.AliceBlue
-            .FormatString = "0.00"
+            .FormatString = "0.0000"
         End With
         With JGr_Descuentos.RootTable.Columns("dafinicio")
             .Caption = "Fecha Inicio"
@@ -809,7 +812,7 @@ Public Class F02_Descuento
     End Sub
 
     Private Sub MBtGrabar_Click(sender As Object, e As EventArgs) Handles MBtGrabar.Click
-        _PGrabarRegistro()
+        '_PGrabarRegistro()
     End Sub
 
     Private Sub MBtImprimir_Click(sender As Object, e As EventArgs) Handles MBtImprimir.Click
@@ -905,15 +908,16 @@ Public Class F02_Descuento
     End Sub
 
     Private Sub JGr_Detalle_Click(sender As Object, e As EventArgs) Handles JGr_Detalle.Click
-
-
-        If JGr_Detalle.Focused Then
+        If JGr_Detalle.CurrentRow.Selected <> JGr_Detalle.FilterRow.Selected Then
+            If JGr_Detalle.Focused Then
                 If JGr_Detalle.GetValue("canumi") > 0 Then
                     ' Dim CodPro As String = JGr_Detalle.CurrentRow.Cells("canumi").Value.ToString
                     tbCodPro.Text = JGr_Detalle.CurrentRow.Cells("canumi").Value.ToString
                     lbProducto.Text = JGr_Detalle.CurrentRow.Cells("cadesc").Value.ToString
 
                     _PCargarGridCategoriasPrecios(tbCodPro.Text)
+                    _MostrarFechas(JGr_Descuentos.Row)
+                    _Inhabilitar()
 
 
 
@@ -921,8 +925,31 @@ Public Class F02_Descuento
                     'CType(JGr_Descuentos.DataSource, DataTable).Rows(0).Item("dacant1") = JGr_Detalle.CurrentRow.Cells("canumi").Value.ToString
                 End If
             End If
+        End If
+    End Sub
+    Public Sub _MostrarFechas(_N As Integer)
+        With JGr_Descuentos
+            dtiFechaIni.Value = .GetValue("dafinicio")
+            dtiFechaFin.Value = .GetValue("daffin")
+        End With
+    End Sub
+    Private Sub _Inhabilitar()
+        JGr_Descuentos.Enabled = False
+        dtiFechaIni.IsInputReadOnly = True
+        dtiFechaIni.ButtonDropDown.Enabled = False
+        dtiFechaFin.IsInputReadOnly = True
+        dtiFechaFin.ButtonDropDown.Enabled = False
 
+        btGrabarP.Enabled = False
+    End Sub
+    Private Sub _Habilitar()
+        JGr_Descuentos.Enabled = True
+        dtiFechaIni.IsInputReadOnly = False
+        dtiFechaIni.ButtonDropDown.Enabled = True
+        dtiFechaFin.IsInputReadOnly = False
+        dtiFechaFin.ButtonDropDown.Enabled = True
 
+        btGrabarP.Enabled = True
     End Sub
 
     Private Sub btNuevoP_Click(sender As Object, e As EventArgs) Handles btNuevoP.Click
@@ -934,6 +961,7 @@ Public Class F02_Descuento
         dtiFechaFin.Value = Now.Date
         '_PCargarGridCategoriasPrecios(tbCodPro.Text)
         P_prAddFilaDetallePrecio()
+        _Habilitar()
     End Sub
 
     Private Sub JGr_Descuentos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGr_Descuentos.EditingCell
@@ -968,20 +996,18 @@ Public Class F02_Descuento
     End Sub
 
     Private Sub btGrabarP_Click(sender As Object, e As EventArgs) Handles btGrabarP.Click
-        Dim dt As DataTable = CType(JGr_Descuentos.DataSource, DataTable)
         Dim numi As String = ""
         If (_ValidarCampos()) Then
-
             'Grabar
             Dim res As Boolean = L_fnGrabarPreciosDescuentos(numi, tbCodPro.Text, dtiFechaIni.Value, dtiFechaFin.Value, CType(JGr_Descuentos.DataSource, DataTable))
 
             If (res) Then
-
                 ToastNotification.Show(Me, "Descuento de Producto Grabado con éxito.".ToUpper,
                                    My.Resources.GRABACION_EXITOSA,
                                    3000,
                                    eToastGlowColor.Green,
                                    eToastPosition.TopCenter)
+                btGrabarP.Enabled = False
             Else
                 ToastNotification.Show(Me, "No se pudo grabar los descuentos.".ToUpper,
                                    My.Resources.WARNING,
@@ -998,17 +1024,36 @@ Public Class F02_Descuento
             Return False
         End If
 
-        'For Each aux In JGr_Descuentos.GetRows
-        '    MessageBox.Show(aux.Cells(2).Value)
-        '    'If Convert.ToInt32(aux.Cells(2)) <= 0 Then
-        '    '    Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
-        '    '    ToastNotification.Show(Me, "Las cantidades no pueden ser 0 por favor coloque las cantidades correctas".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-        '    'End If
+        For Each aux In JGr_Descuentos.GetRows
+            'MessageBox.Show(aux.Cells(2).Value)
 
-        'Next
-
-
+            If (aux.Cells(2)).Value.ToString = String.Empty Or (aux.Cells(3)).Value.ToString = String.Empty Or (aux.Cells(4)).Value.ToString = String.Empty Then
+                Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+                ToastNotification.Show(Me, "Los campos no pueden estar vacios por favor coloque datos mayores a 0".ToUpper, img, 4000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                Return False
+            Else
+                If (aux.Cells(2)).Value <= 0 Or (aux.Cells(3)).Value <= 0 Or (aux.Cells(4)).Value <= 0 Then
+                    Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+                    ToastNotification.Show(Me, "Las campos no pueden ser 0 por favor coloque datos mayores a 0".ToUpper, img, 4000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    Return False
+                End If
+            End If
+        Next
 
         Return True
     End Function
+
+    Private Sub QuitarProductoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitarProductoToolStripMenuItem.Click
+        Try
+            JGr_Descuentos.CurrentRow.EndEdit()
+            JGr_Descuentos.CurrentRow.Delete()
+            JGr_Descuentos.Refetch()
+            JGr_Descuentos.Refresh()
+            JGr_Descuentos.UpdateData()
+        Catch ex As Exception
+            'sms
+            'MsgBox(ex)
+        End Try
+    End Sub
+
 End Class

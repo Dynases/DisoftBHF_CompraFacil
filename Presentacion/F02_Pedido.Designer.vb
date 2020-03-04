@@ -69,6 +69,7 @@ Partial Class F02_Pedido
         Me.LabelX10 = New DevComponents.DotNetBar.LabelX()
         Me.GroupPanel4 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.PanelEx2 = New DevComponents.DotNetBar.PanelEx()
+        Me.btAplicarDesc = New DevComponents.DotNetBar.ButtonX()
         Me.tbMontoCredito = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.swTipoVenta = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.LabelX12 = New DevComponents.DotNetBar.LabelX()
@@ -232,7 +233,7 @@ Partial Class F02_Pedido
         Me.MSuperTabControlPrincipal.Controls.Add(Me.SuperTabControlPanel1)
         Me.MSuperTabControlPrincipal.Margin = New System.Windows.Forms.Padding(4)
         Me.MSuperTabControlPrincipal.SelectedTabIndex = 2
-        Me.MSuperTabControlPrincipal.Size = New System.Drawing.Size(1112, 510)
+        Me.MSuperTabControlPrincipal.Size = New System.Drawing.Size(1212, 562)
         Me.MSuperTabControlPrincipal.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItemCliente})
         Me.MSuperTabControlPrincipal.Controls.SetChildIndex(Me.MSuperTabControlPanelRegistro, 0)
         Me.MSuperTabControlPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanel1, 0)
@@ -248,7 +249,7 @@ Partial Class F02_Pedido
         '
         Me.MSuperTabControlPanelRegistro.Controls.Add(Me.TableLayoutPanelPrincipal)
         Me.MSuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4)
-        Me.MSuperTabControlPanelRegistro.Size = New System.Drawing.Size(1070, 510)
+        Me.MSuperTabControlPanelRegistro.Size = New System.Drawing.Size(1170, 562)
         Me.MSuperTabControlPanelRegistro.Controls.SetChildIndex(Me.MPnUsuario, 0)
         Me.MSuperTabControlPanelRegistro.Controls.SetChildIndex(Me.TableLayoutPanelPrincipal, 0)
         '
@@ -256,7 +257,7 @@ Partial Class F02_Pedido
         '
         Me.MPnSuperior.Controls.Add(Me.btnVentaDirecta)
         Me.MPnSuperior.Margin = New System.Windows.Forms.Padding(4)
-        Me.MPnSuperior.Size = New System.Drawing.Size(1112, 70)
+        Me.MPnSuperior.Size = New System.Drawing.Size(1212, 70)
         Me.MPnSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.MPnSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(244, Byte), Integer))
         Me.MPnSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(244, Byte), Integer))
@@ -271,9 +272,9 @@ Partial Class F02_Pedido
         '
         'MPnInferior
         '
-        Me.MPnInferior.Location = New System.Drawing.Point(0, 580)
+        Me.MPnInferior.Location = New System.Drawing.Point(0, 632)
         Me.MPnInferior.Margin = New System.Windows.Forms.Padding(4)
-        Me.MPnInferior.Size = New System.Drawing.Size(1112, 29)
+        Me.MPnInferior.Size = New System.Drawing.Size(1212, 29)
         Me.MPnInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.MPnInferior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(244, Byte), Integer))
         Me.MPnInferior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(3, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(244, Byte), Integer))
@@ -284,7 +285,7 @@ Partial Class F02_Pedido
         '
         'MPanelToolBarUsuario
         '
-        Me.MPanelToolBarUsuario.Location = New System.Drawing.Point(912, 0)
+        Me.MPanelToolBarUsuario.Location = New System.Drawing.Point(1012, 0)
         Me.MPanelToolBarUsuario.Margin = New System.Windows.Forms.Padding(4)
         Me.MPanelToolBarUsuario.Size = New System.Drawing.Size(200, 29)
         '
@@ -343,7 +344,7 @@ Partial Class F02_Pedido
         'MPanelToolBarImprimir
         '
         Me.MPanelToolBarImprimir.Controls.Add(Me.btActualizar)
-        Me.MPanelToolBarImprimir.Location = New System.Drawing.Point(952, 0)
+        Me.MPanelToolBarImprimir.Location = New System.Drawing.Point(1052, 0)
         Me.MPanelToolBarImprimir.Margin = New System.Windows.Forms.Padding(4)
         Me.MPanelToolBarImprimir.Size = New System.Drawing.Size(160, 70)
         Me.MPanelToolBarImprimir.Controls.SetChildIndex(Me.MBtImprimir, 0)
@@ -414,7 +415,7 @@ Partial Class F02_Pedido
         Me.TableLayoutPanelPrincipal.Name = "TableLayoutPanelPrincipal"
         Me.TableLayoutPanelPrincipal.RowCount = 1
         Me.TableLayoutPanelPrincipal.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelPrincipal.Size = New System.Drawing.Size(1070, 510)
+        Me.TableLayoutPanelPrincipal.Size = New System.Drawing.Size(1170, 562)
         Me.TableLayoutPanelPrincipal.TabIndex = 29
         '
         'TableLayoutPanel1
@@ -433,7 +434,7 @@ Partial Class F02_Pedido
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(743, 504)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(813, 556)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'GrPan_PeriodoPedido
@@ -446,9 +447,9 @@ Partial Class F02_Pedido
         Me.GrPan_PeriodoPedido.DisabledBackColor = System.Drawing.Color.Empty
         Me.GrPan_PeriodoPedido.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GrPan_PeriodoPedido.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GrPan_PeriodoPedido.Location = New System.Drawing.Point(3, 431)
+        Me.GrPan_PeriodoPedido.Location = New System.Drawing.Point(3, 483)
         Me.GrPan_PeriodoPedido.Name = "GrPan_PeriodoPedido"
-        Me.GrPan_PeriodoPedido.Size = New System.Drawing.Size(737, 70)
+        Me.GrPan_PeriodoPedido.Size = New System.Drawing.Size(807, 70)
         '
         '
         '
@@ -769,9 +770,9 @@ Partial Class F02_Pedido
         Me.GroupPanel5.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupPanel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel5.Location = New System.Drawing.Point(3, 238)
+        Me.GroupPanel5.Location = New System.Drawing.Point(3, 267)
         Me.GroupPanel5.Name = "GroupPanel5"
-        Me.GroupPanel5.Size = New System.Drawing.Size(737, 187)
+        Me.GroupPanel5.Size = New System.Drawing.Size(807, 210)
         '
         '
         '
@@ -809,7 +810,7 @@ Partial Class F02_Pedido
         Me.JGr_DetallePedido.Dock = System.Windows.Forms.DockStyle.Fill
         Me.JGr_DetallePedido.Location = New System.Drawing.Point(0, 0)
         Me.JGr_DetallePedido.Name = "JGr_DetallePedido"
-        Me.JGr_DetallePedido.Size = New System.Drawing.Size(731, 163)
+        Me.JGr_DetallePedido.Size = New System.Drawing.Size(801, 186)
         Me.JGr_DetallePedido.TabIndex = 1
         '
         'cmQuitarDetalle
@@ -838,7 +839,7 @@ Partial Class F02_Pedido
         Me.GroupPanel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel3.Location = New System.Drawing.Point(3, 3)
         Me.GroupPanel3.Name = "GroupPanel3"
-        Me.GroupPanel3.Size = New System.Drawing.Size(737, 101)
+        Me.GroupPanel3.Size = New System.Drawing.Size(807, 114)
         '
         '
         '
@@ -890,7 +891,7 @@ Partial Class F02_Pedido
         Me.PanelEx1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelEx1.Location = New System.Drawing.Point(0, 0)
         Me.PanelEx1.Name = "PanelEx1"
-        Me.PanelEx1.Size = New System.Drawing.Size(731, 77)
+        Me.PanelEx1.Size = New System.Drawing.Size(801, 90)
         Me.PanelEx1.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx1.Style.BackColor1.Color = System.Drawing.SystemColors.Control
         Me.PanelEx1.Style.BackColor2.Color = System.Drawing.SystemColors.Control
@@ -1066,9 +1067,9 @@ Partial Class F02_Pedido
         Me.GroupPanel4.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupPanel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel4.Location = New System.Drawing.Point(3, 110)
+        Me.GroupPanel4.Location = New System.Drawing.Point(3, 123)
         Me.GroupPanel4.Name = "GroupPanel4"
-        Me.GroupPanel4.Size = New System.Drawing.Size(737, 122)
+        Me.GroupPanel4.Size = New System.Drawing.Size(807, 138)
         '
         '
         '
@@ -1105,6 +1106,7 @@ Partial Class F02_Pedido
         Me.PanelEx2.AutoScroll = True
         Me.PanelEx2.CanvasColor = System.Drawing.SystemColors.Control
         Me.PanelEx2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.PanelEx2.Controls.Add(Me.btAplicarDesc)
         Me.PanelEx2.Controls.Add(Me.tbMontoCredito)
         Me.PanelEx2.Controls.Add(Me.swTipoVenta)
         Me.PanelEx2.Controls.Add(Me.LabelX12)
@@ -1130,7 +1132,7 @@ Partial Class F02_Pedido
         Me.PanelEx2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelEx2.Location = New System.Drawing.Point(0, 0)
         Me.PanelEx2.Name = "PanelEx2"
-        Me.PanelEx2.Size = New System.Drawing.Size(731, 98)
+        Me.PanelEx2.Size = New System.Drawing.Size(801, 114)
         Me.PanelEx2.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx2.Style.BackColor1.Color = System.Drawing.SystemColors.Control
         Me.PanelEx2.Style.BackColor2.Color = System.Drawing.SystemColors.Control
@@ -1138,6 +1140,22 @@ Partial Class F02_Pedido
         Me.PanelEx2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.PanelEx2.Style.GradientAngle = 90
         Me.PanelEx2.TabIndex = 8
+        '
+        'btAplicarDesc
+        '
+        Me.btAplicarDesc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btAplicarDesc.BackColor = System.Drawing.Color.Transparent
+        Me.btAplicarDesc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btAplicarDesc.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btAplicarDesc.Image = Global.Presentacion.My.Resources.Resources.descuentos
+        Me.btAplicarDesc.ImageFixedSize = New System.Drawing.Size(25, 25)
+        Me.btAplicarDesc.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btAplicarDesc.Location = New System.Drawing.Point(655, 56)
+        Me.btAplicarDesc.Name = "btAplicarDesc"
+        Me.btAplicarDesc.Size = New System.Drawing.Size(87, 52)
+        Me.btAplicarDesc.TabIndex = 44
+        Me.btAplicarDesc.Text = "APLICAR DESCUENTOS"
+        Me.btAplicarDesc.TextColor = System.Drawing.Color.Navy
         '
         'tbMontoCredito
         '
@@ -1224,9 +1242,9 @@ Partial Class F02_Pedido
         Me.Btn_GenerarPedidos.Image = Global.Presentacion.My.Resources.Resources.GEN_PEDIDOS_AUTOMATICAMENTE_ORI
         Me.Btn_GenerarPedidos.ImageFixedSize = New System.Drawing.Size(35, 35)
         Me.Btn_GenerarPedidos.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.Btn_GenerarPedidos.Location = New System.Drawing.Point(675, 53)
+        Me.Btn_GenerarPedidos.Location = New System.Drawing.Point(799, 53)
         Me.Btn_GenerarPedidos.Name = "Btn_GenerarPedidos"
-        Me.Btn_GenerarPedidos.Size = New System.Drawing.Size(200, 55)
+        Me.Btn_GenerarPedidos.Size = New System.Drawing.Size(73, 77)
         Me.Btn_GenerarPedidos.TabIndex = 35
         Me.Btn_GenerarPedidos.Text = "GENERAR PEDIDOS"
         Me.Btn_GenerarPedidos.TextColor = System.Drawing.Color.Navy
@@ -1432,13 +1450,13 @@ Partial Class F02_Pedido
         Me.TableLayoutPanel2.Controls.Add(Me.GroupPanel1, 0, 1)
         Me.TableLayoutPanel2.Controls.Add(Me.GroupPanel2, 0, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(752, 3)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(822, 3)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(315, 504)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(345, 556)
         Me.TableLayoutPanel2.TabIndex = 1
         '
         'GroupPanel1
@@ -1449,9 +1467,9 @@ Partial Class F02_Pedido
         Me.GroupPanel1.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupPanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupPanel1.Location = New System.Drawing.Point(3, 204)
+        Me.GroupPanel1.Location = New System.Drawing.Point(3, 225)
         Me.GroupPanel1.Name = "GroupPanel1"
-        Me.GroupPanel1.Size = New System.Drawing.Size(309, 297)
+        Me.GroupPanel1.Size = New System.Drawing.Size(339, 328)
         '
         '
         '
@@ -1497,7 +1515,7 @@ Partial Class F02_Pedido
         Me.PanelEx4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelEx4.Location = New System.Drawing.Point(0, 0)
         Me.PanelEx4.Name = "PanelEx4"
-        Me.PanelEx4.Size = New System.Drawing.Size(303, 273)
+        Me.PanelEx4.Size = New System.Drawing.Size(333, 304)
         Me.PanelEx4.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx4.Style.BackColor1.Color = System.Drawing.SystemColors.Control
         Me.PanelEx4.Style.BackColor2.Color = System.Drawing.SystemColors.Control
@@ -1578,7 +1596,7 @@ Partial Class F02_Pedido
         Me.GroupPanel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel2.Location = New System.Drawing.Point(3, 3)
         Me.GroupPanel2.Name = "GroupPanel2"
-        Me.GroupPanel2.Size = New System.Drawing.Size(309, 195)
+        Me.GroupPanel2.Size = New System.Drawing.Size(339, 216)
         '
         '
         '
@@ -1620,7 +1638,7 @@ Partial Class F02_Pedido
         Me.PanelEx3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelEx3.Location = New System.Drawing.Point(0, 0)
         Me.PanelEx3.Name = "PanelEx3"
-        Me.PanelEx3.Size = New System.Drawing.Size(303, 171)
+        Me.PanelEx3.Size = New System.Drawing.Size(333, 192)
         Me.PanelEx3.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx3.Style.BackColor1.Color = System.Drawing.SystemColors.Control
         Me.PanelEx3.Style.BackColor2.Color = System.Drawing.SystemColors.Control
@@ -1634,7 +1652,7 @@ Partial Class F02_Pedido
         Me.JGr_TipoProd.Dock = System.Windows.Forms.DockStyle.Fill
         Me.JGr_TipoProd.Location = New System.Drawing.Point(0, 0)
         Me.JGr_TipoProd.Name = "JGr_TipoProd"
-        Me.JGr_TipoProd.Size = New System.Drawing.Size(303, 171)
+        Me.JGr_TipoProd.Size = New System.Drawing.Size(333, 192)
         Me.JGr_TipoProd.TabIndex = 0
         '
         'SuperTabItemCliente
@@ -2391,7 +2409,7 @@ Partial Class F02_Pedido
         Me.btnVentaDirecta.Image = Global.Presentacion.My.Resources.Resources.BONOS_DESC
         Me.btnVentaDirecta.ImageFixedSize = New System.Drawing.Size(48, 48)
         Me.btnVentaDirecta.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btnVentaDirecta.Location = New System.Drawing.Point(820, 0)
+        Me.btnVentaDirecta.Location = New System.Drawing.Point(920, 0)
         Me.btnVentaDirecta.Name = "btnVentaDirecta"
         Me.btnVentaDirecta.Size = New System.Drawing.Size(132, 70)
         Me.btnVentaDirecta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
@@ -2404,7 +2422,7 @@ Partial Class F02_Pedido
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1112, 609)
+        Me.ClientSize = New System.Drawing.Size(1212, 661)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "F02_Pedido"
         Me.Text = "F02_Pedido"
@@ -2604,4 +2622,5 @@ Partial Class F02_Pedido
     Friend WithEvents tbMontoCredito As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents swTipoVenta As DevComponents.DotNetBar.Controls.SwitchButton
     Friend WithEvents btnVentaDirecta As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btAplicarDesc As DevComponents.DotNetBar.ButtonX
 End Class

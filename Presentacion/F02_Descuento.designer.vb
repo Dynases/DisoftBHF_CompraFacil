@@ -53,6 +53,8 @@ Partial Class F02_Descuento
         Me.GridEXPrintDocumentListaPrecios = New Janus.Windows.GridEX.GridEXPrintDocument()
         Me.GridEXExporterListaPrecio = New Janus.Windows.GridEX.Export.GridEXExporter(Me.components)
         Me.btExportarExcel = New DevComponents.DotNetBar.ButtonX()
+        Me.CmDetalle = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.QuitarProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.MSuperTabControlPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MSuperTabControlPrincipal.SuspendLayout()
         Me.MSuperTabControlPanelRegistro.SuspendLayout()
@@ -83,6 +85,7 @@ Partial Class F02_Descuento
         Me.GpListaPrecio.SuspendLayout()
         Me.PnListaPrecio.SuspendLayout()
         CType(Me.JGr_Detalle, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CmDetalle.SuspendLayout()
         Me.SuspendLayout()
         '
         'MSuperTabControlPrincipal
@@ -163,6 +166,7 @@ Partial Class F02_Descuento
         '
         'MBtGrabar
         '
+        Me.MBtGrabar.Visible = False
         '
         'MPanelToolBarImprimir
         '
@@ -307,6 +311,7 @@ Partial Class F02_Descuento
         Me.tbCodPro.Name = "tbCodPro"
         Me.tbCodPro.Size = New System.Drawing.Size(100, 20)
         Me.tbCodPro.TabIndex = 45
+        Me.tbCodPro.Visible = False
         '
         'lbProducto
         '
@@ -458,7 +463,7 @@ Partial Class F02_Descuento
         'btGrabarP
         '
         Me.btGrabarP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btGrabarP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btGrabarP.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
         Me.btGrabarP.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btGrabarP.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btGrabarP.Image = Global.Presentacion.My.Resources.Resources.GRABAR
@@ -493,7 +498,7 @@ Partial Class F02_Descuento
         'btNuevoP
         '
         Me.btNuevoP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btNuevoP.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btNuevoP.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
         Me.btNuevoP.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btNuevoP.Image = Global.Presentacion.My.Resources.Resources.add21
         Me.btNuevoP.ImageFixedSize = New System.Drawing.Size(25, 25)
@@ -768,6 +773,20 @@ Partial Class F02_Descuento
         Me.btExportarExcel.Text = "ButtonX1"
         Me.btExportarExcel.Visible = False
         '
+        'CmDetalle
+        '
+        Me.CmDetalle.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QuitarProductoToolStripMenuItem})
+        Me.CmDetalle.Name = "CmDetalle"
+        Me.CmDetalle.Size = New System.Drawing.Size(138, 36)
+        '
+        'QuitarProductoToolStripMenuItem
+        '
+        Me.QuitarProductoToolStripMenuItem.Image = Global.Presentacion.My.Resources.Resources.eliminar
+        Me.QuitarProductoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.QuitarProductoToolStripMenuItem.Name = "QuitarProductoToolStripMenuItem"
+        Me.QuitarProductoToolStripMenuItem.Size = New System.Drawing.Size(137, 32)
+        Me.QuitarProductoToolStripMenuItem.Text = "Quitar Fila"
+        '
         'F02_Descuento
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -811,6 +830,7 @@ Partial Class F02_Descuento
         Me.GpListaPrecio.ResumeLayout(False)
         Me.PnListaPrecio.ResumeLayout(False)
         CType(Me.JGr_Detalle, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.CmDetalle.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -842,4 +862,6 @@ Partial Class F02_Descuento
     Friend WithEvents PnCategoria As DevComponents.DotNetBar.PanelEx
     Friend WithEvents btNuevoP As DevComponents.DotNetBar.ButtonX
     Friend WithEvents tbCodPro As DevComponents.DotNetBar.Controls.TextBoxX
+    Friend WithEvents CmDetalle As ContextMenuStrip
+    Friend WithEvents QuitarProductoToolStripMenuItem As ToolStripMenuItem
 End Class

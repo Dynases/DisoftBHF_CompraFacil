@@ -949,7 +949,7 @@ Public Class AccesoLogica
         Else
             _Where = "cacat=" + _CatProd + " AND cast(canumi as nvarchar(10))=chcprod AND chcatcl=" + _CatClie + " AND caest=1"
         End If
-        _Tabla = D_Datos_Tabla("canumi,cadesc,chprecio,caimg,castc, " + _ordenEspecifico + " as orden", "TC001,TC003", _Where + " order by orden,canumi")
+        _Tabla = D_Datos_Tabla("canumi,cadesc,chprecio,caimg,castc,cagr4, " + _ordenEspecifico + " as orden", "TC001,TC003", _Where + " order by orden,canumi")
 
         Return _Tabla
     End Function
@@ -962,7 +962,7 @@ Public Class AccesoLogica
         Else
             _Where = "cacat=" + _CatProd + " AND cast(canumi as nvarchar(10))=chcprod AND caest=1 " + "and chcatcl=cpcat and canumi=cpprod and cpcli=" + _numiCli
         End If
-        _Tabla = D_Datos_Tabla("canumi,cadesc,chprecio,caimg,castc, " + _ordenEspecifico + " as orden", "TC001,TC003,TC0042", _Where + " order by orden,canumi")
+        _Tabla = D_Datos_Tabla("canumi,cadesc,chprecio,caimg,castc,cagr4, " + _ordenEspecifico + " as orden", "TC001,TC003,TC0042", _Where + " order by orden,canumi")
 
         Return _Tabla
     End Function
@@ -1289,7 +1289,7 @@ Public Class AccesoLogica
         Else
             _Where = "obnumi=" + _idCabecera + "AND obcprod=canumi"
         End If
-        _Tabla = D_Datos_Tabla("obnumi,obcprod,cadesc,obpcant,obpbase,obptot", "TO0011,TC001", _Where)
+        _Tabla = D_Datos_Tabla("obnumi,obcprod,cadesc,obpcant,obpbase,obptot,obdesc,obtotal,obfamilia", "TO0011,TC001", _Where)
         Return _Tabla
     End Function
 
@@ -1527,6 +1527,14 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
+    'Public Shared Function L_RecuperarPreciosDescuentos() As DataTable
+    '    Dim _Tabla As DataTable
+    '    Dim _listParam As New List(Of Datos.DParametro)
+    '    _listParam.Add(New Datos.DParametro("@tipo", 6))
+    '    _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
+    '    _Tabla = D_ProcedimientoConParam("sp_go_TD001", _listParam)
+    '    Return _Tabla
+    'End Function
 #End Region
 
 #Region "Descuentos Fijos"

@@ -325,7 +325,7 @@ Public Class F02_Pedido
         With JGr_DetallePedido.RootTable.Columns(1)
             .Caption = "Codigo"
             .Key = "CodProd"
-            .Width = 100
+            .Width = 80
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -334,7 +334,7 @@ Public Class F02_Pedido
         With JGr_DetallePedido.RootTable.Columns(2)
             .Caption = "Descripcion"
             .Key = "Descripcion"
-            .Width = 350
+            .Width = 320
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .AllowSort = False
@@ -343,7 +343,7 @@ Public Class F02_Pedido
         With JGr_DetallePedido.RootTable.Columns(3)
             .Caption = "Cantidad"
             .Key = "Cantidad"
-            .Width = 100
+            .Width = 90
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -352,7 +352,7 @@ Public Class F02_Pedido
         With JGr_DetallePedido.RootTable.Columns(4)
             .Caption = "Precio"
             .Key = "Precio"
-            .Width = 100
+            .Width = 90
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -361,14 +361,37 @@ Public Class F02_Pedido
         With JGr_DetallePedido.RootTable.Columns(5)
             .Caption = "Monto Bs."
             .Key = "Monto"
-            .Width = 100
+            .Width = 90
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
         End With
-
+        With JGr_DetallePedido.RootTable.Columns(6)
+            .Visible = True
+            .Caption = "Descuento"
+            .Key = "Descuento"
+            .Width = 90
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.FontSize = gi_fuenteTamano
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .FormatString = "0.00"
+        End With
+        With JGr_DetallePedido.RootTable.Columns(7)
+            .Visible = True
+            .Caption = "Total"
+            .Key = "Total"
+            .Width = 90
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.FontSize = gi_fuenteTamano
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .FormatString = "0.00"
+        End With
+        With JGr_DetallePedido.RootTable.Columns(8)
+            .Caption = "Familia"
+            .Visible = True
+        End With
         'Habilitar Filtradores
         With JGr_DetallePedido
             .GroupByBoxVisible = False
@@ -481,6 +504,10 @@ Public Class F02_Pedido
             .Visible = False
         End With
         With JGr_Productos.RootTable.Columns(5)
+            .Caption = "Familia"
+            .Visible = False
+        End With
+        With JGr_Productos.RootTable.Columns(6)
             .Visible = False
         End With
 
@@ -1798,17 +1825,19 @@ Public Class F02_Pedido
     Private Sub JGr_Productos_KeyDown(sender As Object, e As KeyEventArgs) Handles JGr_Productos.KeyDown
         If e.KeyData = Keys.Enter Then
             'agregar al detalle producto seleccionado
-            Dim codProd, descrip, precio As String
+            Dim codProd, descrip, precio, familia As String
 
             codProd = Convert.ToString(JGr_Productos.CurrentRow.Cells("Codigo").Value)
             descrip = Convert.ToString(JGr_Productos.CurrentRow.Cells("Descripcion").Value)
             precio = Convert.ToString(JGr_Productos.CurrentRow.Cells("Precio").Value)
+            familia = Convert.ToString(JGr_Productos.CurrentRow.Cells("cagr4").Value)
 
             Dim nuevaFila As DataRow = CType(JGr_DetallePedido.DataSource, DataTable).NewRow()
 
             nuevaFila(1) = codProd
             nuevaFila(2) = descrip
             nuevaFila(4) = precio
+            nuevaFila(8) = familia
 
             CType(JGr_DetallePedido.DataSource, DataTable).Rows.Add(nuevaFila)
 
@@ -2544,12 +2573,46 @@ Public Class F02_Pedido
             JGr_Clientes.MoveTo(JGr_Clientes.FilterRow)
             JGr_Clientes.Col = 1
 
-
-
         End If
     End Sub
 
     Private Sub btnVentaDirecta_Click(sender As Object, e As EventArgs) Handles btnVentaDirecta.Click
         _PGrabarRegistroDirecto()
+    End Sub
+
+    Private Sub btAplicarDesc_Click(sender As Object, e As EventArgs) Handles btAplicarDesc.Click
+        Dim codpro As Integer
+        Dim cant, preciod, subtotal, total As Double
+        Dim cantf, preciodf, subtotalf, totalf As Double
+        Dim dt As DataTable
+        Dim pos As Integer = JGr_DetallePedido.RowCount - 1
+
+        For i = 0 To JGr_DetallePedido.RowCount - 1
+            ''For Each pedido In JGr_DetallePedido.GetRows
+            codpro = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obcprod")
+            subtotal = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obptot")
+            'codpro = pedido.Cells(1).Value
+            dt = L_fnMostrarDescuentosPrecios(codpro)
+            'If (pedido.Cells(8)).Value = 1 Then
+            If CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obfamilia") = 1 Then
+                'cant = pedido.Cells(3).Value
+                cant = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obpcant")
+                For Each preciodesc As DataRow In dt.Rows
+                    If cant >= preciodesc.Item("dacant1") And cant <= preciodesc.Item("dacant2") Then
+                        preciod = preciodesc.Item("dapreciou")
+                        total = cant * preciod
+                    End If
+                Next
+                CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obtotal") = total
+                CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obdesc") = subtotal - total
+
+                'CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("obpcant") = Tb_CantProd.Text
+                'CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("obptot") = CDbl(Tb_CantProd.Text) * precio
+            Else
+
+            End If
+
+            ''Next
+        Next
     End Sub
 End Class
