@@ -1261,6 +1261,7 @@ Public Class AccesoLogica
             cant = _dtDetOri.Rows(i).Item("obpcant").ToString
             precio = _dtDetOri.Rows(i).Item("obpbase").ToString
             subTot = _dtDetOri.Rows(i).Item("obptot").ToString
+
             L_PedidoDetalle_Grabar(numiNew, codProd, cant, precio, subTot)
         Next
 
@@ -1293,10 +1294,10 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
-    Public Shared Sub L_PedidoDetalle_Grabar(_idCabecera As String, _codProd As String, _cantidad As String, _precio As String, _subTotal As String)
+    Public Shared Sub L_PedidoDetalle_Grabar(_idCabecera As String, _codProd As String, _cantidad As String, _precio As String, _subTotal As String, _desc As String, _total As String, _flia As String)
         Dim _Err As Boolean
         Dim Sql As String
-        Sql = _idCabecera + ",'" + _codProd + "'," + _cantidad + "," + _precio + "," + _subTotal
+        Sql = _idCabecera + ",'" + _codProd + "'," + _cantidad + "," + _precio + "," + _subTotal + "," + _desc + "," + _total + "," + _flia + "," + 0 + "," + 0
         _Err = D_Insertar_Datos("TO0011", Sql)
     End Sub
 

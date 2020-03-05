@@ -380,17 +380,19 @@ Public Class F02_Pedido
         End With
         With JGr_DetallePedido.RootTable.Columns(7)
             .Visible = True
-            .Caption = "Total"
+            .Caption = "Total Bs."
             .Key = "Total"
             .Width = 90
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .FormatString = "0.00"
+            .AggregateFunction = AggregateFunction.Sum
         End With
         With JGr_DetallePedido.RootTable.Columns(8)
             .Caption = "Familia"
-            .Visible = True
+            .Key = "Familia"
+            .Visible = False
         End With
         'Habilitar Filtradores
         With JGr_DetallePedido
@@ -1285,14 +1287,14 @@ Public Class F02_Pedido
             _Error = True
         End If
 
-        If (cbDistribuidor.SelectedIndex = -1) Then
-            cbDistribuidor.BackColor = Color.Red   'error de validacion
-            'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
-            _Error = True
-        Else
-            cbDistribuidor.BackColor = Color.White
-            'Ep1.SetError(Tb_Nombre, "")
-        End If
+        'If (cbDistribuidor.SelectedIndex = -1) Then
+        '    cbDistribuidor.BackColor = Color.Red   'error de validacion
+        '    'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
+        '    _Error = True
+        'Else
+        '    cbDistribuidor.BackColor = Color.White
+        '    'Ep1.SetError(Tb_Nombre, "")
+        'End If
 
         If (cbPreVendedor.SelectedIndex = -1) Then
             cbPreVendedor.BackColor = Color.Red   'error de validacion
@@ -1374,6 +1376,8 @@ Public Class F02_Pedido
         End If
 
 
+
+
         Return _Error
     End Function
 
@@ -1422,7 +1426,7 @@ Public Class F02_Pedido
             L_GrabarModificarCliente("cczona=" + Tb_CliCodZona.Text, "ccnumi=" + Str(Tb_CliCod.Text))
 
             'grabar detalle
-            Dim codProd, cant, precio, subTotal As String
+            Dim codProd, cant, precio, subTotal, desc, total, flia As String
             Dim i As Integer
             For i = 0 To JGr_DetallePedido.RowCount - 1
                 JGr_DetallePedido.Row = i
@@ -1430,7 +1434,10 @@ Public Class F02_Pedido
                 cant = JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value
                 precio = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
                 subTotal = JGr_DetallePedido.CurrentRow.Cells("Monto").Value
-                L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal)
+                desc = JGr_DetallePedido.CurrentRow.Cells("Descuento").Value
+                total = JGr_DetallePedido.CurrentRow.Cells("Total").Value
+                flia = JGr_DetallePedido.CurrentRow.Cells("Familia").Value
+                L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal, desc, total, flia)
 
                 'adiciono un objeto detalle
                 objListDetalle.Add(New RequestDetail(Tb_Id.Text, codProd, cant, precio, subTotal, L_ClaseGetProducto(codProd))) 'webLuis
@@ -1537,7 +1544,7 @@ Public Class F02_Pedido
 
             'modificar detalle
             L_PedidoDetalle_Borrar(Tb_Id.Text)
-            Dim codProd, cant, precio, subTotal As String
+            Dim codProd, cant, precio, subTotal, desc, total, flia As String
             Dim i As Integer
             For i = 0 To JGr_DetallePedido.RowCount - 1
                 JGr_DetallePedido.Row = i
@@ -1545,7 +1552,10 @@ Public Class F02_Pedido
                 cant = JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value
                 precio = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
                 subTotal = JGr_DetallePedido.CurrentRow.Cells("Monto").Value
-                L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal)
+                desc = JGr_DetallePedido.CurrentRow.Cells("Descuento").Value
+                total = JGr_DetallePedido.CurrentRow.Cells("Total").Value
+                flia = JGr_DetallePedido.CurrentRow.Cells("Familia").Value
+                L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal, desc, total, flia)
             Next
             If (swTipoVenta.Value = False) Then  ''''Grabar Credito
                 L_prCajaGrabarCredito(Tb_Id.Text, Double.Parse(tbMontoCredito.Text))
@@ -2381,7 +2391,7 @@ Public Class F02_Pedido
                 Dim dt As DataTable = CType(JGr_DetallePedido.DataSource, DataTable)
                 Dim sumTotal As Double = 0
                 For i = 0 To dt.Rows.Count - 1
-                    sumTotal = sumTotal + dt.Rows(i).Item(5)
+                    sumTotal = sumTotal + dt.Rows(i).Item(7)
 
                 Next
                 tbMontoCredito.Text = Str(sumTotal)
@@ -2582,37 +2592,67 @@ Public Class F02_Pedido
 
     Private Sub btAplicarDesc_Click(sender As Object, e As EventArgs) Handles btAplicarDesc.Click
         Dim codpro As Integer
-        Dim cant, preciod, subtotal, total As Double
-        Dim cantf, preciodf, subtotalf, totalf As Double
+        Dim cant, preciod, total1, total2, descuento, cantf As Double
         Dim dt As DataTable
         Dim pos As Integer = JGr_DetallePedido.RowCount - 1
 
+        'Recorro el grid de pedido fila por fila
         For i = 0 To JGr_DetallePedido.RowCount - 1
-            ''For Each pedido In JGr_DetallePedido.GetRows
             codpro = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obcprod")
-            subtotal = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obptot")
-            'codpro = pedido.Cells(1).Value
+            total1 = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obptot")
+
             dt = L_fnMostrarDescuentosPrecios(codpro)
-            'If (pedido.Cells(8)).Value = 1 Then
+
+            'Cálculo de descuentos si es sin familia
             If CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obfamilia") = 1 Then
-                'cant = pedido.Cells(3).Value
                 cant = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obpcant")
+                'Consulta la tabla de descuentos para ver cual aplicará segun la cantidad ingresada
                 For Each preciodesc As DataRow In dt.Rows
                     If cant >= preciodesc.Item("dacant1") And cant <= preciodesc.Item("dacant2") Then
                         preciod = preciodesc.Item("dapreciou")
-                        total = cant * preciod
+                        total2 = cant * preciod
                     End If
                 Next
-                CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obtotal") = total
-                CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obdesc") = subtotal - total
+                If total2 > 0 Then
+                    descuento = total1 - total2
+                Else
+                    descuento = 0
+                End If
+                CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obdesc") = descuento
+                CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obtotal") = total1 - descuento
+                descuento = 0
+                total2 = 0
 
-                'CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("obpcant") = Tb_CantProd.Text
-                'CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("obptot") = CDbl(Tb_CantProd.Text) * precio
             Else
+                'Cálculo de descuentos por familia
+                Dim familia = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obfamilia")
+                Dim cantnormal = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obpcant")
+
+                'Recorre el grid para hacer la suma de las cantidades por familia
+                For Each flia In JGr_DetallePedido.GetRows
+                    If familia = flia.Cells(8).Value Then
+                        cantf += flia.Cells(3).Value
+                    End If
+                Next
+                'Consulta la tabla de descuentos para ver cual aplicará segun la cantidad ingresada
+                For Each preciodesc As DataRow In dt.Rows
+                    If cantf >= preciodesc.Item("dacant1") And cantf <= preciodesc.Item("dacant2") Then
+                        preciod = preciodesc.Item("dapreciou")
+                        total2 = cantnormal * preciod
+                    End If
+                Next
+                If total2 > 0 Then
+                    descuento = total1 - total2
+                Else
+                    descuento = 0
+                End If
+                CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obdesc") = descuento
+                CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obtotal") = total1 - descuento
+                cantf = 0
+                total2 = 0
+                descuento = 0
 
             End If
-
-            ''Next
         Next
     End Sub
 End Class
