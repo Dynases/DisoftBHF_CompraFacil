@@ -265,13 +265,29 @@ Public Class frmDispatch
                 .Visible = True
                 .FormatString = "0.00"
             End With
-
+            With dgjProducto.RootTable.Columns("SubTotal")
+                .Caption = "SubTotal"
+                .Width = 120
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+            End With
+            With dgjProducto.RootTable.Columns("Descuento")
+                .Caption = "Descuento"
+                .Width = 120
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+            End With
             With dgjProducto.RootTable.Columns("Total")
                 .Caption = "Total"
                 .Width = 120
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Visible = True
                 .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
             End With
 
             With dgjProducto
@@ -286,6 +302,10 @@ Public Class frmDispatch
                 .AllowColumnDrag = False
                 .AutomaticSort = False
                 '.ColumnHeaders = InheritableBoolean.False
+
+                .TotalRow = InheritableBoolean.True
+                .TotalRowFormatStyle.BackColor = Color.Gold
+                .TotalRowPosition = TotalRowPosition.BottomFixed
             End With
         Catch ex As Exception
             Throw New Exception(ex.Message)

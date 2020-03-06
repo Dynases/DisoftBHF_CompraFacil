@@ -666,6 +666,36 @@ Public Class F0_PedidosAsignacion
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
         End With
+        With objGrid.RootTable.Columns(6)
+            .Caption = "Descuento"
+            .Key = "Descuento"
+            .Width = 60
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.FontSize = gi_fuenteTamano
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .FormatString = "0.00"
+            .AggregateFunction = AggregateFunction.Sum
+        End With
+        With objGrid.RootTable.Columns(7)
+            .Caption = "Total Bs."
+            .Key = "Total"
+            .Width = 70
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.FontSize = gi_fuenteTamano
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .FormatString = "0.00"
+            .AggregateFunction = AggregateFunction.Sum
+        End With
+        With objGrid.RootTable.Columns(8)
+            .Caption = "Familia"
+            .Key = "Familia"
+            .Width = 70
+            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            .CellStyle.FontSize = gi_fuenteTamano
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .FormatString = "0.00"
+            .Visible = False
+        End With
 
         'Habilitar Filtradores
         With objGrid

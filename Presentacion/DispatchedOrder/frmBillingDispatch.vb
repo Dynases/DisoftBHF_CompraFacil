@@ -35,13 +35,10 @@ Public Class frmBillingDispatch
     Private Sub btFacturar_Click(sender As Object, e As EventArgs) Handles btFacturar.Click
         Try
 
-            ''Dim dt As DataTable = CType(dgjPedido.DataSource, DataTable)
-
             Dim list2 As List(Of VPedido_BillingDispatch) = CType(dgjPedido.DataSource, List(Of VPedido_BillingDispatch))
             Dim list1 As List(Of VPedido_BillingDispatch) = New List(Of VPedido_BillingDispatch)
             ''Dim dtContenido As DataTable = CType(dgjPedido.DataSource, DataTable)
             ''dt.Rows.Clear()
-
 
             For i As Integer = 0 To list2.Count - 1 Step 1
                 'If (list2(i).NroFactura.Equals("") Or list2(i).NroFactura.Equals("0")) Then
@@ -52,8 +49,6 @@ Public Class frmBillingDispatch
                         list1.Add(list2(i))
                     End If
                 End If
-
-
             Next
 
             If (list1.Count = 0) Then
@@ -70,16 +65,10 @@ Public Class frmBillingDispatch
                 GrabarTV001(Str(list1(i).Id))
                 Dim dtDetalle As DataTable = L_prObtenerDetallePedidoFactura(Str(list1(i).Id))
 
-                P_fnGenerarFactura(dtDetalle.Rows(0).Item("oanumi"), dtDetalle.Rows(0).Item("total"), dtDetalle.Rows(0).Item("nit"), dtDetalle.Rows(0).Item("cliente"), dtDetalle.Rows(0).Item("codcli"))
+                P_fnGenerarFactura(dtDetalle.Rows(0).Item("oanumi"), dtDetalle.Rows(0).Item("subtotal"), dtDetalle.Rows(0).Item("descuento"), dtDetalle.Rows(0).Item("total"), dtDetalle.Rows(0).Item("nit"), dtDetalle.Rows(0).Item("cliente"), dtDetalle.Rows(0).Item("codcli"))
 
             Next
 
-            'For i As Integer = 0 To list1.Count - 1 Step 1
-            '    Dim dtDetalle As DataTable = L_prObtenerDetallePedidoFactura(Str(list1(i).Id))
-
-            '    P_fnGenerarFactura(dtDetalle.Rows(i).Item("oanumi"), dtDetalle.Rows(i).Item("total"), dtDetalle.Rows(i).Item("nit"), dtDetalle.Rows(i).Item("cliente"))
-
-            'Next
             Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
 
             CargarPedidos()
@@ -99,9 +88,9 @@ Public Class frmBillingDispatch
         Return True
     End Function
 
-    Private Function P_fnGenerarFactura(numi As String, total As Double, nit As String, Nombre As String, Codcli As String) As Boolean
+    Private Function P_fnGenerarFactura(numi As String, subtotal As Double, descuento As Double, total As Double, nit As String, Nombre As String, Codcli As String) As Boolean
         Dim res As Boolean = False
-        res = P_fnGrabarFacturarTFV001(numi, total, nit, Nombre, Codcli) ' Grabar en la TFV001
+        res = P_fnGrabarFacturarTFV001(numi, subtotal, descuento, total, nit, Nombre, Codcli) ' Grabar en la TFV001
         If (res) Then
             If (P_fnValidarFactura()) Then
                 'Validar para facturar
@@ -320,13 +309,13 @@ Public Class frmBillingDispatch
         imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
         Return ms.ToArray()
     End Function
-    Private Function P_fnGrabarFacturarTFV001(numi As String, total As Double, nit As String, nameCliente As String, Codcli As String) As Boolean
-        Dim a As Double = total
+    Private Function P_fnGrabarFacturarTFV001(numi As String, subtotal As Double, descuento As Double, total As Double, nit As String, nameCliente As String, Codcli As String) As Boolean
+        Dim a As Double = subtotal
         Dim b As Double = CDbl(0) 'Ya esta calculado el 55% del ICE
         Dim c As Double = CDbl("0")
         Dim d As Double = CDbl("0")
         Dim e As Double = a - b - c - d
-        Dim f As Double = CDbl(0)
+        Dim f As Double = descuento
         Dim g As Double = e - f
         Dim h As Double = g * (13 / 100)
 
@@ -659,13 +648,29 @@ Public Class frmBillingDispatch
                 .Visible = True
                 .FormatString = "0.00"
             End With
-
+            With dgjProducto.RootTable.Columns("SubTotal")
+                .Caption = "SubTotal"
+                .Width = 120
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+            End With
+            With dgjProducto.RootTable.Columns("Descuento")
+                .Caption = "Descuento"
+                .Width = 120
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+            End With
             With dgjProducto.RootTable.Columns("Total")
                 .Caption = "Total"
                 .Width = 120
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Visible = True
                 .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
             End With
 
             With dgjProducto
@@ -680,6 +685,10 @@ Public Class frmBillingDispatch
                 .AllowColumnDrag = False
                 .AutomaticSort = False
                 '.ColumnHeaders = InheritableBoolean.False
+
+                .TotalRow = InheritableBoolean.True
+                .TotalRowFormatStyle.BackColor = Color.Gold
+                .TotalRowPosition = TotalRowPosition.BottomFixed
             End With
         Catch ex As Exception
             Throw New Exception(ex.Message)

@@ -39,6 +39,24 @@
         End Set
     End Property
 
+    Private _subtotal As Decimal
+    Public Property SubTotal() As Decimal
+        Get
+            Return _subtotal
+        End Get
+        Set(ByVal value As Decimal)
+            _subtotal = value
+        End Set
+    End Property
+    Private _descuento As Decimal
+    Public Property Descuento() As Decimal
+        Get
+            Return _descuento
+        End Get
+        Set(ByVal value As Decimal)
+            _descuento = value
+        End Set
+    End Property
     Private _total As Decimal
     Public Property Total() As Decimal
         Get

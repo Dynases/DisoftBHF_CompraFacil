@@ -232,10 +232,10 @@ Partial Class F0_PedidosAsignacion
         Me.SuperTabControl1.Size = New System.Drawing.Size(1022, 602)
         Me.SuperTabControl1.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem3, Me.SuperTabItem4})
         Me.SuperTabControl1.Text = "PEDIDOS ENTREGADOS"
-        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel1, 0)
         Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel4, 0)
-        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
         Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel3, 0)
+        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel1, 0)
+        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
         '
         'SuperTabControlPanel2
         '
@@ -1023,7 +1023,7 @@ Partial Class F0_PedidosAsignacion
         Me.ConMenu_Opciones2.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ConMenu_Opciones2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AñadirObsToolStripMenuItem, Me.GRABARRECLAMOToolStripMenuItem1, Me.GRABARRECLAMOREPARTIDORToolStripMenuItem1, Me.VERHISTORIALToolStripMenuItem1, Me.ANULARPEDIDOToolStripMenuItem1, Me.IMPRIMIRPEDIDOToolStripMenuItem})
         Me.ConMenu_Opciones2.Name = "ConMenu_Opciones"
-        Me.ConMenu_Opciones2.Size = New System.Drawing.Size(266, 182)
+        Me.ConMenu_Opciones2.Size = New System.Drawing.Size(266, 160)
         '
         'AñadirObsToolStripMenuItem
         '

@@ -31,13 +31,13 @@ Partial Class frmDispatch
         Me.PanelProducto = New System.Windows.Forms.Panel()
         Me.dgjProducto = New Janus.Windows.GridEX.GridEX()
         Me.PanelAccion = New System.Windows.Forms.Panel()
+        Me.btGrabar = New DevComponents.DotNetBar.ButtonX()
+        Me.btActualizar = New DevComponents.DotNetBar.ButtonX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.cbChoferes = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.PanelZona = New System.Windows.Forms.Panel()
         Me.PanelZonaGrilla = New System.Windows.Forms.Panel()
         Me.dgjZona = New Janus.Windows.GridEX.GridEX()
-        Me.btGrabar = New DevComponents.DotNetBar.ButtonX()
-        Me.btActualizar = New DevComponents.DotNetBar.ButtonX()
         Me.btConsultar = New DevComponents.DotNetBar.ButtonX()
         Me.PanelBase.SuspendLayout()
         Me.PanelSubBase.SuspendLayout()
@@ -79,7 +79,7 @@ Partial Class frmDispatch
         Me.PanelPedido.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelPedido.Location = New System.Drawing.Point(0, 60)
         Me.PanelPedido.Name = "PanelPedido"
-        Me.PanelPedido.Size = New System.Drawing.Size(530, 290)
+        Me.PanelPedido.Size = New System.Drawing.Size(530, 275)
         Me.PanelPedido.TabIndex = 2
         '
         'dgjPedido
@@ -87,16 +87,16 @@ Partial Class frmDispatch
         Me.dgjPedido.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgjPedido.Location = New System.Drawing.Point(0, 0)
         Me.dgjPedido.Name = "dgjPedido"
-        Me.dgjPedido.Size = New System.Drawing.Size(530, 290)
+        Me.dgjPedido.Size = New System.Drawing.Size(530, 275)
         Me.dgjPedido.TabIndex = 1
         '
         'PanelProducto
         '
         Me.PanelProducto.Controls.Add(Me.dgjProducto)
         Me.PanelProducto.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelProducto.Location = New System.Drawing.Point(0, 350)
+        Me.PanelProducto.Location = New System.Drawing.Point(0, 335)
         Me.PanelProducto.Name = "PanelProducto"
-        Me.PanelProducto.Size = New System.Drawing.Size(530, 100)
+        Me.PanelProducto.Size = New System.Drawing.Size(530, 115)
         Me.PanelProducto.TabIndex = 1
         '
         'dgjProducto
@@ -104,7 +104,7 @@ Partial Class frmDispatch
         Me.dgjProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgjProducto.Location = New System.Drawing.Point(0, 0)
         Me.dgjProducto.Name = "dgjProducto"
-        Me.dgjProducto.Size = New System.Drawing.Size(530, 100)
+        Me.dgjProducto.Size = New System.Drawing.Size(530, 115)
         Me.dgjProducto.TabIndex = 2
         '
         'PanelAccion
@@ -118,6 +118,36 @@ Partial Class frmDispatch
         Me.PanelAccion.Name = "PanelAccion"
         Me.PanelAccion.Size = New System.Drawing.Size(530, 60)
         Me.PanelAccion.TabIndex = 0
+        '
+        'btGrabar
+        '
+        Me.btGrabar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btGrabar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btGrabar.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btGrabar.Image = Global.Presentacion.My.Resources.Resources.GRABAR
+        Me.btGrabar.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btGrabar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btGrabar.Location = New System.Drawing.Point(380, 0)
+        Me.btGrabar.Name = "btGrabar"
+        Me.btGrabar.Size = New System.Drawing.Size(75, 60)
+        Me.btGrabar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btGrabar.TabIndex = 2
+        Me.btGrabar.Text = "Grabar"
+        '
+        'btActualizar
+        '
+        Me.btActualizar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btActualizar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btActualizar.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btActualizar.Image = Global.Presentacion.My.Resources.Resources.ACTUALIZAR
+        Me.btActualizar.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btActualizar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btActualizar.Location = New System.Drawing.Point(455, 0)
+        Me.btActualizar.Name = "btActualizar"
+        Me.btActualizar.Size = New System.Drawing.Size(75, 60)
+        Me.btActualizar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btActualizar.TabIndex = 3
+        Me.btActualizar.Text = "Actualizar"
         '
         'LabelX2
         '
@@ -168,36 +198,6 @@ Partial Class frmDispatch
         Me.dgjZona.Name = "dgjZona"
         Me.dgjZona.Size = New System.Drawing.Size(270, 400)
         Me.dgjZona.TabIndex = 0
-        '
-        'btGrabar
-        '
-        Me.btGrabar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btGrabar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btGrabar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btGrabar.Image = Global.Presentacion.My.Resources.Resources.GRABAR
-        Me.btGrabar.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btGrabar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btGrabar.Location = New System.Drawing.Point(380, 0)
-        Me.btGrabar.Name = "btGrabar"
-        Me.btGrabar.Size = New System.Drawing.Size(75, 60)
-        Me.btGrabar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btGrabar.TabIndex = 2
-        Me.btGrabar.Text = "Grabar"
-        '
-        'btActualizar
-        '
-        Me.btActualizar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btActualizar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btActualizar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btActualizar.Image = Global.Presentacion.My.Resources.Resources.ACTUALIZAR
-        Me.btActualizar.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btActualizar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btActualizar.Location = New System.Drawing.Point(455, 0)
-        Me.btActualizar.Name = "btActualizar"
-        Me.btActualizar.Size = New System.Drawing.Size(75, 60)
-        Me.btActualizar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btActualizar.TabIndex = 3
-        Me.btActualizar.Text = "Actualizar"
         '
         'btConsultar
         '

@@ -295,6 +295,9 @@ Public Class F02_Pedido
         With JGr_Buscador.RootTable.Columns("oaanumiprev")
             .Visible = False
         End With
+        With JGr_Buscador.RootTable.Columns("montocredito")
+            .Visible = False
+        End With
 
         JGr_Buscador.ContextMenuStrip = ConMenu_Buscador
 
@@ -1043,6 +1046,7 @@ Public Class F02_Pedido
             Btn_Check1.PerformClick()
         End If
 
+        btAplicarDesc.Enabled = True
     End Sub
     Private Sub _PInhabilitar()
         btnVentaDirecta.Visible = False
@@ -1052,7 +1056,7 @@ Public Class F02_Pedido
         Tb_Id.ReadOnly = True
         Tb_Fecha.Enabled = False
         Tb_Hora.ReadOnly = True
-        Tb_Zona.ReadOnly = False
+        Tb_Zona.ReadOnly = True
         Tb_Observaciones.ReadOnly = True
         Tb_CliCateg.ReadOnly = True
         Tb_CliCod.ReadOnly = True
@@ -1100,6 +1104,8 @@ Public Class F02_Pedido
 
 
         _PLimpiarErrores()
+
+        btAplicarDesc.Enabled = False
     End Sub
     Private Sub _PLimpiarErrores()
         'Ep1.Clear()
@@ -1309,7 +1315,7 @@ Public Class F02_Pedido
         For i = 0 To JGr_DetallePedido.RowCount - 1
             JGr_DetallePedido.Row = i
             If IsNumeric(JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value) = False Then
-                ToastNotification.Show(Me, "falta cantidad en algun producto en el detalle".ToUpper, My.Resources.WARNING, 3000, eToastGlowColor.Green, eToastPosition.BottomCenter)
+                ToastNotification.Show(Me, "falta cantidad en algun producto en el detalle".ToUpper, My.Resources.WARNING, 4000, eToastGlowColor.Green, eToastPosition.BottomCenter)
                 _Error = True
             End If
         Next
@@ -1375,8 +1381,13 @@ Public Class F02_Pedido
             End If
         End If
 
-
-
+        For i = 0 To JGr_DetallePedido.RowCount - 1
+            JGr_DetallePedido.Row = i
+            If IsNumeric(JGr_DetallePedido.CurrentRow.Cells("Total").Value) = False Or JGr_DetallePedido.CurrentRow.Cells("Total").Value = 0 Then
+                ToastNotification.Show(Me, "Falta calcular el total en algún producto del detalle, por favor presione el botón aplicar descuentos".ToUpper, My.Resources.WARNING, 5500, eToastGlowColor.Green, eToastPosition.BottomCenter)
+                _Error = True
+            End If
+        Next
 
         Return _Error
     End Function
@@ -1437,6 +1448,7 @@ Public Class F02_Pedido
                 desc = JGr_DetallePedido.CurrentRow.Cells("Descuento").Value
                 total = JGr_DetallePedido.CurrentRow.Cells("Total").Value
                 flia = JGr_DetallePedido.CurrentRow.Cells("Familia").Value
+
                 L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal, desc, total, flia)
 
                 'adiciono un objeto detalle
@@ -1707,14 +1719,18 @@ Public Class F02_Pedido
             L_PedidoCabecera_Grabar(idPedido, fecha, Now.Hour.ToString + ":" + Now.Minute.ToString, Tb_CliCod.Text, Tb_CliCodZona.Text, cbDistribuidor.Value.ToString, Tb_Observaciones.Text, "1", "1", "1")
 
             'grabar detalle
-            Dim codProd, cant, precio, subTotal As String
+            Dim codProd, cant, precio, subTotal, desc, total, flia As String
             For i = 0 To JGr_DetallePedido.RowCount - 1
                 JGr_DetallePedido.Row = i
                 codProd = JGr_DetallePedido.CurrentRow.Cells("CodProd").Value
                 cant = JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value
                 precio = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
                 subTotal = JGr_DetallePedido.CurrentRow.Cells("Monto").Value
-                L_PedidoDetalle_Grabar(idPedido, codProd, cant, precio, subTotal)
+                desc = JGr_DetallePedido.CurrentRow.Cells("Descuento").Value
+                total = JGr_DetallePedido.CurrentRow.Cells("Total").Value
+                flia = JGr_DetallePedido.CurrentRow.Cells("Familia").Value
+
+                L_PedidoDetalle_Grabar(idPedido, codProd, cant, precio, subTotal, desc, total, flia)
             Next
             'grabar estado del pedido
             L_PedidoEstados_Grabar(idPedido, "11", Date.Now.Date.ToString("yyyy/MM/dd"), Now.Hour.ToString + ":" + Now.Minute.ToString, gs_user)
@@ -1882,9 +1898,10 @@ Public Class F02_Pedido
 
     Private Sub JGr_DetallePedido_EditingCell(sender As Object, e As EditingCellEventArgs) Handles JGr_DetallePedido.EditingCell
         If (_fnAccesible()) Then
-            If e.Column.Index <> 3 Then
-                e.Cancel = True
-            End If
+            'If e.Column.Index <> 3 Then
+            '    e.Cancel = True
+            'End If
+            e.Cancel = True
         Else
             e.Cancel = True
         End If
@@ -2450,7 +2467,7 @@ Public Class F02_Pedido
             L_GrabarModificarCliente("cczona=" + Tb_CliCodZona.Text, "ccnumi=" + Str(Tb_CliCod.Text))
 
             'grabar detalle
-            Dim codProd, cant, precio, subTotal As String
+            Dim codProd, cant, precio, subTotal, desc, total, flia As String
             Dim i As Integer
             For i = 0 To JGr_DetallePedido.RowCount - 1
                 JGr_DetallePedido.Row = i
@@ -2458,7 +2475,11 @@ Public Class F02_Pedido
                 cant = JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value
                 precio = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
                 subTotal = JGr_DetallePedido.CurrentRow.Cells("Monto").Value
-                L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal)
+                desc = JGr_DetallePedido.CurrentRow.Cells("Descuento").Value
+                total = JGr_DetallePedido.CurrentRow.Cells("Total").Value
+                flia = JGr_DetallePedido.CurrentRow.Cells("Familia").Value
+
+                L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal, desc, total, flia)
 
                 'adiciono un objeto detalle
                 objListDetalle.Add(New RequestDetail(Tb_Id.Text, codProd, cant, precio, subTotal, L_ClaseGetProducto(codProd))) 'webLuis

@@ -22,32 +22,32 @@ Partial Class frmBillingDispatch
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim cbChoferes_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBillingDispatch))
+        Dim cbChoferes_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.PanelBase = New System.Windows.Forms.Panel()
         Me.PanelPedido = New System.Windows.Forms.Panel()
         Me.dgjPedido = New Janus.Windows.GridEX.GridEX()
         Me.PanelProducto = New System.Windows.Forms.Panel()
+        Me.QrFactura = New Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl()
         Me.dgjProducto = New Janus.Windows.GridEX.GridEX()
         Me.PanelSuperior = New System.Windows.Forms.Panel()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.Tb_Fecha = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
-        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
-        Me.cbChoferes = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
-        Me.QrFactura = New Gma.QrCodeNet.Encoding.Windows.Forms.QrCodeImgControl()
         Me.btFacturar = New DevComponents.DotNetBar.ButtonX()
         Me.btReporteDespachoCliente = New DevComponents.DotNetBar.ButtonX()
         Me.btReporteDespachoLinea = New DevComponents.DotNetBar.ButtonX()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.btVolverDist = New DevComponents.DotNetBar.ButtonX()
+        Me.cbChoferes = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.PanelBase.SuspendLayout()
         Me.PanelPedido.SuspendLayout()
         CType(Me.dgjPedido, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelProducto.SuspendLayout()
+        CType(Me.QrFactura, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgjProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelSuperior.SuspendLayout()
         CType(Me.Tb_Fecha, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbChoferes, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.QrFactura, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelBase
@@ -67,7 +67,7 @@ Partial Class frmBillingDispatch
         Me.PanelPedido.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelPedido.Location = New System.Drawing.Point(0, 60)
         Me.PanelPedido.Name = "PanelPedido"
-        Me.PanelPedido.Size = New System.Drawing.Size(800, 290)
+        Me.PanelPedido.Size = New System.Drawing.Size(800, 275)
         Me.PanelPedido.TabIndex = 1
         '
         'dgjPedido
@@ -75,7 +75,7 @@ Partial Class frmBillingDispatch
         Me.dgjPedido.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgjPedido.Location = New System.Drawing.Point(0, 0)
         Me.dgjPedido.Name = "dgjPedido"
-        Me.dgjPedido.Size = New System.Drawing.Size(800, 290)
+        Me.dgjPedido.Size = New System.Drawing.Size(800, 275)
         Me.dgjPedido.TabIndex = 2
         '
         'PanelProducto
@@ -83,17 +83,32 @@ Partial Class frmBillingDispatch
         Me.PanelProducto.Controls.Add(Me.QrFactura)
         Me.PanelProducto.Controls.Add(Me.dgjProducto)
         Me.PanelProducto.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelProducto.Location = New System.Drawing.Point(0, 350)
+        Me.PanelProducto.Location = New System.Drawing.Point(0, 335)
         Me.PanelProducto.Name = "PanelProducto"
-        Me.PanelProducto.Size = New System.Drawing.Size(800, 100)
+        Me.PanelProducto.Size = New System.Drawing.Size(800, 115)
         Me.PanelProducto.TabIndex = 1
+        '
+        'QrFactura
+        '
+        Me.QrFactura.ErrorCorrectLevel = Gma.QrCodeNet.Encoding.ErrorCorrectionLevel.M
+        Me.QrFactura.Image = CType(resources.GetObject("QrFactura.Image"), System.Drawing.Image)
+        Me.QrFactura.Location = New System.Drawing.Point(694, 5)
+        Me.QrFactura.Margin = New System.Windows.Forms.Padding(2)
+        Me.QrFactura.Name = "QrFactura"
+        Me.QrFactura.QuietZoneModule = Gma.QrCodeNet.Encoding.Windows.Render.QuietZoneModules.Two
+        Me.QrFactura.Size = New System.Drawing.Size(95, 90)
+        Me.QrFactura.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.QrFactura.TabIndex = 23
+        Me.QrFactura.TabStop = False
+        Me.QrFactura.Text = "QrCodeImgControl1"
+        Me.QrFactura.Visible = False
         '
         'dgjProducto
         '
         Me.dgjProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgjProducto.Location = New System.Drawing.Point(0, 0)
         Me.dgjProducto.Name = "dgjProducto"
-        Me.dgjProducto.Size = New System.Drawing.Size(800, 100)
+        Me.dgjProducto.Size = New System.Drawing.Size(800, 115)
         Me.dgjProducto.TabIndex = 3
         '
         'PanelSuperior
@@ -170,44 +185,6 @@ Partial Class frmBillingDispatch
         Me.Tb_Fecha.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.Tb_Fecha.TabIndex = 232
         '
-        'LabelX2
-        '
-        '
-        '
-        '
-        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX2.Location = New System.Drawing.Point(12, 12)
-        Me.LabelX2.Name = "LabelX2"
-        Me.LabelX2.Size = New System.Drawing.Size(55, 23)
-        Me.LabelX2.TabIndex = 3
-        Me.LabelX2.Text = "Choferes:"
-        '
-        'cbChoferes
-        '
-        cbChoferes_DesignTimeLayout.LayoutString = resources.GetString("cbChoferes_DesignTimeLayout.LayoutString")
-        Me.cbChoferes.DesignTimeLayout = cbChoferes_DesignTimeLayout
-        Me.cbChoferes.Location = New System.Drawing.Point(73, 14)
-        Me.cbChoferes.Name = "cbChoferes"
-        Me.cbChoferes.SelectedIndex = -1
-        Me.cbChoferes.SelectedItem = Nothing
-        Me.cbChoferes.Size = New System.Drawing.Size(200, 20)
-        Me.cbChoferes.TabIndex = 2
-        '
-        'QrFactura
-        '
-        Me.QrFactura.ErrorCorrectLevel = Gma.QrCodeNet.Encoding.ErrorCorrectionLevel.M
-        Me.QrFactura.Image = CType(resources.GetObject("QrFactura.Image"), System.Drawing.Image)
-        Me.QrFactura.Location = New System.Drawing.Point(694, 5)
-        Me.QrFactura.Margin = New System.Windows.Forms.Padding(2)
-        Me.QrFactura.Name = "QrFactura"
-        Me.QrFactura.QuietZoneModule = Gma.QrCodeNet.Encoding.Windows.Render.QuietZoneModules.Two
-        Me.QrFactura.Size = New System.Drawing.Size(95, 90)
-        Me.QrFactura.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.QrFactura.TabIndex = 23
-        Me.QrFactura.TabStop = False
-        Me.QrFactura.Text = "QrCodeImgControl1"
-        Me.QrFactura.Visible = False
-        '
         'btFacturar
         '
         Me.btFacturar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
@@ -253,6 +230,18 @@ Partial Class frmBillingDispatch
         Me.btReporteDespachoLinea.TabIndex = 5
         Me.btReporteDespachoLinea.Text = "Despacho por producto"
         '
+        'LabelX2
+        '
+        '
+        '
+        '
+        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX2.Location = New System.Drawing.Point(12, 12)
+        Me.LabelX2.Name = "LabelX2"
+        Me.LabelX2.Size = New System.Drawing.Size(55, 23)
+        Me.LabelX2.TabIndex = 3
+        Me.LabelX2.Text = "Choferes:"
+        '
         'btVolverDist
         '
         Me.btVolverDist.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
@@ -268,6 +257,17 @@ Partial Class frmBillingDispatch
         Me.btVolverDist.TabIndex = 234
         Me.btVolverDist.Text = "Volver a Distribución"
         '
+        'cbChoferes
+        '
+        cbChoferes_DesignTimeLayout.LayoutString = resources.GetString("cbChoferes_DesignTimeLayout.LayoutString")
+        Me.cbChoferes.DesignTimeLayout = cbChoferes_DesignTimeLayout
+        Me.cbChoferes.Location = New System.Drawing.Point(73, 14)
+        Me.cbChoferes.Name = "cbChoferes"
+        Me.cbChoferes.SelectedIndex = -1
+        Me.cbChoferes.SelectedItem = Nothing
+        Me.cbChoferes.Size = New System.Drawing.Size(200, 20)
+        Me.cbChoferes.TabIndex = 2
+        '
         'frmBillingDispatch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -280,12 +280,12 @@ Partial Class frmBillingDispatch
         Me.PanelPedido.ResumeLayout(False)
         CType(Me.dgjPedido, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelProducto.ResumeLayout(False)
+        CType(Me.QrFactura, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgjProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelSuperior.ResumeLayout(False)
         Me.PanelSuperior.PerformLayout()
         CType(Me.Tb_Fecha, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbChoferes, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.QrFactura, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

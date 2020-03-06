@@ -343,11 +343,12 @@ Public Class F0_Ventas
             .Visible = False
         End With
         With grdetalle.RootTable.Columns("tbty5prod")
+            .Caption = "COD.PROD"
             .Width = 90
-            .Visible = False
+            .Visible = True
         End With
         With grdetalle.RootTable.Columns("producto")
-            .Caption = "Productos"
+            .Caption = "PRODUCTOS"
             .Width = 250
             .Visible = True
         End With
@@ -392,9 +393,9 @@ Public Class F0_Ventas
         With grdetalle.RootTable.Columns("tbdesc")
             .Width = 100
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = False
+            .Visible = True
             .FormatString = "0.00"
-            .Caption = "M.Desc".ToUpper
+            .Caption = "Descuento".ToUpper
         End With
         With grdetalle.RootTable.Columns("tbtotdesc")
             .Width = 100

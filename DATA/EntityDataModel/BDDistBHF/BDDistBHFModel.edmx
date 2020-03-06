@@ -588,6 +588,11 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TO0011' no tiene definida n
           <Property Name="obpcant" Type="decimal" Precision="18" Scale="2" />
           <Property Name="obpbase" Type="numeric" Precision="18" Scale="2" />
           <Property Name="obptot" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="obdesc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="obtotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="obfamilia" Type="int" />
+          <Property Name="obcampo1" Type="int" />
+          <Property Name="obcampo2" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.TO0014' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -1384,6 +1389,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_Factura' no tiene def
           <Property Name="fvbdesprod" Type="nvarchar" MaxLength="50" />
           <Property Name="fvbcant" Type="int" />
           <Property Name="fvbprecio" Type="float" />
+          <Property Name="obdesc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="obtotal" Type="decimal" Precision="18" Scale="2" />
           <Property Name="fvbnumi2" Type="int" />
           <Property Name="oazona" Type="int" />
         </EntityType>
@@ -2852,7 +2859,12 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [TO0011].[obcprod] AS [obcprod], 
     [TO0011].[obpcant] AS [obpcant], 
     [TO0011].[obpbase] AS [obpbase], 
-    [TO0011].[obptot] AS [obptot]
+    [TO0011].[obptot] AS [obptot], 
+    [TO0011].[obdesc] AS [obdesc], 
+    [TO0011].[obtotal] AS [obtotal], 
+    [TO0011].[obfamilia] AS [obfamilia], 
+    [TO0011].[obcampo1] AS [obcampo1], 
+    [TO0011].[obcampo2] AS [obcampo2]
     FROM [dbo].[TO0011] AS [TO0011]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="TO0014" EntityType="Self.TO0014" store:Type="Tables" store:Schema="dbo">
@@ -3352,6 +3364,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_GO_Factura].[fvbdesprod] AS [fvbdesprod], 
     [VR_GO_Factura].[fvbcant] AS [fvbcant], 
     [VR_GO_Factura].[fvbprecio] AS [fvbprecio], 
+    [VR_GO_Factura].[obdesc] AS [obdesc], 
+    [VR_GO_Factura].[obtotal] AS [obtotal], 
     [VR_GO_Factura].[fvbnumi2] AS [fvbnumi2], 
     [VR_GO_Factura].[oazona] AS [oazona]
     FROM [dbo].[VR_GO_Factura] AS [VR_GO_Factura]</DefiningQuery>
@@ -5461,6 +5475,11 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="obpcant" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="obpbase" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="obptot" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="obdesc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="obtotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="obfamilia" Type="Int32" />
+          <Property Name="obcampo1" Type="Int32" />
+          <Property Name="obcampo2" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TO0014">
           <Key>
@@ -5992,6 +6011,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="fvbprecio" Type="Double" />
           <Property Name="fvbnumi2" Type="Int32" />
           <Property Name="oazona" Type="Int32" />
+          <Property Name="obdesc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="obtotal" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="VR_GO_FacturaVsVenta">
           <Key>
@@ -7664,6 +7685,11 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="TO0011">
             <EntityTypeMapping TypeName="BDDistBHFModel.TO0011">
               <MappingFragment StoreEntitySet="TO0011">
+                <ScalarProperty Name="obcampo2" ColumnName="obcampo2" />
+                <ScalarProperty Name="obcampo1" ColumnName="obcampo1" />
+                <ScalarProperty Name="obfamilia" ColumnName="obfamilia" />
+                <ScalarProperty Name="obtotal" ColumnName="obtotal" />
+                <ScalarProperty Name="obdesc" ColumnName="obdesc" />
                 <ScalarProperty Name="obptot" ColumnName="obptot" />
                 <ScalarProperty Name="obpbase" ColumnName="obpbase" />
                 <ScalarProperty Name="obpcant" ColumnName="obpcant" />
@@ -8196,6 +8222,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="VR_GO_Factura">
             <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_Factura">
               <MappingFragment StoreEntitySet="VR_GO_Factura">
+                <ScalarProperty Name="obtotal" ColumnName="obtotal" />
+                <ScalarProperty Name="obdesc" ColumnName="obdesc" />
                 <ScalarProperty Name="oazona" ColumnName="oazona" />
                 <ScalarProperty Name="fvbnumi2" ColumnName="fvbnumi2" />
                 <ScalarProperty Name="fvbprecio" ColumnName="fvbprecio" />

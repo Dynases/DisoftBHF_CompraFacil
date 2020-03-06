@@ -926,7 +926,7 @@ Partial Class F02_Pedido
         Me.LabelX5.Name = "LabelX5"
         Me.LabelX5.Size = New System.Drawing.Size(100, 23)
         Me.LabelX5.TabIndex = 10
-        Me.LabelX5.Text = "CODIGO:"
+        Me.LabelX5.Text = "COD CLIENTE:"
         '
         'Tb_CliEstado
         '
@@ -1194,9 +1194,9 @@ Partial Class F02_Pedido
         '
         '
         Me.LabelX12.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX12.Location = New System.Drawing.Point(527, 0)
+        Me.LabelX12.Location = New System.Drawing.Point(245, 0)
         Me.LabelX12.Name = "LabelX12"
-        Me.LabelX12.Size = New System.Drawing.Size(120, 23)
+        Me.LabelX12.Size = New System.Drawing.Size(112, 23)
         Me.LabelX12.TabIndex = 39
         Me.LabelX12.Text = "PRE-VENDEDOR:"
         '
@@ -1206,17 +1206,18 @@ Partial Class F02_Pedido
         '
         '
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX1.Location = New System.Drawing.Point(235, 0)
+        Me.LabelX1.Location = New System.Drawing.Point(556, 0)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.Size = New System.Drawing.Size(100, 23)
         Me.LabelX1.TabIndex = 38
         Me.LabelX1.Text = "DISTRIBUIDOR:"
+        Me.LabelX1.Visible = False
         '
         'cbPreVendedor
         '
         cbPreVendedor_DesignTimeLayout.LayoutString = resources.GetString("cbPreVendedor_DesignTimeLayout.LayoutString")
         Me.cbPreVendedor.DesignTimeLayout = cbPreVendedor_DesignTimeLayout
-        Me.cbPreVendedor.Location = New System.Drawing.Point(653, 0)
+        Me.cbPreVendedor.Location = New System.Drawing.Point(358, 0)
         Me.cbPreVendedor.Name = "cbPreVendedor"
         Me.cbPreVendedor.SelectedIndex = -1
         Me.cbPreVendedor.SelectedItem = Nothing
@@ -1227,12 +1228,13 @@ Partial Class F02_Pedido
         '
         cbDistribuidor_DesignTimeLayout.LayoutString = resources.GetString("cbDistribuidor_DesignTimeLayout.LayoutString")
         Me.cbDistribuidor.DesignTimeLayout = cbDistribuidor_DesignTimeLayout
-        Me.cbDistribuidor.Location = New System.Drawing.Point(341, 0)
+        Me.cbDistribuidor.Location = New System.Drawing.Point(662, 0)
         Me.cbDistribuidor.Name = "cbDistribuidor"
         Me.cbDistribuidor.SelectedIndex = -1
         Me.cbDistribuidor.SelectedItem = Nothing
         Me.cbDistribuidor.Size = New System.Drawing.Size(180, 23)
         Me.cbDistribuidor.TabIndex = 36
+        Me.cbDistribuidor.Visible = False
         '
         'Btn_GenerarPedidos
         '
@@ -1361,9 +1363,9 @@ Partial Class F02_Pedido
         '
         '
         Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX4.Location = New System.Drawing.Point(398, 27)
+        Me.LabelX4.Location = New System.Drawing.Point(405, 26)
         Me.LabelX4.Name = "LabelX4"
-        Me.LabelX4.Size = New System.Drawing.Size(55, 23)
+        Me.LabelX4.Size = New System.Drawing.Size(45, 23)
         Me.LabelX4.TabIndex = 31
         Me.LabelX4.Text = "ZONA:"
         '
@@ -1389,16 +1391,16 @@ Partial Class F02_Pedido
         '
         '
         Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX3.Location = New System.Drawing.Point(235, 26)
+        Me.LabelX3.Location = New System.Drawing.Point(249, 26)
         Me.LabelX3.Name = "LabelX3"
-        Me.LabelX3.Size = New System.Drawing.Size(63, 23)
+        Me.LabelX3.Size = New System.Drawing.Size(49, 23)
         Me.LabelX3.TabIndex = 28
         Me.LabelX3.Text = "HORA:"
         '
         'Tb_Fecha
         '
         Me.Tb_Fecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.Tb_Fecha.Location = New System.Drawing.Point(92, 27)
+        Me.Tb_Fecha.Location = New System.Drawing.Point(102, 27)
         Me.Tb_Fecha.Name = "Tb_Fecha"
         Me.Tb_Fecha.Size = New System.Drawing.Size(137, 23)
         Me.Tb_Fecha.TabIndex = 21
@@ -1409,7 +1411,7 @@ Partial Class F02_Pedido
         '
         '
         Me.LabelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX11.Location = New System.Drawing.Point(15, 26)
+        Me.LabelX11.Location = New System.Drawing.Point(3, 26)
         Me.LabelX11.Name = "LabelX11"
         Me.LabelX11.Size = New System.Drawing.Size(68, 23)
         Me.LabelX11.TabIndex = 24
@@ -1421,11 +1423,11 @@ Partial Class F02_Pedido
         '
         '
         Me.LabelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX14.Location = New System.Drawing.Point(15, -1)
+        Me.LabelX14.Location = New System.Drawing.Point(3, -1)
         Me.LabelX14.Name = "LabelX14"
-        Me.LabelX14.Size = New System.Drawing.Size(68, 23)
+        Me.LabelX14.Size = New System.Drawing.Size(92, 23)
         Me.LabelX14.TabIndex = 23
-        Me.LabelX14.Text = "CODIGO:"
+        Me.LabelX14.Text = "COD. PEDIDO:"
         '
         'Tb_Id
         '
@@ -1437,7 +1439,7 @@ Partial Class F02_Pedido
         Me.Tb_Id.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.Tb_Id.DisabledBackColor = System.Drawing.Color.White
         Me.Tb_Id.ForeColor = System.Drawing.Color.Black
-        Me.Tb_Id.Location = New System.Drawing.Point(92, 0)
+        Me.Tb_Id.Location = New System.Drawing.Point(103, 0)
         Me.Tb_Id.Name = "Tb_Id"
         Me.Tb_Id.PreventEnterBeep = True
         Me.Tb_Id.Size = New System.Drawing.Size(137, 23)

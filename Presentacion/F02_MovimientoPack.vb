@@ -366,6 +366,7 @@ Public Class F02_MovimientoPack
         'TextBox
         tbObs.ReadOnly = Not flat
         tbCodPack.ReadOnly = Not flat
+        tbCodPack.Enabled = flat
         tbProdPack.ReadOnly = Not flat
         tbCantP.IsInputReadOnly = Not flat
         tbPcosto.ReadOnly = Not flat

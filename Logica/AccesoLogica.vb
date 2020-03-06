@@ -991,7 +991,7 @@ Public Class AccesoLogica
         Else
             _Where = "oanumi=oanumi AND ccnumi=oaccli AND oazona=lanumi AND cecon=2 AND lazona=cenum " + _Cadena
         End If
-        _Tabla = D_Datos_Tabla("DISTINCT oanumi,oafdoc,oahora,cccod,ccdesc,ccdirec,cctelf1,cccat,cczona as oazona,cedesc,oaobs,oaobs2,oaest,cclat,cclongi,oaap,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi)>0,1,0 ) as reclamo,oapg,ccultvent,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi and oftip=1)>0,1,0 ) as tipoRecCliente,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi and oftip=2)>0,1,0 ) as tipoRecRepartidor, ccnumi, cceven,cast((select sum(obptot )  from TO0011 where obnumi =oanumi) as decimal(18,2)) as monto", "TO001,TC004,TC0051,TL001", _Where + " order by oanumi")
+        _Tabla = D_Datos_Tabla("DISTINCT oanumi,oafdoc,oahora,cccod,ccdesc,ccdirec,cctelf1,cccat,cczona as oazona,cedesc,oaobs,oaobs2,oaest,cclat,cclongi,oaap,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi)>0,1,0 ) as reclamo,oapg,ccultvent,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi and oftip=1)>0,1,0 ) as tipoRecCliente,IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi and oftip=2)>0,1,0 ) as tipoRecRepartidor, ccnumi, cceven,cast((select sum(obtotal )  from TO0011 where obnumi =oanumi) as decimal(18,2)) as monto", "TO001,TC004,TC0051,TL001", _Where + " order by oanumi")
         Return _Tabla
     End Function
 
@@ -1037,7 +1037,7 @@ Public Class AccesoLogica
                                + "oapg,ccultvent," _
                                + "IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi And oftip=1)>0,1,0 ) as tipoRecCliente," _
                                + "IIF((select COUNT(ofnumiped) from TO0014 where ofnumiped=oanumi And oftip=2)>0,1,0 ) as tipoRecRepartidor," _
-                                + "ccnumi, cceven,cast((select sum(obptot )  from TO0011 where obnumi =oanumi) as decimal(18,2)) as monto",
+                                + "ccnumi, cceven,cast((select sum(obtotal )  from TO0011 where obnumi =oanumi) as decimal(18,2)) as monto",
                               "TO001,TC004,TC0051,TL001,TL0012",
                                _Where + " order by oanumi")
         Return _Tabla
@@ -1255,14 +1255,17 @@ Public Class AccesoLogica
         L_PedidoCabecera_Grabar(numiNew, Now.Date.ToString("yyyy/MM/dd"), Now.Hour.ToString("00") + ":" + Now.Minute.ToString("00"), numiCli, numiZona, distribuidor, obs, "1", "1", "2")
 
         'grabar detalle
-        Dim codProd, cant, precio, subTot As String
+        Dim codProd, cant, precio, subTot, desc, total, flia As String
         For i = 0 To _dtDetOri.Rows.Count - 1
             codProd = _dtDetOri.Rows(i).Item("obcprod").ToString
             cant = _dtDetOri.Rows(i).Item("obpcant").ToString
             precio = _dtDetOri.Rows(i).Item("obpbase").ToString
             subTot = _dtDetOri.Rows(i).Item("obptot").ToString
+            desc = _dtDetOri.Rows(i).Item("obdesc").ToString
+            total = _dtDetOri.Rows(i).Item("obtotal").ToString
+            flia = _dtDetOri.Rows(i).Item("obfamilia").ToString
 
-            L_PedidoDetalle_Grabar(numiNew, codProd, cant, precio, subTot)
+            L_PedidoDetalle_Grabar(numiNew, codProd, cant, precio, subTot, desc, total, flia)
         Next
 
         Return numiNew
@@ -1297,7 +1300,10 @@ Public Class AccesoLogica
     Public Shared Sub L_PedidoDetalle_Grabar(_idCabecera As String, _codProd As String, _cantidad As String, _precio As String, _subTotal As String, _desc As String, _total As String, _flia As String)
         Dim _Err As Boolean
         Dim Sql As String
-        Sql = _idCabecera + ",'" + _codProd + "'," + _cantidad + "," + _precio + "," + _subTotal + "," + _desc + "," + _total + "," + _flia + "," + 0 + "," + 0
+        Dim campo1, campo2 As String
+        campo1 = 0
+        campo2 = 0
+        Sql = _idCabecera + ",'" + _codProd + "'," + _cantidad + "," + _precio + "," + _subTotal + "," + _desc + "," + _total + "," + _flia + "," + campo1 + "," + campo2
         _Err = D_Insertar_Datos("TO0011", Sql)
     End Sub
 

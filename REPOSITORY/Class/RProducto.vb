@@ -16,7 +16,9 @@ Public Class RProducto
                                                             .NombreProducto = a.cadesc,
                                                             .Cantidad = b.obpcant,
                                                             .Precio = b.obpbase,
-                                                            .Total = b.obptot
+                                                            .SubTotal = b.obptot,
+                                                            .Descuento = b.obdesc,
+                                                            .Total = b.obtotal
                                                             }).ToList()
                 Return listResult
             End Using
