@@ -818,14 +818,14 @@ Partial Class F02_Pedido
         Me.cmQuitarDetalle.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.cmQuitarDetalle.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.QuitarItemToolStripMenuItem})
         Me.cmQuitarDetalle.Name = "ConMenu_Clientes"
-        Me.cmQuitarDetalle.Size = New System.Drawing.Size(148, 40)
+        Me.cmQuitarDetalle.Size = New System.Drawing.Size(194, 62)
         '
         'QuitarItemToolStripMenuItem
         '
         Me.QuitarItemToolStripMenuItem.Image = Global.Presentacion.My.Resources.Resources.elim_fila2
         Me.QuitarItemToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.QuitarItemToolStripMenuItem.Name = "QuitarItemToolStripMenuItem"
-        Me.QuitarItemToolStripMenuItem.Size = New System.Drawing.Size(147, 36)
+        Me.QuitarItemToolStripMenuItem.Size = New System.Drawing.Size(193, 36)
         Me.QuitarItemToolStripMenuItem.Text = "Quitar Item"
         '
         'GroupPanel3

@@ -2283,16 +2283,22 @@ Public Class F02_Pedido
     Private Sub QuitarItemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitarItemToolStripMenuItem.Click
         If (MBtGrabar.Enabled) Then
             Try
-                Dim dtt As DataTable
-                JGr_DetallePedido.CurrentRow.BeginEdit()
-                JGr_DetallePedido.CurrentRow.Delete()
-                dtt = CType(JGr_DetallePedido.DataSource, DataTable)
-                dtt.AcceptChanges()
-                JGr_DetallePedido.DataSource = dtt
-                JGr_DetallePedido.CurrentRow.EndEdit()
+                'Dim dtt As DataTable
+                'JGr_DetallePedido.CurrentRow.BeginEdit()
+                'JGr_DetallePedido.CurrentRow.Delete()
+                'dtt = CType(JGr_DetallePedido.DataSource, DataTable)
+                'dtt.AcceptChanges()
+                'JGr_DetallePedido.DataSource = dtt
+                'JGr_DetallePedido.CurrentRow.EndEdit()
 
-                'JGr_DetallePedido.Refetch()
-                'JGr_DetallePedido.Refresh()
+                JGr_DetallePedido.CurrentRow.EndEdit()
+                JGr_DetallePedido.CurrentRow.Delete()
+                JGr_DetallePedido.Refetch()
+                JGr_DetallePedido.Refresh()
+                JGr_DetallePedido.UpdateData()
+                Dim dtt As DataTable = CType(JGr_DetallePedido.DataSource, DataTable)
+                dtt.AcceptChanges()
+                CType(JGr_DetallePedido.DataSource, DataTable).Equals(dtt)
 
             Catch ex As Exception
                 'sms
@@ -2676,4 +2682,5 @@ Public Class F02_Pedido
             End If
         Next
     End Sub
+
 End Class

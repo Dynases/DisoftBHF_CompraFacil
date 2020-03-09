@@ -132,7 +132,8 @@ Public Class RPedido
                                       .cadesc = a.cadesc,
                                       .cadesc2 = a.cadesc2,
                                       .categoria = a.categoria,
-                                      .obpcant = a.obpcant
+                                      .obpcant = a.obpcant,
+                                      .oafdoc = a.oafdoc
                                       }).ToList()
                 Return listResult
             End Using

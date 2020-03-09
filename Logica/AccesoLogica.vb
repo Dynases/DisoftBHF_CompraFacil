@@ -6811,7 +6811,8 @@ Public Class AccesoLogica
     End Function
     ' @ibid ,@ibfdoc,@ibconcep ,@ibobs  ,@ibest,
     '@ibalm ,@ibiddc,@ibidchof ,@ibidvent ,@newFecha,@newHora,@ibuact
-    Public Shared Function L_prMovimientoChoferGrabarSalida(ByRef _ibid As String, _ibfdoc As String, _ibconcep As Integer, _ibobs As String, _ibidchof As Integer, _idConciliacion As Integer, _detalle As DataTable) As Boolean
+    Public Shared Function L_prMovimientoChoferGrabarSalida(ByRef _ibid As String, _ibfdoc As String, _ibconcep As Integer, _ibobs As String, _ibidchof As Integer,
+                                                            _idConciliacion As Integer, _detalle As DataTable, _fechapedido As String) As Boolean
         Dim _resultado As Boolean
 
         Dim _Tabla As DataTable
@@ -6829,6 +6830,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@ibidvent", 0))
         _listParam.Add(New Datos.DParametro("@ibidconcil", _idConciliacion))
         _listParam.Add(New Datos.DParametro("@TM0011", "", _detalle))
+        _listParam.Add(New Datos.DParametro("@fechapedido", _fechapedido))
         _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TM001SalidaChofer", _listParam)
 
@@ -7166,6 +7168,18 @@ Public Class AccesoLogica
         Dim _listParam As New List(Of Datos.DParametro)
 
         _listParam.Add(New Datos.DParametro("@tipo", 6))
+        _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TM001SalidaChofer", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prListarChoferesPedidosPendientes() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 26))
         _listParam.Add(New Datos.DParametro("@ibuact", L_Usuario))
 
         _Tabla = D_ProcedimientoConParam("sp_Mam_TM001SalidaChofer", _listParam)

@@ -17,6 +17,7 @@ Public Class F0G_MovimientoChoferSalida
 
 #Region "Variables Globales"
     Dim _codChofer As Integer = 0
+    Dim _fechapedido As String
     Public _nameButton As String
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
@@ -562,7 +563,7 @@ Public Class F0G_MovimientoChoferSalida
                 Return
             Else
                 Dim tabla As DataTable = L_prMovimientoChoferNoExisteConciliacion(_codChofer) ''Aqui obtengo el numi de la TI0022 
-                Dim res As Boolean = L_prMovimientoChoferGrabarSalida(numi, tbFecha.Value.ToString("yyyy/MM/dd"), cbConcepto.Value, tbObservacion.Text, _codChofer, tabla.Rows(0).Item("ieid"), CType(grdetalle.DataSource, DataTable))
+                Dim res As Boolean = L_prMovimientoChoferGrabarSalida(numi, tbFecha.Value.ToString("yyyy/MM/dd"), cbConcepto.Value, tbObservacion.Text, _codChofer, tabla.Rows(0).Item("ieid"), CType(grdetalle.DataSource, DataTable), _fechapedido)
                 If res Then
 
                     _prCargarVenta()
@@ -580,7 +581,7 @@ Public Class F0G_MovimientoChoferSalida
                 End If
             End If
         Else
-            Dim res As Boolean = L_prMovimientoChoferGrabarSalida(numi, tbFecha.Value.ToString("yyyy/MM/dd"), cbConcepto.Value, tbObservacion.Text, _codChofer, _IdConciliacion, CType(grdetalle.DataSource, DataTable))
+            Dim res As Boolean = L_prMovimientoChoferGrabarSalida(numi, tbFecha.Value.ToString("yyyy/MM/dd"), cbConcepto.Value, tbObservacion.Text, _codChofer, _IdConciliacion, CType(grdetalle.DataSource, DataTable), _fechapedido)
             If res Then
                 _prCargarVenta()
                 _Limpiar()
@@ -720,12 +721,13 @@ Public Class F0G_MovimientoChoferSalida
 
     Private Sub grdetalle_EditingCell(sender As Object, e As EditingCellEventArgs) Handles grdetalle.EditingCell
         If (_fnAccesible()) Then
-            'Habilitar solo las columnas de Precio, %, Monto y Observación
-            If (e.Column.Index = grdetalle.RootTable.Columns("iccant").Index) Then
-                e.Cancel = False
-            Else
-                e.Cancel = True
-            End If
+            ''Habilitar solo las columnas de Precio, %, Monto y Observación
+            'If (e.Column.Index = grdetalle.RootTable.Columns("iccant").Index) Then
+            '    e.Cancel = False
+            'Else
+            '    e.Cancel = True
+            'End If
+            e.Cancel = True
         Else
             e.Cancel = True
         End If
@@ -1110,7 +1112,8 @@ salirIf:
     End Sub
 
     Private Sub btBuscarChofer_Click(sender As Object, e As EventArgs) Handles btBuscarChofer.Click
-        P_prAyudaChofer()
+        'P_prAyudaChofer() 'Antes estaba con esta, se cambió la estructura de lo que debía mostrarse
+        P_prAyudaChoferNuevo()
     End Sub
 
     Private Sub P_prAyudaChofer()
@@ -1120,7 +1123,7 @@ salirIf:
         '   a.cbnumi ,a.cbdesc ,a.cbci ,a.cbfnac
 
         Dim listEstCeldas As New List(Of Modelo.MCelda)
-        listEstCeldas.Add(New Modelo.MCelda("cbnumi,", True, "ID", 50))
+        listEstCeldas.Add(New Modelo.MCelda("cbnumi,", True, "ID", 80))
         listEstCeldas.Add(New Modelo.MCelda("cbdesc", True, "NOMBRE", 280))
         listEstCeldas.Add(New Modelo.MCelda("cbci", True, "CI".ToUpper, 150))
         listEstCeldas.Add(New Modelo.MCelda("cbfnac", True, "F.Nacimiento", 220, "MM/dd/YYYY"))
@@ -1158,6 +1161,54 @@ salirIf:
             End If
         End If
     End Sub
+    Private Sub P_prAyudaChoferNuevo()
+        Dim dt As DataTable
+
+        dt = L_prListarChoferesPedidosPendientes()
+        '   a.cbnumi ,a.cbdesc ,a.cbci ,a.cbfnac
+
+        Dim listEstCeldas As New List(Of Modelo.MCelda)
+        listEstCeldas.Add(New Modelo.MCelda("oaccbnumi,", True, "CÓDIGO", 70))
+        listEstCeldas.Add(New Modelo.MCelda("cbdesc", True, "NOMBRE", 280))
+        listEstCeldas.Add(New Modelo.MCelda("oacnconc", False, "CONCILICACION", 150))
+        listEstCeldas.Add(New Modelo.MCelda("oaest", False, "ESTADO", 150))
+        listEstCeldas.Add(New Modelo.MCelda("oaap", False, "oaap".ToUpper, 150))
+        listEstCeldas.Add(New Modelo.MCelda("oafdoc", True, "FECHA PEDIDO", 220, "MM/dd/YYYY"))
+
+        Dim ef = New Efecto
+        ef.tipo = 3
+        ef.dt = dt
+        ef.SeleclCol = 2
+        ef.listEstCeldas = listEstCeldas
+        ef.alto = 50
+        ef.ancho = 350
+        ef.Context = "Seleccione chofer".ToUpper
+        ef.ShowDialog()
+        Dim bandera As Boolean = False
+        bandera = ef.band
+        If (bandera = True) Then
+            Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
+
+            _codChofer = Row.Cells("oaccbnumi").Value
+            tbChofer.Text = Row.Cells("cbdesc").Value
+            _fechapedido = Row.Cells("oafdoc").Value
+            cbConcepto.Focus()
+
+            _prCargarDetalleVenta(-1)
+            _prAddDetalleVenta()
+            'With grdetalle.RootTable.Columns("img")
+            '    .Width = 80
+            '    .Caption = "Eliminar".ToUpper
+            '    .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
+            '    .Visible = True
+            'End With
+            _prObtenerNumiConciliacionTI0022()
+
+            If (P_Global.gb_despacho) Then
+                CargarDespachoDeChoferNuevo(_codChofer, _fechapedido)
+            End If
+        End If
+    End Sub
 
     Private Sub CargarDespachoDeChofer(codChofer As Integer)
         Try
@@ -1174,6 +1225,42 @@ salirIf:
                     CType(grdetalle.DataSource, DataTable).Clear()
                     Dim i = 0
                     For Each item In listResult
+                        _prAddDetalleVenta()
+                        CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccprod") = item.canumi
+                        CType(grdetalle.DataSource, DataTable).Rows(i).Item("cacod") = item.cacod
+                        CType(grdetalle.DataSource, DataTable).Rows(i).Item("producto") = item.cadesc
+
+                        CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccant") = item.obpcant
+                        i += 1
+                    Next
+                    _prCargarProductos()
+                End If
+            Else
+                Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+                ToastNotification.Show(Me, "No existe productos de despacho para el chofer".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                'MBtGrabar.Enabled = False
+            End If
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        End Try
+    End Sub
+    Private Sub CargarDespachoDeChoferNuevo(codChofer As Integer, _fechapedido As String)
+        Try
+            Dim listResult = New LPedido().ListarDespachoXProductoDeChoferSalida(codChofer)
+            Dim lista = (From a In listResult
+                         Where a.oafdoc = _fechapedido).ToList
+            If (lista.Count > 0) Then
+                Dim info As New TaskDialogInfo("¿desea carga los producto de despacho del chofer?".ToUpper,
+                                       eTaskDialogIcon.Information, "pregunta".ToUpper,
+                                       "esta a punto de sobreescribir todo los productos".ToUpper _
+                                       + vbCrLf + "Desea continuar?".ToUpper,
+                                       eTaskDialogButton.Yes Or eTaskDialogButton.Cancel,
+                                       eTaskDialogBackgroundColor.Blue)
+                Dim result As eTaskDialogResult = TaskDialog.Show(info)
+                If result = eTaskDialogResult.Yes Then
+                    CType(grdetalle.DataSource, DataTable).Clear()
+                    Dim i = 0
+                    For Each item In lista
                         _prAddDetalleVenta()
                         CType(grdetalle.DataSource, DataTable).Rows(i).Item("iccprod") = item.canumi
                         CType(grdetalle.DataSource, DataTable).Rows(i).Item("cacod") = item.cacod

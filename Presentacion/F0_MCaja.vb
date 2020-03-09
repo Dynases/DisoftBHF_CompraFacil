@@ -1034,6 +1034,7 @@ Public Class F0_MCaja
         _prArmarListaDeposito()
         _prCrearListaCambio(2, 0)
         _prCrearListaDeposito(2, 0)
+
         'Colocar el total del contado en el tbdRecibido.Text
         tbdRecibido.Text = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("contado"), AggregateFunction.Sum)
     End Sub
