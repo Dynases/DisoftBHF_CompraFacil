@@ -958,7 +958,7 @@ Partial Public Class BDDistBHFEntities
     End Function
 
 
-    Public Overridable Function sp_go_TCA001(tipo As Nullable(Of Integer), numi As Nullable(Of Integer), fdoc As Nullable(Of Date), prov As Nullable(Of Integer), nfac As String, obs As String, uact As String, tven As Nullable(Of Integer), fvcred As Nullable(Of Date), mon As Nullable(Of Integer), est As Nullable(Of Integer), desc As Nullable(Of Decimal), descpro1 As Nullable(Of Decimal), descpro2 As Nullable(Of Decimal), desctot As Nullable(Of Decimal), total As Nullable(Of Decimal), emision As Nullable(Of Integer), consigna As Nullable(Of Integer), retenc As Nullable(Of Integer), asientoi As Nullable(Of Integer), ffactura As Nullable(Of Date)) As Integer
+    Public Overridable Function sp_go_TCA001(tipo As Nullable(Of Integer), numi As Nullable(Of Integer), fdoc As Nullable(Of Date), prov As Nullable(Of Integer), nfac As String, obs As String, uact As String, tven As Nullable(Of Integer), fvcred As Nullable(Of Date), mon As Nullable(Of Integer), est As Nullable(Of Integer), desc As Nullable(Of Decimal), descpro1 As Nullable(Of Decimal), descpro2 As Nullable(Of Decimal), desctot As Nullable(Of Decimal), total As Nullable(Of Decimal), emision As Nullable(Of Integer), consigna As Nullable(Of Integer), retenc As Nullable(Of Integer), asientoi As Nullable(Of Integer), ffactura As Nullable(Of Date), codpro As Nullable(Of Integer)) As Integer
 
         Dim tipoParameter As ObjectParameter = If(tipo.HasValue, New ObjectParameter("tipo", tipo), New ObjectParameter("tipo", GetType(Integer)))
 
@@ -1023,7 +1023,10 @@ Partial Public Class BDDistBHFEntities
         Dim ffacturaParameter As ObjectParameter = If(ffactura.HasValue, New ObjectParameter("ffactura", ffactura), New ObjectParameter("ffactura", GetType(Date)))
 
 
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("sp_go_TCA001", tipoParameter, numiParameter, fdocParameter, provParameter, nfacParameter, obsParameter, uactParameter, tvenParameter, fvcredParameter, monParameter, estParameter, descParameter, descpro1Parameter, descpro2Parameter, desctotParameter, totalParameter, emisionParameter, consignaParameter, retencParameter, asientoiParameter, ffacturaParameter)
+        Dim codproParameter As ObjectParameter = If(codpro.HasValue, New ObjectParameter("codpro", codpro), New ObjectParameter("codpro", GetType(Integer)))
+
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("sp_go_TCA001", tipoParameter, numiParameter, fdocParameter, provParameter, nfacParameter, obsParameter, uactParameter, tvenParameter, fvcredParameter, monParameter, estParameter, descParameter, descpro1Parameter, descpro2Parameter, desctotParameter, totalParameter, emisionParameter, consignaParameter, retencParameter, asientoiParameter, ffacturaParameter, codproParameter)
     End Function
 
 

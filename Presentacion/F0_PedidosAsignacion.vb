@@ -198,7 +198,7 @@ Public Class F0_PedidosAsignacion
         With objGrid.RootTable.Columns("monto")
             .Width = 70
             .Visible = True
-            .Caption = "SubTotal"
+            .Caption = "Total"
             .FormatString = "0.00"
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
@@ -207,7 +207,7 @@ Public Class F0_PedidosAsignacion
         End With
         'dar formato a las columnas
         With objGrid.RootTable.Columns(0)
-            .Caption = "Cod."
+            .Caption = "Cod.Ped"
             .Key = "CodPedido"
             .Width = 60
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
@@ -232,7 +232,7 @@ Public Class F0_PedidosAsignacion
         End With
 
         With objGrid.RootTable.Columns(3)
-            .Visible = True
+            .Visible = False
             .Key = "codCliente"
             .Caption = "Cod. Cliente"
             .Width = 80
@@ -621,9 +621,9 @@ Public Class F0_PedidosAsignacion
         End With
 
         With objGrid.RootTable.Columns(1)
-            .Caption = "Cod. Producto"
+            .Caption = "Cod. Prod."
             .Key = "CodProd"
-            .Width = 70
+            .Width = 60
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -641,7 +641,7 @@ Public Class F0_PedidosAsignacion
         With objGrid.RootTable.Columns(3)
             .Caption = "Cantidad"
             .Key = "Cantidad"
-            .Width = 70
+            .Width = 60
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -650,7 +650,7 @@ Public Class F0_PedidosAsignacion
         With objGrid.RootTable.Columns(4)
             .Caption = "Precio"
             .Key = "Precio"
-            .Width = 70
+            .Width = 60
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -659,7 +659,7 @@ Public Class F0_PedidosAsignacion
         With objGrid.RootTable.Columns(5)
             .Caption = "Monto Bs."
             .Key = "Monto"
-            .Width = 70
+            .Width = 60
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -689,7 +689,7 @@ Public Class F0_PedidosAsignacion
         With objGrid.RootTable.Columns(8)
             .Caption = "Familia"
             .Key = "Familia"
-            .Width = 70
+            .Width = 50
             .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
             .CellStyle.FontSize = gi_fuenteTamano
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far

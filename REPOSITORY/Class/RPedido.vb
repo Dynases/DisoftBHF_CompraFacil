@@ -87,7 +87,7 @@ Public Class RPedido
                                       .cccod = a.cccod,
                                       .ccdesc = a.ccdesc,
                                       .oacnrofact = a.oacnrofact,
-                                      .obptot = a.obptot,
+                                      .obtotal = a.obtotal,
                                       .IdZona = a.IdZona,
                                       .oafdoc = a.oafdoc
                                       }).ToList()

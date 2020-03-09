@@ -1278,6 +1278,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_GO_DespachoXCliente' no 
           <Property Name="ccdesc" Type="nvarchar" MaxLength="50" />
           <Property Name="oacnrofact" Type="bigint" Nullable="false" />
           <Property Name="obptot" Type="numeric" Precision="38" Scale="2" />
+          <Property Name="obdesc" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="obtotal" Type="decimal" Precision="38" Scale="2" />
           <Property Name="IdZona" Type="int" />
           <Property Name="oaest" Type="int" />
           <Property Name="oaap" Type="int" />
@@ -2363,6 +2365,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Parameter Name="retenc" Type="int" Mode="In" />
           <Parameter Name="asientoi" Type="int" Mode="In" />
           <Parameter Name="ffactura" Type="date" Mode="In" />
+          <Parameter Name="codpro" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_go_TCI001" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo" Type="int" Mode="In" />
@@ -3271,6 +3274,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
     [VR_GO_DespachoXCliente].[ccdesc] AS [ccdesc], 
     [VR_GO_DespachoXCliente].[oacnrofact] AS [oacnrofact], 
     [VR_GO_DespachoXCliente].[obptot] AS [obptot], 
+    [VR_GO_DespachoXCliente].[obdesc] AS [obdesc], 
+    [VR_GO_DespachoXCliente].[obtotal] AS [obtotal], 
     [VR_GO_DespachoXCliente].[IdZona] AS [IdZona], 
     [VR_GO_DespachoXCliente].[oaest] AS [oaest], 
     [VR_GO_DespachoXCliente].[oaap] AS [oaap], 
@@ -4180,6 +4185,7 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
             <Parameter Name="retenc" Mode="In" Type="Int32" />
             <Parameter Name="asientoi" Mode="In" Type="Int32" />
             <Parameter Name="ffactura" Mode="In" Type="DateTime" />
+            <Parameter Name="codpro" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_go_TCI001" ReturnType="Collection(Int32)">
             <Parameter Name="tipo" Mode="In" Type="Int32" />
@@ -5912,6 +5918,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <Property Name="oaest" Type="Int32" />
           <Property Name="oaap" Type="Int32" />
           <Property Name="oafdoc" Type="DateTime" Precision="0" />
+          <Property Name="obdesc" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="obtotal" Type="Decimal" Precision="38" Scale="2" />
         </EntityType>
         <EntityType Name="VR_GO_DespachoXProducto">
           <Key>
@@ -8140,6 +8148,8 @@ advertencia 6002: La tabla o vista 'BDDistBHF_CF.dbo.VR_VistaPedido_PrecioCosto'
           <EntitySetMapping Name="VR_GO_DespachoXCliente">
             <EntityTypeMapping TypeName="BDDistBHFModel.VR_GO_DespachoXCliente">
               <MappingFragment StoreEntitySet="VR_GO_DespachoXCliente">
+                <ScalarProperty Name="obtotal" ColumnName="obtotal" />
+                <ScalarProperty Name="obdesc" ColumnName="obdesc" />
                 <ScalarProperty Name="oafdoc" ColumnName="oafdoc" />
                 <ScalarProperty Name="oaap" ColumnName="oaap" />
                 <ScalarProperty Name="oaest" ColumnName="oaest" />

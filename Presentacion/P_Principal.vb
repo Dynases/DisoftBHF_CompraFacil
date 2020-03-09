@@ -594,7 +594,7 @@ Public Class P_Principal
         FP_Ventana.Select()
         Dim frm As New frmDispatch
         Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
-        frm._nameButton = btStockDisponible.Name
+        frm._nameButton = btPediDistribicion.Name
         frm._tab = tab3
         frm._modulo = FP_Pedido
         Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
@@ -609,7 +609,7 @@ Public Class P_Principal
         FP_Ventana.Select()
         Dim frm As New frmBillingDispatch
         Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
-        frm._nameButton = btStockDisponible.Name
+        frm._nameButton = btPediFacturacionDespacho.Name
         frm._tab = tab3
         frm._modulo = FP_Pedido
         Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)

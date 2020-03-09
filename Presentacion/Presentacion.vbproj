@@ -1798,6 +1798,7 @@
     <Content Include="Resources\asiento.png" />
     <Content Include="Resources\cobro.png" />
     <None Include="Resources\descuentos.png" />
+    <None Include="Resources\volver.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

@@ -527,7 +527,7 @@ Public Class frmBillingDispatch
             dgjPedido.RetrieveStructure()
 
             With dgjPedido.RootTable.Columns("Fecha")
-                .Caption = "Fecha"
+                .Caption = "Fecha Pedido"
                 .Width = 80
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Visible = True

@@ -34,5 +34,9 @@ Partial Public Class VR_GO_DespachoXCliente
 
     Public Property oafdoc As Nullable(Of Date)
 
+    Public Property obdesc As Nullable(Of Decimal)
+
+    Public Property obtotal As Nullable(Of Decimal)
+
 
 End Class

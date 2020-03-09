@@ -247,7 +247,7 @@ Partial Class frmBillingDispatch
         Me.btVolverDist.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
         Me.btVolverDist.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.btVolverDist.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btVolverDist.Image = Global.Presentacion.My.Resources.Resources.atras1
+        Me.btVolverDist.Image = Global.Presentacion.My.Resources.Resources.volver
         Me.btVolverDist.ImageFixedSize = New System.Drawing.Size(30, 30)
         Me.btVolverDist.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
         Me.btVolverDist.Location = New System.Drawing.Point(725, 0)

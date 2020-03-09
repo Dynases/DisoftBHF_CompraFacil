@@ -1622,11 +1622,19 @@ Public Class F02_Compra
     End Sub
 
     Private Sub dgjDetalle_CellValueChanged(sender As Object, e As ColumnActionEventArgs) Handles dgjDetalle.CellValueChanged
+        Dim codprod As Integer
         If (BoModificar Or BoNuevo) Then
             If ((e.Column.Key.Equals("cabcantcj")) Or (e.Column.Key.Equals("cabcantun")) Or (e.Column.Key.Equals("cabsubtot"))) Then
                 Dim lin As Integer = dgjDetalle.GetValue("cabnumi")
                 Dim pos As Integer = -1
                 _fnObtenerFilaDetalle(pos, lin)
+
+                'Obtener la conversion del producto
+                codprod = dgjDetalle.GetValue("cabtc1numi")
+                Dim dtconv As New DataTable
+                dtconv = L_fnConversionProd(codprod)
+                conv = dtconv.Rows(0).Item("caconv")
+
                 If (Not IsNumeric(dgjDetalle.GetValue("cabcantcj")) Or dgjDetalle.GetValue("cabcantcj").ToString = String.Empty) Then
                     CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantcj") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantcj")
                     CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")

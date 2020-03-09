@@ -58,6 +58,24 @@
             _obptot = value
         End Set
     End Property
+    Private _obdesc As Decimal
+    Public Property obdesc() As Decimal
+        Get
+            Return _obdesc
+        End Get
+        Set(ByVal value As Decimal)
+            _obdesc = value
+        End Set
+    End Property
+    Private _obtotal As Decimal
+    Public Property obtotal() As Decimal
+        Get
+            Return _obtotal
+        End Get
+        Set(ByVal value As Decimal)
+            _obtotal = value
+        End Set
+    End Property
     Private _IdZona As Integer
     Public Property IdZona() As Integer
         Get

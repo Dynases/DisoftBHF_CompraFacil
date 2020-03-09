@@ -8183,7 +8183,17 @@ Public Class AccesoLogica
         _Ds.Tables.Add(_Tabla)
         Return _Ds
     End Function
+    Public Shared Function L_fnConversionProd(_codpro As String) As DataTable
+        Dim _Tabla As DataTable
 
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 9))
+        _listParam.Add(New Datos.DParametro("@codpro", _codpro))
+        _Tabla = D_ProcedimientoConParam("sp_go_TCA001", _listParam)
+
+        Return _Tabla
+    End Function
 #End Region
 
 #Region "TCA00121 PagosCompras"
