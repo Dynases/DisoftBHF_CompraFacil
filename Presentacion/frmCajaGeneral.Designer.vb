@@ -23,13 +23,13 @@ Partial Class frmCajaGeneral
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelSuperior = New System.Windows.Forms.Panel()
+        Me.btGenerar = New DevComponents.DotNetBar.ButtonX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.TB_FechaHasta = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.Tb_FechaDesde = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.bt_Imprimir = New DevComponents.DotNetBar.ButtonX()
         Me.Dgv_Caja = New Janus.Windows.GridEX.GridEX()
-        Me.btGenerar = New DevComponents.DotNetBar.ButtonX()
         Me.PanelSuperior.SuspendLayout()
         CType(Me.TB_FechaHasta, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tb_FechaDesde, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,13 +50,28 @@ Partial Class frmCajaGeneral
         Me.PanelSuperior.Size = New System.Drawing.Size(922, 60)
         Me.PanelSuperior.TabIndex = 1
         '
+        'btGenerar
+        '
+        Me.btGenerar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btGenerar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btGenerar.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btGenerar.Image = Global.Presentacion.My.Resources.Resources.REPORTE2
+        Me.btGenerar.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btGenerar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
+        Me.btGenerar.Location = New System.Drawing.Point(772, 0)
+        Me.btGenerar.Name = "btGenerar"
+        Me.btGenerar.Size = New System.Drawing.Size(75, 60)
+        Me.btGenerar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btGenerar.TabIndex = 236
+        Me.btGenerar.Text = "Generar"
+        '
         'LabelX2
         '
         '
         '
         '
         Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX2.Location = New System.Drawing.Point(218, 21)
+        Me.LabelX2.Location = New System.Drawing.Point(219, 21)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.Size = New System.Drawing.Size(64, 23)
         Me.LabelX2.TabIndex = 235
@@ -73,7 +88,7 @@ Partial Class frmCajaGeneral
         Me.TB_FechaHasta.ButtonDropDown.Visible = True
         Me.TB_FechaHasta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TB_FechaHasta.IsPopupCalendarOpen = False
-        Me.TB_FechaHasta.Location = New System.Drawing.Point(288, 20)
+        Me.TB_FechaHasta.Location = New System.Drawing.Point(291, 20)
         '
         '
         '
@@ -131,7 +146,7 @@ Partial Class frmCajaGeneral
         Me.Tb_FechaDesde.ButtonDropDown.Visible = True
         Me.Tb_FechaDesde.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Tb_FechaDesde.IsPopupCalendarOpen = False
-        Me.Tb_FechaDesde.Location = New System.Drawing.Point(85, 20)
+        Me.Tb_FechaDesde.Location = New System.Drawing.Point(90, 20)
         '
         '
         '
@@ -188,21 +203,6 @@ Partial Class frmCajaGeneral
         Me.Dgv_Caja.Name = "Dgv_Caja"
         Me.Dgv_Caja.Size = New System.Drawing.Size(922, 433)
         Me.Dgv_Caja.TabIndex = 3
-        '
-        'btGenerar
-        '
-        Me.btGenerar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btGenerar.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btGenerar.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btGenerar.Image = Global.Presentacion.My.Resources.Resources.REPORTE2
-        Me.btGenerar.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.btGenerar.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top
-        Me.btGenerar.Location = New System.Drawing.Point(772, 0)
-        Me.btGenerar.Name = "btGenerar"
-        Me.btGenerar.Size = New System.Drawing.Size(75, 60)
-        Me.btGenerar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btGenerar.TabIndex = 236
-        Me.btGenerar.Text = "General"
         '
         'frmCajaGeneral
         '

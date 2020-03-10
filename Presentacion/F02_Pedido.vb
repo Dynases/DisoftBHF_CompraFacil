@@ -1876,10 +1876,14 @@ Public Class F02_Pedido
 
     Private Sub Tb_ProdObs_KeyDown(sender As Object, e As KeyEventArgs) Handles Tb_Observaciones.KeyDown
         If e.KeyData = Keys.Enter Then
-            'Tb_Observaciones.Text = Tb_ProdObs.Text
-            Btn_TerminarAdd.Focus()
-            'Tb_CantProd.Focus()
+            ''Tb_Observaciones.Text = Tb_ProdObs.Text
+            'Btn_TerminarAdd.Focus()
+            ''Tb_CantProd.Focus()
+            'e.SuppressKeyPress = True
+
+            btAplicarDesc.Focus()
             e.SuppressKeyPress = True
+
         End If
     End Sub
 
@@ -2681,6 +2685,13 @@ Public Class F02_Pedido
 
             End If
         Next
+
+
+        'Btn_TerminarAdd.Focus()
+        'Btn_TerminarAdd.PerformClick()
+
+
+
     End Sub
 
 End Class

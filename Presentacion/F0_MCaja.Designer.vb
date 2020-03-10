@@ -33,7 +33,7 @@ Partial Class F0_MCaja
         Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX10 = New DevComponents.DotNetBar.LabelX()
         Me.Tb_TDeposito = New DevComponents.Editors.DoubleInput()
-        Me.Tb_TConsiliacion = New DevComponents.Editors.DoubleInput()
+        Me.Tb_TConciliacion = New DevComponents.Editors.DoubleInput()
         Me.LabelX7 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX8 = New DevComponents.DotNetBar.LabelX()
         Me.Tb_TEfectivo = New DevComponents.Editors.DoubleInput()
@@ -89,7 +89,7 @@ Partial Class F0_MCaja
         CType(Me.Tb_TCredito, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tb_TDiferencia, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tb_TDeposito, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Tb_TConsiliacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tb_TConciliacion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tb_TEfectivo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tb_TGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbdRecibido, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -360,7 +360,7 @@ Partial Class F0_MCaja
         Me.Panel4.Controls.Add(Me.LabelX9)
         Me.Panel4.Controls.Add(Me.LabelX10)
         Me.Panel4.Controls.Add(Me.Tb_TDeposito)
-        Me.Panel4.Controls.Add(Me.Tb_TConsiliacion)
+        Me.Panel4.Controls.Add(Me.Tb_TConciliacion)
         Me.Panel4.Controls.Add(Me.LabelX7)
         Me.Panel4.Controls.Add(Me.LabelX8)
         Me.Panel4.Controls.Add(Me.Tb_TEfectivo)
@@ -484,21 +484,21 @@ Partial Class F0_MCaja
         Me.Tb_TDeposito.Size = New System.Drawing.Size(120, 23)
         Me.Tb_TDeposito.TabIndex = 29
         '
-        'Tb_TConsiliacion
+        'Tb_TConciliacion
         '
-        Me.Tb_TConsiliacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Tb_TConciliacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         '
         '
         '
-        Me.Tb_TConsiliacion.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.Tb_TConsiliacion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.Tb_TConsiliacion.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.Tb_TConsiliacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Tb_TConsiliacion.Increment = 1.0R
-        Me.Tb_TConsiliacion.Location = New System.Drawing.Point(358, 42)
-        Me.Tb_TConsiliacion.Name = "Tb_TConsiliacion"
-        Me.Tb_TConsiliacion.Size = New System.Drawing.Size(120, 23)
-        Me.Tb_TConsiliacion.TabIndex = 28
+        Me.Tb_TConciliacion.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_TConciliacion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_TConciliacion.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.Tb_TConciliacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Tb_TConciliacion.Increment = 1.0R
+        Me.Tb_TConciliacion.Location = New System.Drawing.Point(358, 42)
+        Me.Tb_TConciliacion.Name = "Tb_TConciliacion"
+        Me.Tb_TConciliacion.Size = New System.Drawing.Size(120, 23)
+        Me.Tb_TConciliacion.TabIndex = 28
         '
         'LabelX7
         '
@@ -860,11 +860,11 @@ Partial Class F0_MCaja
         '
         Me.LabelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX13.Location = New System.Drawing.Point(6, 127)
+        Me.LabelX13.Location = New System.Drawing.Point(8, 127)
         Me.LabelX13.Name = "LabelX13"
         Me.LabelX13.Size = New System.Drawing.Size(90, 23)
         Me.LabelX13.TabIndex = 28
-        Me.LabelX13.Text = "Tipo Cambio"
+        Me.LabelX13.Text = "Tipo Cambio:"
         '
         'Tb_TipoCambio
         '
@@ -877,7 +877,7 @@ Partial Class F0_MCaja
         Me.Tb_TipoCambio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.Tb_TipoCambio.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Tb_TipoCambio.Increment = 1.0R
-        Me.Tb_TipoCambio.Location = New System.Drawing.Point(104, 127)
+        Me.Tb_TipoCambio.Location = New System.Drawing.Point(104, 128)
         Me.Tb_TipoCambio.Name = "Tb_TipoCambio"
         Me.Tb_TipoCambio.Size = New System.Drawing.Size(120, 23)
         Me.Tb_TipoCambio.TabIndex = 27
@@ -905,7 +905,7 @@ Partial Class F0_MCaja
         Me.tbFecha.ButtonDropDown.Visible = True
         Me.tbFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFecha.IsPopupCalendarOpen = False
-        Me.tbFecha.Location = New System.Drawing.Point(104, 161)
+        Me.tbFecha.Location = New System.Drawing.Point(104, 157)
         '
         '
         '
@@ -949,7 +949,7 @@ Partial Class F0_MCaja
         '
         Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX4.Location = New System.Drawing.Point(8, 167)
+        Me.LabelX4.Location = New System.Drawing.Point(9, 159)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.Size = New System.Drawing.Size(45, 18)
         Me.LabelX4.TabIndex = 17
@@ -1011,7 +1011,7 @@ Partial Class F0_MCaja
         '
         Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX2.Location = New System.Drawing.Point(8, 81)
+        Me.LabelX2.Location = New System.Drawing.Point(6, 81)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.Size = New System.Drawing.Size(82, 18)
         Me.LabelX2.TabIndex = 13
@@ -1083,7 +1083,7 @@ Partial Class F0_MCaja
         CType(Me.Tb_TCredito, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Tb_TDiferencia, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Tb_TDeposito, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Tb_TConsiliacion, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tb_TConciliacion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Tb_TEfectivo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Tb_TGeneral, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbdRecibido, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1137,7 +1137,7 @@ Partial Class F0_MCaja
     Friend WithEvents LabelX9 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX10 As DevComponents.DotNetBar.LabelX
     Friend WithEvents Tb_TDeposito As DevComponents.Editors.DoubleInput
-    Friend WithEvents Tb_TConsiliacion As DevComponents.Editors.DoubleInput
+    Friend WithEvents Tb_TConciliacion As DevComponents.Editors.DoubleInput
     Friend WithEvents LabelX7 As DevComponents.DotNetBar.LabelX
     Friend WithEvents LabelX8 As DevComponents.DotNetBar.LabelX
     Friend WithEvents Tb_TEfectivo As DevComponents.Editors.DoubleInput

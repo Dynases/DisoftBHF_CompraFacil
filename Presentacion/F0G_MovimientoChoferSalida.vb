@@ -676,7 +676,8 @@ Public Class F0G_MovimientoChoferSalida
     Private Sub tbChofer_KeyDown(sender As Object, e As KeyEventArgs) Handles tbChofer.KeyDown
         If (_fnAccesible()) Then
             If e.KeyData = Keys.Control + Keys.Enter Then
-                P_prAyudaChofer()
+                'P_prAyudaChofer()
+                P_prAyudaChoferNuevo()
             End If
         End If
     End Sub

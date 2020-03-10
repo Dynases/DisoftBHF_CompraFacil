@@ -675,6 +675,12 @@
     <Compile Include="R0_Credito.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\CierreCaja.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CierreCaja.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\R_CajaCliente.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1356,6 +1362,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R0_Credito.resx">
       <DependentUpon>R0_Credito.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\CierreCaja.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CierreCaja.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_CajaCliente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

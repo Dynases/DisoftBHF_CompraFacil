@@ -543,7 +543,7 @@ Public Class F0_MCaja
         tbdRecibido.IsInputReadOnly = True
         tbdSaldo.IsInputReadOnly = True
         Tb_TipoCambio.IsInputReadOnly = True
-        Tb_TConsiliacion.IsInputReadOnly = True
+        Tb_TConciliacion.IsInputReadOnly = True
         Tb_TCredito.IsInputReadOnly = True
         Tb_TDeposito.IsInputReadOnly = True
         Tb_TDiferencia.IsInputReadOnly = True
@@ -568,7 +568,7 @@ Public Class F0_MCaja
 
         tbdRecibido.IsInputReadOnly = False
 
-        'Tb_TipoCambio.IsInputReadOnly = False
+        Tb_TipoCambio.IsInputReadOnly = False
         'Tb_TConsiliacion.IsInputReadOnly = False
         'Tb_TCredito.IsInputReadOnly = False
         'Tb_TDeposito.IsInputReadOnly = False
@@ -600,7 +600,7 @@ Public Class F0_MCaja
         tbchofer.Focus()
         tbdRecibido.Value = 0
         tbdSaldo.Value = 0
-        Tb_TConsiliacion.Value = 0
+        Tb_TConciliacion.Value = 0
         Tb_TCredito.Value = 0
         Tb_TDeposito.Value = 0
         Tb_TDiferencia.Value = 0
@@ -628,7 +628,7 @@ Public Class F0_MCaja
         _prCargarDetalleVenta(TbCodigo.Text)
         _prCrearListaCambio(1, Convert.ToInt32(TbCodigo.Text))
         _prCrearListaDeposito(1, Convert.ToInt32(TbCodigo.Text))
-        Tb_TConsiliacion.Value = GridEX1.GetValue("olmrec")
+        Tb_TConciliacion.Value = GridEX1.GetValue("olmrec")
         Tb_TipoCambio.Value = GridEX1.GetValue("olTipoCambio")
         _prCalcular(Tb_TCredito.Value, 2)
         LblPaginacion.Text = Str(GridEX1.Row + 1) + "/" + GridEX1.RowCount.ToString
@@ -1064,7 +1064,7 @@ Public Class F0_MCaja
         'ByRef _olnumi As String, _olnumichof As String, _olnumiconci As Integer, _olfecha As String, _dt As DataTable
         Dim numi As String = ""
 
-        Dim res As Boolean = L_prCajaGrabar(numi, Numi_Chofer, Numi_Conciliacion, tbFecha.Value.ToString("yyyy/MM/dd"), Tb_TConsiliacion.Value.ToString, CType(Dgv_PedidoTotal.DataSource, DataTable), Tb_TCredito.Value, Tb_TipoCambio.Value)
+        Dim res As Boolean = L_prCajaGrabar(numi, Numi_Chofer, Numi_Conciliacion, tbFecha.Value.ToString("yyyy/MM/dd"), Tb_TConciliacion.Value.ToString, CType(Dgv_PedidoTotal.DataSource, DataTable), Tb_TCredito.Value, Tb_TipoCambio.Value)
         If res Then
             Dim ListaCambios = New LCajaCambio().GuardarCajaCambio(ListaCambio, Convert.ToInt32(numi))
             Dim ListaDepositos = New LCajaDeposito().GuardarDepositoCambio(ListaDeposito, Convert.ToInt32(numi))
@@ -1296,10 +1296,34 @@ Public Class F0_MCaja
         P_Global.Visualizador.Show()
         P_Global.Visualizador.BringToFront()
     End Sub
+    Private Sub P_GenerarReporteNuevo()
+        Dim dtProducto As DataTable = F_GenerarTablaProductoReporte()
+        Dim dtCliente As DataTable = CType(Dgv_PedidoTotal.DataSource, DataTable)
+
+
+        If Not IsNothing(P_Global.Visualizador) Then
+            P_Global.Visualizador.Close()
+        End If
+
+        P_Global.Visualizador = New Visualizador
+        Dim objrep As New R_CajaGeneral
+        objrep.Subreports.Item("R_CajaProducto.rpt").SetDataSource(dtProducto)
+        objrep.Subreports.Item("R_CajaCliente.rpt").SetDataSource(dtCliente)
+        objrep.SetDataSource(dtCliente)
+        objrep.SetParameterValue("idcaja", TbCodigo.Text)
+        objrep.SetParameterValue("chofer", tbchofer.Text)
+        objrep.SetParameterValue("conciliacion", lbconciliacion.Text)
+        objrep.SetParameterValue("usuario", L_Usuario)
+        objrep.SetParameterValue("fecha", tbFecha.Text)
+
+        P_Global.Visualizador.CRV1.ReportSource = objrep
+        P_Global.Visualizador.Show()
+        P_Global.Visualizador.BringToFront()
+    End Sub
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         If (TbCodigo.Text.Trim <> String.Empty) Then
-            P_GenerarReporte()
+            P_GenerarReporteNuevo()
         End If
     End Sub
 
@@ -1393,8 +1417,8 @@ Public Class F0_MCaja
         Tb_TDeposito.Value = TotalDeposito
         Tb_TCredito.Value = credito
         Tb_TGeneral.Value = Tb_TEfectivo.Value + Tb_TDeposito.Value + Tb_TCredito.Value
-        Tb_TConsiliacion.Value = totalConciliacion
-        Tb_TDiferencia.Value = Tb_TGeneral.Value - Tb_TConsiliacion.Value
+        Tb_TConciliacion.Value = totalConciliacion
+        Tb_TDiferencia.Value = Tb_TGeneral.Value - Tb_TConciliacion.Value
     End Sub
 
     Private Sub Dgv_Depositos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles Dgv_Depositos.EditingCell

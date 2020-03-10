@@ -1173,11 +1173,11 @@ Public Class F0_PedidosAsignacion
         Dim codZonaSelected3 As Integer
 
         dt1 = L_VerificarPedidoConsolidado(codPedido)
-        If dt1.Rows.Count > 0 Then
-            If dt1.Rows(0).Item("ieest") = 2 Or dt1.Rows(0).Item("ieest") = 3 Then
-                Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+        If dt1.Rows.Count > 0 And dt1.Rows(0).Item("ieest") = 2 Or dt1.Rows(0).Item("ieest") = 3 Then
+            'If dt1.Rows(0).Item("ieest") = 2 Or dt1.Rows(0).Item("ieest") = 3 Then
+            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
                 ToastNotification.Show(Me, "Este pedido ya fue consolidado no puede retornar a confirmación de entrega".ToUpper, img, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
-            End If
+            'End If
         Else
 
             L_PedidoEstados_Grabar(codPedido, "2", Date.Now.Date.ToString("yyyy/MM/dd"), Now.Hour.ToString + ":" + Now.Minute.ToString, gs_user)

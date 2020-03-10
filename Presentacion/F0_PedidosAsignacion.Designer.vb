@@ -232,10 +232,10 @@ Partial Class F0_PedidosAsignacion
         Me.SuperTabControl1.Size = New System.Drawing.Size(1022, 602)
         Me.SuperTabControl1.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem3, Me.SuperTabItem4})
         Me.SuperTabControl1.Text = "PEDIDOS ENTREGADOS"
-        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel4, 0)
-        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel3, 0)
         Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel1, 0)
         Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
+        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel4, 0)
+        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel3, 0)
         '
         'SuperTabControlPanel2
         '
