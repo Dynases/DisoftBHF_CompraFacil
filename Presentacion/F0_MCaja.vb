@@ -146,7 +146,7 @@ Public Class F0_MCaja
         End With
 
         With Dgv_Cortes.RootTable.Columns("CorteBol")
-            .Caption = "CORTE BOL."
+            .Caption = "CORTE BS."
             .Width = 130
             .FormatString = "0.00"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -154,7 +154,7 @@ Public Class F0_MCaja
             .Position = 3
         End With
         With Dgv_Cortes.RootTable.Columns("CantidadBo")
-            .Caption = "CANTIDAD BO."
+            .Caption = "CANTIDAD BS."
             .Width = 130
             .FormatString = "0.00"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -162,7 +162,7 @@ Public Class F0_MCaja
             .Position = 4
         End With
         With Dgv_Cortes.RootTable.Columns("TotalBo")
-            .Caption = "TOTAL BOL."
+            .Caption = "TOTAL BS."
             .Width = 170
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
@@ -171,7 +171,7 @@ Public Class F0_MCaja
             .Position = 5
         End With
         With Dgv_Cortes.RootTable.Columns("CorteDolares")
-            .Caption = "CORTE DOL."
+            .Caption = "CORTE $us."
             .Width = 130
             .FormatString = "0"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -180,7 +180,7 @@ Public Class F0_MCaja
         End With
 
         With Dgv_Cortes.RootTable.Columns("CantidadDo")
-            .Caption = "CANTIDAD DOL."
+            .Caption = "CANTIDAD $us"
             .Width = 130
             .FormatString = "0"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -188,7 +188,7 @@ Public Class F0_MCaja
             .Position = 7
         End With
         With Dgv_Cortes.RootTable.Columns("TotalD")
-            .Caption = "TOTAL DOL."
+            .Caption = "TOTAL $us."
             .Width = 170
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
@@ -1297,7 +1297,43 @@ Public Class F0_MCaja
         P_Global.Visualizador.BringToFront()
     End Sub
     Private Sub P_GenerarReporteNuevo()
-        Dim dtProducto As DataTable = F_GenerarTablaProductoReporte()
+
+
+        'Dim dtDepositos As DataTable = CType(Dgv_Depositos.DataSource, DataTable)
+
+        Dim ListaCortes As List(Of VCajaCambio) = New List(Of VCajaCambio)()
+        Dim dtCortes As DataTable = L_prReporteObtenerCortes(TbCodigo.Text)
+        ListaCortes = New LCajaCambio().Listar(Convert.ToInt32(TbCodigo.Text))
+        'dtCortes.Columns.Add("Id")
+        'dtCortes.Columns.Add("IdCaja")
+        'dtCortes.Columns.Add("Estado")
+        'dtCortes.Columns.Add("TipoCambio")
+        'dtCortes.Columns.Add("CorteDolares")
+        'dtCortes.Columns.Add("CantidadDo")
+        'dtCortes.Columns.Add("TotalD")
+        'dtCortes.Columns.Add("CorteBol")
+        'dtCortes.Columns.Add("CantidadBo")
+        'dtCortes.Columns.Add("TotalBo")
+
+        'dtCortes.Columns.Add("CantidadBo")
+        'dtCortes.Columns.Add("CantidadDo")
+        'dtCortes.Columns.Add("CorteBol")
+        'dtCortes.Columns.Add("CorteDolares")
+        'dtCortes.Columns.Add("Estado")
+        'dtCortes.Columns.Add("Id")
+        'dtCortes.Columns.Add("IdCaja")
+        'dtCortes.Columns.Add("TipoCambio")
+        'dtCortes.Columns.Add("TotalBo")
+        'dtCortes.Columns.Add("TotalD")
+
+        'ListaCortes.ForEach(Function(item) dtCortes.Rows.Add(item))
+
+
+
+
+        Dim ListaDepositos As List(Of VCajaDeposito)
+        ListaDepositos = New LCajaDeposito().Listar(Convert.ToInt32(TbCodigo.Text))
+
         Dim dtCliente As DataTable = CType(Dgv_PedidoTotal.DataSource, DataTable)
 
 
@@ -1306,15 +1342,17 @@ Public Class F0_MCaja
         End If
 
         P_Global.Visualizador = New Visualizador
-        Dim objrep As New R_CajaGeneral
-        objrep.Subreports.Item("R_CajaProducto.rpt").SetDataSource(dtProducto)
-        objrep.Subreports.Item("R_CajaCliente.rpt").SetDataSource(dtCliente)
+        Dim objrep As New R_CierreCaja
+        objrep.Subreports.Item("R_CajaCortes.rpt").SetDataSource(dtCortes)
+        'objrep.Subreports.Item("R_CajaDepositos.rpt").SetDataSource(dtDepositos)
+        objrep.Subreports.Item("R_CajaDetalle.rpt").SetDataSource(dtCliente)
         objrep.SetDataSource(dtCliente)
         objrep.SetParameterValue("idcaja", TbCodigo.Text)
         objrep.SetParameterValue("chofer", tbchofer.Text)
         objrep.SetParameterValue("conciliacion", lbconciliacion.Text)
         objrep.SetParameterValue("usuario", L_Usuario)
         objrep.SetParameterValue("fecha", tbFecha.Text)
+        objrep.SetParameterValue("tipocambio", Tb_TipoCambio.Text)
 
         P_Global.Visualizador.CRV1.ReportSource = objrep
         P_Global.Visualizador.Show()

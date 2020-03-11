@@ -53,9 +53,8 @@ Partial Class F0_MCaja
         Me.Dgv_Depositos = New Janus.Windows.GridEX.GridEX()
         Me.DEPOSITO = New DevComponents.DotNetBar.SuperTabItem()
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
-        Me.cbbanco = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
-        Me.LabelX13 = New DevComponents.DotNetBar.LabelX()
         Me.Tb_TipoCambio = New DevComponents.Editors.DoubleInput()
+        Me.cbbanco = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.btBuscarChofer = New DevComponents.DotNetBar.ButtonX()
         Me.tbFecha = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
@@ -65,6 +64,7 @@ Partial Class F0_MCaja
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.TbCodigo = New DevComponents.DotNetBar.Controls.TextBoxX()
+        Me.LabelX14 = New DevComponents.DotNetBar.LabelX()
         Me.PanelSuperior.SuspendLayout()
         Me.PanelInferior.SuspendLayout()
         CType(Me.BubbleBarUsuario, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,8 +104,8 @@ Partial Class F0_MCaja
         Me.SuperTabControlPanel4.SuspendLayout()
         CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel2.SuspendLayout()
-        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFecha, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -788,9 +788,9 @@ Partial Class F0_MCaja
         '
         Me.GroupPanel2.CanvasColor = System.Drawing.SystemColors.Control
         Me.GroupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007
-        Me.GroupPanel2.Controls.Add(Me.cbbanco)
-        Me.GroupPanel2.Controls.Add(Me.LabelX13)
+        Me.GroupPanel2.Controls.Add(Me.LabelX14)
         Me.GroupPanel2.Controls.Add(Me.Tb_TipoCambio)
+        Me.GroupPanel2.Controls.Add(Me.cbbanco)
         Me.GroupPanel2.Controls.Add(Me.btBuscarChofer)
         Me.GroupPanel2.Controls.Add(Me.tbFecha)
         Me.GroupPanel2.Controls.Add(Me.LabelX4)
@@ -838,6 +838,20 @@ Partial Class F0_MCaja
         Me.GroupPanel2.TabIndex = 0
         Me.GroupPanel2.Text = "DATOS"
         '
+        'Tb_TipoCambio
+        '
+        '
+        '
+        '
+        Me.Tb_TipoCambio.BackgroundStyle.Class = "DateTimeInputBackground"
+        Me.Tb_TipoCambio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.Tb_TipoCambio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
+        Me.Tb_TipoCambio.Increment = 1.0R
+        Me.Tb_TipoCambio.Location = New System.Drawing.Point(104, 123)
+        Me.Tb_TipoCambio.Name = "Tb_TipoCambio"
+        Me.Tb_TipoCambio.Size = New System.Drawing.Size(120, 21)
+        Me.Tb_TipoCambio.TabIndex = 236
+        '
         'cbbanco
         '
         cbbanco_DesignTimeLayout.LayoutString = resources.GetString("cbbanco_DesignTimeLayout.LayoutString")
@@ -850,37 +864,6 @@ Partial Class F0_MCaja
         Me.cbbanco.Size = New System.Drawing.Size(142, 21)
         Me.cbbanco.TabIndex = 235
         Me.cbbanco.Visible = False
-        '
-        'LabelX13
-        '
-        Me.LabelX13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.LabelX13.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX13.Location = New System.Drawing.Point(8, 127)
-        Me.LabelX13.Name = "LabelX13"
-        Me.LabelX13.Size = New System.Drawing.Size(90, 23)
-        Me.LabelX13.TabIndex = 28
-        Me.LabelX13.Text = "Tipo Cambio:"
-        '
-        'Tb_TipoCambio
-        '
-        Me.Tb_TipoCambio.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        '
-        '
-        '
-        Me.Tb_TipoCambio.BackgroundStyle.Class = "DateTimeInputBackground"
-        Me.Tb_TipoCambio.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.Tb_TipoCambio.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
-        Me.Tb_TipoCambio.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Tb_TipoCambio.Increment = 1.0R
-        Me.Tb_TipoCambio.Location = New System.Drawing.Point(104, 128)
-        Me.Tb_TipoCambio.Name = "Tb_TipoCambio"
-        Me.Tb_TipoCambio.Size = New System.Drawing.Size(120, 23)
-        Me.Tb_TipoCambio.TabIndex = 27
         '
         'btBuscarChofer
         '
@@ -905,7 +888,7 @@ Partial Class F0_MCaja
         Me.tbFecha.ButtonDropDown.Visible = True
         Me.tbFecha.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFecha.IsPopupCalendarOpen = False
-        Me.tbFecha.Location = New System.Drawing.Point(104, 157)
+        Me.tbFecha.Location = New System.Drawing.Point(104, 153)
         '
         '
         '
@@ -949,7 +932,7 @@ Partial Class F0_MCaja
         '
         Me.LabelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX4.Location = New System.Drawing.Point(9, 159)
+        Me.LabelX4.Location = New System.Drawing.Point(9, 155)
         Me.LabelX4.Name = "LabelX4"
         Me.LabelX4.Size = New System.Drawing.Size(45, 18)
         Me.LabelX4.TabIndex = 17
@@ -966,8 +949,8 @@ Partial Class F0_MCaja
         Me.lbconciliacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbconciliacion.ForeColor = System.Drawing.Color.DarkOliveGreen
         Me.lbconciliacion.Location = New System.Drawing.Point(104, 81)
-        Me.lbconciliacion.Margin = New System.Windows.Forms.Padding(2)
         Me.lbconciliacion.Name = "lbconciliacion"
+        Me.lbconciliacion.ReflectionEnabled = False
         Me.lbconciliacion.Size = New System.Drawing.Size(131, 37)
         Me.lbconciliacion.TabIndex = 16
         Me.lbconciliacion.Text = "0000"
@@ -995,7 +978,7 @@ Partial Class F0_MCaja
         '
         Me.LabelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX3.Location = New System.Drawing.Point(8, 45)
+        Me.LabelX3.Location = New System.Drawing.Point(10, 53)
         Me.LabelX3.Name = "LabelX3"
         Me.LabelX3.Size = New System.Drawing.Size(48, 18)
         Me.LabelX3.TabIndex = 14
@@ -1011,7 +994,7 @@ Partial Class F0_MCaja
         '
         Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX2.Location = New System.Drawing.Point(6, 81)
+        Me.LabelX2.Location = New System.Drawing.Point(9, 81)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.Size = New System.Drawing.Size(82, 18)
         Me.LabelX2.TabIndex = 13
@@ -1047,6 +1030,22 @@ Partial Class F0_MCaja
         Me.TbCodigo.PreventEnterBeep = True
         Me.TbCodigo.Size = New System.Drawing.Size(100, 23)
         Me.TbCodigo.TabIndex = 10
+        '
+        'LabelX14
+        '
+        Me.LabelX14.AutoSize = True
+        Me.LabelX14.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX14.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX14.Location = New System.Drawing.Point(9, 123)
+        Me.LabelX14.Name = "LabelX14"
+        Me.LabelX14.Size = New System.Drawing.Size(85, 18)
+        Me.LabelX14.TabIndex = 237
+        Me.LabelX14.Text = "Tipo Cambio:"
+        Me.LabelX14.TextAlignment = System.Drawing.StringAlignment.Far
         '
         'F0_MCaja
         '
@@ -1099,8 +1098,8 @@ Partial Class F0_MCaja
         CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanel2.ResumeLayout(False)
         Me.GroupPanel2.PerformLayout()
-        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFecha, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -1142,9 +1141,9 @@ Partial Class F0_MCaja
     Friend WithEvents LabelX8 As DevComponents.DotNetBar.LabelX
     Friend WithEvents Tb_TEfectivo As DevComponents.Editors.DoubleInput
     Friend WithEvents Tb_TGeneral As DevComponents.Editors.DoubleInput
-    Friend WithEvents LabelX13 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents Tb_TipoCambio As DevComponents.Editors.DoubleInput
     Friend WithEvents Dgv_Cortes As Janus.Windows.GridEX.GridEX
     Friend WithEvents cbbanco As Janus.Windows.GridEX.EditControls.MultiColumnCombo
     Friend WithEvents Dgv_Depositos As Janus.Windows.GridEX.GridEX
+    Friend WithEvents Tb_TipoCambio As DevComponents.Editors.DoubleInput
+    Friend WithEvents LabelX14 As DevComponents.DotNetBar.LabelX
 End Class
