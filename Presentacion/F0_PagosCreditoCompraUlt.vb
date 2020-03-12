@@ -969,8 +969,8 @@ Public Class F0_PagosCreditoCompraUlt
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
         Dim result As Boolean = L_fnVerificarSiSeContabilizoPagoCompra(tbnrodoc.Text)
         If result Then
-            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El Pago de la Compra no puede ser Eliminada porque ya fue contabilizada".ToUpper, img, 4500, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
+            ToastNotification.Show(Me, "El Pago de la Compra ya fue contabilizada, si usted la elimina deberá hacer el ajuste del asiento contable manualmente".ToUpper, img, 5000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
         Dim ef = New Efecto
             ef.tipo = 2
@@ -1189,15 +1189,16 @@ Public Class F0_PagosCreditoCompraUlt
     Private Sub btnContabilizar_Click(sender As Object, e As EventArgs) Handles btnContabilizar.Click
 
         If (Asiento > 0) Then
-            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "El asiento ya ha sido generado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+            ToastNotification.Show(Me, "El pago de esta compra ya ha sido Contabilizada".ToUpper,
+                                           My.Resources.WARNING, 2000,
+                                           eToastGlowColor.Red,
+                                           eToastPosition.TopCenter)
 
             Return
 
         End If
         dtTO00111 = L_prComprobanteDetalleDetalleGeneral(-1)
         GenerarComprobante()
-
 
     End Sub
 

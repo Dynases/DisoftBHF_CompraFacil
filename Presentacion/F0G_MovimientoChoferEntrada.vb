@@ -753,6 +753,25 @@ Public Class F0G_MovimientoChoferEntrada
                        eToastPosition.BottomLeft)
         End If
     End Sub
+    Public Sub _prCrearTablaConciliacionReporteNuevo()
+        Dim dt As DataTable = CType(grdetalle.DataSource, DataTable)
+        Dim columnas As DataTable = L_prConciliacionObtenerIdNumiTI002(lbcodigo.Text)
+        Dim k As Integer = 0
+        For Each fila As DataRow In columnas.Rows
+            k += 1
+            dt.Columns(fila.Item("ibid").ToString.Trim).ColumnName = "columna" + Str(k).Trim
+        Next
+
+        If (dt.Rows.Count > 0) Then
+            P_GenerarReporte(dt)
+        Else
+            ToastNotification.Show(Me, "No hay SALIDAS DE PRODUCTOS EN LA FECHA".ToUpper,
+                       My.Resources.INFORMATION,
+                        3000,
+                       eToastGlowColor.Blue,
+                       eToastPosition.BottomLeft)
+        End If
+    End Sub
     Private Sub P_GenerarReporte(dt As DataTable)
 
         If Not IsNothing(P_Global.Visualizador) Then
@@ -1031,13 +1050,12 @@ Public Class F0G_MovimientoChoferEntrada
     End Function
 
     Private Sub MBtImprimir_Click(sender As Object, e As EventArgs) Handles MBtImprimir.Click
-        _prCrearTablaConciliacionReporte()
+        '_prCrearTablaConciliacionReporte()
+        _prCrearTablaConciliacionReporteNuevo()
     End Sub
 
     Private Sub tbTablet_ValueChanged(sender As Object, e As EventArgs) Handles tbTablet.ValueChanged
-
         _prCargarVenta()
-
     End Sub
 
     Private Sub grdetalle_Error(sender As Object, e As Janus.Windows.GridEX.ErrorEventArgs) Handles grdetalle.[Error]

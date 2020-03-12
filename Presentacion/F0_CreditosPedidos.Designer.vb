@@ -96,13 +96,13 @@ Partial Class F0_CreditosPedidos
         'MSuperTabControlPanelBusqueda
         '
         Me.MSuperTabControlPanelBusqueda.Controls.Add(Me.GroupPanel5)
-        Me.MSuperTabControlPanelBusqueda.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MSuperTabControlPanelBusqueda.Margin = New System.Windows.Forms.Padding(2)
         Me.MSuperTabControlPanelBusqueda.Size = New System.Drawing.Size(952, 455)
         '
         'MSuperTabControlPanelRegistro
         '
         Me.MSuperTabControlPanelRegistro.Controls.Add(Me.PanelPrincipal)
-        Me.MSuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MSuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(2)
         Me.MSuperTabControlPanelRegistro.Size = New System.Drawing.Size(942, 455)
         Me.MSuperTabControlPanelRegistro.Controls.SetChildIndex(Me.MPnUsuario, 0)
         Me.MSuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelPrincipal, 0)
@@ -129,14 +129,14 @@ Partial Class F0_CreditosPedidos
         '
         'MTbUsuario
         '
-        Me.MTbUsuario.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MTbUsuario.Margin = New System.Windows.Forms.Padding(2)
         Me.MTbUsuario.ReadOnly = True
         Me.MTbUsuario.Size = New System.Drawing.Size(135, 23)
         Me.MTbUsuario.Text = "DEFAULT"
         '
         'MBtUltimo
         '
-        Me.MBtUltimo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.MBtUltimo.Margin = New System.Windows.Forms.Padding(2)
         '
         'MBtSiguiente
         '
@@ -205,7 +205,7 @@ Partial Class F0_CreditosPedidos
         Me.PanelPrincipal.Controls.Add(Me.Panel2)
         Me.PanelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelPrincipal.Location = New System.Drawing.Point(0, 0)
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelPrincipal.Name = "PanelPrincipal"
         Me.PanelPrincipal.Size = New System.Drawing.Size(942, 455)
         Me.PanelPrincipal.TabIndex = 29
@@ -216,7 +216,7 @@ Partial Class F0_CreditosPedidos
         Me.Panel3.Controls.Add(Me.GpanelDeudas)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(0, 240)
-        Me.Panel3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(942, 215)
         Me.Panel3.TabIndex = 2
@@ -292,7 +292,7 @@ Partial Class F0_CreditosPedidos
         Me.GpanelDeudas.DisabledBackColor = System.Drawing.Color.Empty
         Me.GpanelDeudas.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GpanelDeudas.Location = New System.Drawing.Point(0, 28)
-        Me.GpanelDeudas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GpanelDeudas.Margin = New System.Windows.Forms.Padding(2)
         Me.GpanelDeudas.Name = "GpanelDeudas"
         Me.GpanelDeudas.Size = New System.Drawing.Size(942, 187)
         '
@@ -333,7 +333,7 @@ Partial Class F0_CreditosPedidos
         Me.grPendiente.EnterKeyBehavior = Janus.Windows.GridEX.EnterKeyBehavior.None
         Me.grPendiente.Font = New System.Drawing.Font("Georgia", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grPendiente.Location = New System.Drawing.Point(0, 0)
-        Me.grPendiente.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grPendiente.Margin = New System.Windows.Forms.Padding(2)
         Me.grPendiente.Name = "grPendiente"
         Me.grPendiente.RowFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grPendiente.SelectedFormatStyle.BackColor = System.Drawing.Color.DodgerBlue
@@ -465,7 +465,7 @@ Partial Class F0_CreditosPedidos
         cbbanco_DesignTimeLayout.LayoutString = resources.GetString("cbbanco_DesignTimeLayout.LayoutString")
         Me.cbbanco.DesignTimeLayout = cbbanco_DesignTimeLayout
         Me.cbbanco.Location = New System.Drawing.Point(383, 23)
-        Me.cbbanco.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.cbbanco.Margin = New System.Windows.Forms.Padding(2)
         Me.cbbanco.Name = "cbbanco"
         Me.cbbanco.SelectedIndex = -1
         Me.cbbanco.SelectedItem = Nothing
@@ -666,7 +666,7 @@ Partial Class F0_CreditosPedidos
         Me.GroupPanel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupPanel5.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel5.Location = New System.Drawing.Point(0, 0)
-        Me.GroupPanel5.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupPanel5.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupPanel5.Name = "GroupPanel5"
         Me.GroupPanel5.Size = New System.Drawing.Size(952, 455)
         '
@@ -707,7 +707,7 @@ Partial Class F0_CreditosPedidos
         Me.grcobranza.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grcobranza.HeaderFormatStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grcobranza.Location = New System.Drawing.Point(0, 0)
-        Me.grcobranza.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grcobranza.Margin = New System.Windows.Forms.Padding(2)
         Me.grcobranza.Name = "grcobranza"
         Me.grcobranza.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grcobranza.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -724,7 +724,7 @@ Partial Class F0_CreditosPedidos
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 561)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "F0_CreditosPedidos"
         Me.Text = "F0_CreditosPedidos"
         Me.Controls.SetChildIndex(Me.MPnSuperior, 0)

@@ -52,12 +52,12 @@ Public Class F0_MCaja
         dt = L_prLibreriaClienteLGeneral()
         With mCombo
             .DropDownList.Columns.Clear()
-            .DropDownList.Columns.Add("cenum").Width = 70
-            .DropDownList.Columns("cenum").Caption = "COD"
-            .DropDownList.Columns.Add("cedesc").Width = 200
-            .DropDownList.Columns("cedesc").Caption = "DESCRIPCION"
-            .ValueMember = "cedesc"
-            .DisplayMember = "cedesc"
+            .DropDownList.Columns.Add("yccod3").Width = 70
+            .DropDownList.Columns("yccod3").Caption = "COD"
+            .DropDownList.Columns.Add("ycdes3").Width = 200
+            .DropDownList.Columns("ycdes3").Caption = "DESCRIPCION"
+            .ValueMember = "ycdes3"
+            .DisplayMember = "ycdes3"
             .DataSource = dt
             .Refresh()
         End With
@@ -705,10 +705,9 @@ Public Class F0_MCaja
             .Visible = False
         End With
 
-
         With Dgv_PedidoTotal.RootTable.Columns("oacnrofac")
             .Width = 150
-            .Caption = "Nro. Factura"
+            .Caption = "NRO. FACTURA"
             .Visible = True
         End With
 
@@ -876,7 +875,6 @@ Public Class F0_MCaja
             .Width = 100
             .Caption = "CODIGO"
             .Visible = True
-
         End With
 
         With GridEX1.RootTable.Columns("olnumichof")
@@ -893,7 +891,7 @@ Public Class F0_MCaja
         With GridEX1.RootTable.Columns("olnumiconci")
             .Width = 150
             .Visible = True
-            .Caption = "CONCILIACION"
+            .Caption = "CONCILIACIÓN"
         End With
 
         With GridEX1.RootTable.Columns("olfecha")
@@ -904,9 +902,9 @@ Public Class F0_MCaja
         End With
 
         With GridEX1.RootTable.Columns("olmrec")
-            .Width = 100
+            .Width = 130
             .Visible = True
-            .Caption = "MONTO RECIBIDO"
+            .Caption = "TOTAL CONCILIACIÓN"
             .FormatString = "0.00"
         End With
 
@@ -928,6 +926,11 @@ Public Class F0_MCaja
             .Visible = False
         End With
         With GridEX1.RootTable.Columns("olCredito")
+            .Width = 50
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+            .Visible = False
+        End With
+        With GridEX1.RootTable.Columns("olTipoCambio")
             .Width = 50
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
             .Visible = False
@@ -1081,7 +1084,6 @@ Public Class F0_MCaja
         Else
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
             ToastNotification.Show(Me, "La Compra no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-
         End If
 
     End Sub
@@ -1297,45 +1299,9 @@ Public Class F0_MCaja
         P_Global.Visualizador.BringToFront()
     End Sub
     Private Sub P_GenerarReporteNuevo()
-
-
-        'Dim dtDepositos As DataTable = CType(Dgv_Depositos.DataSource, DataTable)
-
-        Dim ListaCortes As List(Of VCajaCambio) = New List(Of VCajaCambio)()
         Dim dtCortes As DataTable = L_prReporteObtenerCortes(TbCodigo.Text)
-        ListaCortes = New LCajaCambio().Listar(Convert.ToInt32(TbCodigo.Text))
-        'dtCortes.Columns.Add("Id")
-        'dtCortes.Columns.Add("IdCaja")
-        'dtCortes.Columns.Add("Estado")
-        'dtCortes.Columns.Add("TipoCambio")
-        'dtCortes.Columns.Add("CorteDolares")
-        'dtCortes.Columns.Add("CantidadDo")
-        'dtCortes.Columns.Add("TotalD")
-        'dtCortes.Columns.Add("CorteBol")
-        'dtCortes.Columns.Add("CantidadBo")
-        'dtCortes.Columns.Add("TotalBo")
-
-        'dtCortes.Columns.Add("CantidadBo")
-        'dtCortes.Columns.Add("CantidadDo")
-        'dtCortes.Columns.Add("CorteBol")
-        'dtCortes.Columns.Add("CorteDolares")
-        'dtCortes.Columns.Add("Estado")
-        'dtCortes.Columns.Add("Id")
-        'dtCortes.Columns.Add("IdCaja")
-        'dtCortes.Columns.Add("TipoCambio")
-        'dtCortes.Columns.Add("TotalBo")
-        'dtCortes.Columns.Add("TotalD")
-
-        'ListaCortes.ForEach(Function(item) dtCortes.Rows.Add(item))
-
-
-
-
-        Dim ListaDepositos As List(Of VCajaDeposito)
-        ListaDepositos = New LCajaDeposito().Listar(Convert.ToInt32(TbCodigo.Text))
-
+        Dim dtDepositos As DataTable = L_prReporteObtenerDepositos((TbCodigo.Text))
         Dim dtCliente As DataTable = CType(Dgv_PedidoTotal.DataSource, DataTable)
-
 
         If Not IsNothing(P_Global.Visualizador) Then
             P_Global.Visualizador.Close()
@@ -1344,7 +1310,7 @@ Public Class F0_MCaja
         P_Global.Visualizador = New Visualizador
         Dim objrep As New R_CierreCaja
         objrep.Subreports.Item("R_CajaCortes.rpt").SetDataSource(dtCortes)
-        'objrep.Subreports.Item("R_CajaDepositos.rpt").SetDataSource(dtDepositos)
+        objrep.Subreports.Item("R_CajaDepositos.rpt").SetDataSource(dtDepositos)
         objrep.Subreports.Item("R_CajaDetalle.rpt").SetDataSource(dtCliente)
         objrep.SetDataSource(dtCliente)
         objrep.SetParameterValue("idcaja", TbCodigo.Text)
@@ -1353,6 +1319,13 @@ Public Class F0_MCaja
         objrep.SetParameterValue("usuario", L_Usuario)
         objrep.SetParameterValue("fecha", tbFecha.Text)
         objrep.SetParameterValue("tipocambio", Tb_TipoCambio.Text)
+        'Totales
+        objrep.SetParameterValue("TotalEfectivo", Tb_TEfectivo.Text)
+        objrep.SetParameterValue("TotalDepositos", Tb_TDeposito.Text)
+        objrep.SetParameterValue("TotalCreditos", Tb_TCredito.Text)
+        objrep.SetParameterValue("TotalGeneral", Tb_TGeneral.Text)
+        objrep.SetParameterValue("TotalConciliacion", Tb_TConciliacion.Text)
+        objrep.SetParameterValue("Diferencia", Tb_TDiferencia.Text)
 
         P_Global.Visualizador.CRV1.ReportSource = objrep
         P_Global.Visualizador.Show()
@@ -1506,5 +1479,16 @@ Public Class F0_MCaja
         _prCalcular(0, 1)
     End Sub
 
+    Private Sub GridEX1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEX1.KeyDown
+        If (e.KeyData = Keys.Enter) Then
+            SuperTabControl1.SelectedTabIndex = 0
+            e.SuppressKeyPress = True
+        End If
+    End Sub
 
+    Private Sub GridEX1_DoubleClick(sender As Object, e As EventArgs) Handles GridEX1.DoubleClick
+        If (GridEX1.Row > -1) Then
+            SuperTabControl1.SelectedTabIndex = 0
+        End If
+    End Sub
 End Class

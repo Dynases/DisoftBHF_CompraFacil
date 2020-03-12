@@ -50,12 +50,12 @@ Public Class F0_CreditosPedidos
         dt = L_prLibreriaClienteLGeneral()
         With mCombo
             .DropDownList.Columns.Clear()
-            .DropDownList.Columns.Add("cenum").Width = 70
-            .DropDownList.Columns("cenum").Caption = "COD"
-            .DropDownList.Columns.Add("cedesc").Width = 200
-            .DropDownList.Columns("cedesc").Caption = "DESCRIPCION"
-            .ValueMember = "cedesc"
-            .DisplayMember = "cedesc"
+            .DropDownList.Columns.Add("yccod3").Width = 70
+            .DropDownList.Columns("yccod3").Caption = "COD"
+            .DropDownList.Columns.Add("ycdes3").Width = 200
+            .DropDownList.Columns("ycdes3").Caption = "DESCRIPCION"
+            .ValueMember = "ycdes3"
+            .DisplayMember = "ycdes3"
             .DataSource = dt
             .Refresh()
         End With

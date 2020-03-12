@@ -571,6 +571,13 @@ Public Class F02_Compra
     End Sub
 
     Private Sub P_prModificarRegistro()
+        'Verifica si ya se contabilizó la compra
+        Dim contabilizo As Boolean = L_fnVerificarSiSeContabilizo(tbCodigo.Text)
+        If contabilizo Then
+            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+            ToastNotification.Show(Me, "La Compra ya fue contabilizada, si usted la modifica deberá hacer el ajuste del asiento contable manualmente".ToUpper, img, 5100, eToastGlowColor.Red, eToastPosition.TopCenter)
+        End If
+
         P_prEstadoNueModEli(2)
         P_prHDComponentes(BoModificar)
         P_prAddFilaDetalle()
@@ -596,7 +603,7 @@ Public Class F02_Compra
         Dim contabilizo As Boolean = L_fnVerificarSiSeContabilizo(tbCodigo.Text)
         If contabilizo Then
             Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "La Compra no puede ser Eliminada porque ya fue contabilizada".ToUpper, img, 4500, eToastGlowColor.Red, eToastPosition.TopCenter)
+            ToastNotification.Show(Me, "Esta Compra ya fue contabilizada, si usted la elimina deberá hacer el ajuste del asiento contable manualmente".ToUpper, img, 5000, eToastGlowColor.Red, eToastPosition.TopCenter)
         End If
 
 
