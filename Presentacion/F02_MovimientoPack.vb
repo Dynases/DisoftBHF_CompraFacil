@@ -1276,6 +1276,7 @@ Public Class F02_MovimientoPack
     Private Sub dgjDesArmPack_EditingCell(sender As Object, e As EditingCellEventArgs) Handles dgjDesArmPack.EditingCell
         e.Cancel = True
     End Sub
+
 #End Region
 
 End Class

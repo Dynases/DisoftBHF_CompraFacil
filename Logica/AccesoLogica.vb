@@ -4474,6 +4474,19 @@ Public Class AccesoLogica
         _Tabla = D_Datos_Tabla(campos, "VR_stockActual", _Where + " order by cadesc")
         Return _Tabla
     End Function
+    Shared Function L_VistaSaldoFisicoValorado(Optional _where1 As String = "") As DataTable
+        Dim _Tabla As DataTable
+        Dim _Where As String
+        If _where1 = String.Empty Then
+            _Where = "1=1"
+        Else
+            _Where = _where1
+        End If
+
+        Dim campos As String = "canumi,cacod,cadesc,cadesc2,caest,iacprod,iacant,chprecio,subtotal, caconv, cenum,cedesc "
+        _Tabla = D_Datos_Tabla(campos, "VR_SaldoFisicoValorado", _Where + " order by cadesc")
+        Return _Tabla
+    End Function
     Shared Function L_VistaStockDisponible(Optional _where1 As String = "") As DataTable
         Dim _Tabla As DataTable
         Dim _Where As String

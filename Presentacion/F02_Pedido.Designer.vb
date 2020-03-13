@@ -1552,6 +1552,7 @@ Partial Class F02_Pedido
         Me.Btn_AddProd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.Btn_AddProd.TabIndex = 5
         Me.Btn_AddProd.Text = "Adicionar"
+        Me.Btn_AddProd.Visible = False
         '
         'Btn_TerminarAdd
         '

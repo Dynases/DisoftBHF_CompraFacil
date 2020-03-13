@@ -250,23 +250,18 @@ Public Class R01_Concepto_Ventas_Meses
     End Function
     Public Sub _prInterpretarDatos(ByRef _dt As DataTable)
         If (cbConcepto.Value = 1) Then
-
             _prCargarTableVendedorVentas(_dt)
         End If
         If (cbConcepto.Value = 2) Then
-
             _prCargarTableCLIENTEVentas(_dt)
         End If
         If (cbConcepto.Value = 3) Then
-
             _prCargarTablePRODUCTOSVentas(_dt)
         End If
         If (cbConcepto.Value = 4) Then
-
             _prCargarTableZONASVentas(_dt)
         End If
         If (cbConcepto.Value = 5) Then
-
             _prCargarTableCOBRANZASVentas(_dt)
         End If
     End Sub

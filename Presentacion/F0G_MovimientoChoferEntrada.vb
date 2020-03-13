@@ -968,14 +968,14 @@ Public Class F0G_MovimientoChoferEntrada
             .Visible = True
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
-            .Caption = "DEVOLUCION"
+            .Caption = "DEVOLUCIÓN"
         End With
         With grdetalle.RootTable.Columns("TOTAL")
             .Width = 150
             .Visible = True
             .FormatString = "0.00"
             .TextAlignment = TextAlignment.Far
-            .Caption = "TOTAL"
+            .Caption = "ENTREGADO"
         End With
         With grdetalle.RootTable.Columns("TOTALCOPIA")
             .Width = 150

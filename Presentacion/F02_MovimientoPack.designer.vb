@@ -182,6 +182,10 @@ Partial Class F02_MovimientoPack
         '
         Me.MPanelToolBarImprimir.Location = New System.Drawing.Point(1238, 0)
         '
+        'MBtImprimir
+        '
+        Me.MBtImprimir.Visible = False
+        '
         'MBubbleBarUsuario
         '
         '

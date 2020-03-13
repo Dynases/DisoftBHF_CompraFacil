@@ -653,6 +653,20 @@ Public Class P_Principal
         tab3.Text = frm.Text
         'tab3.Icon = frm.Icon
     End Sub
+    Private Sub btVentas_Click(sender As Object, e As EventArgs) Handles btVentas.Click
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New F0_Ventas
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+        frm._nameButton = btVentas.Name
+        frm._tab = tab3
+        frm._modulo = FP_Venta
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+    End Sub
 
 #Region "Reportes Ventas"
 
@@ -866,21 +880,7 @@ Public Class P_Principal
         'tab3.Icon = frm.Icon
     End Sub
 
-    Private Sub btInveMPCompraProducto_Click(sender As Object, e As EventArgs) Handles btInveMPCompraProducto.Click
-        SideNav1.IsMenuExpanded = False
-        FP_Ventana.Select()
-        Dim frm As New F02_Compra
-        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
-        frm._nameButton = btInveMPCompraProducto.Name
-        frm._tab = tab3
-        frm._modulo = FP_Inventario
-        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
-        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
-        tab3.AttachedControl.Controls.Add(panel)
-        frm.Show()
-        tab3.Text = frm.Text
-        'tab3.Icon = frm.Icon
-    End Sub
+
 
     Private Sub btVentCaja_Click(sender As Object, e As EventArgs) Handles btVentCaja.Click
         SideNav1.IsMenuExpanded = False
@@ -1213,12 +1213,14 @@ Public Class P_Principal
         tab3.Text = frm.Text
     End Sub
 
-    Private Sub btPagosCompras_Click(sender As Object, e As EventArgs) Handles btPagosCompras.Click
+    Private Sub btMovPack_Click(sender As Object, e As EventArgs) Handles btMovPack.Click
         SideNav1.IsMenuExpanded = False
         FP_Ventana.Select()
-        Dim frm As New F0_PagosCreditoCompraUlt
+        Dim frm As New F02_MovimientoPack
         Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
-        frm._nameButton = btPagosCompras.Name
+        frm.titulo = "M O V I M I E N T O   D E   P A C K"
+        frm.tipo = 2
+        frm._nameButton = btMovPack.Name
         frm._tab = tab3
         frm._modulo = FP_Inventario
         Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
@@ -1229,29 +1231,12 @@ Public Class P_Principal
         'tab3.Icon = frm.Icon
     End Sub
 
-    Private Sub btVentas_Click(sender As Object, e As EventArgs) Handles btVentas.Click
+    Private Sub btSaldoFisicoValorado_Click(sender As Object, e As EventArgs) Handles btSaldoFisicoValorado.Click
         SideNav1.IsMenuExpanded = False
         FP_Ventana.Select()
-        Dim frm As New F0_Ventas
+        Dim frm As New R01_SaldoFisicoValorado
         Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
-        frm._nameButton = btVentas.Name
-        frm._tab = tab3
-        frm._modulo = FP_Venta
-        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
-        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
-        tab3.AttachedControl.Controls.Add(panel)
-        frm.Show()
-        tab3.Text = frm.Text
-    End Sub
-
-    Private Sub btMovPack_Click(sender As Object, e As EventArgs) Handles btMovPack.Click
-        SideNav1.IsMenuExpanded = False
-        FP_Ventana.Select()
-        Dim frm As New F02_MovimientoPack
-        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
-        frm.titulo = "M O V I M I E N T O   D E   P A C K"
-        frm.tipo = 2
-        frm._nameButton = btMovPack.Name
+        frm._nameButton = btSaldoFisicoValorado.Name
         frm._tab = tab3
         frm._modulo = FP_Inventario
         Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
@@ -1277,9 +1262,37 @@ Public Class P_Principal
 #End Region
 
 #Region "Compra"
+    Private Sub btInveMPCompraProducto_Click(sender As Object, e As EventArgs) Handles btInveMPCompraProducto.Click
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New F02_Compra
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+        frm._nameButton = btInveMPCompraProducto.Name
+        frm._tab = tab3
+        frm._modulo = FP_Inventario
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+        'tab3.Icon = frm.Icon
+    End Sub
 
-
-
+    Private Sub btPagosCompras_Click(sender As Object, e As EventArgs) Handles btPagosCompras.Click
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New F0_PagosCreditoCompraUlt
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+        frm._nameButton = btPagosCompras.Name
+        frm._tab = tab3
+        frm._modulo = FP_Inventario
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+        'tab3.Icon = frm.Icon
+    End Sub
 #End Region
 
 End Class

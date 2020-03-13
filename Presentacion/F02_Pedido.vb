@@ -2639,7 +2639,7 @@ Public Class F02_Pedido
                 cant = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obpcant")
                 'Consulta la tabla de descuentos para ver cual aplicará segun la cantidad ingresada
                 For Each preciodesc As DataRow In dt.Rows
-                    If cant >= preciodesc.Item("dacant1") And cant <= preciodesc.Item("dacant2") Then
+                    If cant >= preciodesc.Item("dacant1") And cant <= preciodesc.Item("dacant2") And Now.Date <= preciodesc.Item("daffin") Then
                         preciod = preciodesc.Item("dapreciou")
                         total2 = cant * preciod
                     End If
@@ -2667,7 +2667,7 @@ Public Class F02_Pedido
                 Next
                 'Consulta la tabla de descuentos para ver cual aplicará segun la cantidad ingresada
                 For Each preciodesc As DataRow In dt.Rows
-                    If cantf >= preciodesc.Item("dacant1") And cantf <= preciodesc.Item("dacant2") Then
+                    If cantf >= preciodesc.Item("dacant1") And cantf <= preciodesc.Item("dacant2") And Now.Date <= preciodesc.Item("daffin") Then
                         preciod = preciodesc.Item("dapreciou")
                         total2 = cantnormal * preciod
                     End If

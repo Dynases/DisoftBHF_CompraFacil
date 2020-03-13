@@ -78,15 +78,19 @@ Partial Class P_Usuarios
         Me.SuperTabControl1.ControlBox.Name = ""
         Me.SuperTabControl1.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabControl1.ControlBox.MenuBox, Me.SuperTabControl1.ControlBox.CloseBox})
         Me.SuperTabControl1.Margin = New System.Windows.Forms.Padding(2)
+        Me.SuperTabControl1.SelectedTabIndex = 1
         Me.SuperTabControl1.Size = New System.Drawing.Size(806, 469)
-        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
         Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel1, 0)
+        Me.SuperTabControl1.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
         '
         'SuperTabControlPanel2
         '
-        Me.SuperTabControlPanel2.Location = New System.Drawing.Point(0, 23)
         Me.SuperTabControlPanel2.Margin = New System.Windows.Forms.Padding(2)
-        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(806, 446)
+        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(806, 444)
+        '
+        'SuperTabItem2
+        '
+        Me.SuperTabItem2.Visible = False
         '
         'SuperTabControlPanel1
         '
