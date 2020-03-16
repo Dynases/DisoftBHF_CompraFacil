@@ -49,7 +49,7 @@ Public Class F0_MCaja
     End Sub
     Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
         Dim dt As New DataTable
-        dt = L_prLibreriaClienteLGeneral()
+        dt = L_prCargarComboBanco()
         With mCombo
             .DropDownList.Columns.Clear()
             .DropDownList.Columns.Add("yccod3").Width = 70

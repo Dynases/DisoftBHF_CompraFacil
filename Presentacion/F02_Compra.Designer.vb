@@ -452,7 +452,7 @@ Partial Class F02_Compra
         Me.LabelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX7.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX7.Location = New System.Drawing.Point(503, 108)
+        Me.LabelX7.Location = New System.Drawing.Point(503, 75)
         Me.LabelX7.Name = "LabelX7"
         Me.LabelX7.Size = New System.Drawing.Size(101, 23)
         Me.LabelX7.TabIndex = 387
@@ -470,7 +470,7 @@ Partial Class F02_Compra
         Me.dtiFfactura.ButtonDropDown.Visible = True
         Me.dtiFfactura.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtiFfactura.IsPopupCalendarOpen = False
-        Me.dtiFfactura.Location = New System.Drawing.Point(610, 108)
+        Me.dtiFfactura.Location = New System.Drawing.Point(610, 75)
         '
         '
         '
@@ -828,7 +828,7 @@ Partial Class F02_Compra
         '
         Me.swEmision.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.swEmision.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.swEmision.Location = New System.Drawing.Point(610, 76)
+        Me.swEmision.Location = New System.Drawing.Point(610, 107)
         Me.swEmision.Name = "swEmision"
         Me.swEmision.OffBackColor = System.Drawing.Color.LawnGreen
         Me.swEmision.OffText = "RECIBO"
@@ -839,6 +839,7 @@ Partial Class F02_Compra
         Me.swEmision.TabIndex = 377
         Me.swEmision.Value = True
         Me.swEmision.ValueObject = "Y"
+        Me.swEmision.Visible = False
         '
         'LabelX16
         '
@@ -848,12 +849,13 @@ Partial Class F02_Compra
         Me.LabelX16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX16.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelX16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX16.Location = New System.Drawing.Point(534, 75)
+        Me.LabelX16.Location = New System.Drawing.Point(534, 106)
         Me.LabelX16.Name = "LabelX16"
         Me.LabelX16.Size = New System.Drawing.Size(60, 23)
         Me.LabelX16.TabIndex = 378
         Me.LabelX16.Text = "Emisión:"
         Me.LabelX16.TextAlignment = System.Drawing.StringAlignment.Far
+        Me.LabelX16.Visible = False
         '
         'lbCredito
         '

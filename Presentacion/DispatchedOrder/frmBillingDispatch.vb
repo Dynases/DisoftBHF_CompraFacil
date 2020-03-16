@@ -6,8 +6,7 @@ Imports LOGIC
 Imports UTILITIES
 Imports Facturacion
 Imports Logica.AccesoLogica
-
-
+Imports System.Drawing.Printing
 
 Public Class frmBillingDispatch
 
@@ -56,7 +55,7 @@ Public Class frmBillingDispatch
                                     My.Resources.OK,
                                     5 * 1000,
                                     eToastGlowColor.Red,
-                                    eToastPosition.MiddleCenter)
+                                    eToastPosition.TopCenter)
                 Return
             End If
 
@@ -250,8 +249,21 @@ Public Class frmBillingDispatch
         objrep.SetParameterValue("Fechali", Fecliteral)
         objrep.SetParameterValue("Ley", _Ds1.Tables(0).Rows(0).Item("yenota").ToString())
         'objrep.PrintOptions.PrinterName = "L4150 Series(Red) (Copiar 1)"
-        objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
-        objrep.PrintToPrinter(1, False, 1, 1)
+
+        Dim pd As New PrintDocument()
+        pd.PrinterSettings.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
+        If (Not pd.PrinterSettings.IsValid) Then
+            ToastNotification.Show(Me, "La Impresora ".ToUpper + _Ds3.Tables(0).Rows(0).Item("cbrut").ToString + Chr(13) + "No Existe".ToUpper,
+                                   My.Resources.WARNING, 5 * 1000,
+                                   eToastGlowColor.Blue, eToastPosition.BottomRight)
+        Else
+            objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
+            objrep.PrintToPrinter(1, False, 1, 1)
+        End If
+        'objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
+        'objrep.PrintToPrinter(1, False, 1, 1)
+
+
 
 
         ''For I = 0 To _Ds.Tables(0).Rows.Count - 1

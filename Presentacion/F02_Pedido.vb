@@ -2686,11 +2686,8 @@ Public Class F02_Pedido
             End If
         Next
 
-
-        'Btn_TerminarAdd.Focus()
+        Btn_TerminarAdd.Focus()
         'Btn_TerminarAdd.PerformClick()
-
-
 
     End Sub
 

@@ -410,7 +410,7 @@ Public Class F02_Compra
         btBuscarProveedor.Enabled = flat
 
         'Switch Button
-        swTipoVenta.IsReadOnly = Not flat
+        swTipoVenta.IsReadOnly = flat
         swEmision.IsReadOnly = Not flat
         swConsigna.IsReadOnly = Not flat
         swRetencion.IsReadOnly = Not flat
@@ -1866,15 +1866,6 @@ Public Class F02_Compra
     End Sub
 
 
-
-
-
-
-
-
-
-
-
 #End Region
 
 #Region "Asiento Contable"
@@ -1971,10 +1962,6 @@ Public Class F02_Compra
 
 
             End If
-
-
-
-
 
         Next
 

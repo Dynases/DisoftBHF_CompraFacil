@@ -811,7 +811,7 @@ Partial Class F02_Pedido
         Me.JGr_DetallePedido.Location = New System.Drawing.Point(0, 0)
         Me.JGr_DetallePedido.Name = "JGr_DetallePedido"
         Me.JGr_DetallePedido.Size = New System.Drawing.Size(801, 186)
-        Me.JGr_DetallePedido.TabIndex = 1
+        Me.JGr_DetallePedido.TabIndex = 100
         '
         'cmQuitarDetalle
         '
@@ -1184,7 +1184,7 @@ Partial Class F02_Pedido
         Me.swTipoVenta.OnText = "CONTADO"
         Me.swTipoVenta.Size = New System.Drawing.Size(109, 22)
         Me.swTipoVenta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.swTipoVenta.TabIndex = 42
+        Me.swTipoVenta.TabIndex = 45
         Me.swTipoVenta.Value = True
         Me.swTipoVenta.ValueObject = "Y"
         '
@@ -1565,7 +1565,7 @@ Partial Class F02_Pedido
         Me.Btn_TerminarAdd.Name = "Btn_TerminarAdd"
         Me.Btn_TerminarAdd.Size = New System.Drawing.Size(75, 58)
         Me.Btn_TerminarAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.Btn_TerminarAdd.TabIndex = 4
+        Me.Btn_TerminarAdd.TabIndex = 46
         Me.Btn_TerminarAdd.Text = "Terminar"
         '
         'LabelX2
