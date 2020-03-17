@@ -1473,10 +1473,12 @@ Public Class F0_MCaja
     End Sub
 
     Private Sub Tb_TipoCambio_ValueChanged(sender As Object, e As EventArgs) Handles Tb_TipoCambio.ValueChanged
-        Dgv_Depositos.UpdateData()
-        Dgv_Depositos.UpdateData()
-        Dgv_PedidoTotal.UpdateData()
-        _prCalcular(0, 1)
+        If (Tb_TipoCambio.Focused) Then
+            Dgv_Depositos.UpdateData()
+            Dgv_Depositos.UpdateData()
+            Dgv_PedidoTotal.UpdateData()
+            _prCalcular(0, 1)
+        End If
     End Sub
 
     Private Sub GridEX1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEX1.KeyDown
