@@ -158,6 +158,7 @@ Partial Class F0_CreditosPedidos
         '
         'MBtModificar
         '
+        Me.MBtModificar.Visible = False
         '
         'MBtNuevo
         '

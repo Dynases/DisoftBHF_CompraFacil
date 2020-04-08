@@ -344,7 +344,7 @@ Partial Class F01_Proveedor
         Me.btBuscarCuenta.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
         Me.btBuscarCuenta.Image = Global.Presentacion.My.Resources.Resources.buscar
         Me.btBuscarCuenta.ImageFixedSize = New System.Drawing.Size(23, 23)
-        Me.btBuscarCuenta.Location = New System.Drawing.Point(757, 33)
+        Me.btBuscarCuenta.Location = New System.Drawing.Point(755, 33)
         Me.btBuscarCuenta.Name = "btBuscarCuenta"
         Me.btBuscarCuenta.Size = New System.Drawing.Size(40, 24)
         Me.btBuscarCuenta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
