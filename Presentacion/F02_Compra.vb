@@ -473,6 +473,7 @@ Public Class F02_Compra
 
     Private Sub P_prActualizarPaginacion(ByVal index As Integer)
         MLbPaginacion.Text = "Reg. " & index + 1 & " de " & dgjBusqueda.GetRows.Count
+
     End Sub
 
     Private Sub P_prMoverIndexActual()
@@ -483,8 +484,16 @@ Public Class F02_Compra
         If (index > dgjBusqueda.RowCount) Then
             index = dgjBusqueda.RowCount
         End If
-        dgjBusqueda.MoveTo(index - 1)
-        P_prLlenarDatos(dgjBusqueda.Row)
+        If index > 0 Then
+            dgjBusqueda.MoveTo(index - 1)
+            P_prLlenarDatos(dgjBusqueda.Row)
+        Else
+            dgjBusqueda.MoveTo(index)
+            P_prLlenarDatos(index)
+            P_prActualizarPaginacion(index)
+            P_prLimpiar()
+        End If
+
     End Sub
 
     Private Sub P_prLlenarDatos(ByVal index As Integer)
