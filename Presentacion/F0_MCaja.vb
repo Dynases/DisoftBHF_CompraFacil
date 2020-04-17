@@ -123,88 +123,93 @@ Public Class F0_MCaja
     End Sub
 
     Public Sub _prCrearListaCambio(tipo As Integer, IdCaja As Integer)
-        If tipo = 1 Then
-            ListaCambio = New LCajaCambio().Listar(IdCaja)
-        End If
-        Dgv_Cortes.BoundMode = Janus.Data.BoundMode.Bound
-        Dgv_Cortes.DataSource = ListaCambio
-        Dgv_Cortes.RetrieveStructure()
+        Try
+            If tipo = 1 Then
+                ListaCambio = New LCajaCambio().Listar(IdCaja)
+            End If
+            Dgv_Cortes.BoundMode = Janus.Data.BoundMode.Bound
+            Dgv_Cortes.DataSource = ListaCambio
+            Dgv_Cortes.RetrieveStructure()
 
-        With Dgv_Cortes.RootTable.Columns("Id")
-            .Visible = False
+            With Dgv_Cortes.RootTable.Columns("Id")
+                .Visible = False
 
-        End With
+            End With
 
-        With Dgv_Cortes.RootTable.Columns("IdCaja")
-            .Visible = False
-        End With
-        With Dgv_Cortes.RootTable.Columns("Estado")
-            .Visible = False
-        End With
-        With Dgv_Cortes.RootTable.Columns("TipoCambio")
-            .Visible = False
-        End With
+            With Dgv_Cortes.RootTable.Columns("IdCaja")
+                .Visible = False
+            End With
+            With Dgv_Cortes.RootTable.Columns("Estado")
+                .Visible = False
+            End With
+            With Dgv_Cortes.RootTable.Columns("TipoCambio")
+                .Visible = False
+            End With
 
-        With Dgv_Cortes.RootTable.Columns("CorteBol")
-            .Caption = "CORTE BS."
-            .Width = 130
-            .FormatString = "0.00"
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
-            .Position = 3
-        End With
-        With Dgv_Cortes.RootTable.Columns("CantidadBo")
-            .Caption = "CANTIDAD BS."
-            .Width = 130
-            .FormatString = "0.00"
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
-            .Position = 4
-        End With
-        With Dgv_Cortes.RootTable.Columns("TotalBo")
-            .Caption = "TOTAL BS."
-            .Width = 170
-            .FormatString = "0.00"
-            .AggregateFunction = AggregateFunction.Sum
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
-            .Position = 5
-        End With
-        With Dgv_Cortes.RootTable.Columns("CorteDolares")
-            .Caption = "CORTE $us."
-            .Width = 130
-            .FormatString = "0"
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
-            .Position = 6
-        End With
+            With Dgv_Cortes.RootTable.Columns("CorteBol")
+                .Caption = "CORTE BS."
+                .Width = 130
+                .FormatString = "0.00"
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .Position = 3
+            End With
+            With Dgv_Cortes.RootTable.Columns("CantidadBo")
+                .Caption = "CANTIDAD BS."
+                .Width = 130
+                .FormatString = "0.00"
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .Position = 4
+            End With
+            With Dgv_Cortes.RootTable.Columns("TotalBo")
+                .Caption = "TOTAL BS."
+                .Width = 170
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .Position = 5
+            End With
+            With Dgv_Cortes.RootTable.Columns("CorteDolares")
+                .Caption = "CORTE $us."
+                .Width = 130
+                .FormatString = "0"
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .Position = 6
+            End With
 
-        With Dgv_Cortes.RootTable.Columns("CantidadDo")
-            .Caption = "CANTIDAD $us"
-            .Width = 130
-            .FormatString = "0"
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
-            .Position = 7
-        End With
-        With Dgv_Cortes.RootTable.Columns("TotalD")
-            .Caption = "TOTAL $us."
-            .Width = 170
-            .FormatString = "0.00"
-            .AggregateFunction = AggregateFunction.Sum
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
-            .Position = 8
-        End With
-        With Dgv_Cortes
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .TotalRow = InheritableBoolean.True
-            .TotalRowFormatStyle.BackColor = Color.Gold
-            .TotalRowPosition = TotalRowPosition.BottomFixed
-            .VisualStyle = VisualStyle.Office2007
+            With Dgv_Cortes.RootTable.Columns("CantidadDo")
+                .Caption = "CANTIDAD $us"
+                .Width = 130
+                .FormatString = "0"
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .Position = 7
+            End With
+            With Dgv_Cortes.RootTable.Columns("TotalD")
+                .Caption = "TOTAL $us."
+                .Width = 170
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .Position = 8
+            End With
+            With Dgv_Cortes
+                .GroupByBoxVisible = False
+                'diseño de la grilla
+                .TotalRow = InheritableBoolean.True
+                .TotalRowFormatStyle.BackColor = Color.Gold
+                .TotalRowPosition = TotalRowPosition.BottomFixed
+                .VisualStyle = VisualStyle.Office2007
 
-        End With
+            End With
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+
     End Sub
 
     Private Sub _prArmarListaDeposito()
@@ -218,68 +223,81 @@ Public Class F0_MCaja
         End If
         _prArmarDeposito()
     End Sub
+    Private Sub MostrarMensajeError(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.WARNING,
+                               5000,
+                               eToastGlowColor.Red,
+                               eToastPosition.TopCenter)
 
+    End Sub
     Private Sub _prArmarDeposito()
-        Dgv_Depositos.BoundMode = Janus.Data.BoundMode.Bound
-        Dgv_Depositos.DataSource = ListaDeposito
-        Dgv_Depositos.RetrieveStructure()
+        Try
+            Dgv_Depositos.BoundMode = Janus.Data.BoundMode.Bound
+            Dgv_Depositos.DataSource = ListaDeposito
+            Dgv_Depositos.RetrieveStructure()
 
-        With Dgv_Depositos.RootTable.Columns("Id")
-            .Visible = False
+            With Dgv_Depositos.RootTable.Columns("Id")
+                .Visible = False
 
-        End With
-        With Dgv_Depositos.RootTable.Columns("IdCaja")
-            .Visible = False
-        End With
-        With Dgv_Depositos.RootTable.Columns("Estado")
-            .Visible = False
-        End With
-        With Dgv_Depositos.RootTable.Columns("Banco")
-            .Caption = "BANCO"
-            .EditType = EditType.MultiColumnDropDown
-            .DropDown = cbbanco.DropDownList
-            .Width = 250
-            .Visible = True
-            .Position = 3
-        End With
-        With Dgv_Depositos.RootTable.Columns("Moneda")
-            .Caption = "MONEDA"
-            .Width = 100
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = True
-            .Position = 4
-        End With
-        With Dgv_Depositos.RootTable.Columns("Depos")
-            .Caption = "NRO. DEPOSITO"
-            .Width = 180
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
-            .Position = 5
-        End With
-        With Dgv_Depositos.RootTable.Columns("Fecha")
-            .Caption = "FECHA"
-            .Width = 150
-            .Visible = True
-            .FormatString = "dd/MM/yyyy"
+            End With
+            With Dgv_Depositos.RootTable.Columns("IdCaja")
+                .Visible = False
+            End With
+            With Dgv_Depositos.RootTable.Columns("Estado")
+                .Visible = False
+            End With
+            With Dgv_Depositos.RootTable.Columns("Banco")
+                .Caption = "BANCO"
+                .EditType = EditType.MultiColumnDropDown
+                .DropDown = cbbanco.DropDownList
+                .Width = 250
+                .Visible = True
+                .Position = 3
+            End With
+            With Dgv_Depositos.RootTable.Columns("Moneda")
+                .Caption = "MONEDA"
+                .Width = 100
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = True
+                .Position = 4
+            End With
+            With Dgv_Depositos.RootTable.Columns("Depos")
+                .Caption = "NRO. DEPOSITO"
+                .Width = 180
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .Position = 5
+            End With
+            With Dgv_Depositos.RootTable.Columns("Fecha")
+                .Caption = "FECHA"
+                .Width = 150
+                .Visible = True
+                .FormatString = "dd/MM/yyyy"
 
-        End With
-        With Dgv_Depositos.RootTable.Columns("Monto")
-            .Caption = "MONTO"
-            .Width = 150
-            .AggregateFunction = AggregateFunction.Sum
-            .FormatString = "0.00"
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = True
-            .Position = 7
-        End With
-        With Dgv_Depositos
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .TotalRow = InheritableBoolean.True
-            .TotalRowFormatStyle.BackColor = Color.Gold
-            .TotalRowPosition = TotalRowPosition.BottomFixed
-            .VisualStyle = VisualStyle.Office2007
-        End With
+            End With
+            With Dgv_Depositos.RootTable.Columns("Monto")
+                .Caption = "MONTO"
+                .Width = 150
+                .AggregateFunction = AggregateFunction.Sum
+                .FormatString = "0.00"
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = True
+                .Position = 7
+            End With
+            With Dgv_Depositos
+                .GroupByBoxVisible = False
+                'diseño de la grilla
+                .TotalRow = InheritableBoolean.True
+                .TotalRowFormatStyle.BackColor = Color.Gold
+                .TotalRowPosition = TotalRowPosition.BottomFixed
+                .VisualStyle = VisualStyle.Office2007
+            End With
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+
     End Sub
     'Public Sub _prCrearTablaConciliacion()
 
@@ -611,27 +629,32 @@ Public Class F0_MCaja
 
 
     Public Sub _prMostrarRegistro(_N As Integer)
-        'olnumi , olnumichof, chofer, olnumiconci, olfecha, olfact, olhact, oluact
-        With GridEX1
-            TbCodigo.Text = .GetValue("olnumi")
-            tbFecha.Value = .GetValue("olfecha")
-            Numi_Chofer = .GetValue("olnumichof")
-            Numi_Conciliacion = .GetValue("olnumiconci")
-            tbchofer.Text = .GetValue("chofer")
-            lbconciliacion.Text = .GetValue("olnumiconci")
-            lbFecha.Text = CType(.GetValue("olfact"), Date).ToString("dd/MM/yyyy")
-            lbHora.Text = .GetValue("olhact").ToString
-            lbUsuario.Text = .GetValue("oluact").ToString
-            Tb_TCredito.Text = .GetValue("olCredito")
-        End With
+        Try
+            'olnumi , olnumichof, chofer, olnumiconci, olfecha, olfact, olhact, oluact
+            With GridEX1
+                TbCodigo.Text = .GetValue("olnumi")
+                tbFecha.Value = .GetValue("olfecha")
+                Numi_Chofer = .GetValue("olnumichof")
+                Numi_Conciliacion = .GetValue("olnumiconci")
+                tbchofer.Text = .GetValue("chofer")
+                lbconciliacion.Text = .GetValue("olnumiconci")
+                lbFecha.Text = CType(.GetValue("olfact"), Date).ToString("dd/MM/yyyy")
+                lbHora.Text = .GetValue("olhact").ToString
+                lbUsuario.Text = .GetValue("oluact").ToString
+                Tb_TCredito.Text = .GetValue("olCredito")
+            End With
 
-        _prCargarDetalleVenta(TbCodigo.Text)
-        _prCrearListaCambio(1, Convert.ToInt32(TbCodigo.Text))
-        _prCrearListaDeposito(1, Convert.ToInt32(TbCodigo.Text))
-        Tb_TConciliacion.Value = GridEX1.GetValue("olmrec")
-        Tb_TipoCambio.Value = GridEX1.GetValue("olTipoCambio")
-        _prCalcular(Tb_TCredito.Value, 2)
-        LblPaginacion.Text = Str(GridEX1.Row + 1) + "/" + GridEX1.RowCount.ToString
+            _prCargarDetalleVenta(TbCodigo.Text)
+            _prCrearListaCambio(1, Convert.ToInt32(TbCodigo.Text))
+            _prCrearListaDeposito(1, Convert.ToInt32(TbCodigo.Text))
+            Tb_TConciliacion.Value = GridEX1.GetValue("olmrec")
+            Tb_TipoCambio.Value = GridEX1.GetValue("olTipoCambio")
+            _prCalcular(Tb_TCredito.Value, 2)
+            LblPaginacion.Text = Str(GridEX1.Row + 1) + "/" + GridEX1.RowCount.ToString
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+
 
     End Sub
 
@@ -676,277 +699,288 @@ Public Class F0_MCaja
         Return tbFecha.IsInputReadOnly = False
     End Function
     Private Sub _prCargarDetalleVenta(_numi As String)
-        Dim dt As New DataTable
+        Try
+            Dim dt As New DataTable
 
-        dt = L_prObtenerDetalleDeCaja(_numi)
-        Dgv_PedidoTotal.DataSource = dt
-        Dgv_PedidoTotal.RetrieveStructure()
-        Dgv_PedidoTotal.AlternatingColors = True
-        'oanumi , oafdoc, oaccli, cliente, oarepa, oaest, oaap, oapg, total,contado,credito, estado
-        With Dgv_PedidoTotal.RootTable.Columns("oanumi")
-            .Width = 100
-            .Caption = "CODIGO"
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oafdoc")
-            .Width = 90
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oaest")
-            .Width = 90
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oaap")
-            .Width = 90
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oapg")
-            .Width = 90
-            .Visible = False
-        End With
+            dt = L_prObtenerDetalleDeCaja(_numi)
+            Dgv_PedidoTotal.DataSource = dt
+            Dgv_PedidoTotal.RetrieveStructure()
+            Dgv_PedidoTotal.AlternatingColors = True
+            'oanumi , oafdoc, oaccli, cliente, oarepa, oaest, oaap, oapg, total,contado,credito, estado
+            With Dgv_PedidoTotal.RootTable.Columns("oanumi")
+                .Width = 100
+                .Caption = "CODIGO"
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oafdoc")
+                .Width = 90
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oaest")
+                .Width = 90
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oaap")
+                .Width = 90
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oapg")
+                .Width = 90
+                .Visible = False
+            End With
 
-        With Dgv_PedidoTotal.RootTable.Columns("oacnrofac")
-            .Width = 150
-            .Caption = "NRO. FACTURA"
-            .Visible = True
-        End With
+            With Dgv_PedidoTotal.RootTable.Columns("oacnrofac")
+                .Width = 150
+                .Caption = "NRO. FACTURA"
+                .Visible = True
+            End With
 
-        With Dgv_PedidoTotal.RootTable.Columns("cliente")
-            .Caption = "CLIENTE"
-            .Width = 400
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("total")
-            .Caption = "TOTAL"
-            .Width = 200
-            .AggregateFunction = AggregateFunction.Sum
-            .Visible = True
-            .FormatString = "0.00"
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("contado")
-            .Caption = "COBRADO"
-            .Width = 200
-            .AggregateFunction = AggregateFunction.Sum
-            .Visible = True
-            .FormatString = "0.00"
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("credito")
-            .Caption = "CREDITO"
-            .Width = 200
-            .AggregateFunction = AggregateFunction.Sum
-            '.Visible = (gi_vcre2 = 1)
-            .Visible = True
-            .FormatString = "0.00"
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oarepa")
-            .Width = 160
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("tcre")
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("estado")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
+            With Dgv_PedidoTotal.RootTable.Columns("cliente")
+                .Caption = "CLIENTE"
+                .Width = 400
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("total")
+                .Caption = "TOTAL"
+                .Width = 200
+                .AggregateFunction = AggregateFunction.Sum
+                .Visible = True
+                .FormatString = "0.00"
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("contado")
+                .Caption = "COBRADO"
+                .Width = 200
+                .AggregateFunction = AggregateFunction.Sum
+                .Visible = True
+                .FormatString = "0.00"
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("credito")
+                .Caption = "CREDITO"
+                .Width = 200
+                .AggregateFunction = AggregateFunction.Sum
+                '.Visible = (gi_vcre2 = 1)
+                .Visible = True
+                .FormatString = "0.00"
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oarepa")
+                .Width = 160
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("tcre")
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("estado")
+                .Width = 50
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+            End With
 
-        With Dgv_PedidoTotal
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .TotalRow = InheritableBoolean.True
-            .TotalRowFormatStyle.BackColor = Color.Gold
-            .TotalRowPosition = TotalRowPosition.BottomFixed
-            .VisualStyle = VisualStyle.Office2007
+            With Dgv_PedidoTotal
+                .GroupByBoxVisible = False
+                'diseño de la grilla
+                .TotalRow = InheritableBoolean.True
+                .TotalRowFormatStyle.BackColor = Color.Gold
+                .TotalRowPosition = TotalRowPosition.BottomFixed
+                .VisualStyle = VisualStyle.Office2007
 
-            Dim fc As GridEXFormatCondition = New GridEXFormatCondition(.RootTable.Columns("tcre"), ConditionOperator.Equal, "1")
-            fc.FormatStyle.BackColor = Color.LightSalmon
+                Dim fc As GridEXFormatCondition = New GridEXFormatCondition(.RootTable.Columns("tcre"), ConditionOperator.Equal, "1")
+                fc.FormatStyle.BackColor = Color.LightSalmon
 
-            .RootTable.FormatConditions.Add(fc)
-        End With
-
-
+                .RootTable.FormatConditions.Add(fc)
+            End With
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
     End Sub
 
     Public Sub cargarDetalleConciliacion()
-        Dim dt As New DataTable
+        Try
+            Dim dt As New DataTable
 
-        'dt = L_prObtenerDetalleChofer(Numi_Chofer, tbFecha.Value.ToString("yyyy/MM/dd"))
-        dt = L_prObtenerDetalleChofer(Numi_Chofer, tbFecha.Value.ToString("yyyy/MM/dd"), lbconciliacion.Text)
-        Dgv_PedidoTotal.DataSource = dt
-        Dgv_PedidoTotal.RetrieveStructure()
-        Dgv_PedidoTotal.AlternatingColors = True
-        'oanumi , oafdoc, oaccli, cliente, oarepa, oaest, oaap, oapg, total,contado,credito, estado
-        With Dgv_PedidoTotal.RootTable.Columns("oanumi")
-            .Width = 100
-            .Caption = "CODIGO"
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oafdoc")
-            .Width = 90
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oaest")
-            .Width = 90
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oaap")
-            .Width = 90
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oapg")
-            .Width = 90
-            .Visible = False
-        End With
+            'dt = L_prObtenerDetalleChofer(Numi_Chofer, tbFecha.Value.ToString("yyyy/MM/dd"))
+            dt = L_prObtenerDetalleChofer(Numi_Chofer, tbFecha.Value.ToString("yyyy/MM/dd"), lbconciliacion.Text)
+            Dgv_PedidoTotal.DataSource = dt
+            Dgv_PedidoTotal.RetrieveStructure()
+            Dgv_PedidoTotal.AlternatingColors = True
+            'oanumi , oafdoc, oaccli, cliente, oarepa, oaest, oaap, oapg, total,contado,credito, estado
+            With Dgv_PedidoTotal.RootTable.Columns("oanumi")
+                .Width = 100
+                .Caption = "CODIGO"
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oafdoc")
+                .Width = 90
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oaest")
+                .Width = 90
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oaap")
+                .Width = 90
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oapg")
+                .Width = 90
+                .Visible = False
+            End With
 
 
-        With Dgv_PedidoTotal.RootTable.Columns("oacnrofac")
-            .Width = 150
-            .Caption = "Nro Factura"
-            .Visible = True
-        End With
+            With Dgv_PedidoTotal.RootTable.Columns("oacnrofac")
+                .Width = 150
+                .Caption = "Nro Factura"
+                .Visible = True
+            End With
 
-        With Dgv_PedidoTotal.RootTable.Columns("cliente")
-            .Caption = "cliente"
-            .Width = 150
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("total")
-            .Caption = "TOTAL"
-            .Width = 200
-            .Visible = True
-            .FormatString = "0.00"
-            .AggregateFunction = AggregateFunction.Sum
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("contado")
-            .Caption = "COBRADO"
-            .Width = 200
-            .Visible = True
-            .FormatString = "0.00"
-            .AggregateFunction = AggregateFunction.Sum
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("credito")
-            .Caption = "CREDITO"
-            .Width = 200
-            '.Visible = (gi_vcre2 = 1)
-            .Visible = True
-            .FormatString = "0.00"
-            .AggregateFunction = AggregateFunction.Sum
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("oarepa")
-            .Width = 160
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("tcre")
-            .Visible = False
-        End With
-        With Dgv_PedidoTotal.RootTable.Columns("estado")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
+            With Dgv_PedidoTotal.RootTable.Columns("cliente")
+                .Caption = "cliente"
+                .Width = 150
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("total")
+                .Caption = "TOTAL"
+                .Width = 200
+                .Visible = True
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("contado")
+                .Caption = "COBRADO"
+                .Width = 200
+                .Visible = True
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("credito")
+                .Caption = "CREDITO"
+                .Width = 200
+                '.Visible = (gi_vcre2 = 1)
+                .Visible = True
+                .FormatString = "0.00"
+                .AggregateFunction = AggregateFunction.Sum
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("oarepa")
+                .Width = 160
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("tcre")
+                .Visible = False
+            End With
+            With Dgv_PedidoTotal.RootTable.Columns("estado")
+                .Width = 50
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+            End With
 
-        With Dgv_PedidoTotal
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .VisualStyle = VisualStyle.Office2007
-            .TotalRow = InheritableBoolean.True
-            .TotalRowFormatStyle.BackColor = Color.Gold
-            .TotalRowPosition = TotalRowPosition.BottomFixed
+            With Dgv_PedidoTotal
+                .GroupByBoxVisible = False
+                'diseño de la grilla
+                .VisualStyle = VisualStyle.Office2007
+                .TotalRow = InheritableBoolean.True
+                .TotalRowFormatStyle.BackColor = Color.Gold
+                .TotalRowPosition = TotalRowPosition.BottomFixed
 
-            Dim fc As GridEXFormatCondition = New GridEXFormatCondition(.RootTable.Columns("tcre"), ConditionOperator.Equal, "1")
-            fc.FormatStyle.BackColor = Color.LightSalmon
+                Dim fc As GridEXFormatCondition = New GridEXFormatCondition(.RootTable.Columns("tcre"), ConditionOperator.Equal, "1")
+                fc.FormatStyle.BackColor = Color.LightSalmon
 
-            .RootTable.FormatConditions.Add(fc)
-        End With
+                .RootTable.FormatConditions.Add(fc)
+            End With
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+
     End Sub
 
     Private Sub _prCargarVenta()
-        Dim dt As New DataTable
-        dt = L_prCajaGeneral()
-        GridEX1.DataSource = dt
-        GridEX1.RetrieveStructure()
-        GridEX1.AlternatingColors = True
+        Try
+            Dim dt As New DataTable
+            dt = L_prCajaGeneral()
+            GridEX1.DataSource = dt
+            GridEX1.RetrieveStructure()
+            GridEX1.AlternatingColors = True
 
-        'olnumi , olnumichof, chofer, olnumiconci, olfecha, olfact, olhact, oluact
-        With GridEX1.RootTable.Columns("olnumi")
-            .Width = 100
-            .Caption = "CODIGO"
-            .Visible = True
-        End With
+            'olnumi , olnumichof, chofer, olnumiconci, olfecha, olfact, olhact, oluact
+            With GridEX1.RootTable.Columns("olnumi")
+                .Width = 100
+                .Caption = "CODIGO"
+                .Visible = True
+            End With
 
-        With GridEX1.RootTable.Columns("olnumichof")
-            .Width = 90
-            .Visible = False
-        End With
+            With GridEX1.RootTable.Columns("olnumichof")
+                .Width = 90
+                .Visible = False
+            End With
 
-        With GridEX1.RootTable.Columns("chofer")
-            .Width = 350
-            .Visible = True
-            .Caption = "CHOFER"
-        End With
+            With GridEX1.RootTable.Columns("chofer")
+                .Width = 350
+                .Visible = True
+                .Caption = "CHOFER"
+            End With
 
-        With GridEX1.RootTable.Columns("olnumiconci")
-            .Width = 150
-            .Visible = True
-            .Caption = "CONCILIACIÓN"
-        End With
+            With GridEX1.RootTable.Columns("olnumiconci")
+                .Width = 150
+                .Visible = True
+                .Caption = "CONCILIACIÓN"
+            End With
 
-        With GridEX1.RootTable.Columns("olfecha")
-            .Width = 120
-            .Visible = True
-            .Caption = "FECHA"
-            .FormatString = "dd/MM/yyyy"
-        End With
+            With GridEX1.RootTable.Columns("olfecha")
+                .Width = 120
+                .Visible = True
+                .Caption = "FECHA"
+                .FormatString = "dd/MM/yyyy"
+            End With
 
-        With GridEX1.RootTable.Columns("olmrec")
-            .Width = 130
-            .Visible = True
-            .Caption = "TOTAL CONCILIACIÓN"
-            .FormatString = "0.00"
-        End With
+            With GridEX1.RootTable.Columns("olmrec")
+                .Width = 130
+                .Visible = True
+                .Caption = "TOTAL CONCILIACIÓN"
+                .FormatString = "0.00"
+            End With
 
-        With GridEX1.RootTable.Columns("olfact")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
+            With GridEX1.RootTable.Columns("olfact")
+                .Width = 50
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+            End With
 
-        With GridEX1.RootTable.Columns("olhact")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
+            With GridEX1.RootTable.Columns("olhact")
+                .Width = 50
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+            End With
 
-        With GridEX1.RootTable.Columns("oluact")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
-        With GridEX1.RootTable.Columns("olCredito")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
-        With GridEX1.RootTable.Columns("olTipoCambio")
-            .Width = 50
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            .Visible = False
-        End With
-        With GridEX1
-            .DefaultFilterRowComparison = FilterConditionOperator.Contains
-            .FilterMode = FilterMode.Automatic
-            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
-            .GroupByBoxVisible = False
-            'diseño de la grilla
-            .VisualStyle = VisualStyle.Office2007
-        End With
+            With GridEX1.RootTable.Columns("oluact")
+                .Width = 50
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+            End With
+            With GridEX1.RootTable.Columns("olCredito")
+                .Width = 50
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+            End With
+            With GridEX1.RootTable.Columns("olTipoCambio")
+                .Width = 50
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
+                .Visible = False
+            End With
+            With GridEX1
+                .DefaultFilterRowComparison = FilterConditionOperator.Contains
+                .FilterMode = FilterMode.Automatic
+                .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+                .GroupByBoxVisible = False
+                'diseño de la grilla
+                .VisualStyle = VisualStyle.Office2007
+            End With
 
-        If (dt.Rows.Count <= 0) Then
-            _prCargarDetalleVenta(-1)
-        End If
+            If (dt.Rows.Count <= 0) Then
+                _prCargarDetalleVenta(-1)
+            End If
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
     End Sub
 
     Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, numi As Integer)
@@ -1031,15 +1065,18 @@ Public Class F0_MCaja
     End Sub
 
     Private Sub P_BuscarChofer()
-        P_prArmarAyudaConciliacion()
-        cargarDetalleConciliacion()
-        _prArmarListaCambio()
-        _prArmarListaDeposito()
-        _prCrearListaCambio(2, 0)
-        _prCrearListaDeposito(2, 0)
-
-        'Colocar el total del contado en el tbdRecibido.Text
-        tbdRecibido.Text = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("contado"), AggregateFunction.Sum)
+        Try
+            P_prArmarAyudaConciliacion()
+            cargarDetalleConciliacion()
+            _prArmarListaCambio()
+            _prArmarListaDeposito()
+            _prCrearListaCambio(2, 0)
+            _prCrearListaDeposito(2, 0)
+            'Colocar el total del contado en el tbdRecibido.Text
+            tbdRecibido.Text = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("contado"), AggregateFunction.Sum)
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
     End Sub
 
     Private Sub F0_Caja_Load(sender As Object, e As EventArgs) Handles MyBase.Load

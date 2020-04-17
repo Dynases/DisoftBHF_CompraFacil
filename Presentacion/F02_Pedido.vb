@@ -1182,6 +1182,12 @@ Public Class F02_Pedido
 
     End Sub
     Private Sub _PMostrarRegistro(_N As Integer)
+        Try
+
+        Catch ex As Exception
+
+        End Try
+
         JGr_Buscador.Row = _N
         With JGr_Buscador '_Dsencabezado.Tables(0).Rows(_N)
             Tb_Id.Text = .GetValue("oanumi")
@@ -1267,346 +1273,365 @@ Public Class F02_Pedido
 
         MLbPaginacion.Text = Str(_N + 1) + "/" + JGr_Buscador.RowCount.ToString '_Dsencabezado.Tables(0).Rows.Count.ToString
     End Sub
+    Private Sub MostrarMensajeError(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.WARNING,
+                               5000,
+                               eToastGlowColor.Red,
+                               eToastPosition.TopCenter)
+
+    End Sub
     Private Function _PValidar() As Boolean
-        Dim _Error As Boolean = False
+        Try
+            Dim _Error As Boolean = False
 
-        If Tb_Zona.Text = "" Then
-            Tb_Zona.BackColor = Color.Red   'error de validacion
-            'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
-            _Error = True
-        Else
-            Tb_Zona.BackColor = Color.White
-            'Ep1.SetError(Tb_Nombre, "")
-        End If
+            If Tb_Zona.Text = "" Then
+                Tb_Zona.BackColor = Color.Red   'error de validacion
+                'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
+                _Error = True
+            Else
+                Tb_Zona.BackColor = Color.White
+                'Ep1.SetError(Tb_Nombre, "")
+            End If
 
-        If Tb_CliCod.Text = "" Then
-            Tb_CliCod.BackColor = Color.Red   'error de validacion
-            'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
-            _Error = True
-        Else
-            Tb_CliCod.BackColor = Color.White
-            'Ep1.SetError(Tb_Nombre, "")
-        End If
+            If Tb_CliCod.Text = "" Then
+                Tb_CliCod.BackColor = Color.Red   'error de validacion
+                'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
+                _Error = True
+            Else
+                Tb_CliCod.BackColor = Color.White
+                'Ep1.SetError(Tb_Nombre, "")
+            End If
 
-        If (JGr_DetallePedido.RowCount = 0) Then
-            ToastNotification.Show(Me, "El pedido no puede quedar sin items.".ToUpper, My.Resources.WARNING, 3000, eToastGlowColor.Green, eToastPosition.BottomCenter)
-            _Error = True
-        End If
-
-        'If (cbDistribuidor.SelectedIndex = -1) Then
-        '    cbDistribuidor.BackColor = Color.Red   'error de validacion
-        '    'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
-        '    _Error = True
-        'Else
-        '    cbDistribuidor.BackColor = Color.White
-        '    'Ep1.SetError(Tb_Nombre, "")
-        'End If
-
-        If (cbPreVendedor.SelectedIndex = -1) Then
-            cbPreVendedor.BackColor = Color.Red   'error de validacion
-            'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
-            _Error = True
-        Else
-            cbPreVendedor.BackColor = Color.White
-            'Ep1.SetError(Tb_Nombre, "")
-        End If
-
-        Dim i As Integer
-        For i = 0 To JGr_DetallePedido.RowCount - 1
-            JGr_DetallePedido.Row = i
-            If IsNumeric(JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value) = False Then
-                ToastNotification.Show(Me, "falta cantidad en algun producto en el detalle".ToUpper, My.Resources.WARNING, 4000, eToastGlowColor.Green, eToastPosition.BottomCenter)
+            If (JGr_DetallePedido.RowCount = 0) Then
+                ToastNotification.Show(Me, "El pedido no puede quedar sin items.".ToUpper, My.Resources.WARNING, 3000, eToastGlowColor.Green, eToastPosition.BottomCenter)
                 _Error = True
             End If
-        Next
-        Dim dt As DataTable = CType(JGr_DetallePedido.DataSource, DataTable)
 
-        Dim sumTotal As Double = 0
-        For i = 0 To dt.Rows.Count - 1
-            sumTotal = sumTotal + dt.Rows(i).Item(5)
-        Next
-        If (swTipoVenta.Value = False) Then
-            If (tbMontoCredito.Text.Length > 0) Then
-                Dim MontoCredito As Double = Double.Parse(tbMontoCredito.Text)
+            'If (cbDistribuidor.SelectedIndex = -1) Then
+            '    cbDistribuidor.BackColor = Color.Red   'error de validacion
+            '    'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
+            '    _Error = True
+            'Else
+            '    cbDistribuidor.BackColor = Color.White
+            '    'Ep1.SetError(Tb_Nombre, "")
+            'End If
 
-                If (MontoCredito > sumTotal) Then
-                    ToastNotification.Show(Me, "El monto del Credito es Mayor al del pedido".ToUpper, My.Resources.WARNING, 3000, eToastGlowColor.Green, eToastPosition.BottomCenter)
+            If (cbPreVendedor.SelectedIndex = -1) Then
+                cbPreVendedor.BackColor = Color.Red   'error de validacion
+                'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
+                _Error = True
+            Else
+                cbPreVendedor.BackColor = Color.White
+                'Ep1.SetError(Tb_Nombre, "")
+            End If
+
+            Dim i As Integer
+            For i = 0 To JGr_DetallePedido.RowCount - 1
+                JGr_DetallePedido.Row = i
+                If IsNumeric(JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value) = False Then
+                    ToastNotification.Show(Me, "falta cantidad en algun producto en el detalle".ToUpper, My.Resources.WARNING, 4000, eToastGlowColor.Green, eToastPosition.BottomCenter)
                     _Error = True
                 End If
-            Else
-                ToastNotification.Show(Me, "Debe Ingresar un Monto de Credito".ToUpper, My.Resources.WARNING, 3000, eToastGlowColor.Green, eToastPosition.BottomCenter)
-                _Error = True
-            End If
+            Next
+            Dim dt As DataTable = CType(JGr_DetallePedido.DataSource, DataTable)
 
-        End If
-        If _nuevoBasePeriodico = True Then
-            If Btn_Check1.Tag = 1 Then 'frecuencia por dias a la semana
-                Dim diasSem As String = ""
-                diasSem = IIf(CheckBoxX1.Checked = True, "1", "0") + diasSem
-                diasSem = IIf(CheckBoxX2.Checked = True, "1", "0") + diasSem
-                diasSem = IIf(CheckBoxX3.Checked = True, "1", "0") + diasSem
-                diasSem = IIf(CheckBoxX4.Checked = True, "1", "0") + diasSem
-                diasSem = IIf(CheckBoxX5.Checked = True, "1", "0") + diasSem
-                diasSem = IIf(CheckBoxX6.Checked = True, "1", "0") + diasSem
-                diasSem = IIf(CheckBoxX7.Checked = True, "1", "0") + diasSem
-                If diasSem = "0000000" Then
-                    GrB_FrecSemanal.BackColor = Color.Red   'error de validacion
-                    'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
-                    _Error = True
+            Dim sumTotal As Double = 0
+            For i = 0 To dt.Rows.Count - 1
+                sumTotal = sumTotal + dt.Rows(i).Item(5)
+            Next
+            If (swTipoVenta.Value = False) Then
+                If (tbMontoCredito.Text.Length > 0) Then
+                    Dim MontoCredito As Double = Double.Parse(tbMontoCredito.Text)
+
+                    If (MontoCredito > sumTotal) Then
+                        ToastNotification.Show(Me, "El monto del Credito es Mayor al del pedido".ToUpper, My.Resources.WARNING, 3000, eToastGlowColor.Green, eToastPosition.BottomCenter)
+                        _Error = True
+                    End If
                 Else
-                    GrB_FrecSemanal.BackColor = Color.Transparent
-                    'Ep1.SetError(Tb_Nombre, "")
-                End If
-            Else
-                If Btn_Check2.Tag = 1 Then 'frecuencia cada ciertos dias
-                    If Tb_FrecEnDias.Text = "" Then
-                        Tb_FrecEnDias.BackColor = Color.Red   'error de validacion
-                        'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
-                        _Error = True
-                    Else
-                        Tb_FrecEnDias.BackColor = Color.White
-                        'Ep1.SetError(Tb_Nombre, "")
-                    End If
-                Else 'frecuencia por dia del mes
-                    If Tb_FrecMensual.Text = "" Then
-                        Tb_FrecMensual.BackColor = Color.Red   'error de validacion
-                        'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
-                        _Error = True
-                    Else
-                        Tb_FrecMensual.BackColor = Color.White
-                        'Ep1.SetError(Tb_Nombre, "")
-                    End If
+                    ToastNotification.Show(Me, "Debe Ingresar un Monto de Credito".ToUpper, My.Resources.WARNING, 3000, eToastGlowColor.Green, eToastPosition.BottomCenter)
+                    _Error = True
                 End If
 
             End If
-        End If
+            If _nuevoBasePeriodico = True Then
+                If Btn_Check1.Tag = 1 Then 'frecuencia por dias a la semana
+                    Dim diasSem As String = ""
+                    diasSem = IIf(CheckBoxX1.Checked = True, "1", "0") + diasSem
+                    diasSem = IIf(CheckBoxX2.Checked = True, "1", "0") + diasSem
+                    diasSem = IIf(CheckBoxX3.Checked = True, "1", "0") + diasSem
+                    diasSem = IIf(CheckBoxX4.Checked = True, "1", "0") + diasSem
+                    diasSem = IIf(CheckBoxX5.Checked = True, "1", "0") + diasSem
+                    diasSem = IIf(CheckBoxX6.Checked = True, "1", "0") + diasSem
+                    diasSem = IIf(CheckBoxX7.Checked = True, "1", "0") + diasSem
+                    If diasSem = "0000000" Then
+                        GrB_FrecSemanal.BackColor = Color.Red   'error de validacion
+                        'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
+                        _Error = True
+                    Else
+                        GrB_FrecSemanal.BackColor = Color.Transparent
+                        'Ep1.SetError(Tb_Nombre, "")
+                    End If
+                Else
+                    If Btn_Check2.Tag = 1 Then 'frecuencia cada ciertos dias
+                        If Tb_FrecEnDias.Text = "" Then
+                            Tb_FrecEnDias.BackColor = Color.Red   'error de validacion
+                            'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
+                            _Error = True
+                        Else
+                            Tb_FrecEnDias.BackColor = Color.White
+                            'Ep1.SetError(Tb_Nombre, "")
+                        End If
+                    Else 'frecuencia por dia del mes
+                        If Tb_FrecMensual.Text = "" Then
+                            Tb_FrecMensual.BackColor = Color.Red   'error de validacion
+                            'Ep1.SetError(Tb_Nombre, "Ingrese el nombre del empleado!")
+                            _Error = True
+                        Else
+                            Tb_FrecMensual.BackColor = Color.White
+                            'Ep1.SetError(Tb_Nombre, "")
+                        End If
+                    End If
 
-        For i = 0 To JGr_DetallePedido.RowCount - 1
-            JGr_DetallePedido.Row = i
-            If IsNumeric(JGr_DetallePedido.CurrentRow.Cells("Total").Value) = False Or JGr_DetallePedido.CurrentRow.Cells("Total").Value = 0 Then
-                ToastNotification.Show(Me, "Falta calcular el total en algún producto del detalle, por favor presione el botón aplicar descuentos".ToUpper, My.Resources.WARNING, 5500, eToastGlowColor.Green, eToastPosition.BottomCenter)
-                _Error = True
+                End If
             End If
-        Next
 
-        Return _Error
+            For i = 0 To JGr_DetallePedido.RowCount - 1
+                JGr_DetallePedido.Row = i
+                If IsNumeric(JGr_DetallePedido.CurrentRow.Cells("Total").Value) = False Or JGr_DetallePedido.CurrentRow.Cells("Total").Value = 0 Then
+                    ToastNotification.Show(Me, "Falta calcular el total en algún producto del detalle, por favor presione el botón aplicar descuentos".ToUpper, My.Resources.WARNING, 5500, eToastGlowColor.Green, eToastPosition.BottomCenter)
+                    _Error = True
+                End If
+            Next
+
+            Return _Error
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+
+        End Try
+
     End Function
 
     Private Sub _PGrabarRegistro()
-        Dim _Error As Boolean = False
-        If _PValidar() Then
-            Exit Sub
-        End If
+        Try
+            Dim _Error As Boolean = False
+            If _PValidar() Then
+                Exit Sub
+            End If
 
-        If MBtGrabar.Enabled = False Then
-            Exit Sub
-        End If
+            If MBtGrabar.Enabled = False Then
+                Exit Sub
+            End If
 
-        If _Nuevo Then
-            'INICIAR OBJETOS PARA MANDAR NOTIFICACION
-            Dim objListDetalle As New List(Of RequestDetail) 'webLuis
+            If _Nuevo Then
+                'INICIAR OBJETOS PARA MANDAR NOTIFICACION
+                Dim objListDetalle As New List(Of RequestDetail) 'webLuis
 
-            'Tb_Fecha.Text = Date.Now.Date.ToString("yyyy/MM/dd")
-            'Tb_Hora.Text = Now.Hour.ToString + ":" + Now.Minute.ToString
+                'Tb_Fecha.Text = Date.Now.Date.ToString("yyyy/MM/dd")
+                'Tb_Hora.Text = Now.Hour.ToString + ":" + Now.Minute.ToString
 
-            'ACTUALIZAR EL PROMEDIO DE CONSUMO
-            If _nuevoBasePeriodico = False Then
-                Dim prom As Integer
-                Dim dtClienteSelect As DataTable = L_GetCliente2(Tb_CliCod.Text).Tables(0)
-                If IsDBNull(dtClienteSelect.Rows(0).Item("ccprconsu")) = False Then
-                    prom = L_GetCliente2(Tb_CliCod.Text).Tables(0).Rows(0).Item("ccprconsu")
-                Else
-                    prom = 0
+                'ACTUALIZAR EL PROMEDIO DE CONSUMO
+                If _nuevoBasePeriodico = False Then
+                    Dim prom As Integer
+                    Dim dtClienteSelect As DataTable = L_GetCliente2(Tb_CliCod.Text).Tables(0)
+                    If IsDBNull(dtClienteSelect.Rows(0).Item("ccprconsu")) = False Then
+                        prom = L_GetCliente2(Tb_CliCod.Text).Tables(0).Rows(0).Item("ccprconsu")
+                    Else
+                        prom = 0
+                    End If
+                    Dim ultimaFechaPedido As Date = IIf(IsDBNull(dtClienteSelect.Rows(0).Item("ccultped")), Today.Date, dtClienteSelect.Rows(0).Item("ccultped"))
+                    Dim diasTrans As Integer = DateDiff(DateInterval.Day, ultimaFechaPedido, Today.Date)
+                    prom = (prom + diasTrans) / 2
+
+                    L_GrabarModificarCliente("ccprconsu=" + Str(prom), "ccnumi=" + Str(Tb_CliCod.Text))
+                    L_GrabarModificarCliente("ccultped='" + Today.Date.ToString("yyyy/MM/dd") + "'", "ccnumi=" + Str(Tb_CliCod.Text))
+                    L_GrabarModificarCliente("ccultvent='" + Today.Date.ToString("yyyy/MM/dd") + "'", "ccnumi=" + Str(Tb_CliCod.Text))
+
                 End If
-                Dim ultimaFechaPedido As Date = IIf(IsDBNull(dtClienteSelect.Rows(0).Item("ccultped")), Today.Date, dtClienteSelect.Rows(0).Item("ccultped"))
-                Dim diasTrans As Integer = DateDiff(DateInterval.Day, ultimaFechaPedido, Today.Date)
-                prom = (prom + diasTrans) / 2
 
-                L_GrabarModificarCliente("ccprconsu=" + Str(prom), "ccnumi=" + Str(Tb_CliCod.Text))
-                L_GrabarModificarCliente("ccultped='" + Today.Date.ToString("yyyy/MM/dd") + "'", "ccnumi=" + Str(Tb_CliCod.Text))
-                L_GrabarModificarCliente("ccultvent='" + Today.Date.ToString("yyyy/MM/dd") + "'", "ccnumi=" + Str(Tb_CliCod.Text))
+                L_PedidoCabecera_Grabar(Tb_Id.Text, Date.Now.Date.ToString("yyyy/MM/dd"), Tb_Hora.Text, Tb_CliCod.Text, Tb_CliCodZona.Text, cbDistribuidor.Value.ToString, Tb_Observaciones.Text, IIf(_nuevoBasePeriodico = True, "10", "1"), "1", "0")
+                L_PedidoCabecera_GrabarExtencion(Tb_Id.Text, cbPreVendedor.Value.ToString, "2", "0")
+                If (swTipoVenta.Value = False) Then  ''''Grabar Credito
+                    L_prCajaGrabarCredito(Tb_Id.Text, Double.Parse(tbMontoCredito.Text))
+                End If
+                'Cambiar de zona al cliente a la zona del chofer
+                L_GrabarModificarCliente("cczona=" + Tb_CliCodZona.Text, "ccnumi=" + Str(Tb_CliCod.Text))
 
-            End If
+                'grabar detalle
+                Dim codProd, cant, precio, subTotal, desc, total, flia As String
+                Dim i As Integer
+                For i = 0 To JGr_DetallePedido.RowCount - 1
+                    JGr_DetallePedido.Row = i
+                    codProd = JGr_DetallePedido.CurrentRow.Cells("CodProd").Value
+                    cant = JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value
+                    precio = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
+                    subTotal = JGr_DetallePedido.CurrentRow.Cells("Monto").Value
+                    desc = JGr_DetallePedido.CurrentRow.Cells("Descuento").Value
+                    total = JGr_DetallePedido.CurrentRow.Cells("Total").Value
+                    flia = JGr_DetallePedido.CurrentRow.Cells("Familia").Value
 
-            L_PedidoCabecera_Grabar(Tb_Id.Text, Date.Now.Date.ToString("yyyy/MM/dd"), Tb_Hora.Text, Tb_CliCod.Text, Tb_CliCodZona.Text, cbDistribuidor.Value.ToString, Tb_Observaciones.Text, IIf(_nuevoBasePeriodico = True, "10", "1"), "1", "0")
-            L_PedidoCabecera_GrabarExtencion(Tb_Id.Text, cbPreVendedor.Value.ToString, "2", "0")
-            If (swTipoVenta.Value = False) Then  ''''Grabar Credito
-                L_prCajaGrabarCredito(Tb_Id.Text, Double.Parse(tbMontoCredito.Text))
-            End If
-            'Cambiar de zona al cliente a la zona del chofer
-            L_GrabarModificarCliente("cczona=" + Tb_CliCodZona.Text, "ccnumi=" + Str(Tb_CliCod.Text))
+                    L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal, desc, total, flia)
 
-            'grabar detalle
-            Dim codProd, cant, precio, subTotal, desc, total, flia As String
-            Dim i As Integer
-            For i = 0 To JGr_DetallePedido.RowCount - 1
-                JGr_DetallePedido.Row = i
-                codProd = JGr_DetallePedido.CurrentRow.Cells("CodProd").Value
-                cant = JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value
-                precio = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
-                subTotal = JGr_DetallePedido.CurrentRow.Cells("Monto").Value
-                desc = JGr_DetallePedido.CurrentRow.Cells("Descuento").Value
-                total = JGr_DetallePedido.CurrentRow.Cells("Total").Value
-                flia = JGr_DetallePedido.CurrentRow.Cells("Familia").Value
+                    'adiciono un objeto detalle
+                    objListDetalle.Add(New RequestDetail(Tb_Id.Text, codProd, cant, precio, subTotal, L_ClaseGetProducto(codProd))) 'webLuis
+                Next
 
-                L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal, desc, total, flia)
+                'VERIFICAR SI EL CLIENTE ESTABA PASIVO
+                If Tb_CliEstado.Text = "0" Then
+                    L_GrabarModificarCliente("ccest=1", "ccnumi=" + Tb_CliCod.Text)
+                End If
 
-                'adiciono un objeto detalle
-                objListDetalle.Add(New RequestDetail(Tb_Id.Text, codProd, cant, precio, subTotal, L_ClaseGetProducto(codProd))) 'webLuis
-            Next
+                'Grabar detalle de frecuencia del pedido
+                If _nuevoBasePeriodico = True Then
+                    If Btn_Check1.Tag = 1 Then 'frecuencia por dias a la semana
+                        Dim diasSem As String = ""
+                        diasSem = IIf(CheckBoxX1.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX2.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX3.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX4.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX5.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX6.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX7.Checked = True, "1", "0") + diasSem
 
-            'VERIFICAR SI EL CLIENTE ESTABA PASIVO
-            If Tb_CliEstado.Text = "0" Then
-                L_GrabarModificarCliente("ccest=1", "ccnumi=" + Tb_CliCod.Text)
-            End If
+                        L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, diasSem, "0", "0")
+                    Else
+                        If Btn_Check2.Tag = 1 Then 'frecuencia cada ciertos dias
+                            L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, "0", Tb_FrecEnDias.Text, "0")
+                        Else 'frecuencia por dia del mes
+                            L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, "0", "0", Tb_FrecMensual.Text)
+                        End If
 
-            'Grabar detalle de frecuencia del pedido
-            If _nuevoBasePeriodico = True Then
-                If Btn_Check1.Tag = 1 Then 'frecuencia por dias a la semana
-                    Dim diasSem As String = ""
-                    diasSem = IIf(CheckBoxX1.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX2.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX3.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX4.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX5.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX6.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX7.Checked = True, "1", "0") + diasSem
-
-                    L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, diasSem, "0", "0")
-                Else
-                    If Btn_Check2.Tag = 1 Then 'frecuencia cada ciertos dias
-                        L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, "0", Tb_FrecEnDias.Text, "0")
-                    Else 'frecuencia por dia del mes
-                        L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, "0", "0", Tb_FrecMensual.Text)
                     End If
 
                 End If
 
-            End If
 
+                'grabar estado del pedido
+                L_PedidoEstados_Grabar(Tb_Id.Text, IIf(_nuevoBasePeriodico = True, "10", "1"), Date.Now.Date.ToString("yyyy/MM/dd"), Tb_Hora.Text, gs_user)
 
-            'grabar estado del pedido
-            L_PedidoEstados_Grabar(Tb_Id.Text, IIf(_nuevoBasePeriodico = True, "10", "1"), Date.Now.Date.ToString("yyyy/MM/dd"), Tb_Hora.Text, gs_user)
+                ''actualizar el promedio de pedidos del cliente
+                ''If _nuevoBasePeriodico = False Then
+                ''    Dim prom As Integer
+                ''    If IsDBNull(L_GetCliente(Tb_CliCod.Text).Tables(0).Rows(0).Item("ccprconsu")) = False Then
+                ''        prom = L_GetCliente(Tb_CliCod.Text).Tables(0).Rows(0).Item("ccprconsu")
+                ''    Else
+                ''        prom = 0
+                ''    End If
+                ''    Dim dt As DataTable = L_PedidoCabecera_GeneralTop10(-1, " AND oaccli=" + Tb_CliCod.Text + " AND oaest>=1 AND oaest<=4 ")
+                ''    If dt.Rows.Count >= 2 Then
+                ''        Dim ultFechaPeddido As Date = dt.Rows(1).Item("oafdoc")
+                ''        Dim diasTrans As Integer = DateDiff(DateInterval.Day, ultFechaPeddido, Today.Date)
+                ''        prom = (prom + diasTrans) / 2
+                ''    Else
+                ''        prom = 0
+                ''    End If
+                ''    L_GrabarModificarCliente("ccprconsu=" + Str(prom), "ccnumi=" + Str(Tb_CliCod.Text))
+                ''End If
 
-            ''actualizar el promedio de pedidos del cliente
-            ''If _nuevoBasePeriodico = False Then
-            ''    Dim prom As Integer
-            ''    If IsDBNull(L_GetCliente(Tb_CliCod.Text).Tables(0).Rows(0).Item("ccprconsu")) = False Then
-            ''        prom = L_GetCliente(Tb_CliCod.Text).Tables(0).Rows(0).Item("ccprconsu")
-            ''    Else
-            ''        prom = 0
-            ''    End If
-            ''    Dim dt As DataTable = L_PedidoCabecera_GeneralTop10(-1, " AND oaccli=" + Tb_CliCod.Text + " AND oaest>=1 AND oaest<=4 ")
-            ''    If dt.Rows.Count >= 2 Then
-            ''        Dim ultFechaPeddido As Date = dt.Rows(1).Item("oafdoc")
-            ''        Dim diasTrans As Integer = DateDiff(DateInterval.Day, ultFechaPeddido, Today.Date)
-            ''        prom = (prom + diasTrans) / 2
-            ''    Else
-            ''        prom = 0
-            ''    End If
-            ''    L_GrabarModificarCliente("ccprconsu=" + Str(prom), "ccnumi=" + Str(Tb_CliCod.Text))
-            ''End If
-
-            If (gi_notiPed = 1) Then
-                'webLuis-----------------'MANDAR LA NOTIFICACION DEL PEDIDO 'webLuis-----------------------------------------------
-                Dim objResult As New Result
-                Dim dtRepartidor As DataTable = L_ZonaDetalleRepartidor_General(-1, Tb_CliCodZona.Text).Tables(0)
-                Dim codRep As String = "-1"
-                If dtRepartidor.Rows.Count > 0 Then
-                    codRep = dtRepartidor.Rows(0).Item("lccbnumi")
-                End If
-                'Dim objPedido As New RequestHeader(Tb_Id.Text, Date.Now.Date.ToString("yyyy/MM/dd"), Tb_Hora.Text, Tb_CliCod.Text, Tb_CliCodZona.Text, codRep, Tb_Observaciones.Text, "", IIf(_nuevoBasePeriodico = True, "10", "1"), "1", "0", Date.Now.Date.ToString("yyyy/MM/dd"), Now.Hour.ToString + ":" + Now.Minute.ToString, gs_user, objListDetalle, L_ClaseGetCliente(Tb_CliCod.Text))
-                Dim objPedido As New RequestHeader(Tb_Id.Text, Date.Now.Date.ToString("yyyy-MM-dd"), Tb_Hora.Text, Tb_CliCod.Text, Tb_CliCodZona.Text, codRep, Tb_Observaciones.Text, "", IIf(_nuevoBasePeriodico = True, "10", "1"), "1", "0", Date.Now.Date.ToString("yyyy-MM-dd"), Now.Hour.ToString + ":" + Now.Minute.ToString, gs_user, objListDetalle, L_ClaseGetCliente(Tb_CliCod.Text))
-                Dim dtLlave As DataTable = L_TC0022General(codRep)
-                If dtLlave.Rows.Count > 0 Then
-                    Dim llaveRep As String = dtLlave(0).Item("ckidfsm")
-                    objResult.fcmToken = llaveRep
-                    objResult.mRequestHeader = objPedido
-                    Dim respuesta As Boolean = JsonApiClient._prMandarNotificacion(objResult) 'objResult
-                    If respuesta = False Then
-                        ''ToastNotification.Show(Me, "El Pedido no se pudo enviar a la app del repartidor".ToUpper, My.Resources.WARNING, 10000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                If (gi_notiPed = 1) Then
+                    'webLuis-----------------'MANDAR LA NOTIFICACION DEL PEDIDO 'webLuis-----------------------------------------------
+                    Dim objResult As New Result
+                    Dim dtRepartidor As DataTable = L_ZonaDetalleRepartidor_General(-1, Tb_CliCodZona.Text).Tables(0)
+                    Dim codRep As String = "-1"
+                    If dtRepartidor.Rows.Count > 0 Then
+                        codRep = dtRepartidor.Rows(0).Item("lccbnumi")
                     End If
-                Else
-                    ''ToastNotification.Show(Me, "no se pudo enviar el pedido al repartidor!!! , ".ToUpper + "el repartidor con codigo: ".ToUpper + codRep + " no tiene grabado su llave en la tabla TC0022", My.Resources.WARNING, 10000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                    'Dim objPedido As New RequestHeader(Tb_Id.Text, Date.Now.Date.ToString("yyyy/MM/dd"), Tb_Hora.Text, Tb_CliCod.Text, Tb_CliCodZona.Text, codRep, Tb_Observaciones.Text, "", IIf(_nuevoBasePeriodico = True, "10", "1"), "1", "0", Date.Now.Date.ToString("yyyy/MM/dd"), Now.Hour.ToString + ":" + Now.Minute.ToString, gs_user, objListDetalle, L_ClaseGetCliente(Tb_CliCod.Text))
+                    Dim objPedido As New RequestHeader(Tb_Id.Text, Date.Now.Date.ToString("yyyy-MM-dd"), Tb_Hora.Text, Tb_CliCod.Text, Tb_CliCodZona.Text, codRep, Tb_Observaciones.Text, "", IIf(_nuevoBasePeriodico = True, "10", "1"), "1", "0", Date.Now.Date.ToString("yyyy-MM-dd"), Now.Hour.ToString + ":" + Now.Minute.ToString, gs_user, objListDetalle, L_ClaseGetCliente(Tb_CliCod.Text))
+                    Dim dtLlave As DataTable = L_TC0022General(codRep)
+                    If dtLlave.Rows.Count > 0 Then
+                        Dim llaveRep As String = dtLlave(0).Item("ckidfsm")
+                        objResult.fcmToken = llaveRep
+                        objResult.mRequestHeader = objPedido
+                        Dim respuesta As Boolean = JsonApiClient._prMandarNotificacion(objResult) 'objResult
+                        If respuesta = False Then
+                            ''ToastNotification.Show(Me, "El Pedido no se pudo enviar a la app del repartidor".ToUpper, My.Resources.WARNING, 10000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                        End If
+                    Else
+                        ''ToastNotification.Show(Me, "no se pudo enviar el pedido al repartidor!!! , ".ToUpper + "el repartidor con codigo: ".ToUpper + codRep + " no tiene grabado su llave en la tabla TC0022", My.Resources.WARNING, 10000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                    End If
+                    '---------------------------------------'webLuis-------------------------------------------------------------------
+
                 End If
-                '---------------------------------------'webLuis-------------------------------------------------------------------
 
-            End If
+                'ACTUALIZAR GRILLA DE BUSQUEDA
+                ''AC******************************_PCargarBuscador()
 
-            'ACTUALIZAR GRILLA DE BUSQUEDA
-            ''AC******************************_PCargarBuscador()
+                'Volver al foco para uno nuevo
+                Tb_Fecha.Focus()
+                ToastNotification.Show(Me, "Codigo de Pedido " + Tb_Id.Text + " Grabado con Exito.", My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.BottomLeft)
+                _PLimpiar()
 
-            'Volver al foco para uno nuevo
-            Tb_Fecha.Focus()
-            ToastNotification.Show(Me, "Codigo de Pedido " + Tb_Id.Text + " Grabado con Exito.", My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.BottomLeft)
-            _PLimpiar()
+                'ir a clientes
+                MSuperTabControlPrincipal.SelectedTabIndex = 2
+                JGr_Clientes.Focus()
 
-            'ir a clientes
-            MSuperTabControlPrincipal.SelectedTabIndex = 2
-            JGr_Clientes.Focus()
+                'limpiar el buscador
+                JGr_Clientes.RemoveFilters()
 
-            'limpiar el buscador
-            JGr_Clientes.RemoveFilters()
+                JGr_Clientes.MoveTo(JGr_Clientes.FilterRow)
+                JGr_Clientes.Col = 1
+            Else
+                L_PedidoCabacera_Modificar(Tb_Id.Text, Tb_Fecha.Value.ToString("yyyy/MM/dd"), Tb_Hora.Text, Tb_CliCod.Text, Tb_CliCodZona.Text, cbDistribuidor.Value.ToString, Tb_Observaciones.Text, IIf(_nuevoBasePeriodico = True, "10", "1"))
+                L_PedidoCabacera_ModificarExtencion(Tb_Id.Text, cbPreVendedor.Value.ToString)
 
-            JGr_Clientes.MoveTo(JGr_Clientes.FilterRow)
-            JGr_Clientes.Col = 1
-        Else
-            L_PedidoCabacera_Modificar(Tb_Id.Text, Tb_Fecha.Value.ToString("yyyy/MM/dd"), Tb_Hora.Text, Tb_CliCod.Text, Tb_CliCodZona.Text, cbDistribuidor.Value.ToString, Tb_Observaciones.Text, IIf(_nuevoBasePeriodico = True, "10", "1"))
-            L_PedidoCabacera_ModificarExtencion(Tb_Id.Text, cbPreVendedor.Value.ToString)
+                'modificar detalle
+                L_PedidoDetalle_Borrar(Tb_Id.Text)
+                Dim codProd, cant, precio, subTotal, desc, total, flia As String
+                Dim i As Integer
+                For i = 0 To JGr_DetallePedido.RowCount - 1
+                    JGr_DetallePedido.Row = i
+                    codProd = JGr_DetallePedido.CurrentRow.Cells("CodProd").Value
+                    cant = JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value
+                    precio = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
+                    subTotal = JGr_DetallePedido.CurrentRow.Cells("Monto").Value
+                    desc = JGr_DetallePedido.CurrentRow.Cells("Descuento").Value
+                    total = JGr_DetallePedido.CurrentRow.Cells("Total").Value
+                    flia = JGr_DetallePedido.CurrentRow.Cells("Familia").Value
+                    L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal, desc, total, flia)
+                Next
+                If (swTipoVenta.Value = False) Then  ''''Grabar Credito
+                    L_prCajaGrabarCredito(Tb_Id.Text, Double.Parse(tbMontoCredito.Text))
+                End If
 
-            'modificar detalle
-            L_PedidoDetalle_Borrar(Tb_Id.Text)
-            Dim codProd, cant, precio, subTotal, desc, total, flia As String
-            Dim i As Integer
-            For i = 0 To JGr_DetallePedido.RowCount - 1
-                JGr_DetallePedido.Row = i
-                codProd = JGr_DetallePedido.CurrentRow.Cells("CodProd").Value
-                cant = JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value
-                precio = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
-                subTotal = JGr_DetallePedido.CurrentRow.Cells("Monto").Value
-                desc = JGr_DetallePedido.CurrentRow.Cells("Descuento").Value
-                total = JGr_DetallePedido.CurrentRow.Cells("Total").Value
-                flia = JGr_DetallePedido.CurrentRow.Cells("Familia").Value
-                L_PedidoDetalle_Grabar(Tb_Id.Text, codProd, cant, precio, subTotal, desc, total, flia)
-            Next
-            If (swTipoVenta.Value = False) Then  ''''Grabar Credito
-                L_prCajaGrabarCredito(Tb_Id.Text, Double.Parse(tbMontoCredito.Text))
-            End If
+                'Grabar detalle de frecuencia del pedido
+                If _nuevoBasePeriodico = True Then
+                    L_PedidoDetalleFrecuencia_Borrar(Tb_Id.Text)
+                    If Btn_Check1.Tag = 1 Then 'frecuencia por dias a la semana
+                        Dim diasSem As String = ""
+                        diasSem = IIf(CheckBoxX1.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX2.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX3.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX4.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX5.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX6.Checked = True, "1", "0") + diasSem
+                        diasSem = IIf(CheckBoxX7.Checked = True, "1", "0") + diasSem
+                        L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, diasSem, "0", "0")
+                    Else
+                        If Btn_Check2.Tag = 1 Then 'frecuencia cada ciertos dias
+                            L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, "0", Tb_FrecEnDias.Text, "0")
+                        Else 'frecuencia por dia del mes
+                            L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, "0", "0", Tb_FrecMensual.Text)
+                        End If
 
-            'Grabar detalle de frecuencia del pedido
-            If _nuevoBasePeriodico = True Then
-                L_PedidoDetalleFrecuencia_Borrar(Tb_Id.Text)
-                If Btn_Check1.Tag = 1 Then 'frecuencia por dias a la semana
-                    Dim diasSem As String = ""
-                    diasSem = IIf(CheckBoxX1.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX2.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX3.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX4.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX5.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX6.Checked = True, "1", "0") + diasSem
-                    diasSem = IIf(CheckBoxX7.Checked = True, "1", "0") + diasSem
-                    L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, diasSem, "0", "0")
-                Else
-                    If Btn_Check2.Tag = 1 Then 'frecuencia cada ciertos dias
-                        L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, "0", Tb_FrecEnDias.Text, "0")
-                    Else 'frecuencia por dia del mes
-                        L_PedidoDetalleFrecuencia_Grabar(Tb_Id.Text, "0", "0", Tb_FrecMensual.Text)
                     End If
 
                 End If
 
+                ToastNotification.Show(Me, "Codigo de Pedido " + Tb_Id.Text + " Modificado con Exito.", My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.BottomLeft)
+                '_Deshabilitar()
+
+                'TSB0_5.PerformClick()
+                _Nuevo = False 'aumentado danny
+                '_Modificar = False 'aumentado danny
+                _PInhabilitar()
+                _PCargarBuscador()
+                _PFiltrar()
             End If
-
-            ToastNotification.Show(Me, "Codigo de Pedido " + Tb_Id.Text + " Modificado con Exito.", My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.BottomLeft)
-            '_Deshabilitar()
-
-            'TSB0_5.PerformClick()
-            _Nuevo = False 'aumentado danny
-            '_Modificar = False 'aumentado danny
-            _PInhabilitar()
-            _PCargarBuscador()
-            _PFiltrar()
-        End If
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
     End Sub
 
     Private Sub _PNuevoRegistro()
