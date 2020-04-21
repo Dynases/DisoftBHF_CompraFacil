@@ -2435,20 +2435,24 @@ Public Class F02_Pedido
     End Sub
 
     Private Sub swTipoVenta_ValueChanged(sender As Object, e As EventArgs) Handles swTipoVenta.ValueChanged
-        If (swTipoVenta.Value = True) Then
-            tbMontoCredito.Visible = False
-        Else
-            tbMontoCredito.Visible = True
-            If (Tb_Id.Text.Length <= 0) Then
-                Dim dt As DataTable = CType(JGr_DetallePedido.DataSource, DataTable)
-                Dim sumTotal As Double = 0
-                For i = 0 To dt.Rows.Count - 1
-                    sumTotal = sumTotal + dt.Rows(i).Item(7)
+        Try
+            If (swTipoVenta.Value = True) Then
+                tbMontoCredito.Visible = False
+            Else
+                tbMontoCredito.Visible = True
+                If (Tb_Id.Text.Length <= 0) Then
+                    Dim dt As DataTable = CType(JGr_DetallePedido.DataSource, DataTable)
+                    Dim sumTotal As Double = 0
+                    For i = 0 To dt.Rows.Count - 1
+                        sumTotal = sumTotal + dt.Rows(i).Item(7)
 
-                Next
-                tbMontoCredito.Text = Str(sumTotal)
+                    Next
+                    tbMontoCredito.Text = Str(sumTotal)
+                End If
             End If
-        End If
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
     End Sub
 
     Private Sub tbMontoCredito_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbMontoCredito.KeyPress
