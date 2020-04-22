@@ -444,8 +444,6 @@ Public Class F0_MCaja
             Tb_TEfectivo.Value = 0
             Tb_TGeneral.Value = 0
             Tb_TipoCambio.Value = 6.96
-            ListaCambio = New List(Of VCajaCambio)
-            ListaDeposito = New List(Of VCajaDeposito)
             _LimpiarLista()
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
@@ -892,6 +890,8 @@ Public Class F0_MCaja
         End Try
     End Sub
     Private Sub _LimpiarLista()
+        ListaCambio = New List(Of VCajaCambio)
+        ListaDeposito = New List(Of VCajaDeposito)
         _prArmarListaCambio()
         _prArmarListaDeposito()
         _prCrearListaCambio(2, 0)
