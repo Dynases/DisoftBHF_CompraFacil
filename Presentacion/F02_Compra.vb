@@ -2299,7 +2299,7 @@ Public Class F02_Compra
     Private Sub DoubleInput1_ValueChanged(sender As Object, e As EventArgs) Handles tbDescuentoPro1.ValueChanged
         Dim descuento As Double = tbDescuentoPro1.Value
         Dim TotalBruto As Double = tbSubtotalC.Value
-        If (descuento > 0) Then
+        If (descuento >= 0) Then
             CalcularDescuento01(TotalBruto, descuento)
         End If
 
@@ -2320,7 +2320,7 @@ Public Class F02_Compra
     Private Sub tvDescuento02_ValueChanged(sender As Object, e As EventArgs) Handles tvDescuento02.ValueChanged
         Dim descuento02 As Double = tvDescuento02.Value
         Dim TotalBruto As Double = tbSubtotalC.Value
-        If (descuento02 > 0) Then
+        If (descuento02 >= 0) Then
             CalcularDescuento02(TotalBruto, descuento02)
         End If
     End Sub
