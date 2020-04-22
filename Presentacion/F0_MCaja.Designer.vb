@@ -239,12 +239,12 @@ Partial Class F0_MCaja
         '
         Me.GridEX1.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
         Me.GridEX1.Margin = New System.Windows.Forms.Padding(5)
-        Me.GridEX1.Size = New System.Drawing.Size(946, 429)
+        Me.GridEX1.Size = New System.Drawing.Size(1097, 481)
         '
         'GroupPanel1
         '
         Me.GroupPanel1.Margin = New System.Windows.Forms.Padding(5)
-        Me.GroupPanel1.Size = New System.Drawing.Size(952, 450)
+        Me.GroupPanel1.Size = New System.Drawing.Size(1103, 502)
         '
         '
         '
@@ -277,12 +277,12 @@ Partial Class F0_MCaja
         'Panel2
         '
         Me.Panel2.Margin = New System.Windows.Forms.Padding(5)
-        Me.Panel2.Size = New System.Drawing.Size(952, 450)
+        Me.Panel2.Size = New System.Drawing.Size(1103, 502)
         '
         'SuperTabControlPanel2
         '
         Me.SuperTabControlPanel2.Margin = New System.Windows.Forms.Padding(5)
-        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(952, 450)
+        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(1103, 502)
         '
         'Panel1
         '
