@@ -1781,6 +1781,7 @@ Public Class F02_Compra
             'End If
 
             '''''''''''''''''''''MONTO DE DESCUENTO '''''''''''''''''''''
+
             If (e.Column.Index = dgjDetalle.RootTable.Columns("cabdesccj").Index) Then
                 If (Not IsNumeric(dgjDetalle.GetValue("cabdesccj")) Or dgjDetalle.GetValue("cabdesccj").ToString = String.Empty) Then
                     Dim lin As Integer = dgjDetalle.GetValue("cabnumi")
@@ -1790,7 +1791,7 @@ Public Class F02_Compra
                     CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescun") = 0
                     CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
                 Else
-                    If (dgjDetalle.GetValue("cabdesccj") > 0) Then 'And dgjDetalle.GetValue("cabdesc") <= dgjDetalle.GetValue("cabsubtot")
+                    If (dgjDetalle.GetValue("cabdesccj") >= 0) Then 'And dgjDetalle.GetValue("cabdesc") <= dgjDetalle.GetValue("cabsubtot")
 
                         Dim montodesc As Double = dgjDetalle.GetValue("cabdesccj")
                         Dim pordesc As Double = ((montodesc * 100) / dgjDetalle.GetValue("cabsubtot"))
