@@ -1182,11 +1182,6 @@ Public Class F02_Pedido
 
     End Sub
     Private Sub _PMostrarRegistro(_N As Integer)
-        Try
-
-        Catch ex As Exception
-
-        End Try
 
         JGr_Buscador.Row = _N
         With JGr_Buscador '_Dsencabezado.Tables(0).Rows(_N)
@@ -1875,26 +1870,32 @@ Public Class F02_Pedido
 
     Private Sub JGr_Productos_KeyDown(sender As Object, e As KeyEventArgs) Handles JGr_Productos.KeyDown
         If e.KeyData = Keys.Enter Then
-            'agregar al detalle producto seleccionado
-            Dim codProd, descrip, precio, familia As String
+            ''Validación para que solo pueda ingresar 20 productos
+            If JGr_DetallePedido.RowCount < 20 Then
+                'agregar al detalle producto seleccionado
+                Dim codProd, descrip, precio, familia As String
 
-            codProd = Convert.ToString(JGr_Productos.CurrentRow.Cells("Codigo").Value)
-            descrip = Convert.ToString(JGr_Productos.CurrentRow.Cells("Descripcion").Value)
-            precio = Convert.ToString(JGr_Productos.CurrentRow.Cells("Precio").Value)
-            familia = Convert.ToString(JGr_Productos.CurrentRow.Cells("cagr4").Value)
+                codProd = Convert.ToString(JGr_Productos.CurrentRow.Cells("Codigo").Value)
+                descrip = Convert.ToString(JGr_Productos.CurrentRow.Cells("Descripcion").Value)
+                precio = Convert.ToString(JGr_Productos.CurrentRow.Cells("Precio").Value)
+                familia = Convert.ToString(JGr_Productos.CurrentRow.Cells("cagr4").Value)
 
-            Dim nuevaFila As DataRow = CType(JGr_DetallePedido.DataSource, DataTable).NewRow()
+                Dim nuevaFila As DataRow = CType(JGr_DetallePedido.DataSource, DataTable).NewRow()
 
-            nuevaFila(1) = codProd
-            nuevaFila(2) = descrip
-            nuevaFila(4) = precio
-            nuevaFila(8) = familia
+                nuevaFila(1) = codProd
+                nuevaFila(2) = descrip
+                nuevaFila(4) = precio
+                nuevaFila(8) = familia
 
-            CType(JGr_DetallePedido.DataSource, DataTable).Rows.Add(nuevaFila)
+                CType(JGr_DetallePedido.DataSource, DataTable).Rows.Add(nuevaFila)
 
-            'poner el foco en cantidad
-            Tb_CantProd.Text = "1"
-            Tb_CantProd.Focus()
+                'poner el foco en cantidad
+                Tb_CantProd.Text = "1"
+                Tb_CantProd.Focus()
+            Else
+                ToastNotification.Show(Me, "Solo puede ingresar 20 productos".ToUpper, My.Resources.WARNING, 5500, eToastGlowColor.Green, eToastPosition.BottomCenter)
+            End If
+
         End If
 
     End Sub
