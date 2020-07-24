@@ -46,12 +46,12 @@ Partial Class F0_MCaja
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.GroupPanel3 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.SuperTabControl2 = New DevComponents.DotNetBar.SuperTabControl()
-        Me.SuperTabControlPanel3 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.Dgv_Cortes = New Janus.Windows.GridEX.GridEX()
-        Me.SuperTabItem2 = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanel4 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.Dgv_Depositos = New Janus.Windows.GridEX.GridEX()
         Me.DEPÓSITO = New DevComponents.DotNetBar.SuperTabItem()
+        Me.SuperTabControlPanel3 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.Dgv_Cortes = New Janus.Windows.GridEX.GridEX()
+        Me.SuperTabItem2 = New DevComponents.DotNetBar.SuperTabItem()
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.LabelX14 = New DevComponents.DotNetBar.LabelX()
         Me.Tb_TipoCambio = New DevComponents.Editors.DoubleInput()
@@ -99,10 +99,10 @@ Partial Class F0_MCaja
         Me.GroupPanel3.SuspendLayout()
         CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControl2.SuspendLayout()
-        Me.SuperTabControlPanel3.SuspendLayout()
-        CType(Me.Dgv_Cortes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControlPanel4.SuspendLayout()
         CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuperTabControlPanel3.SuspendLayout()
+        CType(Me.Dgv_Cortes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanel2.SuspendLayout()
         CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbbanco, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -731,6 +731,33 @@ Partial Class F0_MCaja
         Me.SuperTabControl2.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem2, Me.DEPÓSITO})
         Me.SuperTabControl2.Text = "AYUDA"
         '
+        'SuperTabControlPanel4
+        '
+        Me.SuperTabControlPanel4.Controls.Add(Me.Dgv_Depositos)
+        Me.SuperTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel4.Location = New System.Drawing.Point(0, 26)
+        Me.SuperTabControlPanel4.Name = "SuperTabControlPanel4"
+        Me.SuperTabControlPanel4.Size = New System.Drawing.Size(699, 196)
+        Me.SuperTabControlPanel4.TabIndex = 0
+        Me.SuperTabControlPanel4.TabItem = Me.DEPÓSITO
+        '
+        'Dgv_Depositos
+        '
+        Me.Dgv_Depositos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Dgv_Depositos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv_Depositos.Location = New System.Drawing.Point(0, 0)
+        Me.Dgv_Depositos.Name = "Dgv_Depositos"
+        Me.Dgv_Depositos.Size = New System.Drawing.Size(699, 196)
+        Me.Dgv_Depositos.TabIndex = 0
+        Me.Dgv_Depositos.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'DEPÓSITO
+        '
+        Me.DEPÓSITO.AttachedControl = Me.SuperTabControlPanel4
+        Me.DEPÓSITO.GlobalItem = False
+        Me.DEPÓSITO.Name = "DEPÓSITO"
+        Me.DEPÓSITO.Text = "DEPOSITO"
+        '
         'SuperTabControlPanel3
         '
         Me.SuperTabControlPanel3.Controls.Add(Me.Dgv_Cortes)
@@ -758,33 +785,6 @@ Partial Class F0_MCaja
         Me.SuperTabItem2.GlobalItem = False
         Me.SuperTabItem2.Name = "SuperTabItem2"
         Me.SuperTabItem2.Text = "CORTES"
-        '
-        'SuperTabControlPanel4
-        '
-        Me.SuperTabControlPanel4.Controls.Add(Me.Dgv_Depositos)
-        Me.SuperTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControlPanel4.Location = New System.Drawing.Point(0, 26)
-        Me.SuperTabControlPanel4.Name = "SuperTabControlPanel4"
-        Me.SuperTabControlPanel4.Size = New System.Drawing.Size(699, 196)
-        Me.SuperTabControlPanel4.TabIndex = 0
-        Me.SuperTabControlPanel4.TabItem = Me.DEPÓSITO
-        '
-        'Dgv_Depositos
-        '
-        Me.Dgv_Depositos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Dgv_Depositos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv_Depositos.Location = New System.Drawing.Point(0, 0)
-        Me.Dgv_Depositos.Name = "Dgv_Depositos"
-        Me.Dgv_Depositos.Size = New System.Drawing.Size(699, 196)
-        Me.Dgv_Depositos.TabIndex = 0
-        Me.Dgv_Depositos.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'DEPÓSITO
-        '
-        Me.DEPÓSITO.AttachedControl = Me.SuperTabControlPanel4
-        Me.DEPÓSITO.GlobalItem = False
-        Me.DEPÓSITO.Name = "DEPÓSITO"
-        Me.DEPÓSITO.Text = "DEPOSITO"
         '
         'GroupPanel2
         '
@@ -1094,10 +1094,10 @@ Partial Class F0_MCaja
         Me.GroupPanel3.ResumeLayout(False)
         CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControl2.ResumeLayout(False)
-        Me.SuperTabControlPanel3.ResumeLayout(False)
-        CType(Me.Dgv_Cortes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControlPanel4.ResumeLayout(False)
         CType(Me.Dgv_Depositos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SuperTabControlPanel3.ResumeLayout(False)
+        CType(Me.Dgv_Cortes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanel2.ResumeLayout(False)
         Me.GroupPanel2.PerformLayout()
         CType(Me.Tb_TipoCambio, System.ComponentModel.ISupportInitialize).EndInit()

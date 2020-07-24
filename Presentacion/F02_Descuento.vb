@@ -149,7 +149,7 @@ Public Class F02_Descuento
 
     Private Sub _PCargarDetalle(idTipoProd As String)
         Dim dtProd, dtCatPrecios As New DataTable
-        dtProd = L_Productos_GeneralFiltrado3(-1, "cacat= " + idTipoProd + "AND caest=1 AND caserie=0 AND cecon=103 AND cenum=cagr3")
+        dtProd = L_Productos_GeneralFiltrado3(-1, "cacat= " + idTipoProd + "AND caest=1 AND caserie=0 AND cecon=104 AND cenum=cagr4")
         'dtCatPrecios = L_General_LibreriaDetalle(-1, 8).Tables(0)
         dtCatPrecios = L_CategoriaPrecioGeneral()
 
