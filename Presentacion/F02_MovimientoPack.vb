@@ -1121,6 +1121,7 @@ Public Class F02_MovimientoPack
     End Sub
     Sub _prCargarProductoPack(numi As Integer)
         Dim dt As DataTable = L_fnDetallePack(numi)
+        Dim dt1 As DataTable = L_fnProductosPack(numi)
         Dim pcostotot As Decimal = 0
         With dgjDetalle.RootTable.Columns("stock")
             .Caption = "Stock"
@@ -1132,27 +1133,41 @@ Public Class F02_MovimientoPack
             .Visible = True
         End With
         If (dt.Rows.Count > 0) Then
-            CType(dgjDetalle.DataSource, DataTable).Rows.Clear()
-            For i As Integer = 0 To dt.Rows.Count - 1
+            If dt.Rows.Count = dt1.Rows.Count Then
+                CType(dgjDetalle.DataSource, DataTable).Rows.Clear()
+                For i As Integer = 0 To dt.Rows.Count - 1
 
-                P_prAddFilaDetalle()
-                dgjDetalle.Row = dgjDetalle.RowCount - 1
+                    P_prAddFilaDetalle()
+                    dgjDetalle.Row = dgjDetalle.RowCount - 1
 
-                dgjDetalle.SetValue("ihcodpro", dt.Rows(i).Item("cbtccanumi1"))
-                dgjDetalle.SetValue("cadesc", dt.Rows(i).Item("cadesc"))
-                dgjDetalle.SetValue("ihcant", dt.Rows(i).Item("cbcant"))
-                dgjDetalle.SetValue("ihpcosto", dt.Rows(i).Item("chprecio"))
-                dgjDetalle.SetValue("stock", dt.Rows(i).Item("iacant"))
-                pcostotot = pcostotot + (dgjDetalle.GetValue("ihcant") * dgjDetalle.GetValue("ihpcosto"))
-            Next
-            CType(dgjDetalle.DataSource, DataTable).AcceptChanges()
-            'Dim pcostotot As Decimal = (dgjDetalle.GetValue("ihcant") * dgjDetalle.GetValue("ihpcosto"))
-            tbPcosto.Text = pcostotot
-            'tbPcosto.Text = dgjDetalle.GetTotal(dgjDetalle.RootTable.Columns("ihpcosto"), AggregateFunction.Sum)
+                    dgjDetalle.SetValue("ihcodpro", dt.Rows(i).Item("cbtccanumi1"))
+                    dgjDetalle.SetValue("cadesc", dt.Rows(i).Item("cadesc"))
+                    dgjDetalle.SetValue("ihcant", dt.Rows(i).Item("cbcant"))
+                    dgjDetalle.SetValue("ihpcosto", dt.Rows(i).Item("chprecio"))
+                    dgjDetalle.SetValue("stock", dt.Rows(i).Item("iacant"))
+                    pcostotot = pcostotot + (dgjDetalle.GetValue("ihcant") * dgjDetalle.GetValue("ihpcosto"))
+                Next
+                CType(dgjDetalle.DataSource, DataTable).AcceptChanges()
+                'Dim pcostotot As Decimal = (dgjDetalle.GetValue("ihcant") * dgjDetalle.GetValue("ihpcosto"))
+                tbPcosto.Text = pcostotot
+                'tbPcosto.Text = dgjDetalle.GetTotal(dgjDetalle.RootTable.Columns("ihpcosto"), AggregateFunction.Sum)
 
-            'dgjDetalle.Select()
-            tbCantP.Select()
+                'dgjDetalle.Select()
+                tbCantP.Select()
+            Else
+                ToastNotification.Show(Me, "Alguno de los productos que componen el Pack no tiene movimientos, favor ingresar.".ToUpper,
+                                 My.Resources.WARNING,
+                                 InDuracion * 1000,
+                                 eToastGlowColor.Red,
+                                 eToastPosition.TopCenter)
 
+            End If
+        Else
+            ToastNotification.Show(Me, "Los productos que componen el Pack no tienen movimientos, favor ingresar".ToUpper,
+                                 My.Resources.WARNING,
+                                 InDuracion * 1000,
+                                 eToastGlowColor.Red,
+                                 eToastPosition.TopCenter)
         End If
     End Sub
 

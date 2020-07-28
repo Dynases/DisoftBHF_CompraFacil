@@ -575,25 +575,31 @@ Public Class F0_MCaja
             End With
             With Dgv_PedidoTotal.RootTable.Columns("total")
                 .Caption = "TOTAL"
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Width = 200
                 .AggregateFunction = AggregateFunction.Sum
                 .Visible = True
                 .FormatString = "0.00"
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
             With Dgv_PedidoTotal.RootTable.Columns("contado")
                 .Caption = "COBRADO"
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Width = 200
                 .AggregateFunction = AggregateFunction.Sum
                 .Visible = True
                 .FormatString = "0.00"
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
             With Dgv_PedidoTotal.RootTable.Columns("credito")
                 .Caption = "CREDITO"
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Width = 200
                 .AggregateFunction = AggregateFunction.Sum
                 '.Visible = (gi_vcre2 = 1)
                 .Visible = True
                 .FormatString = "0.00"
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
             With Dgv_PedidoTotal.RootTable.Columns("oarepa")
                 .Width = 160
@@ -662,7 +668,7 @@ Public Class F0_MCaja
 
             With Dgv_PedidoTotal.RootTable.Columns("oacnrofac")
                 .Width = 150
-                .Caption = "Nro Factura"
+                .Caption = "NRO. FACTURA"
                 .Visible = True
             End With
 
@@ -673,25 +679,31 @@ Public Class F0_MCaja
             End With
             With Dgv_PedidoTotal.RootTable.Columns("total")
                 .Caption = "TOTAL"
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Width = 200
                 .Visible = True
                 .FormatString = "0.00"
                 .AggregateFunction = AggregateFunction.Sum
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
             With Dgv_PedidoTotal.RootTable.Columns("contado")
                 .Caption = "COBRADO"
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Width = 200
                 .Visible = True
                 .FormatString = "0.00"
                 .AggregateFunction = AggregateFunction.Sum
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
             With Dgv_PedidoTotal.RootTable.Columns("credito")
                 .Caption = "CREDITO"
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Far
                 .Width = 200
                 '.Visible = (gi_vcre2 = 1)
                 .Visible = True
                 .FormatString = "0.00"
                 .AggregateFunction = AggregateFunction.Sum
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
             With Dgv_PedidoTotal.RootTable.Columns("oarepa")
                 .Width = 160
@@ -770,6 +782,7 @@ Public Class F0_MCaja
                 .Visible = True
                 .Caption = "TOTAL CONCILIACIÓN"
                 .FormatString = "0.00"
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             End With
 
             With GridEX1.RootTable.Columns("olfact")
@@ -887,6 +900,7 @@ Public Class F0_MCaja
             If P_prArmarAyudaConciliacion() Then
                 cargarDetalleConciliacion()
                 _LimpiarLista()
+                _prCalcular(0, 1)
                 'Colocar el total del contado en el tbdRecibido.Text
                 tbdRecibido.Text = Dgv_PedidoTotal.GetTotal(Dgv_PedidoTotal.RootTable.Columns("contado"), AggregateFunction.Sum)
             End If
@@ -1203,12 +1217,12 @@ Public Class F0_MCaja
     End Sub
 
     Private Sub grtotalpedidos_EditingCell(sender As Object, e As EditingCellEventArgs) Handles Dgv_PedidoTotal.EditingCell
-        If (e.Column.Key = "credito") Then
-            e.Cancel = False
-        Else
-            e.Cancel = True
-        End If
-
+        'If (e.Column.Key = "credito") Then
+        '    e.Cancel = False
+        'Else
+        '    e.Cancel = True
+        'End If
+        e.Cancel = True
     End Sub
 
     Private Sub grtotalpedidos_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles Dgv_PedidoTotal.CellEdited
