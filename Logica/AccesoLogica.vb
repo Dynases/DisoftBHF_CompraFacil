@@ -2178,6 +2178,7 @@ Public Class AccesoLogica
         Tabla = D_Datos_Tabla("a.cmnumi as [cod], a.cmdesc as [desc]", "TC010 a", where)
         Return Tabla
     End Function
+
     Public Shared Function L_prLibreriaProductoGeneral(cod1 As Integer) As DataTable
         Dim _Tabla As DataTable
 
@@ -2210,6 +2211,32 @@ Public Class AccesoLogica
         End If
         Return Not _Error
     End Function
+    Public Shared Function L_fnObtenerDescripcion() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 7))
+        _Tabla = D_ProcedimientoConParam("sp_go_TC001", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnStockProductosFiltros(Proveedor As Integer, Categoria As Integer, Marca As Integer, Atributo As Integer, Descripcion As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@gr1", Proveedor))
+        _listParam.Add(New Datos.DParametro("@cat", Categoria))
+        _listParam.Add(New Datos.DParametro("@gr2", Marca))
+        _listParam.Add(New Datos.DParametro("@gr3", Atributo))
+        _listParam.Add(New Datos.DParametro("@desc2", Descripcion))
+
+        _Tabla = D_ProcedimientoConParam("sp_go_TC001", _listParam)
+
+        Return _Tabla
+    End Function
 
     Public Shared Function L_GetConceptoInvetario() As DataTable
         Dim Tabla As DataTable
@@ -2226,7 +2253,7 @@ Public Class AccesoLogica
         Dim _Ds As New DataSet
         Dim _Where As String
         _Where = " a.cdcon = b.cecon" _
-        & " and a.cdcon = " + _Concepto + " and b.cenum <> 11 " _
+        & " And a.cdcon = " + _Concepto + " And b.cenum <> 11 " _
         & " order by b.cenum"
         _Tabla = D_Datos_Tabla("b.cenum, b.cedesc", "TC005 a, TC0051 b", _Where)
         _Ds.Tables.Add(_Tabla)
@@ -2268,10 +2295,10 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _Ds As New DataSet
         _Where = " cieserie = 1 " _
-        + " and ciest = 1" _
+        + " And ciest = 1" _
         + IIf(_Where.Equals(""), "", " And " + _Where) _
         & " order by cinserie"
-        _Tabla = D_Datos_Tabla("cicod, CAST(cilin as nvarchar) as cilin, cinserie, cieserie, ciest",
+        _Tabla = D_Datos_Tabla("cicod, CAST(cilin As nvarchar) As cilin, cinserie, cieserie, ciest",
                                "TC0011",
                                _Where)
         _Ds.Tables.Add(_Tabla)

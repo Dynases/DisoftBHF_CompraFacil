@@ -298,7 +298,7 @@ Public Class F0_PagosCreditoCompraUlt
             .Visible = True
         End With
         With grfactura.RootTable.Columns("NumeroRecibo")
-            .Caption = "Nro Recibo"
+            .Caption = "Nro Factura"
             .Width = 120
             .TextAlignment = TextAlignment.Far
             .Visible = True
@@ -1175,10 +1175,9 @@ Public Class F0_PagosCreditoCompraUlt
     End Sub
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
-        'If (Not _fnAccesible()) Then
-        '    P_GenerarReporte()
-
-        'End If
+        If (Not _fnAccesible()) Then
+            P_GenerarReporte()
+        End If
     End Sub
    
 

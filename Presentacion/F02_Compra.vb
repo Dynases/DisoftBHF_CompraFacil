@@ -1809,7 +1809,7 @@ Public Class F02_Compra
 
                         Dim totalF As Double = dgjDetalle.GetValue("cabsubtot") - montodesc
 
-                        dgjDetalle.SetValue("cabtot", totalF)
+                        'dgjDetalle.SetValue("cabtot", totalF)
                         CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = totalF
                         CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = dgjDetalle.GetValue("cabsubtot")
 
@@ -2250,6 +2250,9 @@ Public Class F02_Compra
                         CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabtot") = CostoTotal
                         CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostocj") = PrecioCostoCaja
                         CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostoun") = PrecioCostoCaja / CantidadUnitaria
+                        'dgjDetalle.SetValue("cabtot", CostoTotal)
+                        'dgjDetalle.SetValue("cabpcostocj", PrecioCostoCaja)
+                        'dgjDetalle.SetValue("cabpcostoun", PrecioCostoCaja / CantidadUnitaria)
                     End If
                     '''''''''
                 End If
@@ -2288,6 +2291,9 @@ Public Class F02_Compra
                         CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabtot") = CostoTotal
                         CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostocj") = PrecioCostoCaja
                         CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostoun") = PrecioCostoCaja / CantidadUnitaria
+                        'dgjDetalle.SetValue("cabtot", CostoTotal)
+                        'dgjDetalle.SetValue("cabpcostocj", PrecioCostoCaja)
+                        'dgjDetalle.SetValue("cabpcostoun", PrecioCostoCaja / CantidadUnitaria)
                     End If
                     '''''''''
                 End If
