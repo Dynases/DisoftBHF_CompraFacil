@@ -1516,32 +1516,44 @@ Public Class F02_Compra
         Dim frmAyuda As Modelo.ModeloAyuda
 
         'Dim dt As DataTable = L_ProductosGeneral(1, "caest=1 and caserie=0").Tables(0)
-        Dim dt As DataTable = L_ProductosGeneral(1, "caest=1 and caserie=0 and cagr1= " + tbCodProveedor.Text + " ").Tables(0)
+        Dim dt As DataTable = L_ProductosGeneralConCostos(1, "canumi= chcprod AND 
+                                                              chcatcl = 1 AND
+                                                              caest=1 AND
+                                                              caserie=0 AND
+                                                              cagr1= " + tbCodProveedor.Text + " ").Tables(0)
+        If dt.Rows.Count <> 0 Then
+            Dim listEstCeldas As New List(Of Modelo.MCelda)
+            listEstCeldas.Add(New Modelo.MCelda("canumi", True, "Código", 80))
+            listEstCeldas.Add(New Modelo.MCelda("cacod", True, "Cod Flex", 100))
+            listEstCeldas.Add(New Modelo.MCelda("cadesc", True, "Producto", 300))
+            listEstCeldas.Add(New Modelo.MCelda("cadesc2", True, "Desc", 150))
+            listEstCeldas.Add(New Modelo.MCelda("caconv", True, "Conversion", 150))
+            listEstCeldas.Add(New Modelo.MCelda("chprecio", True, "Precio", 100))
 
-        Dim listEstCeldas As New List(Of Modelo.MCelda)
-        listEstCeldas.Add(New Modelo.MCelda("canumi", True, "Código", 80))
-        listEstCeldas.Add(New Modelo.MCelda("cacod", True, "Cod Flex", 100))
-        listEstCeldas.Add(New Modelo.MCelda("cadesc", True, "Producto", 300))
-        listEstCeldas.Add(New Modelo.MCelda("cadesc2", True, "Desc", 150))
-        listEstCeldas.Add(New Modelo.MCelda("caconv", True, "Conversion", 150))
+            frmAyuda = New Modelo.ModeloAyuda(600, 540, dt, "Seleccione Producto".ToUpper, listEstCeldas)
+            frmAyuda.StartPosition = FormStartPosition.CenterScreen
+            frmAyuda.ShowDialog()
 
-        frmAyuda = New Modelo.ModeloAyuda(600, 540, dt, "Seleccione Producto".ToUpper, listEstCeldas)
-        frmAyuda.StartPosition = FormStartPosition.CenterScreen
-        frmAyuda.ShowDialog()
-
-        If frmAyuda.seleccionado = True Then
-            Dim id As String = frmAyuda.filaSelect.Cells("canumi").Value
-            Dim cod As String = frmAyuda.filaSelect.Cells("cacod").Value
-            Dim desc As String = frmAyuda.filaSelect.Cells("cadesc").Value
-            conv = frmAyuda.filaSelect.Cells("caconv").Value
+            If frmAyuda.seleccionado = True Then
+                Dim id As String = frmAyuda.filaSelect.Cells("canumi").Value
+                Dim cod As String = frmAyuda.filaSelect.Cells("cacod").Value
+                Dim desc As String = frmAyuda.filaSelect.Cells("cadesc").Value
+                Dim precio As String = frmAyuda.filaSelect.Cells("chprecio").Value
+                conv = frmAyuda.filaSelect.Cells("caconv").Value
 
 
-            dgjDetalle.Col = dgjDetalle.RootTable.Columns("cabcantcj").Index
-            dgjDetalle.SetValue(1, id)
-            dgjDetalle.SetValue(2, cod)
-            dgjDetalle.SetValue(3, desc)
-            '_prCalcularPrecioTotal()
+                dgjDetalle.Col = dgjDetalle.RootTable.Columns("cabcantcj").Index
+                dgjDetalle.SetValue(1, id)
+                dgjDetalle.SetValue(2, cod)
+                dgjDetalle.SetValue(3, desc)
+                dgjDetalle.SetValue(8, precio)
+                '_prCalcularPrecioTotal()
+            End If
+        Else
+            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+            ToastNotification.Show(Me, "No se encontraron productos".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
         End If
+
     End Sub
 
     Private Sub P_prAddFilaDetalle()
