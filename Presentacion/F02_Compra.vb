@@ -1546,6 +1546,7 @@ Public Class F02_Compra
                 dgjDetalle.SetValue(1, id)
                 dgjDetalle.SetValue(2, cod)
                 dgjDetalle.SetValue(3, desc)
+                dgjDetalle.SetValue(7, precio * conv)
                 dgjDetalle.SetValue(8, precio)
                 '_prCalcularPrecioTotal()
             End If
@@ -1675,8 +1676,10 @@ Public Class F02_Compra
 
                 Else
                     If (e.Column.Key.Equals("cabcantcj")) Then
+                        dgjDetalle.SetValue("cabsubtot", dgjDetalle.GetValue("cabcantcj") * dgjDetalle.GetValue("cabpcomcj"))
                         dgjDetalle.SetValue("cabcantun", dgjDetalle.GetValue("cabcantcj") * conv)
                         dgjDetalle.SetValue("cabpcomcj", dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj"))
+
                         CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantcj") = dgjDetalle.GetValue("cabcantcj")
                         Dim descuento As Double = tbDescuentoPro1.Value
                         Dim TotalBruto As Double = tbSubtotalC.Value
