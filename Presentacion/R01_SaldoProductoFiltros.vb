@@ -110,6 +110,12 @@ Public Class R01_SaldoProductoFiltros
         If (_dt.Rows.Count > 0) Then
             Dim objrep As New R_StockActualFiltros()
             objrep.SetDataSource(_dt)
+            objrep.SetParameterValue("Proveedor", cbProveedor.Text)
+            objrep.SetParameterValue("Categoria", cbCategoria.Text)
+            objrep.SetParameterValue("Marca", cbMarca.Text)
+            objrep.SetParameterValue("Atributo", cbAtributo.Text)
+            objrep.SetParameterValue("Descripcion", cbDescripcion.Text)
+            objrep.SetParameterValue("Usuario", L_Usuario)
             MCrReporte.ReportSource = objrep
         Else
             ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",

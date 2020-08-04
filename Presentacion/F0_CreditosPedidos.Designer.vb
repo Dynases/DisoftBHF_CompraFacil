@@ -163,6 +163,9 @@ Partial Class F0_CreditosPedidos
         'MBtNuevo
         '
         '
+        'MBtImprimir
+        '
+        '
         'MBubbleBarUsuario
         '
         '

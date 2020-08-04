@@ -137,6 +137,7 @@ Public Class F0_CreditosPedidos
             .Width = 100
             .TextAlignment = TextAlignment.Far
             .Visible = True
+            .FormatString = "0.00"
         End With
         With grcobranza.RootTable.Columns("tefact")
             .Width = 100
@@ -259,7 +260,7 @@ Public Class F0_CreditosPedidos
             .Caption = "Factura"
             .Width = 100
             .TextAlignment = TextAlignment.Far
-            .Visible = True
+            .Visible = False
         End With
         With grfactura.RootTable.Columns("cliente")
             .Caption = "Cliente"
@@ -275,7 +276,7 @@ Public Class F0_CreditosPedidos
             .Visible = True
         End With
         With grfactura.RootTable.Columns("NumeroRecibo")
-            .Caption = "Nro Recibo"
+            .Caption = "Nro Factura"
             .Width = 120
             .TextAlignment = TextAlignment.Far
             .Visible = True
@@ -432,7 +433,7 @@ Public Class F0_CreditosPedidos
             .Caption = "Nro Factura"
             .Width = 95
             .TextAlignment = TextAlignment.Far
-            .Visible = True
+            .Visible = False
         End With
         With grPendiente.RootTable.Columns("cliente")
             .Caption = "Cliente"
@@ -476,7 +477,7 @@ Public Class F0_CreditosPedidos
             .Visible = False
         End With
         With grPendiente.RootTable.Columns("NumeroRecibo")
-            .Caption = "Nro Recibo"
+            .Caption = "Nro. Factura"
             .Width = 150
             .MaxLength = 20
             .Visible = False
@@ -539,7 +540,7 @@ Public Class F0_CreditosPedidos
             .Visible = True
         End With
         With grpagos.RootTable.Columns("tdnrorecibo")
-            .Caption = "Nro Recibo"
+            .Caption = "Nro Factura"
             .Width = 180
             .TextAlignment = TextAlignment.Far
             .Visible = True
@@ -593,7 +594,7 @@ Public Class F0_CreditosPedidos
             e.Cancel = True
             Return
         End If
-        If (e.Column.Index = grfactura.RootTable.Columns("PagoAc").Index Or e.Column.Index = grfactura.RootTable.Columns("NumeroRecibo").Index Or e.Column.Index = grfactura.RootTable.Columns("DescBanco").Index Or e.Column.Index = grfactura.RootTable.Columns("tdnrocheque").Index) Then
+        If (e.Column.Index = grfactura.RootTable.Columns("PagoAc").Index Or e.Column.Index = grfactura.RootTable.Columns("DescBanco").Index Or e.Column.Index = grfactura.RootTable.Columns("tdnrocheque").Index) Then
             e.Cancel = False
         Else
             e.Cancel = True
@@ -966,6 +967,8 @@ Public Class F0_CreditosPedidos
                     CType(grfactura.DataSource, DataTable).Rows(pos).Item("tctv1numi") = grPendiente.GetValue("tctv1numi")
                     CType(grfactura.DataSource, DataTable).Rows(pos).Item("tcty4clie") = grPendiente.GetValue("tcty4clie")
                     CType(grfactura.DataSource, DataTable).Rows(pos).Item("pendiente") = grPendiente.GetValue("pendiente")
+                    CType(grfactura.DataSource, DataTable).Rows(pos).Item("NumeroRecibo") = grPendiente.GetValue("factura")
+
 
                     _prCargarTablaCreditos()
                     grPendiente.RemoveFilters()
@@ -1078,9 +1081,9 @@ Public Class F0_CreditosPedidos
         '.DropDownList.Columns("yccod3").Caption = "COD"
         '.DropDownList.Columns.Add("ycdes3").Width = 200
         For i As Integer = 0 To dt.Rows.Count - 1 Step 1
-            Dim data As String = dt.Rows(i).Item("cedesc")
+            Dim data As String = dt.Rows(i).Item("ycdes3")
             If (data.Equals(name)) Then
-                Return dt.Rows(i).Item("cenum")
+                Return dt.Rows(i).Item("yccod3")
             End If
         Next
         Return -1
@@ -1218,40 +1221,34 @@ Public Class F0_CreditosPedidos
     End Sub
 
 
+    Private Sub P_GenerarReporte()
+        Dim dt As DataTable = L_fnCobranzasReporte(tbnrodoc.Text)
+        Dim total As Double = dt.Compute("SUM(importe)", "")
+        If Not IsNothing(P_Global.Visualizador) Then
+            P_Global.Visualizador.Close()
+        End If
+        Dim ParteEntera As Long
+        Dim ParteDecimal As Double
+        ParteEntera = Int(total)
+        ParteDecimal = CDbl(Math.Round((total - ParteEntera), 2)) * 100
 
-    'Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
-    '    If (Not _fnAccesible()) Then
-    '        P_GenerarReporte()
+        Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + "  " +
+        IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
 
-    '    End If
-    'End Sub
-    'Private Sub P_GenerarReporte()
-    '    Dim dt As DataTable = L_fnCobranzasReporte(tbnrodoc.Text)
-    '    Dim total As Double = dt.Compute("SUM(importe)", "")
-    '    If Not IsNothing(P_Global.Visualizador) Then
-    '        P_Global.Visualizador.Close()
-    '    End If
-    '    Dim ParteEntera As Long
-    '    Dim ParteDecimal As Double
-    '    ParteEntera = Int(total)
-    '    ParteDecimal = total - ParteEntera
-    '    Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
-    '    IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
+        P_Global.Visualizador = New Visualizador
 
-    '    P_Global.Visualizador = New Visualizador
-
-    '    Dim objrep As New R_ReporteCobranzas
-    '    '' GenerarNro(_dt)
-    '    ''objrep.SetDataSource(Dt1Kardex)
-    '    objrep.SetDataSource(dt)
-    '    objrep.SetParameterValue("total", li)
-    '    objrep.SetParameterValue("usuario", gs_user)
-    '    P_Global.Visualizador.CrGeneral.ReportSource = objrep 'Comentar
-    '    P_Global.Visualizador.Show() 'Comentar
-    '    P_Global.Visualizador.BringToFront() 'Comentar
+        Dim objrep As New R_ReporteCobranzas
+        '' GenerarNro(_dt)
+        ''objrep.SetDataSource(Dt1Kardex)
+        objrep.SetDataSource(dt)
+        objrep.SetParameterValue("total", li)
+        objrep.SetParameterValue("usuario", gs_user)
+        P_Global.Visualizador.CRV1.ReportSource = objrep 'Comentar
+        P_Global.Visualizador.Show() 'Comentar
+        P_Global.Visualizador.BringToFront() 'Comentar
 
 
-    'End Sub
+    End Sub
 
     Private Sub tbObservacion_Leave(sender As Object, e As EventArgs) Handles tbObservacion.Leave
         grfactura.Select()
@@ -1263,5 +1260,11 @@ Public Class F0_CreditosPedidos
 
     Private Sub grcobranza_DoubleClick(sender As Object, e As EventArgs) Handles grcobranza.DoubleClick
         MSuperTabControlPrincipal.SelectedTabIndex = 0
+    End Sub
+
+    Private Sub MBtImprimir_Click(sender As Object, e As EventArgs) Handles MBtImprimir.Click
+        If (Not _fnAccesible()) Then
+            P_GenerarReporte()
+        End If
     End Sub
 End Class

@@ -556,7 +556,7 @@ Public Class F0_PagosCreditoCompraUlt
             .Visible = True
         End With
         With grpagos.RootTable.Columns("tdnrorecibo")
-            .Caption = "Nro Recibo"
+            .Caption = "Nro Factura"
             .Width = 180
             .TextAlignment = TextAlignment.Far
             .Visible = True
@@ -842,21 +842,20 @@ Public Class F0_PagosCreditoCompraUlt
         Dim ParteEntera As Long
         Dim ParteDecimal As Double
         ParteEntera = Int(total)
-        ParteDecimal = total - ParteEntera
-        Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + " con " +
+        ParteDecimal = CDbl(Math.Round((total - ParteEntera), 2)) * 100
+        Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(ParteEntera)) + "  " +
         IIf(ParteDecimal.ToString.Equals("0"), "00", ParteDecimal.ToString) + "/100 Bolivianos"
 
         P_Global.Visualizador = New Visualizador
 
         Dim objrep As New R_ReportePagosCobranzas
-        '' GenerarNro(_dt)
-        ''objrep.SetDataSource(Dt1Kardex)
+
         objrep.SetDataSource(dt)
         objrep.SetParameterValue("total", li)
         objrep.SetParameterValue("usuario", gs_user)
-        P_Global.Visualizador.CRV1.ReportSource = objrep 'Comentar
-        P_Global.Visualizador.Show() 'Comentar
-        P_Global.Visualizador.BringToFront() 'Comentar
+        P_Global.Visualizador.CRV1.ReportSource = objrep
+        P_Global.Visualizador.Show()
+        P_Global.Visualizador.BringToFront()
 
 
     End Sub

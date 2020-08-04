@@ -45,7 +45,7 @@ Public Class R_ReporteCobranzas
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "DinoM.R_ReporteCobranzas.rpt"
+            Return "Presentacion.R_ReporteCobranzas.rpt"
         End Get
         Set
             'Do nothing
