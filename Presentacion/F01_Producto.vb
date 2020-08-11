@@ -302,7 +302,8 @@ Public Class F01_Producto
         If (Limpiar = False) Then
             _prSeleccionarCombo(cbgrupo1)
             _prSeleccionarCombo(cbgrupo2)
-            _prSeleccionarCombo(cbgrupo3)
+            '_prSeleccionarCombo(cbgrupo3)
+            cbgrupo3.SelectedIndex = 1
             _prSeleccionarCombo(cbgrupo4)
             _prSeleccionarCombo(cbUMed)
             _prSeleccionarCombo(CbUnidMax)
@@ -334,6 +335,7 @@ Public Class F01_Producto
         _prCargarComboLibreria(cbUMed, 105)
         '_prCargarComboLibreria(cbUniVenta, 1, 6)
         '_prCargarComboLibreria(cbUnidMaxima, 1, 6)
+
     End Sub
 
     Private Sub P_PrArmarGrillas()

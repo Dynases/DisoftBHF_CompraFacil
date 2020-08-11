@@ -50,7 +50,7 @@ Public Class R01_SaldoProductoFiltros
         P_prArmarComboCategoria()
         P_prCargarComboLibreria(cbMarca, 102)
         P_prCargarComboLibreria(cbAtributo, 103)
-        P_prArmarComboDescripcion()
+        P_prArmarComboDescripcion(cbDescripcion)
 
 
     End Sub
@@ -88,7 +88,7 @@ Public Class R01_SaldoProductoFiltros
         End With
         mCombo.SelectedIndex = Convert.ToInt32(dt.Rows.Count - 1)
     End Sub
-    Private Sub P_prArmarComboDescripcion()
+    Private Sub P_prArmarComboDescripcion(cbDescripcion As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
         Dim Dt As DataTable
         Dt = L_fnObtenerDescripcion()
         Dt.Rows.Add("TODOS")
@@ -97,7 +97,7 @@ Public Class R01_SaldoProductoFiltros
             .DropDownList.Columns.Add("cadesc2").Width = 200
             .DropDownList.Columns("cadesc2").Caption = "DESCRIPCION"
             .ValueMember = "cadesc2"
-            .DisplayMember = "cedesc2"
+            .DisplayMember = "cadesc2"
             .DataSource = Dt
             .Refresh()
         End With

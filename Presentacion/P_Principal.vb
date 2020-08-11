@@ -515,7 +515,7 @@ Public Class P_Principal
     Private Sub btPediPedido_Click(sender As Object, e As EventArgs) Handles btPediPedido.Click
         SideNav1.IsMenuExpanded = False
         FP_Ventana.Select()
-        Dim frm As New F02_Pedido
+        Dim frm As New F02_PedidoNuevo
         Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
         frm._nameButton = btPediPedido.Name
         frm._tab = tab3

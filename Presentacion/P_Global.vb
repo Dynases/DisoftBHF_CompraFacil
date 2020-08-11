@@ -54,6 +54,8 @@ Module P_Global
     Public gs_separadorDecimal As Char = Application.CurrentCulture.NumberFormat.NumberDecimalSeparator
     Public Visualizador As Visualizador
 
+
+
 #End Region
 
 #Region "Librerias"
