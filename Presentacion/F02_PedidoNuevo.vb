@@ -20,7 +20,7 @@ Public Class F02_PedidoNuevo
     Public _nameButton As String
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
-    Public _BanderaDescuentos As Boolean = False
+    Public _BanderaDescuentos As Boolean = True
 
 #End Region
 
@@ -2150,6 +2150,7 @@ Public Class F02_PedidoNuevo
     Private Sub MBtSalir_Click(sender As Object, e As EventArgs) Handles MBtSalir.Click
         _PSalirRegistro()
         Modelo.MGlobal.gs_MBanderaEnter = True
+        _BanderaDescuentos = True
     End Sub
 
     Private Sub JGr_DetallePedido_KeyDown(sender As Object, e As KeyEventArgs) Handles JGr_DetallePedido.KeyDown
@@ -2982,6 +2983,7 @@ Public Class F02_PedidoNuevo
 
                         JGr_DetallePedido.CurrentRow.Cells("Total").Value = JGr_DetallePedido.GetValue("Monto") - montodesc
 
+                        _BanderaDescuentos = True
                     Else
 
                         JGr_DetallePedido.CurrentRow.Cells("Descuento").Value = 0
