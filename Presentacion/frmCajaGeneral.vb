@@ -34,6 +34,7 @@ Public Class frmCajaGeneral
     Private Sub CargarListaCaja()
         Try
             listResult = New LCajaCambio().ListarCajaGeneral_Report(Tb_FechaDesde.Value, TB_FechaHasta.Value)
+
             ArmarLista()
         Catch ex As Exception
             Throw New Exception(ex.Message)
@@ -86,7 +87,7 @@ Public Class frmCajaGeneral
         End With
         With Dgv_Caja.RootTable.Columns("TotalConciliacion")
             .Caption = "Total Conciliación"
-            .Width = 150
+            .Width = 140
             .AggregateFunction = AggregateFunction.Sum
             .FormatString = "0.00"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -95,7 +96,7 @@ Public Class frmCajaGeneral
         End With
         With Dgv_Caja.RootTable.Columns("TotalEfectivo")
             .Caption = "Total Efectivo"
-            .Width = 130
+            .Width = 120
             .AggregateFunction = AggregateFunction.Sum
             .FormatString = "0.00"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -104,7 +105,7 @@ Public Class frmCajaGeneral
         End With
         With Dgv_Caja.RootTable.Columns("TotalCredito")
             .Caption = "Total Crédito"
-            .Width = 130
+            .Width = 120
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -113,7 +114,7 @@ Public Class frmCajaGeneral
         End With
         With Dgv_Caja.RootTable.Columns("TotalDeposito")
             .Caption = "Total Depósito"
-            .Width = 130
+            .Width = 120
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -122,7 +123,7 @@ Public Class frmCajaGeneral
         End With
         With Dgv_Caja.RootTable.Columns("TotalGeneral")
             .Caption = "Total General"
-            .Width = 150
+            .Width = 120
             .FormatString = "0.00"
             .AggregateFunction = AggregateFunction.Sum
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
@@ -131,8 +132,16 @@ Public Class frmCajaGeneral
         End With
         With Dgv_Caja.RootTable.Columns("Diferencia")
             .Caption = "Diferencia"
-            .Width = 140
+            .Width = 120
             .AggregateFunction = AggregateFunction.Sum
+            .FormatString = "0.00"
+            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            .Visible = True
+            .Position = 10
+        End With
+        With Dgv_Caja.RootTable.Columns("EstadoIntegracion")
+            .Caption = "Estado"
+            .Width = 90
             .FormatString = "0.00"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
@@ -174,6 +183,7 @@ Public Class frmCajaGeneral
     End Sub
 
     Private Sub Tb_FechaDesde_ValueChanged(sender As Object, e As EventArgs) Handles Tb_FechaDesde.ValueChanged
+        TB_FechaHasta.Value = Tb_FechaDesde.Value
     End Sub
 
     Private Sub TB_FechaHasta_ValueChanged(sender As Object, e As EventArgs) Handles TB_FechaHasta.ValueChanged
@@ -181,8 +191,16 @@ Public Class frmCajaGeneral
     End Sub
 
     Private Sub btGenerar_Click(sender As Object, e As EventArgs) Handles btGenerar.Click
-        listResult = New LCajaCambio().ListarCajaGeneral_Report(Tb_FechaDesde.Value, TB_FechaHasta.Value)
-        ArmarLista()
+        Try
+            listResult = New LCajaCambio().ListarCajaGeneral_Report(Tb_FechaDesde.Value, TB_FechaHasta.Value)
+            If listResult.Count = 0 Then
+                Throw New Exception("No se encontraron registros")
+            End If
+            ArmarLista()
+            lbEstado.Text = Logica.AccesoLogica.L_CajaObtenerEstadoIntegracionBanco(Tb_FechaDesde.Value)
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
     End Sub
 
     Private Sub bt_Imprimir_Click(sender As Object, e As EventArgs) Handles bt_Imprimir.Click
@@ -209,6 +227,10 @@ Public Class frmCajaGeneral
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
         End Try
+    End Sub
+
+    Private Sub Tb_FechaDesde_Click(sender As Object, e As EventArgs) Handles Tb_FechaDesde.Click
+
     End Sub
 #End Region
 End Class

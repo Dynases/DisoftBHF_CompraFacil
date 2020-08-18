@@ -23,6 +23,7 @@ Partial Class frmCajaGeneral
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelSuperior = New System.Windows.Forms.Panel()
+        Me.lbEstado = New DevComponents.DotNetBar.Controls.ReflectionLabel()
         Me.btGenerar = New DevComponents.DotNetBar.ButtonX()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.TB_FechaHasta = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
@@ -38,6 +39,7 @@ Partial Class frmCajaGeneral
         '
         'PanelSuperior
         '
+        Me.PanelSuperior.Controls.Add(Me.lbEstado)
         Me.PanelSuperior.Controls.Add(Me.btGenerar)
         Me.PanelSuperior.Controls.Add(Me.LabelX2)
         Me.PanelSuperior.Controls.Add(Me.TB_FechaHasta)
@@ -49,6 +51,19 @@ Partial Class frmCajaGeneral
         Me.PanelSuperior.Name = "PanelSuperior"
         Me.PanelSuperior.Size = New System.Drawing.Size(922, 60)
         Me.PanelSuperior.TabIndex = 1
+        '
+        'lbEstado
+        '
+        '
+        '
+        '
+        Me.lbEstado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.lbEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbEstado.ForeColor = System.Drawing.Color.Orange
+        Me.lbEstado.Location = New System.Drawing.Point(557, 12)
+        Me.lbEstado.Name = "lbEstado"
+        Me.lbEstado.Size = New System.Drawing.Size(184, 39)
+        Me.lbEstado.TabIndex = 237
         '
         'btGenerar
         '
@@ -76,6 +91,7 @@ Partial Class frmCajaGeneral
         Me.LabelX2.Size = New System.Drawing.Size(64, 23)
         Me.LabelX2.TabIndex = 235
         Me.LabelX2.Text = "Fecha hasta:"
+        Me.LabelX2.Visible = False
         '
         'TB_FechaHasta
         '
@@ -122,6 +138,7 @@ Partial Class frmCajaGeneral
         Me.TB_FechaHasta.Size = New System.Drawing.Size(120, 22)
         Me.TB_FechaHasta.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.TB_FechaHasta.TabIndex = 234
+        Me.TB_FechaHasta.Visible = False
         '
         'LabelX1
         '
@@ -229,4 +246,5 @@ Partial Class frmCajaGeneral
     Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
     Friend WithEvents TB_FechaHasta As DevComponents.Editors.DateTimeAdv.DateTimeInput
     Friend WithEvents btGenerar As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents lbEstado As DevComponents.DotNetBar.Controls.ReflectionLabel
 End Class
