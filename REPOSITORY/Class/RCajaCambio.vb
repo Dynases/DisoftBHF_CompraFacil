@@ -77,7 +77,8 @@ Public Class RCajaCambio
                                       .TotalCredito = a.TotalCredito,
                                       .TotalDeposito = a.TotalDeposito,
                                       .TotalGeneral = a.TotalGeneral,
-                                      .Diferencia = a.Diferencia
+                                      .Diferencia = a.Diferencia,
+                                      .EstadoIntegracion = a.EstadoIntegracion
                                       }).ToList()
                 Return listResult
             End Using

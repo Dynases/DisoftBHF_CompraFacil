@@ -107,5 +107,14 @@
             _Diferencia = value
         End Set
     End Property
+    Private _EstadoIntegracion As String
+    Public Property EstadoIntegracion() As String
+        Get
+            Return _EstadoIntegracion
+        End Get
+        Set(ByVal value As String)
+            _EstadoIntegracion = value
+        End Set
+    End Property
 
 End Class

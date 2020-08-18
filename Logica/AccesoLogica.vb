@@ -8533,6 +8533,19 @@ Public Class AccesoLogica
 
         Return _resultado
     End Function
+    Public Shared Function L_CajaObtenerEstadoIntegracionBanco(FechaCaja As DateTime) As String
+        Dim resultado As String = ""
+        Dim _Tabla As DataTable
+        _Tabla = D_Datos_Tabla("TOP(1) olEstadoIntegracionBanco", "TO005", "olfecha = '" + Left(FechaCaja.Date.ToString, 10) + "'")
+        If _Tabla.Rows.Count <> 0 Then
+            If Convert.ToInt32(_Tabla.Rows(0).Item(0)) = 1 Then
+                resultado = "ABIERTO"
+            Else
+                resultado = "CERRADO"
+            End If
+        End If
+        Return resultado
+    End Function
 
     Public Shared Function L_fnCajaEliminar(numi As String, _dt As DataTable) As Boolean
         Dim _resultado As Boolean

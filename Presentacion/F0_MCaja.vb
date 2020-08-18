@@ -227,7 +227,6 @@ Public Class F0_MCaja
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
         End Try
-
     End Sub
     Public Sub _prCrearListaDeposito(tipo As Integer, IdCaja As Integer)
         If tipo = 1 Then
