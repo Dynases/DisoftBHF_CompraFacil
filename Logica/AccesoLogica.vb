@@ -8291,6 +8291,27 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+    Public Shared Function L_prListarEstadoCuentasCompra(idProveedor As Integer, fechai As String, fechaf As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 10))
+        _listParam.Add(New Datos.DParametro("@prov", idProveedor))
+        _listParam.Add(New Datos.DParametro("@fechai", fechai))
+        _listParam.Add(New Datos.DParametro("@fechaf", fechaf))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_go_TCA001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_prListarEstadoCuentasCompraTotal(idProveedor As Integer, fechai As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 11))
+        _listParam.Add(New Datos.DParametro("@prov", idProveedor))
+        _listParam.Add(New Datos.DParametro("@fechai", fechai))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_go_TCA001", _listParam)
+        Return _Tabla
+    End Function
 #End Region
 
 #Region "TCA00121 PagosCompras"

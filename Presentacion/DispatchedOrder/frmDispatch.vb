@@ -223,7 +223,7 @@ Public Class frmDispatch
                 .AlternatingColors = True
                 .AllowEdit = InheritableBoolean.False
                 .AllowColumnDrag = False
-                .AutomaticSort = False
+                '.AutomaticSort = False
                 '.ColumnHeaders = InheritableBoolean.False
             End With
         Catch ex As Exception

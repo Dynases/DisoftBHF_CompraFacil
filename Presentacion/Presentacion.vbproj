@@ -585,6 +585,12 @@
     <Compile Include="R01_EquipoPrestadoVsUltimaVenta.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="R01_EstadoCuentasCompra.Designer.vb">
+      <DependentUpon>R01_EstadoCuentasCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="R01_EstadoCuentasCompra.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="R01_EstadoCuentasCliente.Designer.vb">
       <DependentUpon>R01_EstadoCuentasCliente.vb</DependentUpon>
     </Compile>
@@ -776,6 +782,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>R_CuentaPorCobrarDetallado.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_EstadoCuentasCompra.vb">
+      <DependentUpon>R_EstadoCuentasCompra.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reportes\R_EstadoCuentasClientes.vb">
       <AutoGen>True</AutoGen>
@@ -1378,6 +1390,9 @@
     <EmbeddedResource Include="R01_EquipoPrestadoVsUltimaVenta.resx">
       <DependentUpon>R01_EquipoPrestadoVsUltimaVenta.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R01_EstadoCuentasCompra.resx">
+      <DependentUpon>R01_EstadoCuentasCompra.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R01_EstadoCuentasCliente.resx">
       <DependentUpon>R01_EstadoCuentasCliente.vb</DependentUpon>
     </EmbeddedResource>
@@ -1487,6 +1502,10 @@
     <EmbeddedResource Include="Reportes\R_CuentaPorCobrarDetallado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_CuentaPorCobrarDetallado.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_EstadoCuentasCompra.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_EstadoCuentasCompra.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_EstadoCuentasClientes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

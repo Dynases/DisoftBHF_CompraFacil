@@ -1294,12 +1294,12 @@ Public Class P_Principal
         'tab3.Icon = frm.Icon
     End Sub
 
-    Private Sub btSaldoProductoFiltros_Click(sender As Object, e As EventArgs) Handles btSaldoProductoFiltros.Click
+    Private Sub btEstadoCuentasCompra_Click(sender As Object, e As EventArgs) Handles btEstadoCuentasCompra.Click
         SideNav1.IsMenuExpanded = False
         FP_Ventana.Select()
-        Dim frm As New R01_SaldoProductoFiltros
+        Dim frm As New R01_EstadoCuentasCompra
         Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
-        frm._nameButton = btInveMPSaldoProducto.Name
+        frm._nameButton = btEstadoCuentasCompra.Name
         frm._tab = tab3
         frm._modulo = FP_Inventario
         Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
@@ -1309,6 +1309,8 @@ Public Class P_Principal
         tab3.Text = frm.Text
         'tab3.Icon = frm.Icon
     End Sub
+
+
 #End Region
 
 End Class

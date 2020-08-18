@@ -1444,7 +1444,7 @@ Public Class F02_PedidoNuevo
 
             Dim sumTotal As Double = 0
             For i = 0 To dt.Rows.Count - 1
-                sumTotal = sumTotal + dt.Rows(i).Item(5)
+                sumTotal = sumTotal + dt.Rows(i).Item(8)
             Next
             If (swTipoVenta.Value = False) Then
                 If (tbMontoCredito.Text.Length > 0) Then

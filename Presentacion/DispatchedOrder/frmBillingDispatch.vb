@@ -618,8 +618,8 @@ Public Class frmBillingDispatch
                 .AlternatingColors = True
                 .AllowEdit = InheritableBoolean.False
                 .AllowColumnDrag = False
-                .AutomaticSort = False
-                '.ColumnHeaders = InheritableBoolean.False
+                '.AutomaticSort = False
+
             End With
         Catch ex As Exception
             Throw New Exception(ex.Message)
