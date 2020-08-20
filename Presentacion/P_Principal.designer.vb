@@ -258,12 +258,12 @@ Partial Class P_Principal
         '
         Me.SideNav1.BackColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.SideNav1.Controls.Add(Me.SideNavPanelInventario)
+        Me.SideNav1.Controls.Add(Me.SideNavPanelVenta)
+        Me.SideNav1.Controls.Add(Me.SideNavPanelRRHH)
+        Me.SideNav1.Controls.Add(Me.SideNavPanelCompra)
         Me.SideNav1.Controls.Add(Me.SideNavPaenlConf)
         Me.SideNav1.Controls.Add(Me.SideNavPanelPedido)
-        Me.SideNav1.Controls.Add(Me.SideNavPanelVenta)
         Me.SideNav1.Controls.Add(Me.SideNavPanelLogistica)
-        Me.SideNav1.Controls.Add(Me.SideNavPanelCompra)
-        Me.SideNav1.Controls.Add(Me.SideNavPanelRRHH)
         Me.SideNav1.Controls.Add(Me.SideNavPanelCerrarSesion)
         Me.SideNav1.Controls.Add(Me.SideNavPanelVentana)
         Me.SideNav1.Controls.Add(Me.SideNavPanel1)
@@ -639,7 +639,7 @@ Partial Class P_Principal
         Me.btEstadoCuentasCompra.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center
         Me.btEstadoCuentasCompra.Name = "btEstadoCuentasCompra"
         Me.btEstadoCuentasCompra.SymbolColor = System.Drawing.Color.Empty
-        Me.btEstadoCuentasCompra.Text = "ESTADO DE CUENTAS COMPRAS"
+        Me.btEstadoCuentasCompra.Text = "ESTADO DE CUENTAS PROVEEDORES"
         Me.btEstadoCuentasCompra.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.DarkBlue
         Me.btEstadoCuentasCompra.TileSize = New System.Drawing.Size(250, 135)
         '

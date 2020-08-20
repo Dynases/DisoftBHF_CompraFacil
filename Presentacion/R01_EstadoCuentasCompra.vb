@@ -22,7 +22,7 @@ Public Class R01_EstadoCuentasCompra
             L_prAbrirConexion()
         End If
         Me.WindowState = FormWindowState.Maximized
-        Me.Text = "REPORTE ESTADO DE CUENTAS DE COMPRAS"
+        Me.Text = "REPORTE ESTADO DE CUENTAS DE PROVEEDORES"
         MCrReporte.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         _IniciarComponentes()
     End Sub
@@ -31,39 +31,47 @@ Public Class R01_EstadoCuentasCompra
 
     End Sub
 
-
-    Public Sub _prInterpretarDatos(ByRef _dt As DataTable)
-        '_dt = L_prListarEstadoCuentasCompra(tbCodigoProveedor.Text, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
+    Private Sub _prCargarReporte()
 
         Dt1Estado = New DataTable
         Dt2EstadoTotal = New DataTable
-        Dim fecha As DateTime
 
         Dt2EstadoTotal = L_prListarEstadoCuentasCompraTotal(tbCodigoProveedor.Text, tbFechaI.Value.ToString("yyyy/MM/dd"))
         Dt1Estado = L_prListarEstadoCuentasCompra(tbCodigoProveedor.Text, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
 
-        'For Each fil As DataRow In Dt1Estado.Rows
-        '    fecha = String.Format("{0:dd/MM/yyyy}", fil.Item("fechacompra"))
-        '    fil.Item("fechacompra") = fecha.ToShortDateString
-        'Next
-        P_ArmarDatos()
-
-        'If (Dt2EstadoTotal.Rows.Count = 0 And Dt1Estado.Rows.Count = 0) Then
-        '    ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
-        '               My.Resources.INFORMATION,
-        '                3500,
-        '               eToastGlowColor.Blue,
-        '               eToastPosition.BottomLeft)
-        '    Exit Sub
+        If (Dt2EstadoTotal.Rows.Count = 0 And Dt1Estado.Rows.Count = 0) Then
+            MCrReporte.ReportSource = Nothing
+            ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
+                       My.Resources.INFORMATION,
+                        3500,
+                       eToastGlowColor.Blue,
+                       eToastPosition.BottomLeft)
+            Exit Sub
 
 
-        'Else
-        '    For Each fil As DataRow In Dt1Estado.Rows
-        '        fecha = String.Format("{0:dd/MM/yyyy}", fil.Item("fechacompra"))
-        '        fil.Item("fechacompra") = fecha.ToShortDateString
-        '    Next
-        '    P_ArmarDatos()
-        'End If
+        Else
+
+            'For Each fil As DataRow In Dt1Estado.Rows
+            '    fecha = String.Format("{0:dd/MM/yyyy}", fil.Item("fechacompra"))
+            '    fil.Item("fechacompra") = fecha.ToShortDateString
+            'Next
+
+            P_ArmarDatos()
+
+            Dim objrep As New R_EstadoCuentasCompra
+            objrep.SetDataSource(_dt)
+            Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
+            Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+            objrep.SetParameterValue("usuario", L_Usuario)
+            objrep.SetParameterValue("fechaI", fechaI)
+            objrep.SetParameterValue("fechaF", fechaF)
+            objrep.SetParameterValue("Proveedor", tbProveedor.Text)
+            MCrReporte.ReportSource = objrep
+            MCrReporte.Show()
+            MCrReporte.BringToFront()
+
+        End If
+
     End Sub
     Private Sub P_ArmarDatos()
 
@@ -120,79 +128,8 @@ Public Class R01_EstadoCuentasCompra
 
         _dt = Dt1Estado
     End Sub
-    Private Sub _prCargarReporte()
 
-        '_prInterpretarDatos(_dt)
-
-        Dt1Estado = New DataTable
-        Dt2EstadoTotal = New DataTable
-        Dim fecha As DateTime
-
-        Dt2EstadoTotal = L_prListarEstadoCuentasCompraTotal(tbCodigoProveedor.Text, tbFechaI.Value.ToString("yyyy/MM/dd"))
-        Dt1Estado = L_prListarEstadoCuentasCompra(tbCodigoProveedor.Text, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
-
-        'For Each fil As DataRow In Dt1Estado.Rows
-        '    fecha = String.Format("{0:dd/MM/yyyy}", fil.Item("fechacompra"))
-        '    fil.Item("fechacompra") = fecha.ToShortDateString
-        'Next
-        'P_ArmarDatos()
-
-        If (Dt2EstadoTotal.Rows.Count = 0 And Dt1Estado.Rows.Count = 0) Then
-            MCrReporte.ReportSource = Nothing
-            ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
-                       My.Resources.INFORMATION,
-                        3500,
-                       eToastGlowColor.Blue,
-                       eToastPosition.BottomLeft)
-            Exit Sub
-
-
-        Else
-
-            'For Each fil As DataRow In Dt1Estado.Rows
-            '    fecha = String.Format("{0:dd/MM/yyyy}", fil.Item("fechacompra"))
-            '    fil.Item("fechacompra") = fecha.ToShortDateString
-            'Next
-
-            P_ArmarDatos()
-
-            Dim objrep As New R_EstadoCuentasCompra
-            objrep.SetDataSource(_dt)
-            Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-            Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
-            objrep.SetParameterValue("usuario", L_Usuario)
-            objrep.SetParameterValue("fechaI", fechaI)
-            objrep.SetParameterValue("fechaF", fechaF)
-            MCrReporte.ReportSource = objrep
-            MCrReporte.Show()
-            MCrReporte.BringToFront()
-
-        End If
-
-        'If (_dt.Rows.Count > 0) Then
-
-        '    Dim objrep As New R_EstadoCuentasCompra
-        '    objrep.SetDataSource(_dt)
-        '    Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-        '    Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
-        '    objrep.SetParameterValue("usuario", L_Usuario)
-        '    objrep.SetParameterValue("fechaI", fechaI)
-        '    objrep.SetParameterValue("fechaF", fechaF)
-        '    MCrReporte.ReportSource = objrep
-        '    MCrReporte.Show()
-        '    MCrReporte.BringToFront()
-
-
-        'Else
-        '    MCrReporte.ReportSource = Nothing
-        '    ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
-        '                               My.Resources.INFORMATION, 2000,
-        '                               eToastGlowColor.Blue,
-        '                               eToastPosition.BottomLeft)
-
-        'End If
-
-    End Sub
+#End Region
 
     Private Sub MBtGenerar_Click(sender As Object, e As EventArgs) Handles MBtGenerar.Click
         If tbProveedor.Text = String.Empty Then
@@ -208,114 +145,6 @@ Public Class R01_EstadoCuentasCompra
 
     Private Sub R01_VentasAtendidas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prIniciarTodo()
-
-    End Sub
-#End Region
-
-    Private Sub checkUnaVendedor_CheckValueChanged(sender As Object, e As EventArgs)
-        'If (checkUnCliente.Checked) Then
-        '    CheckTodosClientes.CheckValue = False
-        '    tbVendedor.Enabled = True
-        '    tbVendedor.BackColor = Color.White
-        '    tbVendedor.Focus()
-
-        'End If
-    End Sub
-    Public Sub _prListarPrevendedores()
-
-        'Dim dt As DataTable
-        'dt = L_prListarPrevendedor()
-        ''a.cbnumi , a.cbdesc As nombre, a.cbdirec, a.cbtelef, a.cbfnac 
-        'Dim listEstCeldas As New List(Of Modelo.MCelda)
-        'listEstCeldas.Add(New Modelo.MCelda("cbnumi", True, "ID", 50))
-        'listEstCeldas.Add(New Modelo.MCelda("nombre", True, "NOMBRE", 280))
-        'listEstCeldas.Add(New Modelo.MCelda("cbdirec", True, "DIRECCION", 220))
-        'listEstCeldas.Add(New Modelo.MCelda("cbtelef", True, "Telefono".ToUpper, 200))
-        'listEstCeldas.Add(New Modelo.MCelda("cbfnac", True, "F.Nacimiento".ToUpper, 150, "MM/dd,yyyy"))
-        'Dim ef = New Efecto
-        'ef.tipo = 3
-        'ef.dt = dt
-        'ef.SeleclCol = 1
-        'ef.listEstCeldas = listEstCeldas
-        'ef.alto = 50
-        'ef.ancho = 350
-        'ef.Context = "Seleccione PREVENDEDOR".ToUpper
-        'ef.ShowDialog()
-        'Dim bandera As Boolean = False
-        'bandera = ef.band
-        'If (bandera = True) Then
-        '    Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-        '    If (IsNothing(Row)) Then
-        '        tbVendedor.Focus()
-        '        Return
-        '    End If
-        '    tbCodigoProveedor.Text = Row.Cells("cbnumi").Value
-        '    tbVendedor.Text = Row.Cells("nombre").Value
-        '    MBtGenerar.Select()
-
-        'End If
-
-
-    End Sub
-
-    Public Sub _prListarDistribuidores()
-
-        'Dim dt As DataTable
-        'dt = L_prListarCliente()
-
-        ''a.ccnumi, a.cccod, isnull(a.ccdesc, '') as ccdesc, isnull (a.cctelf2, '') as cctelf2,
-        ''isnull(a.ccobs, '') as ccobs
-        'Dim listEstCeldas As New List(Of Modelo.MCelda)
-        'listEstCeldas.Add(New Modelo.MCelda("ccnumi", True, "ID", 50))
-        'listEstCeldas.Add(New Modelo.MCelda("cccod", True, "CODIGO", 70))
-        'listEstCeldas.Add(New Modelo.MCelda("ccdesc", True, "NOMBRE", 280))
-        'listEstCeldas.Add(New Modelo.MCelda("cctelf2", True, "TELEFONO", 220))
-        'listEstCeldas.Add(New Modelo.MCelda("ccobs", True, "DIRECCION".ToUpper, 200))
-        'Dim ef = New Efecto
-        'ef.tipo = 3
-        'ef.dt = dt
-        'ef.SeleclCol = 1
-        'ef.listEstCeldas = listEstCeldas
-        'ef.alto = 50
-        'ef.ancho = 350
-        'ef.Context = "Seleccione CLIENTE".ToUpper
-        'ef.ShowDialog()
-        'Dim bandera As Boolean = False
-        'bandera = ef.band
-        'If (bandera = True) Then
-        '    Dim Row As Janus.Windows.GridEX.GridEXRow = ef.Row
-        '    If (IsNothing(Row)) Then
-        '        tbVendedor.Focus()
-        '        Return
-        '    End If
-        '    tbCodigoProveedor.Text = Row.Cells("ccnumi").Value
-        '    tbVendedor.Text = Row.Cells("ccdesc").Value
-        '    MBtGenerar.Select()
-
-        'End If
-
-
-    End Sub
-    Private Sub CheckTodosVendedor_CheckValueChanged(sender As Object, e As EventArgs)
-        'If (CheckTodosClientes.Checked) Then
-        '    checkUnCliente.CheckValue = False
-        '    tbVendedor.Enabled = True
-        '    tbVendedor.BackColor = Color.Gainsboro
-        '    tbVendedor.Clear()
-        '    tbCodigoProveedor.Clear()
-
-        'End If
-    End Sub
-
-    Private Sub tbVendedor_KeyDown_1(sender As Object, e As KeyEventArgs)
-
-
-        'If (checkUnCliente.Checked) Then
-        '    If e.KeyData = Keys.Control + Keys.Enter Then
-        '        _prListarDistribuidores()
-        '    End If
-
-        'End If
     End Sub
 
     Private Sub MBtSalir_Click(sender As Object, e As EventArgs) Handles MBtSalir.Click
@@ -350,7 +179,6 @@ Public Class R01_EstadoCuentasCompra
             Dim nit As String = frmAyuda.filaSelect.Cells("cmnit").Value
             tbCodigoProveedor.Text = id
             tbProveedor.Text = desc
-
         End If
     End Sub
 End Class

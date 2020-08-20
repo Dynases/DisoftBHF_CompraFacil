@@ -1771,6 +1771,7 @@ Public Class F02_PedidoNuevo
         '_Modificar = True
         _PHabilitar()
         JGr_Clientes.Enabled = False
+        _PCargarGridProductosNuevo(Tb_CliCateg.Text)
     End Sub
 
     Private Sub _PEliminarRegistro()
@@ -2004,38 +2005,47 @@ Public Class F02_PedidoNuevo
 
     Private Sub _PPasarProductosAlDetalle()
         If Not JGr_Productos.FilterRow.Selected Then
+            Dim existe As Boolean = _fnExisteProducto(JGr_Productos.GetValue("Codigo"))
+
             ''Validación para que solo pueda ingresar 20 productos
             If JGr_DetallePedido.RowCount < 20 Then
-                If JGr_Productos.CurrentRow.Cells("iacant").Value <> 0 Then
+                If JGr_Productos.CurrentRow.Cells("iacant").Value > 0 Then
 
-                    'agregar al detalle producto seleccionado
-                    Dim codProd, codProd1, descrip, precio, familia, atributo, stock As String
+                    If (Not existe) Then
+                        'agregar al detalle producto seleccionado
+                        Dim codProd, codProd1, descrip, precio, familia, atributo, stock As String
 
-                    codProd = Convert.ToString(JGr_Productos.CurrentRow.Cells("Codigo").Value)
-                    codProd1 = Convert.ToString(JGr_Productos.CurrentRow.Cells("CodigoFlex").Value)
-                    descrip = Convert.ToString(JGr_Productos.CurrentRow.Cells("Descripcion").Value)
-                    precio = Convert.ToString(JGr_Productos.CurrentRow.Cells("Precio").Value)
-                    familia = Convert.ToString(JGr_Productos.CurrentRow.Cells("cagr4").Value)
-                    atributo = Convert.ToString(JGr_Productos.CurrentRow.Cells("cagr3").Value)
-                    stock = Convert.ToString(JGr_Productos.CurrentRow.Cells("iacant").Value)
+                        codProd = Convert.ToString(JGr_Productos.CurrentRow.Cells("Codigo").Value)
+                        codProd1 = Convert.ToString(JGr_Productos.CurrentRow.Cells("CodigoFlex").Value)
+                        descrip = Convert.ToString(JGr_Productos.CurrentRow.Cells("Descripcion").Value)
+                        precio = Convert.ToString(JGr_Productos.CurrentRow.Cells("Precio").Value)
+                        familia = Convert.ToString(JGr_Productos.CurrentRow.Cells("cagr4").Value)
+                        atributo = Convert.ToString(JGr_Productos.CurrentRow.Cells("cagr3").Value)
+                        stock = Convert.ToString(JGr_Productos.CurrentRow.Cells("iacant").Value)
 
 
-                    Dim nuevaFila As DataRow = CType(JGr_DetallePedido.DataSource, DataTable).NewRow()
+                        Dim nuevaFila As DataRow = CType(JGr_DetallePedido.DataSource, DataTable).NewRow()
 
-                    nuevaFila(1) = codProd
-                    nuevaFila(2) = codProd1
-                    nuevaFila(3) = descrip
-                    nuevaFila(5) = precio
-                    nuevaFila(7) = 0
-                    nuevaFila(9) = familia
-                    nuevaFila(10) = atributo
-                    nuevaFila(11) = stock
+                        nuevaFila(1) = codProd
+                        nuevaFila(2) = codProd1
+                        nuevaFila(3) = descrip
+                        nuevaFila(5) = precio
+                        nuevaFila(7) = 0
+                        nuevaFila(9) = familia
+                        nuevaFila(10) = atributo
+                        nuevaFila(11) = stock
 
-                    CType(JGr_DetallePedido.DataSource, DataTable).Rows.Add(nuevaFila)
+                        CType(JGr_DetallePedido.DataSource, DataTable).Rows.Add(nuevaFila)
 
-                    'poner el foco en cantidad
-                    Tb_CantProd.Text = "1"
-                    Tb_CantProd.Focus()
+                        'poner el foco en cantidad
+                        Tb_CantProd.Text = "1"
+                        Tb_CantProd.Focus()
+                    Else
+                        If (existe) Then
+                            Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
+                            ToastNotification.Show(Me, "El producto ya existe en el detalle, favor modificar la cantidad".ToUpper, img, 3500, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                        End If
+                    End If
                 Else
                     ToastNotification.Show(Me, "El producto no tiene Stock Disponible".ToUpper, My.Resources.WARNING, 5500, eToastGlowColor.Green, eToastPosition.BottomCenter)
                 End If
@@ -2045,6 +2055,15 @@ Public Class F02_PedidoNuevo
 
         End If
     End Sub
+    Public Function _fnExisteProducto(idprod As Integer) As Boolean
+        For i As Integer = 0 To CType(JGr_DetallePedido.DataSource, DataTable).Rows.Count - 1 Step 1
+            Dim _idprod As Integer = CType(JGr_DetallePedido.DataSource, DataTable).Rows(i).Item("obcprod")
+            If (_idprod = idprod) Then
+                Return True
+            End If
+        Next
+        Return False
+    End Function
     Private Sub Tb_ProdObs_KeyDown(sender As Object, e As KeyEventArgs) Handles Tb_Observaciones.KeyDown
         If e.KeyData = Keys.Enter Then
             ''Tb_Observaciones.Text = Tb_ProdObs.Text

@@ -23,6 +23,8 @@ Partial Class R01_EstadoCuentasCompra
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btBuscarProveedor = New DevComponents.DotNetBar.ButtonX()
+        Me.tbProveedor = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.CheckTodosAlmacen = New DevComponents.DotNetBar.Controls.CheckBoxX()
         Me.tbCodigoProveedor = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.lbvendedor = New DevComponents.DotNetBar.LabelX()
@@ -30,8 +32,6 @@ Partial Class R01_EstadoCuentasCompra
         Me.tbFechaF = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.LabelX4 = New DevComponents.DotNetBar.LabelX()
         Me.tbFechaI = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
-        Me.btBuscarProveedor = New DevComponents.DotNetBar.ButtonX()
-        Me.tbProveedor = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.MPnSuperior.SuspendLayout()
         Me.MPnInferior.SuspendLayout()
         Me.MPanelToolBarUsuario.SuspendLayout()
@@ -169,6 +169,32 @@ Partial Class R01_EstadoCuentasCompra
         Me.GroupBox2.TabIndex = 14
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos"
+        '
+        'btBuscarProveedor
+        '
+        Me.btBuscarProveedor.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btBuscarProveedor.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
+        Me.btBuscarProveedor.Image = Global.Presentacion.My.Resources.Resources.buscar
+        Me.btBuscarProveedor.ImageFixedSize = New System.Drawing.Size(23, 23)
+        Me.btBuscarProveedor.Location = New System.Drawing.Point(250, 41)
+        Me.btBuscarProveedor.Name = "btBuscarProveedor"
+        Me.btBuscarProveedor.Size = New System.Drawing.Size(40, 24)
+        Me.btBuscarProveedor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.btBuscarProveedor.TabIndex = 247
+        '
+        'tbProveedor
+        '
+        '
+        '
+        '
+        Me.tbProveedor.Border.Class = "TextBoxBorder"
+        Me.tbProveedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.tbProveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbProveedor.Location = New System.Drawing.Point(8, 42)
+        Me.tbProveedor.Name = "tbProveedor"
+        Me.tbProveedor.PreventEnterBeep = True
+        Me.tbProveedor.Size = New System.Drawing.Size(238, 23)
+        Me.tbProveedor.TabIndex = 246
         '
         'CheckTodosAlmacen
         '
@@ -341,32 +367,6 @@ Partial Class R01_EstadoCuentasCompra
         Me.tbFechaI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaI.TabIndex = 232
         '
-        'btBuscarProveedor
-        '
-        Me.btBuscarProveedor.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.btBuscarProveedor.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground
-        Me.btBuscarProveedor.Image = Global.Presentacion.My.Resources.Resources.buscar
-        Me.btBuscarProveedor.ImageFixedSize = New System.Drawing.Size(23, 23)
-        Me.btBuscarProveedor.Location = New System.Drawing.Point(250, 41)
-        Me.btBuscarProveedor.Name = "btBuscarProveedor"
-        Me.btBuscarProveedor.Size = New System.Drawing.Size(40, 24)
-        Me.btBuscarProveedor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.btBuscarProveedor.TabIndex = 247
-        '
-        'tbProveedor
-        '
-        '
-        '
-        '
-        Me.tbProveedor.Border.Class = "TextBoxBorder"
-        Me.tbProveedor.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbProveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbProveedor.Location = New System.Drawing.Point(8, 42)
-        Me.tbProveedor.Name = "tbProveedor"
-        Me.tbProveedor.PreventEnterBeep = True
-        Me.tbProveedor.Size = New System.Drawing.Size(238, 23)
-        Me.tbProveedor.TabIndex = 246
-        '
         'R01_EstadoCuentasCompra
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -374,7 +374,7 @@ Partial Class R01_EstadoCuentasCompra
         Me.ClientSize = New System.Drawing.Size(984, 561)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "R01_EstadoCuentasCompra"
-        Me.Text = "R01_EstadoCuentasCliente"
+        Me.Text = "R01_EstadoCuentasCompra"
         Me.Controls.SetChildIndex(Me.MPnInferior, 0)
         Me.Controls.SetChildIndex(Me.MPnUsuario, 0)
         Me.MPnSuperior.ResumeLayout(False)
