@@ -4003,7 +4003,8 @@ Public Class AccesoLogica
         Else
             _Where = _Cadena
         End If
-        _Tabla = D_Datos_Tabla("canumi,cacod, cadesc,cadesc2, caconv,chprecio", "TC001,TC003", _Where + " order by canumi")
+        _Tabla = D_Datos_Tabla("canumi,cacod, cadesc,cadesc2, caconv,IIF(exists(select cabpcomcj from TCA0011  where canumi= cabtc1numi ), (select cabpcomcj from TCA0011  where (cabnumi in(Select max(cabnumi) from TCA0011 WHERE canumi= cabtc1numi ))),'0') as cabpcomcj,
+                                IIF(exists(select cabpcomun from TCA0011  where canumi= cabtc1numi ), (select cabpcomun from TCA0011  where (cabnumi in(Select max(cabnumi) from TCA0011 WHERE canumi= cabtc1numi ))),'0') as cabpcomun", "TC001", _Where + " order by canumi")
         _Ds.Tables.Add(_Tabla)
         Return _Ds
     End Function
