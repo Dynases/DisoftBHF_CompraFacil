@@ -998,6 +998,12 @@ Public Class F0_MCaja
                 Dim bandera As Boolean = False
                 bandera = ef.band
                 If (bandera = True) Then
+                    If L_fnExisteIntegracion(TbCodigo.Text) Then
+                        Throw New Exception("EXISTE UNA INTEGRACIÓN RELACIONADA")
+                    End If
+                    If L_fnExisteIntegracionBanco(TbCodigo.Text) Then
+                        Throw New Exception("EXISTE INTEGRACIÓN A BANCO RELACIONADA")
+                    End If
                     Dim mensajeError As String = ""
                     Dim res As Boolean = L_fnCajaEliminar(TbCodigo.Text, CType(Dgv_PedidoTotal.DataSource, DataTable))
                     If res Then

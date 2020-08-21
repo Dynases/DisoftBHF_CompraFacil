@@ -8588,6 +8588,44 @@ Public Class AccesoLogica
 
         Return _resultado
     End Function
+    Public Shared Function L_fnExisteIntegracion(numi As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 28))
+        _listParam.Add(New Datos.DParametro("@olnumi", numi))
+        _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TO005", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            If _Tabla.Rows(0).Item(0) = 2 Then
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
+    Public Shared Function L_fnExisteIntegracionBanco(numi As String) As Boolean
+        Dim _resultado As Boolean
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 29))
+        _listParam.Add(New Datos.DParametro("@olnumi", numi))
+        _listParam.Add(New Datos.DParametro("@oluact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TO005", _listParam)
+        If _Tabla.Rows.Count > 0 Then
+            If _Tabla.Rows(0).Item(0) = 2 Then
+                _resultado = True
+            Else
+                _resultado = False
+            End If
+        Else
+            _resultado = False
+        End If
+        Return _resultado
+    End Function
 
     Public Shared Function L_prObtenerDetalleChofer(numi As String, fecha As String, nconci As String) As DataTable
         Dim _Tabla As DataTable
