@@ -145,7 +145,7 @@ Public Class frmCajaGeneral
             .FormatString = "0.00"
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
-            .Position = 10
+            .Position = 11
         End With
         With Dgv_Caja
             .GroupByBoxVisible = False

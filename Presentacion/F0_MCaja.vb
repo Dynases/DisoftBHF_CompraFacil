@@ -999,10 +999,10 @@ Public Class F0_MCaja
                 bandera = ef.band
                 If (bandera = True) Then
                     If L_fnExisteIntegracion(TbCodigo.Text) Then
-                        Throw New Exception("EXISTE UNA INTEGRACIÓN RELACIONADA")
+                        Throw New Exception("NO SE PUEDE ELIMINAR, EXISTE UNA INTEGRACIÓN RELACIONADA A ESTE CIERRE DE CAJA")
                     End If
                     If L_fnExisteIntegracionBanco(TbCodigo.Text) Then
-                        Throw New Exception("EXISTE INTEGRACIÓN A BANCO RELACIONADA")
+                        Throw New Exception("NO SE PUEDE ELIMINAR, EXISTE INTEGRACIÓN A BANCO RELACIONADA A ESTE CIERRE DE CAJA")
                     End If
                     Dim mensajeError As String = ""
                     Dim res As Boolean = L_fnCajaEliminar(TbCodigo.Text, CType(Dgv_PedidoTotal.DataSource, DataTable))
