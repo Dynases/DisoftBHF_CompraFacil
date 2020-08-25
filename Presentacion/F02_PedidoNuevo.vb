@@ -1436,15 +1436,31 @@ Public Class F02_PedidoNuevo
             For i = 0 To JGr_DetallePedido.RowCount - 1
                 JGr_DetallePedido.Row = i
                 If IsNumeric(JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value) = False Then
-                    ToastNotification.Show(Me, "falta cantidad en algun producto en el detalle".ToUpper, My.Resources.WARNING, 4000, eToastGlowColor.Green, eToastPosition.BottomCenter)
+                    ToastNotification.Show(Me, "falta cantidad en algun producto del detalle".ToUpper, My.Resources.WARNING, 4000, eToastGlowColor.Green, eToastPosition.BottomCenter)
                     _Error = True
                 End If
             Next
+            Dim j As Integer
+            For j = 0 To JGr_DetallePedido.RowCount - 1
+                JGr_DetallePedido.Row = j
+                'IsNumeric(JGr_DetallePedido.CurrentRow.Cells("Total").Value) = False Or JGr_DetallePedido.CurrentRow.Cells("Total").Value = 0
+                If JGr_DetallePedido.CurrentRow.Cells("Total").Text = String.Empty Then
+                    ToastNotification.Show(Me, "Falta calcular el total en algún producto del detalle, por favor presione el botón aplicar descuentos".ToUpper, My.Resources.WARNING, 5500, eToastGlowColor.Green, eToastPosition.TopCenter)
+                    _Error = True
+                End If
+            Next
+
+
             Dim dt As DataTable = CType(JGr_DetallePedido.DataSource, DataTable)
 
             Dim sumTotal As Double = 0
             For i = 0 To dt.Rows.Count - 1
-                sumTotal = sumTotal + dt.Rows(i).Item(8)
+                If dt.Rows(i).Item("obtotal").ToString = String.Empty Then
+                    ToastNotification.Show(Me, "Falta calcular el total en algún producto del detalle, por favor presione el botón aplicar descuentos".ToUpper, My.Resources.WARNING, 5500, eToastGlowColor.Green, eToastPosition.TopCenter)
+                    _Error = True
+                Else
+                    sumTotal = sumTotal + dt.Rows(i).Item("obtotal")
+                End If
             Next
             If (swTipoVenta.Value = False) Then
                 If (tbMontoCredito.Text.Length > 0) Then
@@ -1502,14 +1518,7 @@ Public Class F02_PedidoNuevo
                 End If
             End If
 
-            For i = 0 To JGr_DetallePedido.RowCount - 1
-                JGr_DetallePedido.Row = i
-                'IsNumeric(JGr_DetallePedido.CurrentRow.Cells("Total").Value) = False Or JGr_DetallePedido.CurrentRow.Cells("Total").Value = 0
-                If JGr_DetallePedido.CurrentRow.Cells("Total").Text = String.Empty Then
-                    ToastNotification.Show(Me, "Falta calcular el total en algún producto del detalle, por favor presione el botón aplicar descuentos".ToUpper, My.Resources.WARNING, 5500, eToastGlowColor.Green, eToastPosition.BottomCenter)
-                    _Error = True
-                End If
-            Next
+
             If (_BanderaDescuentos = False) Then
                 ToastNotification.Show(Me, "Se modificó cantidad y/o precio, por favor vuelva a presione el botón aplicar descuentos".ToUpper, My.Resources.WARNING, 5500, eToastGlowColor.Green, eToastPosition.BottomCenter)
                 _Error = True
@@ -1520,7 +1529,7 @@ Public Class F02_PedidoNuevo
             Return _Error
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
-
+            Return True
         End Try
 
     End Function

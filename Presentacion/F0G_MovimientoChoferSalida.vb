@@ -562,7 +562,8 @@ Public Class F0G_MovimientoChoferSalida
                 ToastNotification.Show(Me, "El Movimiento no pudo ser insertado".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
                 Return
             Else
-                Dim tabla As DataTable = L_prMovimientoChoferNoExisteConciliacion(_codChofer) ''Aqui obtengo el numi de la TI0022 
+                'Dim tabla As DataTable = L_prMovimientoChoferNoExisteConciliacion(_codChofer) ''Aqui obtengo el numi de la TI0022 
+                Dim tabla As DataTable = L_prMovimientoChoferNoExisteConciliacionNueva(_codChofer, tbFecha.Value.ToString("yyyy/MM/dd")) ''Aqui obtengo el numi de la TI0022 
                 Dim res As Boolean = L_prMovimientoChoferGrabarSalida(numi, tbFecha.Value.ToString("yyyy/MM/dd"), cbConcepto.Value, tbObservacion.Text, _codChofer, tabla.Rows(0).Item("ieid"), CType(grdetalle.DataSource, DataTable), _fechapedido)
                 If res Then
 
@@ -1203,7 +1204,8 @@ salirIf:
             '    .CellStyle.ImageHorizontalAlignment = ImageHorizontalAlignment.Center
             '    .Visible = True
             'End With
-            _prObtenerNumiConciliacionTI0022()
+
+            '_prObtenerNumiConciliacionTI0022()
 
             If (P_Global.gb_despacho) Then
                 CargarDespachoDeChoferNuevo(_codChofer, _fechapedido)
