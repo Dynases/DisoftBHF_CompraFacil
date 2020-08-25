@@ -2647,7 +2647,7 @@ Public Class F02_PedidoNuevo
                     Dim dt As DataTable = CType(JGr_DetallePedido.DataSource, DataTable)
                     Dim sumTotal As Double = 0
                     For i = 0 To dt.Rows.Count - 1
-                        sumTotal = sumTotal + dt.Rows(i).Item(7)
+                        sumTotal = sumTotal + dt.Rows(i).Item("obtotal")
 
                     Next
                     tbMontoCredito.Text = Str(sumTotal)
