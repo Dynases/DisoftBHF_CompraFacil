@@ -2187,21 +2187,6 @@ Public Class F02_PedidoNuevo
         End If
     End Sub
 
-
-    Private Sub JGr_DetallePedido_UpdatingCell(sender As Object, e As UpdatingCellEventArgs) Handles JGr_DetallePedido.UpdatingCell
-        'Dim cantidad, precio As Double
-        'Dim atributo As Integer
-        'cantidad = e.Value
-        'precio = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
-        'atributo = JGr_DetallePedido.CurrentRow.Cells("Atributo").Value
-        'If atributo = 0 Then
-        '    JGr_DetallePedido.CurrentRow.Cells("Monto").Value = 1 * precio
-        'Else
-        '    JGr_DetallePedido.CurrentRow.Cells("Monto").Value = cantidad * precio
-        'End If
-
-    End Sub
-
     Private Sub MBtModificar_Click(sender As Object, e As EventArgs) Handles MBtModificar.Click
         Dim dt1, dt2 As New DataTable
         Dim img As Bitmap = New Bitmap(My.Resources.Mensaje, 50, 50)
@@ -2472,7 +2457,7 @@ Public Class F02_PedidoNuevo
 
             Else
                 Modelo.MGlobal.gs_MBanderaEnter = True
-                If atributo = 0 Then
+                If atributo = -1 Then
                     CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("obpcant") = Tb_CantProd.Text
                     CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("obptot") = CDbl(1) * precio
 
@@ -2946,39 +2931,20 @@ Public Class F02_PedidoNuevo
     Private Sub JGr_DetallePedido_CellValueChanged(sender As Object, e As ColumnActionEventArgs) Handles JGr_DetallePedido.CellValueChanged
         Try
             If (e.Column.Index = JGr_DetallePedido.RootTable.Columns("Cantidad").Index) Or (e.Column.Index = JGr_DetallePedido.RootTable.Columns("Precio").Index) Then
-                'Dim lin As Integer = JGr_DetallePedido.GetValue("obnumi")
-                'Dim pos As Integer = -1
-                '_fnObtenerFilaDetalle(pos, lin)
+
                 If (Not IsNumeric(JGr_DetallePedido.GetValue("Cantidad")) Or JGr_DetallePedido.GetValue("Cantidad").ToString = String.Empty) Then
-
-                    'CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("Cantidad") = 1
-                    'CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("Descuento") = 0
-                    'CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("Monto") = CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("Precio")
-                    'CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("Total") = CType(JGr_DetallePedido.DataSource, DataTable).Rows(pos).Item("Precio")
-
                     JGr_DetallePedido.CurrentRow.Cells("Cantidad").Value = 1
-                    'JGr_DetallePedido.CurrentRow.Cells("Descuento").Value = 0
                     JGr_DetallePedido.CurrentRow.Cells("Monto").Value = JGr_DetallePedido.CurrentRow.Cells("Precio").Value
                     JGr_DetallePedido.CurrentRow.Cells("Total").Value = JGr_DetallePedido.CurrentRow.Cells("Precio").Value - JGr_DetallePedido.GetValue("Descuento")
                 Else
                     If (JGr_DetallePedido.GetValue("Cantidad") > 0) Then
-                        'Dim rowIndex As Integer = grdetalle.Row
-                        'Dim porcdesc As Double = grdetalle.GetValue("tbporc")
-                        'Dim montodesc As Double = ((grdetalle.GetValue("tbpbas") * grdetalle.GetValue("tbcmin")) * (porcdesc / 100))
-                        'Dim lin As Integer = grdetalle.GetValue("tbnumi")
-                        'Dim pos As Integer = -1
-                        '_fnObtenerFilaDetalle(pos, lin)
-                        'CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbdesc") = montodesc
-                        'grdetalle.SetValue("tbdesc", montodesc)
-                        'P_PonerTotal(rowIndex)
-
                         Dim cantidad, precio, descuento As Double
                         Dim atributo As Integer
                         cantidad = JGr_DetallePedido.GetValue("Cantidad")
                         precio = JGr_DetallePedido.GetValue("Precio")
                         atributo = JGr_DetallePedido.GetValue("Atributo")
                         descuento = JGr_DetallePedido.GetValue("Descuento")
-                        If atributo = 0 Then
+                        If atributo = -1 Then
                             JGr_DetallePedido.CurrentRow.Cells("Monto").Value = 1 * precio
                             JGr_DetallePedido.CurrentRow.Cells("Total").Value = JGr_DetallePedido.CurrentRow.Cells("Monto").Value - descuento
                         Else

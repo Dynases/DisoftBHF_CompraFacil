@@ -113,7 +113,7 @@ Public Class F0G_MovimientoChoferEntrada
     Private Sub _prhabilitar()
 
         tbChofer.ReadOnly = False
-        cbConcepto.ReadOnly = False
+        'cbConcepto.ReadOnly = False
         tbObservacion.ReadOnly = False
         tbFecha.IsInputReadOnly = False
         'grmovimiento.Enabled = False
