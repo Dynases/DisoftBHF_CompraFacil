@@ -1322,7 +1322,7 @@ Public Class F0_MCaja
             Tb_TCredito.Value = credito
             Tb_TGeneral.Value = Tb_TEfectivo.Value + Tb_TDeposito.Value + Tb_TCredito.Value
             Tb_TConciliacion.Value = totalConciliacion
-            Tb_TDiferencia.Value = Tb_TGeneral.Value - Tb_TConciliacion.Value
+            Tb_TDiferencia.Value = Tb_TConciliacion.Value - Tb_TGeneral.Value
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
         End Try
