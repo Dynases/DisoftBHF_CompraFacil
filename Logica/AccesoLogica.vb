@@ -10086,7 +10086,7 @@ Public Class AccesoLogica
         Dim _Tabla As DataTable
         Dim _Ds As New DataSet
         Dim _Where As String
-        _Where = " fvanumi = " + _Numi + " and fvanumi2 = " + _Numi2
+        _Where = " fvanumi = " + _Numi + " and fvanumi2 = " + _Numi2 + "order by oazona"
 
         _Tabla = D_Datos_Tabla("*", "VR_GO_Factura", _Where)
         _Ds.Tables.Add(_Tabla)

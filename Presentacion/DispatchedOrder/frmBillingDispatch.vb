@@ -423,7 +423,6 @@ Public Class frmBillingDispatch
             If (lista.Count = 0) Then
                 Throw New Exception("No registros para generar el reporte.")
             End If
-
             If Not IsNothing(P_Global.Visualizador) Then
                 P_Global.Visualizador.Close()
             End If
@@ -436,7 +435,6 @@ Public Class frmBillingDispatch
             objrep.SetParameterValue("nombreDistribuidor", cbChoferes.Text)
             objrep.SetParameterValue("FechaDocumento", Tb_Fecha.Value)
             objrep.SetParameterValue("nombreUsuario", P_Global.gs_user)
-
             P_Global.Visualizador.CRV1.ReportSource = objrep
             P_Global.Visualizador.Show()
             P_Global.Visualizador.BringToFront()
@@ -608,6 +606,7 @@ Public Class frmBillingDispatch
                 .FilterEditType = FilterEditType.NoEdit
                 .Position = 8
             End With
+
             With dgjPedido
                 .GroupByBoxVisible = False
                 .DefaultFilterRowComparison = FilterConditionOperator.Contains
