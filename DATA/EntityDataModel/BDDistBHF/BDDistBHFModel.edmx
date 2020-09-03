@@ -1308,9 +1308,9 @@ warning 6002: The table/view 'BDDistBHF_CF20.dbo.VR_GO_DespachoXProducto' does n
           <Property Name="oaest" Type="int" />
           <Property Name="oaap" Type="int" />
           <Property Name="oafdoc" Type="date" />
-          <Property Name="caja" Type="decimal" Precision="38" Scale="6" />
+          <Property Name="caja" Type="int" />
           <Property Name="Unidad" Type="decimal" Precision="38" Scale="2" />
-          <Property Name="Total" Type="numeric" Precision="38" Scale="2" />
+          <Property Name="Total" Type="decimal" Precision="38" Scale="2" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BDDistBHF_CF20.dbo.VR_GO_DiferenciaPedidoNota' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -6757,7 +6757,7 @@ warning 6002: The table/view 'BDDistBHF_CF20.dbo.VR_VistaPedido_PrecioCosto' doe
           <Property Name="oaest" Type="Int32" />
           <Property Name="oaap" Type="Int32" />
           <Property Name="oafdoc" Type="DateTime" Precision="0" />
-          <Property Name="caja" Type="Decimal" Precision="38" Scale="6" />
+          <Property Name="caja" Type="Int32" />
           <Property Name="Unidad" Type="Decimal" Precision="38" Scale="2" />
           <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
         </EntityType>

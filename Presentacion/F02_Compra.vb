@@ -189,6 +189,7 @@ Public Class F02_Compra
         End If
     End Sub
     Public Sub _prCalcularPrecioTotal()
+
         ''Agregado para que Muestre el Subtotal de la compra
         'tbSubtotalC.Value = dgjDetalle.GetTotal(dgjDetalle.RootTable.Columns("cabtot"), AggregateFunction.Sum)
         tbSubtotalC.Value = dgjDetalle.GetTotal(dgjDetalle.RootTable.Columns("cabsubtot"), AggregateFunction.Sum)
@@ -1700,198 +1701,205 @@ Public Class F02_Compra
     End Sub
 
     Private Sub dgjDetalle_CellValueChanged(sender As Object, e As ColumnActionEventArgs) Handles dgjDetalle.CellValueChanged
-        Dim codprod As Integer
-        If (BoModificar Or BoNuevo) Then
-            If ((e.Column.Key.Equals("cabcantcj")) Or (e.Column.Key.Equals("cabcantun")) Or (e.Column.Key.Equals("cabsubtot"))) Then
-                Dim lin As Integer = dgjDetalle.GetValue("cabnumi")
-                Dim pos As Integer = -1
-                _fnObtenerFilaDetalle(pos, lin)
+        Try
 
-                'Obtener la conversion del producto
-                codprod = dgjDetalle.GetValue("cabtc1numi")
-                Dim dtconv As New DataTable
-                dtconv = L_fnConversionProd(codprod)
-                conv = dtconv.Rows(0).Item("caconv")
+            Dim codprod As Integer
+            If (BoModificar Or BoNuevo) Then
+                If ((e.Column.Key.Equals("cabcantcj")) Or (e.Column.Key.Equals("cabcantun")) Or (e.Column.Key.Equals("cabsubtot"))) Then
+                    Dim lin As Integer = dgjDetalle.GetValue("cabnumi")
+                    Dim pos As Integer = -1
+                    _fnObtenerFilaDetalle(pos, lin)
 
-                If (Not IsNumeric(dgjDetalle.GetValue("cabcantcj")) Or dgjDetalle.GetValue("cabcantcj").ToString = String.Empty) Then
-                    dgjDetalle.SetValue("cabcantcj", 1)
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantcj") = 1
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot")
+                    'Obtener la conversion del producto
+                    codprod = dgjDetalle.GetValue("cabtc1numi")
+                    Dim dtconv As New DataTable
+                    dtconv = L_fnConversionProd(codprod)
+                    conv = dtconv.Rows(0).Item("caconv")
 
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro1cj") = 0
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro1un") = 0
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro2cj") = 0
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro2un") = 0
-
-                Else
-                    If (e.Column.Key.Equals("cabcantcj")) Then
-                        dgjDetalle.SetValue("cabsubtot", dgjDetalle.GetValue("cabcantcj") * dgjDetalle.GetValue("cabpcomcj"))
-                        dgjDetalle.SetValue("cabcantun", dgjDetalle.GetValue("cabcantcj") * conv)
-                        dgjDetalle.SetValue("cabpcomcj", dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj"))
-
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantcj") = dgjDetalle.GetValue("cabcantcj")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantun") = dgjDetalle.GetValue("cabcantcj") * conv
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj") = dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj")
-
-
-                        Dim montodesc As Double = dgjDetalle.GetValue("cabdesccj")
-                        Dim totalF As Double = dgjDetalle.GetValue("cabsubtot") - montodesc
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = totalF
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = dgjDetalle.GetValue("cabsubtot")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = montodesc
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostocj") = ((dgjDetalle.GetValue("cabtot") * 0.87) / dgjDetalle.GetValue("cabcantcj"))
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostoun") = (dgjDetalle.GetValue("cabpcostocj") / conv)
-
-
-                        Dim descuento As Double = tbDescuentoPro1.Value
-                        Dim TotalBruto As Double = tbSubtotalC.Value
-                        CalcularDescuento01(TotalBruto, descuento)
-                        CalcularDescuento02(TotalBruto, tvDescuento02.Value)
-
-                        _prCalcularPrecioTotal()
-                    End If
-                End If
-
-                If (Not IsNumeric(dgjDetalle.GetValue("cabcantun")) Or dgjDetalle.GetValue("cabcantun").ToString = String.Empty) Then
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantun") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantun")
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot")
-                Else
-                    If (e.Column.Key.Equals("cabcantun")) Then
-                        dgjDetalle.SetValue("cabcantcj", dgjDetalle.GetValue("cabcantun") / conv)
-                        dgjDetalle.SetValue("cabsubtot", dgjDetalle.GetValue("cabcantcj") * dgjDetalle.GetValue("cabpcomcj"))
-                        dgjDetalle.SetValue("cabpcomcj", dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj"))
-
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantcj") = dgjDetalle.GetValue("cabcantcj")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantun") = dgjDetalle.GetValue("cabcantun")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj") = dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj")
-
-
-                        Dim montodesc As Double = dgjDetalle.GetValue("cabdesccj")
-                        Dim totalF As Double = dgjDetalle.GetValue("cabsubtot") - montodesc
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = totalF
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = dgjDetalle.GetValue("cabsubtot")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = montodesc
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostocj") = ((dgjDetalle.GetValue("cabtot") * 0.87) / dgjDetalle.GetValue("cabcantcj"))
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostoun") = (dgjDetalle.GetValue("cabpcostocj") / conv)
-
-
-                        Dim descuento As Double = tbDescuentoPro1.Value
-                        Dim TotalBruto As Double = tbSubtotalC.Value
-                        CalcularDescuento01(TotalBruto, descuento)
-                        CalcularDescuento02(TotalBruto, tvDescuento02.Value)
-
-                        _prCalcularPrecioTotal()
-
-                    End If
-                End If
-
-                If (e.Column.Key.Equals("cabsubtot")) Then
-                    If (Not IsNumeric(dgjDetalle.GetValue("cabsubtot")) Or dgjDetalle.GetValue("cabsubtot").ToString = String.Empty) Then
-
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = 0 'CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj") = 0 ' CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomun") = 0
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = 0
+                    If (Not IsNumeric(dgjDetalle.GetValue("cabcantcj")) Or dgjDetalle.GetValue("cabcantcj").ToString = String.Empty) Then
+                        dgjDetalle.SetValue("cabcantcj", 1)
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantcj") = 1
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot")
 
                         CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro1cj") = 0
                         CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro1un") = 0
                         CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro2cj") = 0
                         CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro2un") = 0
+
                     Else
-                        dgjDetalle.SetValue("cabpcomcj", dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj"))
-                        Dim unid As Double = (dgjDetalle.GetValue("cabcantun") / dgjDetalle.GetValue("cabcantcj"))
-                        dgjDetalle.SetValue("cabpcomun", dgjDetalle.GetValue("cabpcomcj") / unid)
+                        If (e.Column.Key.Equals("cabcantcj")) Then
+                            dgjDetalle.SetValue("cabsubtot", dgjDetalle.GetValue("cabcantcj") * dgjDetalle.GetValue("cabpcomcj"))
+                            dgjDetalle.SetValue("cabcantun", dgjDetalle.GetValue("cabcantcj") * conv)
+                            dgjDetalle.SetValue("cabpcomcj", dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj"))
 
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj") = dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomun") = dgjDetalle.GetValue("cabpcomcj") / unid
-
-
-                        Dim montodesc As Double = dgjDetalle.GetValue("cabdesccj")
-                        Dim totalF As Double = dgjDetalle.GetValue("cabsubtot") - montodesc
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = totalF
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = dgjDetalle.GetValue("cabsubtot")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = montodesc
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostocj") = (CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") * 0.87) / dgjDetalle.GetValue("cabcantcj")
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostoun") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostocj") / conv
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantcj") = dgjDetalle.GetValue("cabcantcj")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantun") = dgjDetalle.GetValue("cabcantcj") * conv
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj") = dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj")
 
 
-                        Dim descuento As Double = tbDescuentoPro1.Value
-                        Dim TotalBruto As Double = tbSubtotalC.Value
-                        CalcularDescuento01(TotalBruto, descuento)
-                        CalcularDescuento02(TotalBruto, tvDescuento02.Value)
+                            Dim montodesc As Double = dgjDetalle.GetValue("cabdesccj")
+                            Dim totalF As Double = dgjDetalle.GetValue("cabsubtot") - montodesc
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = totalF
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = dgjDetalle.GetValue("cabsubtot")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = montodesc
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostocj") = ((dgjDetalle.GetValue("cabtot") * 0.87) / dgjDetalle.GetValue("cabcantcj"))
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostoun") = (dgjDetalle.GetValue("cabpcostocj") / conv)
 
-                        _prCalcularPrecioTotal()
 
+                            Dim descuento As Double = tbDescuentoPro1.Value
+                            Dim TotalBruto As Double = tbSubtotalC.Value
+                            CalcularDescuento01(TotalBruto, descuento)
+                            CalcularDescuento02(TotalBruto, tvDescuento02.Value)
+
+                            _prCalcularPrecioTotal()
+                        End If
                     End If
 
-                    If (dgjDetalle.GetValue("cabtca1numi") <> 0) Then
-                        dgjDetalle.SetValue("estado", 2)
+                    If (Not IsNumeric(dgjDetalle.GetValue("cabcantun")) Or dgjDetalle.GetValue("cabcantun").ToString = String.Empty) Then
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantun") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantun")
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot")
+                    Else
+                        If (e.Column.Key.Equals("cabcantun")) Then
+                            dgjDetalle.SetValue("cabcantcj", dgjDetalle.GetValue("cabcantun") / conv)
+                            dgjDetalle.SetValue("cabsubtot", dgjDetalle.GetValue("cabcantcj") * dgjDetalle.GetValue("cabpcomcj"))
+                            dgjDetalle.SetValue("cabpcomcj", dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj"))
+
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantcj") = dgjDetalle.GetValue("cabcantcj")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabcantun") = dgjDetalle.GetValue("cabcantun")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj") = dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj")
+
+
+                            Dim montodesc As Double = dgjDetalle.GetValue("cabdesccj")
+                            Dim totalF As Double = dgjDetalle.GetValue("cabsubtot") - montodesc
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = totalF
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = dgjDetalle.GetValue("cabsubtot")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = montodesc
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostocj") = ((dgjDetalle.GetValue("cabtot") * 0.87) / dgjDetalle.GetValue("cabcantcj"))
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostoun") = (dgjDetalle.GetValue("cabpcostocj") / conv)
+
+
+                            Dim descuento As Double = tbDescuentoPro1.Value
+                            Dim TotalBruto As Double = tbSubtotalC.Value
+                            CalcularDescuento01(TotalBruto, descuento)
+                            CalcularDescuento02(TotalBruto, tvDescuento02.Value)
+
+                            _prCalcularPrecioTotal()
+
+                        End If
+                    End If
+
+                    If (e.Column.Key.Equals("cabsubtot")) Then
+                        If (Not IsNumeric(dgjDetalle.GetValue("cabsubtot")) Or dgjDetalle.GetValue("cabsubtot").ToString = String.Empty) Then
+
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = 0 'CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj") = 0 ' CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomun") = 0
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = 0
+
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro1cj") = 0
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro1un") = 0
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro2cj") = 0
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescpro2un") = 0
+                        Else
+                            dgjDetalle.SetValue("cabpcomcj", dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj"))
+                            Dim unid As Double = (dgjDetalle.GetValue("cabcantun") / dgjDetalle.GetValue("cabcantcj"))
+                            dgjDetalle.SetValue("cabpcomun", dgjDetalle.GetValue("cabpcomcj") / unid)
+
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomcj") = dgjDetalle.GetValue("cabsubtot") / dgjDetalle.GetValue("cabcantcj")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcomun") = dgjDetalle.GetValue("cabpcomcj") / unid
+
+
+                            Dim montodesc As Double = dgjDetalle.GetValue("cabdesccj")
+                            Dim totalF As Double = dgjDetalle.GetValue("cabsubtot") - montodesc
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = totalF
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = dgjDetalle.GetValue("cabsubtot")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = montodesc
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostocj") = (CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") * 0.87) / dgjDetalle.GetValue("cabcantcj")
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostoun") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabpcostocj") / conv
+
+
+                            Dim descuento As Double = tbDescuentoPro1.Value
+                            Dim TotalBruto As Double = tbSubtotalC.Value
+                            CalcularDescuento01(TotalBruto, descuento)
+                            CalcularDescuento02(TotalBruto, tvDescuento02.Value)
+
+                            _prCalcularPrecioTotal()
+
+                        End If
+
+                        If (dgjDetalle.GetValue("cabtca1numi") <> 0) Then
+                            dgjDetalle.SetValue("estado", 2)
+                        End If
                     End If
                 End If
-            End If
 
 
 
-            '''''''''''''''''''''MONTO DE DESCUENTO '''''''''''''''''''''
+                '''''''''''''''''''''MONTO DE DESCUENTO '''''''''''''''''''''
 
-            If (e.Column.Index = dgjDetalle.RootTable.Columns("cabdesccj").Index) Then
-                If (Not IsNumeric(dgjDetalle.GetValue("cabdesccj")) Or dgjDetalle.GetValue("cabdesccj").ToString = String.Empty) Then
-                    Dim lin As Integer = dgjDetalle.GetValue("cabnumi")
-                    Dim pos As Integer = -1
-                    _fnObtenerFilaDetalle(pos, lin)
-                    dgjDetalle.SetValue("cabdesccj", 0)
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = 0
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabporc") = 0
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescun") = 0
-                    CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
-                Else
-                    If (dgjDetalle.GetValue("cabdesccj") >= 0) Then 'And dgjDetalle.GetValue("cabdesc") <= dgjDetalle.GetValue("cabsubtot")
-
-                        Dim montodesc As Double = dgjDetalle.GetValue("cabdesccj")
-                        Dim pordesc As Double = ((montodesc * 100) / dgjDetalle.GetValue("cabsubtot"))
-                        Dim montodescun As Double = montodesc / dgjDetalle.GetValue("cabcantcj")
-
-
+                If (e.Column.Index = dgjDetalle.RootTable.Columns("cabdesccj").Index) Then
+                    If (Not IsNumeric(dgjDetalle.GetValue("cabdesccj")) Or dgjDetalle.GetValue("cabdesccj").ToString = String.Empty) Then
                         Dim lin As Integer = dgjDetalle.GetValue("cabnumi")
                         Dim pos As Integer = -1
                         _fnObtenerFilaDetalle(pos, lin)
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = montodesc
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabporc") = pordesc
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescun") = montodescun
-
-                        dgjDetalle.SetValue("cabporc", pordesc)
-
-                        Dim totalF As Double = dgjDetalle.GetValue("cabsubtot") - montodesc
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = totalF
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = dgjDetalle.GetValue("cabsubtot")
-
-
-                        Dim descuento As Double = tbDescuentoPro1.Value
-                        Dim TotalBruto As Double = tbSubtotalC.Value
-                        CalcularDescuento01(TotalBruto, descuento)
-                        CalcularDescuento02(TotalBruto, tvDescuento02.Value)
-
-                        _prCalcularPrecioTotal()
-
-                    Else
-                        Dim lin As Integer = dgjDetalle.GetValue("cabnumi")
-                        Dim pos As Integer = -1
-                        _fnObtenerFilaDetalle(pos, lin)
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabporc") = 0
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = 0
-                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
-                        dgjDetalle.SetValue("cabporc", 0)
                         dgjDetalle.SetValue("cabdesccj", 0)
-                        dgjDetalle.SetValue("cabtot", dgjDetalle.GetValue("cabsubtot"))
-                        _prCalcularPrecioTotal()
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = 0
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabporc") = 0
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescun") = 0
+                        CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
+                    Else
+                        If (dgjDetalle.GetValue("cabdesccj") >= 0) Then 'And dgjDetalle.GetValue("cabdesc") <= dgjDetalle.GetValue("cabsubtot")
 
+                            Dim montodesc As Double = dgjDetalle.GetValue("cabdesccj")
+                            Dim pordesc As Double = ((montodesc * 100) / dgjDetalle.GetValue("cabsubtot"))
+                            Dim montodescun As Double = montodesc / dgjDetalle.GetValue("cabcantcj")
+
+
+                            Dim lin As Integer = dgjDetalle.GetValue("cabnumi")
+                            Dim pos As Integer = -1
+                            _fnObtenerFilaDetalle(pos, lin)
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = montodesc
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabporc") = pordesc
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdescun") = montodescun
+
+                            dgjDetalle.SetValue("cabporc", pordesc)
+
+                            Dim totalF As Double = dgjDetalle.GetValue("cabsubtot") - montodesc
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = totalF
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot") = dgjDetalle.GetValue("cabsubtot")
+
+
+                            Dim descuento As Double = tbDescuentoPro1.Value
+                            Dim TotalBruto As Double = tbSubtotalC.Value
+                            CalcularDescuento01(TotalBruto, descuento)
+                            CalcularDescuento02(TotalBruto, tvDescuento02.Value)
+
+                            _prCalcularPrecioTotal()
+
+                        Else
+                            Dim lin As Integer = dgjDetalle.GetValue("cabnumi")
+                            Dim pos As Integer = -1
+                            _fnObtenerFilaDetalle(pos, lin)
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabporc") = 0
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabdesccj") = 0
+                            CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabtot") = CType(dgjDetalle.DataSource, DataTable).Rows(pos).Item("cabsubtot")
+                            dgjDetalle.SetValue("cabporc", 0)
+                            dgjDetalle.SetValue("cabdesccj", 0)
+                            dgjDetalle.SetValue("cabtot", dgjDetalle.GetValue("cabsubtot"))
+                            _prCalcularPrecioTotal()
+
+                        End If
                     End If
                 End If
-            End If
 
-        End If
+            End If
+        Catch ex As Exception
+            MostrarMensajeError("Ocurrio un error inesperado")
+        End Try
+
+
     End Sub
     Public Sub _fnObtenerFilaDetalle(ByRef pos As Integer, numi As Integer)
         For i As Integer = 0 To CType(dgjDetalle.DataSource, DataTable).Rows.Count - 1 Step 1
