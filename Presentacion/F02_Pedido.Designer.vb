@@ -243,7 +243,7 @@ Partial Class F02_Pedido
         '
         Me.MSuperTabControlPanelBusqueda.Controls.Add(Me.TableLayoutPanel3)
         Me.MSuperTabControlPanelBusqueda.Margin = New System.Windows.Forms.Padding(4)
-        Me.MSuperTabControlPanelBusqueda.Size = New System.Drawing.Size(997, 503)
+        Me.MSuperTabControlPanelBusqueda.Size = New System.Drawing.Size(1170, 562)
         '
         'MSuperTabControlPanelRegistro
         '
@@ -2125,7 +2125,7 @@ Partial Class F02_Pedido
         Me.TableLayoutPanel3.RowCount = 2
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(997, 503)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(1170, 562)
         Me.TableLayoutPanel3.TabIndex = 0
         '
         'GroupPanel7
@@ -2138,7 +2138,7 @@ Partial Class F02_Pedido
         Me.GroupPanel7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel7.Location = New System.Drawing.Point(3, 93)
         Me.GroupPanel7.Name = "GroupPanel7"
-        Me.GroupPanel7.Size = New System.Drawing.Size(991, 407)
+        Me.GroupPanel7.Size = New System.Drawing.Size(1164, 466)
         '
         '
         '
@@ -2176,7 +2176,7 @@ Partial Class F02_Pedido
         Me.JGr_Buscador.EnterKeyBehavior = Janus.Windows.GridEX.EnterKeyBehavior.None
         Me.JGr_Buscador.Location = New System.Drawing.Point(0, 0)
         Me.JGr_Buscador.Name = "JGr_Buscador"
-        Me.JGr_Buscador.Size = New System.Drawing.Size(985, 383)
+        Me.JGr_Buscador.Size = New System.Drawing.Size(1158, 442)
         Me.JGr_Buscador.TabIndex = 1
         '
         'GroupPanel6
@@ -2189,7 +2189,7 @@ Partial Class F02_Pedido
         Me.GroupPanel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel6.Location = New System.Drawing.Point(3, 3)
         Me.GroupPanel6.Name = "GroupPanel6"
-        Me.GroupPanel6.Size = New System.Drawing.Size(991, 84)
+        Me.GroupPanel6.Size = New System.Drawing.Size(1164, 84)
         '
         '
         '
@@ -2236,7 +2236,7 @@ Partial Class F02_Pedido
         Me.PanelEx9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelEx9.Location = New System.Drawing.Point(0, 0)
         Me.PanelEx9.Name = "PanelEx9"
-        Me.PanelEx9.Size = New System.Drawing.Size(985, 60)
+        Me.PanelEx9.Size = New System.Drawing.Size(1158, 60)
         Me.PanelEx9.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelEx9.Style.BackColor1.Color = System.Drawing.SystemColors.Control
         Me.PanelEx9.Style.BackColor2.Color = System.Drawing.SystemColors.Control
@@ -2314,24 +2314,24 @@ Partial Class F02_Pedido
         Me.ConMenu_Clientes.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ConMenu_Clientes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ACTUALIZARCLIENTESToolStripMenuItem, Me.VERCLIENTESPASIVOSYACTIVOSToolStripMenuItem, Me.VERCLIENTESACTIVOSToolStripMenuItem})
         Me.ConMenu_Clientes.Name = "ConMenu_Clientes"
-        Me.ConMenu_Clientes.Size = New System.Drawing.Size(256, 70)
+        Me.ConMenu_Clientes.Size = New System.Drawing.Size(258, 70)
         '
         'ACTUALIZARCLIENTESToolStripMenuItem
         '
         Me.ACTUALIZARCLIENTESToolStripMenuItem.Name = "ACTUALIZARCLIENTESToolStripMenuItem"
-        Me.ACTUALIZARCLIENTESToolStripMenuItem.Size = New System.Drawing.Size(255, 22)
+        Me.ACTUALIZARCLIENTESToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.ACTUALIZARCLIENTESToolStripMenuItem.Text = "ACTUALIZAR CLIENTES"
         '
         'VERCLIENTESPASIVOSYACTIVOSToolStripMenuItem
         '
         Me.VERCLIENTESPASIVOSYACTIVOSToolStripMenuItem.Name = "VERCLIENTESPASIVOSYACTIVOSToolStripMenuItem"
-        Me.VERCLIENTESPASIVOSYACTIVOSToolStripMenuItem.Size = New System.Drawing.Size(255, 22)
+        Me.VERCLIENTESPASIVOSYACTIVOSToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.VERCLIENTESPASIVOSYACTIVOSToolStripMenuItem.Text = "VER CLIENTES PASIVOS Y ACTIVOS"
         '
         'VERCLIENTESACTIVOSToolStripMenuItem
         '
         Me.VERCLIENTESACTIVOSToolStripMenuItem.Name = "VERCLIENTESACTIVOSToolStripMenuItem"
-        Me.VERCLIENTESACTIVOSToolStripMenuItem.Size = New System.Drawing.Size(255, 22)
+        Me.VERCLIENTESACTIVOSToolStripMenuItem.Size = New System.Drawing.Size(257, 22)
         Me.VERCLIENTESACTIVOSToolStripMenuItem.Text = "VER CLIENTES ACTIVOS"
         '
         'ConMenu_Buscador
@@ -2339,12 +2339,12 @@ Partial Class F02_Pedido
         Me.ConMenu_Buscador.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ConMenu_Buscador.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VERHISTORIALToolStripMenuItem})
         Me.ConMenu_Buscador.Name = "ConMenu_Buscador"
-        Me.ConMenu_Buscador.Size = New System.Drawing.Size(146, 26)
+        Me.ConMenu_Buscador.Size = New System.Drawing.Size(147, 26)
         '
         'VERHISTORIALToolStripMenuItem
         '
         Me.VERHISTORIALToolStripMenuItem.Name = "VERHISTORIALToolStripMenuItem"
-        Me.VERHISTORIALToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
+        Me.VERHISTORIALToolStripMenuItem.Size = New System.Drawing.Size(146, 22)
         Me.VERHISTORIALToolStripMenuItem.Text = "VER ESTADOS"
         '
         'ConMenu_Opciones1
@@ -2352,36 +2352,36 @@ Partial Class F02_Pedido
         Me.ConMenu_Opciones1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ConMenu_Opciones1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.GRABARRECLAMOREPARTIDORToolStripMenuItem, Me.VERHISTORIALToolStripMenuItem1, Me.REGERARPEDIDOToolStripMenuItem, Me.ANULARPEDIDOToolStripMenuItem})
         Me.ConMenu_Opciones1.Name = "ConMenu_Opciones"
-        Me.ConMenu_Opciones1.Size = New System.Drawing.Size(247, 114)
+        Me.ConMenu_Opciones1.Size = New System.Drawing.Size(248, 114)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(246, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(247, 22)
         Me.ToolStripMenuItem1.Text = "GRABAR RECLAMO CLIENTE"
         '
         'GRABARRECLAMOREPARTIDORToolStripMenuItem
         '
         Me.GRABARRECLAMOREPARTIDORToolStripMenuItem.Name = "GRABARRECLAMOREPARTIDORToolStripMenuItem"
-        Me.GRABARRECLAMOREPARTIDORToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.GRABARRECLAMOREPARTIDORToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
         Me.GRABARRECLAMOREPARTIDORToolStripMenuItem.Text = "GRABAR RECLAMO REPARTIDOR"
         '
         'VERHISTORIALToolStripMenuItem1
         '
         Me.VERHISTORIALToolStripMenuItem1.Name = "VERHISTORIALToolStripMenuItem1"
-        Me.VERHISTORIALToolStripMenuItem1.Size = New System.Drawing.Size(246, 22)
+        Me.VERHISTORIALToolStripMenuItem1.Size = New System.Drawing.Size(247, 22)
         Me.VERHISTORIALToolStripMenuItem1.Text = "VER ESTADOS"
         '
         'REGERARPEDIDOToolStripMenuItem
         '
         Me.REGERARPEDIDOToolStripMenuItem.Name = "REGERARPEDIDOToolStripMenuItem"
-        Me.REGERARPEDIDOToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.REGERARPEDIDOToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
         Me.REGERARPEDIDOToolStripMenuItem.Text = "REGENERAR PEDIDO"
         '
         'ANULARPEDIDOToolStripMenuItem
         '
         Me.ANULARPEDIDOToolStripMenuItem.Name = "ANULARPEDIDOToolStripMenuItem"
-        Me.ANULARPEDIDOToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.ANULARPEDIDOToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
         Me.ANULARPEDIDOToolStripMenuItem.Text = "ANULAR PEDIDO"
         '
         'btActualizar

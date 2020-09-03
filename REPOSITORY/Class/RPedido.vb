@@ -163,5 +163,31 @@ Public Class RPedido
             Throw New Exception(ex.Message)
         End Try
     End Function
+#Region "Verificaciones"
+    Public Function ExisteConciliacion(listIdPedido As List(Of Integer), idChofer As Integer, tipoValidacion As Integer) As Boolean Implements IPedido.ExisteConciliacion
+        Try
+            Using db = GetSchema()
+                Dim cantidad As Integer = 0
+                For Each id As String In listIdPedido
+                    Dim data = (From a In db.TO001C
+                                Where a.oacnconc <> 0 And a.oacoanumi = id And a.oaccbnumi = idChofer
+                                Select a).Count()
+                    If tipoValidacion = 1 Then
+                        If data = 0 Then
+                            Throw New Exception("Pedido " + id + " sin conciliación, no se puede facturar")
+                        End If
+                    Else
+                        If data <> 0 Then
+                            Throw New Exception("Pedido " + id + " tiene conciliación, no se puede volver a Distribución")
+                        End If
+                    End If
+                Next
+                Return True
+            End Using
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        End Try
+    End Function
+#End Region
 
 End Class

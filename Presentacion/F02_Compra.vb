@@ -3,7 +3,7 @@ Imports DevComponents.DotNetBar
 Imports Janus.Windows.GridEX
 Imports DevComponents.DotNetBar.Controls
 Imports System.Math
-
+Imports System.Transactions
 
 Public Class F02_Compra
 
@@ -229,10 +229,10 @@ Public Class F02_Compra
                 'End If
 
                 If (dgjDetalle.GetValue("cabtca1numi") <> 0) Then
-                        dgjDetalle.SetValue("estado", 2)
-                    End If
+                    dgjDetalle.SetValue("estado", 2)
                 End If
             End If
+        End If
     End Sub
 
     Private Sub tsmiEliminarFilaDetalle_Click(sender As Object, e As EventArgs) Handles tsmiEliminarFilaDetalle.Click
@@ -241,10 +241,13 @@ Public Class F02_Compra
             dgjDetalle.CurrentRow.Delete()
             dgjDetalle.Refetch()
             dgjDetalle.Refresh()
+            dgjDetalle.UpdateData()
+            Dim dtt As DataTable = CType(dgjDetalle.DataSource, DataTable)
+            dtt.AcceptChanges()
+            CType(dgjDetalle.DataSource, DataTable).Equals(dtt)
             _prCalcularPrecioTotal()
         Catch ex As Exception
-            'sms
-            'MsgBox(ex)
+            MostrarMensajeError("Ocurrio un error inesperado")
         End Try
     End Sub
 
@@ -252,34 +255,55 @@ Public Class F02_Compra
 
 #Region "Metodos y funciones indispensables"
 
+    Private Sub MostrarMensajeError(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.WARNING,
+                               5000,
+                               eToastGlowColor.Red,
+                               eToastPosition.TopCenter)
+
+    End Sub
+    Private Sub MostrarMensajeOk(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.OK,
+                               5000,
+                               eToastGlowColor.Green,
+                               eToastPosition.TopCenter)
+    End Sub
     Private Sub P_prInicio()
-        'Abrir conexión
-        If (Not gb_ConexionAbierta) Then
-            L_prAbrirConexion()
-        End If
+        Try
+            'Abrir conexión
+            If (Not gb_ConexionAbierta) Then
+                L_prAbrirConexion()
+            End If
 
-        'Validar requisitos del programa
-        If (Not P_fnValidarRequisitos() = String.Empty) Then
-            Return
-        End If
+            'Validar requisitos del programa
+            If (Not P_fnValidarRequisitos() = String.Empty) Then
+                Return
+            End If
 
-        'Inicializar componentes
-        P_prInicializarComponentes()
+            'Inicializar componentes
+            P_prInicializarComponentes()
 
-        'Habilitar/Deshabilitar compotentes del formulario
-        P_prHDComponentes(False)
+            'Habilitar/Deshabilitar compotentes del formulario
+            P_prHDComponentes(False)
 
-        'Armar todo los combobox 
-        P_prArmarCombos()
+            'Armar todo los combobox 
+            P_prArmarCombos()
 
-        'Armar todo las grillas
-        BoNavegar = False
-        P_prArmarGrillas()
-        P_prEliminarArchivosSinReferencia(DtBusqueda, "nimg", StRutaDocumentos)
-        BoNavegar = True
+            'Armar todo las grillas
+            BoNavegar = False
+            P_prArmarGrillas()
+            P_prEliminarArchivosSinReferencia(DtBusqueda, "nimg", StRutaDocumentos)
+            BoNavegar = True
 
-        P_prActualizarPaginacion(0)
-        P_prLlenarDatos(0)
+            P_prActualizarPaginacion(0)
+            P_prLlenarDatos(0)
+        Catch ex As Exception
+            MostrarMensajeError("Ocurrio un error inesperado")
+        End Try
     End Sub
 
     Private Function P_fnValidarRequisitos() As String
@@ -497,61 +521,65 @@ Public Class F02_Compra
     End Sub
 
     Private Sub P_prLlenarDatos(ByVal index As Integer)
-        If (index <= dgjBusqueda.GetRows.Count - 1 And index >= 0) Then
-            If (BoNavegar) Then
-                With dgjBusqueda
-                    Me.tbCodigo.Text = .GetValue("caanumi").ToString
-                    Me.dtiFechaCompra.Value = .GetValue("caafdoc")
-                    Me.tbCodProveedor.Text = .GetValue("caaprov").ToString
-                    Me.tbProveedor.Text = .GetValue("nprov").ToString
-                    Me.tbNroFactura.Text = .GetValue("caanfac").ToString
-                    Me.tbObs.Text = .GetValue("caaobs").ToString
-                    Me.tbNitProv.Text = .GetValue("cmnit").ToString
-                    Me.swTipoVenta.Value = .GetValue("caatven")
-                    Me.tbFechaVenc.Value = .GetValue("caafvcred").ToString
-                    Me.swEmision.Value = .GetValue("caaemision")
-                    Me.swConsigna.Value = .GetValue("caaconsigna")
-                    Me.dtiFfactura.Value = .GetValue("caaffactura")
-                    Me.tbDescuentoPro1.Value = .GetValue("caadescpro1")
-                    Me.tvDescuento02.Value = .GetValue("caadescpro2")
+        Try
+            If (index <= dgjBusqueda.GetRows.Count - 1 And index >= 0) Then
+                If (BoNavegar) Then
+                    With dgjBusqueda
+                        Me.tbCodigo.Text = .GetValue("caanumi").ToString
+                        Me.dtiFechaCompra.Value = .GetValue("caafdoc")
+                        Me.tbCodProveedor.Text = .GetValue("caaprov").ToString
+                        Me.tbProveedor.Text = .GetValue("nprov").ToString
+                        Me.tbNroFactura.Text = .GetValue("caanfac").ToString
+                        Me.tbObs.Text = .GetValue("caaobs").ToString
+                        Me.tbNitProv.Text = .GetValue("cmnit").ToString
+                        Me.swTipoVenta.Value = .GetValue("caatven")
+                        Me.tbFechaVenc.Value = .GetValue("caafvcred").ToString
+                        Me.swEmision.Value = .GetValue("caaemision")
+                        Me.swConsigna.Value = .GetValue("caaconsigna")
+                        Me.dtiFfactura.Value = .GetValue("caaffactura")
+                        Me.tbDescuentoPro1.Value = .GetValue("caadescpro1")
+                        Me.tvDescuento02.Value = .GetValue("caadescpro2")
 
 
-                    'If (IsDBNull(.GetValue("asiento"))) Then
-                    '    Asiento = ""
-                    'Else
-                    '    Asiento = .GetValue("asiento")
-                    'End If
+                        'If (IsDBNull(.GetValue("asiento"))) Then
+                        '    Asiento = ""
+                        'Else
+                        '    Asiento = .GetValue("asiento")
+                        'End If
 
 
-                    'Aqui se coloca los datos de la grilla de los Equipos
-                    P_prArmarGrillaDetalle(tbCodigo.Text)
+                        'Aqui se coloca los datos de la grilla de los Equipos
+                        P_prArmarGrillaDetalle(tbCodigo.Text)
 
-                    MLbFecha.Text = CType(.GetValue("caafact").ToString, Date).ToString("dd/MM/yyyy")
-                    MLbHora.Text = .GetValue("caahact").ToString
-                    MLbUsuario.Text = .GetValue("caauact").ToString
-                End With
+                        MLbFecha.Text = CType(.GetValue("caafact").ToString, Date).ToString("dd/MM/yyyy")
+                        MLbHora.Text = .GetValue("caahact").ToString
+                        MLbUsuario.Text = .GetValue("caauact").ToString
+                    End With
 
-                tbMdesc.Value = dgjBusqueda.GetValue("caadesc")
-                _prCalcularPrecioTotal()
-                If swEmision.Value = True Then
-                    _prCargarFacturacion(tbCodigo.Text)
-                End If
+                    tbMdesc.Value = dgjBusqueda.GetValue("caadesc")
+                    _prCalcularPrecioTotal()
+                    If swEmision.Value = True Then
+                        _prCargarFacturacion(tbCodigo.Text)
+                    End If
 
-                P_prActualizarPaginacion(dgjBusqueda.Row)
+                    P_prActualizarPaginacion(dgjBusqueda.Row)
 
-                If (Not boModif And boAdd) Then
-                    If (Now.Date = Me.dtiFechaCompra.Value) Then
-                        MBtModificar.Visible = True
-                    Else
-                        MBtModificar.Visible = False
+                    If (Not boModif And boAdd) Then
+                        If (Now.Date = Me.dtiFechaCompra.Value) Then
+                            MBtModificar.Visible = True
+                        Else
+                            MBtModificar.Visible = False
+                        End If
                     End If
                 End If
+            Else
+                If (dgjBusqueda.GetRows.Count > 0) Then
+                    P_prMoverIndexActual()
+                End If
             End If
-        Else
-            If (dgjBusqueda.GetRows.Count > 0) Then
-                P_prMoverIndexActual()
-            End If
-        End If
+        Catch ex As Exception
+            MostrarMensajeError("Ocurrio un error inesperado")
+        End Try
     End Sub
     Private Sub _prCargarFacturacion(_numi As String)
         Dim dtC As New DataTable
@@ -594,197 +622,218 @@ Public Class F02_Compra
     End Sub
 
     Private Sub P_prEliminarRegistro()
-        'Verifica Pagos de la compra
-        If (swTipoVenta.Value = False) Then
-            Dim res1 As Boolean = L_fnVerificarPagosCompras(tbCodigo.Text)
-            If res1 Then
-                Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
-                ToastNotification.Show(Me, "No se puede eliminar la Compra con código ".ToUpper + tbCodigo.Text + ", porque tiene pagos realizados, por favor primero elimine los pagos correspondientes a esta compra".ToUpper,
-                                          img, 5000,
-                                          eToastGlowColor.Green,
-                                          eToastPosition.TopCenter)
+        Try
+            'Verifica Pagos de la compra
+            If (swTipoVenta.Value = False) Then
+                Dim res1 As Boolean = L_fnVerificarPagosCompras(tbCodigo.Text)
+                If res1 Then
+                    Dim img As Bitmap = New Bitmap(My.Resources.WARNING, 50, 50)
+                    ToastNotification.Show(Me, "No se puede eliminar la Compra con código ".ToUpper + tbCodigo.Text + ", porque tiene pagos realizados, por favor primero elimine los pagos correspondientes a esta compra".ToUpper,
+                                              img, 5000,
+                                              eToastGlowColor.Green,
+                                              eToastPosition.TopCenter)
 
-                Exit Sub
-            End If
-        End If
-
-        'Verifica si ya se contabilizó la compra
-        Dim contabilizo As Boolean = L_fnVerificarSiSeContabilizo(tbCodigo.Text)
-        If contabilizo Then
-            Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
-            ToastNotification.Show(Me, "Esta Compra ya fue contabilizada, si usted la elimina deberá hacer el ajuste del asiento contable manualmente".ToUpper, img, 5000, eToastGlowColor.Red, eToastPosition.TopCenter)
-        End If
-
-
-        Dim numi As String = tbCodigo.Text 'Valor del código único
-        Dim info As New TaskDialogInfo("¿esta seguro de eliminar el registro?".ToUpper,
-                                       eTaskDialogIcon.Delete, "advertencia".ToUpper,
-                                       "Esta a punto de eliminar la compra con".ToUpper _
-                                       + vbCrLf + "código -> ".ToUpper _
-                                       + numi + " " + vbCrLf + "Desea continuar?".ToUpper,
-                                       eTaskDialogButton.Yes Or eTaskDialogButton.Cancel,
-                                       eTaskDialogBackgroundColor.Blue)
-        Dim result As eTaskDialogResult = TaskDialog.Show(info)
-        If result = eTaskDialogResult.Yes Then
-            Dim mensajeError As String = ""
-            Dim resEliminar As Boolean = L_fnbValidarEliminacion(numi, "TCA001", "caanumi", mensajeError)
-            If (resEliminar) Then
-                Dim res As Boolean = L_fnCompraEliminar(numi) 'Medoto de lógica para eliminar
-                If (res) Then
-                    ToastNotification.Show(Me, "Codigo de compra: ".ToUpper + numi + " eliminado con Exito.".ToUpper,
-                                           My.Resources.GRABACION_EXITOSA, InDuracion * 1000,
-                                           eToastGlowColor.Green,
-                                           eToastPosition.TopCenter)
-                    BoNavegar = False
-                    P_prArmarGrillaBusqueda()
-                    BoNavegar = True
-                    P_prMoverIndexActual()
-                Else
-                    ToastNotification.Show(Me, "No se pudo eliminar la compra con código: ".ToUpper + numi + ", intente nuevamente.".ToUpper,
-                                           My.Resources.WARNING, InDuracion * 1000,
-                                           eToastGlowColor.Red,
-                                           eToastPosition.TopCenter)
+                    Exit Sub
                 End If
-            Else
-                ToastNotification.Show(Me, mensajeError.ToUpper,
-                                           My.Resources.I64x64_error, InDuracion * 1000,
-                                           eToastGlowColor.Red,
-                                           eToastPosition.TopCenter)
             End If
-        End If
+
+            'Verifica si ya se contabilizó la compra
+            Dim contabilizo As Boolean = L_fnVerificarSiSeContabilizo(tbCodigo.Text)
+            If contabilizo Then
+                Dim img As Bitmap = New Bitmap(My.Resources.cancel, 50, 50)
+                ToastNotification.Show(Me, "Esta Compra ya fue contabilizada, si usted la elimina deberá hacer el ajuste del asiento contable manualmente".ToUpper, img, 5000, eToastGlowColor.Red, eToastPosition.TopCenter)
+            End If
+
+
+            Dim numi As String = tbCodigo.Text 'Valor del código único
+            Dim info As New TaskDialogInfo("¿esta seguro de eliminar el registro?".ToUpper,
+                                           eTaskDialogIcon.Delete, "advertencia".ToUpper,
+                                           "Esta a punto de eliminar la compra con".ToUpper _
+                                           + vbCrLf + "código -> ".ToUpper _
+                                           + numi + " " + vbCrLf + "Desea continuar?".ToUpper,
+                                           eTaskDialogButton.Yes Or eTaskDialogButton.Cancel,
+                                           eTaskDialogBackgroundColor.Blue)
+            Dim result As eTaskDialogResult = TaskDialog.Show(info)
+            If result = eTaskDialogResult.Yes Then
+                Dim mensajeError As String = ""
+                Dim resEliminar As Boolean = L_fnbValidarEliminacion(numi, "TCA001", "caanumi", mensajeError)
+                If (resEliminar) Then
+                    Dim res As Boolean = L_fnCompraEliminar(numi) 'Medoto de lógica para eliminar
+                    If (res) Then
+                        ToastNotification.Show(Me, "Codigo de compra: ".ToUpper + numi + " eliminado con Exito.".ToUpper,
+                                               My.Resources.GRABACION_EXITOSA, InDuracion * 1000,
+                                               eToastGlowColor.Green,
+                                               eToastPosition.TopCenter)
+                        BoNavegar = False
+                        P_prArmarGrillaBusqueda()
+                        BoNavegar = True
+                        P_prMoverIndexActual()
+                    Else
+                        ToastNotification.Show(Me, "No se pudo eliminar la compra con código: ".ToUpper + numi + ", intente nuevamente.".ToUpper,
+                                               My.Resources.WARNING, InDuracion * 1000,
+                                               eToastGlowColor.Red,
+                                               eToastPosition.TopCenter)
+                    End If
+                Else
+                    ToastNotification.Show(Me, mensajeError.ToUpper,
+                                               My.Resources.I64x64_error, InDuracion * 1000,
+                                               eToastGlowColor.Red,
+                                               eToastPosition.TopCenter)
+                End If
+            End If
+        Catch ex As Exception
+            MostrarMensajeError("Ocurrio un error inesperado")
+        End Try
+
     End Sub
 
     Private Sub P_prGrabarRegistro()
-        Dim numi As String
-        Dim fdoc As String
-        Dim prov As String
-        Dim nfac As String
-        Dim obs As String
-        Dim tven As String
-        Dim fvcred As String
-        Dim mon As String
-        Dim desc As Double
-        Dim descpro1 As Double
-        Dim descpro2 As Double
-        Dim desctot As Double
-        Dim total As Double
-        Dim emision As String
-        Dim consigna As String
-        Dim retencion As String
-        Dim asiento As String
-        Dim ffactura As String
+        Try
+            Dim numi As String
+            Dim fdoc As String
+            Dim prov As String
+            Dim nfac As String
+            Dim obs As String
+            Dim tven As String
+            Dim fvcred As String
+            Dim mon As String
+            Dim desc As Double
+            Dim descpro1 As Double
+            Dim descpro2 As Double
+            Dim desctot As Double
+            Dim total As Double
+            Dim emision As String
+            Dim consigna As String
+            Dim retencion As String
+            Dim asiento As String
+            Dim ffactura As String
 
 
-        If (BoNuevo) Then
-            If (P_fnValidarGrabacion()) Then
+            If (BoNuevo) Then
+                If (P_fnValidarGrabacion()) Then
 
-                numi = tbCodigo.Text.Trim
-                fdoc = dtiFechaCompra.Value.ToString("yyyy/MM/dd")
-                prov = tbCodProveedor.Text.Trim
-                nfac = IIf(tbNroFactura.Text.Trim = String.Empty, "0", tbNroFactura.Text.Trim)
-                obs = tbObs.Text.Trim
-                tven = IIf(swTipoVenta.Value = True, 1, 0)
-                fvcred = IIf(swTipoVenta.Value = True, Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd"))
-                mon = 1
-                desc = tbMdesc.Value
-                descpro1 = tbDescuentoPro1.Value
-                descpro2 = tvDescuento02.Value
-                desctot = desc + descpro1 + descpro2
-                total = tbtotal.Value
-                emision = IIf(swEmision.Value = True, 1, 0)
-                consigna = IIf(swConsigna.Value = True, 1, 0)
-                retencion = IIf(swRetencion.Value = True, 1, 0)
-                asiento = IIf(swAsiento.Value = True, 1, 0)
-                ffactura = dtiFfactura.Value.ToString("yyyy/MM/dd")
-
-                dtiFechaCompra.Select()
-
-                Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "cabnumi", "cabtc1numi", "cabcantcj", "cabcantun", "cabsubtot", "cabpcomcj", "cabpcomun", "cabporc", "cabdesccj", "cabdescun", "cabdescpro1cj", "cabdescpro1un", "cabdescpro2cj", "cabdescpro2un", "cabtot", "cabpcostocj", "cabpcostoun", "cabputi", "cabpven", "cabnfr", "cabstocka", "cabstockf", "cabtca1numi", "estado")
-
-                RecuperarDatosTFC001()  'Recupera datos para grabar en la BDDiconCF en la Tabla TFC001
-                If ValidarDescuentos() = False Then
-                    Exit Sub
-                End If
-                'Grabar
-                Dim res As Boolean = L_fnCompraGrabar(numi, fdoc, prov, nfac, obs, dt, tven, fvcred, mon, desc, descpro1, descpro2, desctot, total, emision, consigna, retencion, asiento, ffactura, _detalleCompras)
-
-
-                If (res) Then
-                    '_prCargarTablaComprobantes()
-                    P_prLimpiar()
-                    BoNavegar = False
-                    P_prArmarGrillaBusqueda()
-                    BoNavegar = True
+                    numi = tbCodigo.Text.Trim
+                    fdoc = dtiFechaCompra.Value.ToString("yyyy/MM/dd")
+                    prov = tbCodProveedor.Text.Trim
+                    nfac = IIf(tbNroFactura.Text.Trim = String.Empty, "0", tbNroFactura.Text.Trim)
+                    obs = tbObs.Text.Trim
+                    tven = IIf(swTipoVenta.Value = True, 1, 0)
+                    fvcred = IIf(swTipoVenta.Value = True, Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd"))
+                    mon = 1
+                    desc = tbMdesc.Value
+                    descpro1 = tbDescuentoPro1.Value
+                    descpro2 = tvDescuento02.Value
+                    desctot = desc + descpro1 + descpro2
+                    total = tbtotal.Value
+                    emision = IIf(swEmision.Value = True, 1, 0)
+                    consigna = IIf(swConsigna.Value = True, 1, 0)
+                    retencion = IIf(swRetencion.Value = True, 1, 0)
+                    asiento = IIf(swAsiento.Value = True, 1, 0)
+                    ffactura = dtiFfactura.Value.ToString("yyyy/MM/dd")
 
                     dtiFechaCompra.Select()
-                    ToastNotification.Show(Me, "Codigo de compra ".ToUpper + tbCodigo.Text + " Grabado con Exito.".ToUpper,
-                                       My.Resources.GRABACION_EXITOSA,
-                                       InDuracion * 1000,
-                                       eToastGlowColor.Green,
-                                       eToastPosition.TopCenter)
-                Else
-                    ToastNotification.Show(Me, "No se pudo grabar el codigo de compra ".ToUpper + tbCodigo.Text + ", intente nuevamente.".ToUpper,
-                                       My.Resources.WARNING,
-                                       InDuracion * 1000,
-                                       eToastGlowColor.Red,
-                                       eToastPosition.TopCenter)
+
+
+                    Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "cabnumi", "cabtc1numi", "cabcantcj", "cabcantun", "cabsubtot", "cabpcomcj", "cabpcomun", "cabporc", "cabdesccj", "cabdescun", "cabdescpro1cj", "cabdescpro1un", "cabdescpro2cj", "cabdescpro2un", "cabtot", "cabpcostocj", "cabpcostoun", "cabputi", "cabpven", "cabnfr", "cabstocka", "cabstockf", "cabtca1numi", "estado")
+
+                    RecuperarDatosTFC001()  'Recupera datos para grabar en la BDDiconCF en la Tabla TFC001
+                    If ValidarDescuentos() = False Then
+                        Exit Sub
+                    End If
+                    'Grabar
+                    Dim res = False
+                    Using scope As New TransactionScope()
+                        res = L_fnCompraGrabar(numi, fdoc, prov, nfac, obs, dt, tven, fvcred, mon, desc, descpro1, descpro2, desctot, total, emision, consigna, retencion, asiento, ffactura, _detalleCompras)
+                        scope.Complete()
+                    End Using
+
+
+
+                    If (res) Then
+                        '_prCargarTablaComprobantes()
+                        P_prLimpiar()
+                        BoNavegar = False
+                        P_prArmarGrillaBusqueda()
+                        BoNavegar = True
+
+                        dtiFechaCompra.Select()
+                        ToastNotification.Show(Me, "Codigo de compra ".ToUpper + tbCodigo.Text + " Grabado con Exito.".ToUpper,
+                                           My.Resources.GRABACION_EXITOSA,
+                                           InDuracion * 1000,
+                                           eToastGlowColor.Green,
+                                           eToastPosition.TopCenter)
+                    Else
+                        ToastNotification.Show(Me, "No se pudo grabar el codigo de compra ".ToUpper + tbCodigo.Text + ", intente nuevamente.".ToUpper,
+                                           My.Resources.WARNING,
+                                           InDuracion * 1000,
+                                           eToastGlowColor.Red,
+                                           eToastPosition.TopCenter)
+                    End If
                 End If
-            End If
-        ElseIf (BoModificar) Then
-            If (P_fnValidarGrabacion()) Then
-                numi = tbCodigo.Text.Trim
-                fdoc = dtiFechaCompra.Value.ToString("yyyy/MM/dd")
-                prov = tbCodProveedor.Text.Trim
-                nfac = IIf(tbNroFactura.Text.Trim = String.Empty, "0", tbNroFactura.Text.Trim)
-                obs = tbObs.Text.Trim
-                tven = IIf(swTipoVenta.Value = True, 1, 0)
-                fvcred = IIf(swTipoVenta.Value = True, Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd"))
-                mon = 1
-                desc = tbMdesc.Value
-                descpro1 = tbDescuentoPro1.Value
-                descpro2 = tvDescuento02.Value
-                desctot = desc + descpro1 + descpro2
-                total = tbtotal.Value
-                emision = IIf(swEmision.Value = True, 1, 0)
-                consigna = IIf(swConsigna.Value = True, 1, 0)
-                retencion = IIf(swRetencion.Value = True, 1, 0)
-                asiento = IIf(swAsiento.Value = True, 1, 0)
-                ffactura = dtiFfactura.Value.ToString("yyyy/MM/dd")
-
-                dtiFechaCompra.Select()
-
-                'Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "cabnumi", "cabtc1numi", "cabcant", "cabpcom", "cabputi", "cabpven", "cabnfr", "cabstocka", "cabstockf", "cabtca1numi", "estado")
-                Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "cabnumi", "cabtc1numi", "cabcantcj", "cabcantun", "cabsubtot", "cabpcomcj", "cabpcomun", "cabporc", "cabdesccj", "cabdescun", "cabdescpro1cj", "cabdescpro1un", "cabdescpro2cj", "cabdescpro2un", "cabtot", "cabpcostocj", "cabpcostoun", "cabputi", "cabpven", "cabnfr", "cabstocka", "cabstockf", "cabtca1numi", "estado")
-
-                RecuperarDatosTFC001()  'Recupera datos para grabar en la BDDiconCF en la Tabla TFC001
-                'Grabar
-                Dim res As Boolean = L_fnCompraModificar(numi, fdoc, prov, nfac, obs, dt, tven, fvcred, mon, desc, descpro1, descpro2, desctot, total, emision, consigna, retencion, asiento, ffactura, _detalleCompras)
-
-                If (res) Then
-
-                    BoNavegar = False
-                    P_prArmarGrillaBusqueda()
-                    BoNavegar = True
-
-                    P_prMoverIndexActual()
+            ElseIf (BoModificar) Then
+                If (P_fnValidarGrabacion()) Then
+                    numi = tbCodigo.Text.Trim
+                    fdoc = dtiFechaCompra.Value.ToString("yyyy/MM/dd")
+                    prov = tbCodProveedor.Text.Trim
+                    nfac = IIf(tbNroFactura.Text.Trim = String.Empty, "0", tbNroFactura.Text.Trim)
+                    obs = tbObs.Text.Trim
+                    tven = IIf(swTipoVenta.Value = True, 1, 0)
+                    fvcred = IIf(swTipoVenta.Value = True, Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd"))
+                    mon = 1
+                    desc = tbMdesc.Value
+                    descpro1 = tbDescuentoPro1.Value
+                    descpro2 = tvDescuento02.Value
+                    desctot = desc + descpro1 + descpro2
+                    total = tbtotal.Value
+                    emision = IIf(swEmision.Value = True, 1, 0)
+                    consigna = IIf(swConsigna.Value = True, 1, 0)
+                    retencion = IIf(swRetencion.Value = True, 1, 0)
+                    asiento = IIf(swAsiento.Value = True, 1, 0)
+                    ffactura = dtiFfactura.Value.ToString("yyyy/MM/dd")
 
                     dtiFechaCompra.Select()
-                    MBtSalir.PerformClick()
 
-                    ToastNotification.Show(Me, "Codigo de compra ".ToUpper + tbCodigo.Text + " Modificado con Exito.".ToUpper,
-                                       My.Resources.GRABACION_EXITOSA,
-                                       InDuracion * 1000,
-                                       eToastGlowColor.Green,
-                                       eToastPosition.TopCenter)
-                Else
-                    ToastNotification.Show(Me, "No se pudo modificar el codigo de compra ".ToUpper + tbCodigo.Text + ", intente nuevamente.".ToUpper,
-                                       My.Resources.WARNING,
-                                       InDuracion * 1000,
-                                       eToastGlowColor.Red,
-                                       eToastPosition.TopCenter)
+                    'Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "cabnumi", "cabtc1numi", "cabcant", "cabpcom", "cabputi", "cabpven", "cabnfr", "cabstocka", "cabstockf", "cabtca1numi", "estado")
+                    Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable).DefaultView.ToTable(False, "cabnumi", "cabtc1numi", "cabcantcj", "cabcantun", "cabsubtot", "cabpcomcj", "cabpcomun", "cabporc", "cabdesccj", "cabdescun", "cabdescpro1cj", "cabdescpro1un", "cabdescpro2cj", "cabdescpro2un", "cabtot", "cabpcostocj", "cabpcostoun", "cabputi", "cabpven", "cabnfr", "cabstocka", "cabstockf", "cabtca1numi", "estado")
+
+                    RecuperarDatosTFC001()  'Recupera datos para grabar en la BDDiconCF en la Tabla TFC001
+                    'Grabar
+                    Dim resultado As Boolean = False
+                    Using scope As New TransactionScope()
+                        resultado = L_fnCompraModificar(numi, fdoc, prov, nfac, obs, dt, tven, fvcred, mon, desc, descpro1, descpro2, desctot, total, emision, consigna, retencion, asiento, ffactura, _detalleCompras)
+                        scope.Complete()
+                    End Using
+
+
+                    If (resultado) Then
+
+                        BoNavegar = False
+                        P_prArmarGrillaBusqueda()
+                        BoNavegar = True
+
+                        P_prMoverIndexActual()
+
+                        dtiFechaCompra.Select()
+                        MBtSalir.PerformClick()
+
+                        ToastNotification.Show(Me, "Codigo de compra ".ToUpper + tbCodigo.Text + " Modificado con Exito.".ToUpper,
+                                           My.Resources.GRABACION_EXITOSA,
+                                           InDuracion * 1000,
+                                           eToastGlowColor.Green,
+                                           eToastPosition.TopCenter)
+                    Else
+                        ToastNotification.Show(Me, "No se pudo modificar el codigo de compra ".ToUpper + tbCodigo.Text + ", intente nuevamente.".ToUpper,
+                                           My.Resources.WARNING,
+                                           InDuracion * 1000,
+                                           eToastGlowColor.Red,
+                                           eToastPosition.TopCenter)
+                    End If
                 End If
             End If
-        End If
+        Catch ex As Exception
+            MostrarMensajeError("Ocurrio un error inesperado")
+        End Try
+
     End Sub
 
     Public Sub RecuperarDatosTFC001()
@@ -2225,85 +2274,93 @@ Public Class F02_Compra
     End Sub
 
     Public Sub CalcularDescuento01(TotalBruto As Double, descuento As Double)
+        Try
+            Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable)
+            Dim DescuentoUnitario As Double
+            Dim CantidadCaja As Double
+            Dim Descuento01 As Double
+            Dim ImporteBruto As Double
+            Dim CostoTotal As Double
+            Dim PrecioCostoCaja As Double
+            Dim CantidadUnitaria As Double
+            If (dt.Rows.Count > 0 And tbObs.ReadOnly = False) Then
+                For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+                    CantidadCaja = dt.Rows(i).Item("cabcantcj")
+                    ImporteBruto = dt.Rows(i).Item("cabsubtot")
+                    If (ImporteBruto > 0 And CantidadCaja > 0 And TotalBruto > 0) Then
+                        Descuento01 = ((ImporteBruto * descuento) / TotalBruto)
+                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabdescpro1cj") = Descuento01
+                        DescuentoUnitario = Descuento01 / CantidadCaja
+                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabdescpro1un") = DescuentoUnitario
 
-        Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable)
-        Dim DescuentoUnitario As Double
-        Dim CantidadCaja As Double
-        Dim Descuento01 As Double
-        Dim ImporteBruto As Double
-        Dim CostoTotal As Double
-        Dim PrecioCostoCaja As Double
-        Dim CantidadUnitaria As Double
-        If (dt.Rows.Count > 0 And tbObs.ReadOnly = False) Then
-            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
-                CantidadCaja = dt.Rows(i).Item("cabcantcj")
-                ImporteBruto = dt.Rows(i).Item("cabsubtot")
-                If (ImporteBruto > 0 And CantidadCaja > 0 And TotalBruto > 0) Then
-                    Descuento01 = ((ImporteBruto * descuento) / TotalBruto)
-                    CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabdescpro1cj") = Descuento01
-                    DescuentoUnitario = Descuento01 / CantidadCaja
-                    CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabdescpro1un") = DescuentoUnitario
-
-                    '''''''Aqui Calculo el descuento
-                    CostoTotal = (dt.Rows(i).Item("cabsubtot") - (dt.Rows(i).Item("cabdesccj") + dt.Rows(i).Item("cabdescpro1cj") + dt.Rows(i).Item("cabdescpro2cj")))
-                    PrecioCostoCaja = (dt.Rows(i).Item("cabsubtot") - (dt.Rows(i).Item("cabdesccj") + dt.Rows(i).Item("cabdescpro1cj") + dt.Rows(i).Item("cabdescpro2cj"))) * 0.87
-                    PrecioCostoCaja = PrecioCostoCaja / dt.Rows(i).Item("cabcantcj")
-                    CantidadUnitaria = dt.Rows(i).Item("cabcantun") / dt.Rows(i).Item("cabcantcj")
-                    If (PrecioCostoCaja > 0 And CantidadUnitaria > 0) Then
-                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabtot") = CostoTotal
-                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostocj") = PrecioCostoCaja
-                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostoun") = PrecioCostoCaja / CantidadUnitaria
-                        'dgjDetalle.SetValue("cabtot", CostoTotal)
-                        'dgjDetalle.SetValue("cabpcostocj", PrecioCostoCaja)
-                        'dgjDetalle.SetValue("cabpcostoun", PrecioCostoCaja / CantidadUnitaria)
+                        '''''''Aqui Calculo el descuento
+                        CostoTotal = (dt.Rows(i).Item("cabsubtot") - (dt.Rows(i).Item("cabdesccj") + dt.Rows(i).Item("cabdescpro1cj") + dt.Rows(i).Item("cabdescpro2cj")))
+                        PrecioCostoCaja = (dt.Rows(i).Item("cabsubtot") - (dt.Rows(i).Item("cabdesccj") + dt.Rows(i).Item("cabdescpro1cj") + dt.Rows(i).Item("cabdescpro2cj"))) * 0.87
+                        PrecioCostoCaja = PrecioCostoCaja / dt.Rows(i).Item("cabcantcj")
+                        CantidadUnitaria = dt.Rows(i).Item("cabcantun") / dt.Rows(i).Item("cabcantcj")
+                        If (PrecioCostoCaja > 0 And CantidadUnitaria > 0) Then
+                            CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabtot") = CostoTotal
+                            CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostocj") = PrecioCostoCaja
+                            CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostoun") = PrecioCostoCaja / CantidadUnitaria
+                            'dgjDetalle.SetValue("cabtot", CostoTotal)
+                            'dgjDetalle.SetValue("cabpcostocj", PrecioCostoCaja)
+                            'dgjDetalle.SetValue("cabpcostoun", PrecioCostoCaja / CantidadUnitaria)
+                        End If
+                        '''''''''
                     End If
-                    '''''''''
-                End If
-            Next
+                Next
 
-            tbtotal.Value = (tbSubtotalC.Value - (tbMdesc.Value + tbDescuentoPro1.Value + tvDescuento02.Value))
-        End If
+                tbtotal.Value = (tbSubtotalC.Value - (tbMdesc.Value + tbDescuentoPro1.Value + tvDescuento02.Value))
+            End If
+        Catch ex As Exception
+            MostrarMensajeError("Ocurrio un error inesperado")
+        End Try
+
     End Sub
 
     Public Sub CalcularDescuento02(TotalBruto As Double, descuento As Double)
+        Try
+            Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable)
+            Dim DescuentoUnitario As Double
+            Dim CantidadCaja As Double
+            Dim Descuento01 As Double
+            Dim ImporteBruto As Double
+            Dim CostoTotal As Double
+            Dim PrecioCostoCaja As Double
+            Dim CantidadUnitaria As Double
+            If (dt.Rows.Count > 0 And tbObs.ReadOnly = False) Then
+                For i As Integer = 0 To dt.Rows.Count - 1 Step 1
+                    CantidadCaja = dt.Rows(i).Item("cabcantcj")
+                    ImporteBruto = dt.Rows(i).Item("cabsubtot")
+                    If (ImporteBruto > 0 And CantidadCaja > 0 And TotalBruto > 0) Then
+                        Descuento01 = ((ImporteBruto * descuento) / TotalBruto)
+                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabdescpro2cj") = Descuento01
+                        DescuentoUnitario = Descuento01 / CantidadCaja
+                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabdescpro2un") = DescuentoUnitario
+                        '''''''Aqui Calculo el descuento
+                        CostoTotal = (dt.Rows(i).Item("cabsubtot") - (dt.Rows(i).Item("cabdesccj") + dt.Rows(i).Item("cabdescpro1cj") + dt.Rows(i).Item("cabdescpro2cj")))
+                        PrecioCostoCaja = (dt.Rows(i).Item("cabsubtot") - (dt.Rows(i).Item("cabdesccj") + dt.Rows(i).Item("cabdescpro1cj") + dt.Rows(i).Item("cabdescpro2cj"))) * 0.87
 
-        Dim dt As DataTable = CType(dgjDetalle.DataSource, DataTable)
-        Dim DescuentoUnitario As Double
-        Dim CantidadCaja As Double
-        Dim Descuento01 As Double
-        Dim ImporteBruto As Double
-        Dim CostoTotal As Double
-        Dim PrecioCostoCaja As Double
-        Dim CantidadUnitaria As Double
-        If (dt.Rows.Count > 0 And tbObs.ReadOnly = False) Then
-            For i As Integer = 0 To dt.Rows.Count - 1 Step 1
-                CantidadCaja = dt.Rows(i).Item("cabcantcj")
-                ImporteBruto = dt.Rows(i).Item("cabsubtot")
-                If (ImporteBruto > 0 And CantidadCaja > 0 And TotalBruto > 0) Then
-                    Descuento01 = ((ImporteBruto * descuento) / TotalBruto)
-                    CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabdescpro2cj") = Descuento01
-                    DescuentoUnitario = Descuento01 / CantidadCaja
-                    CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabdescpro2un") = DescuentoUnitario
-                    '''''''Aqui Calculo el descuento
-                    CostoTotal = (dt.Rows(i).Item("cabsubtot") - (dt.Rows(i).Item("cabdesccj") + dt.Rows(i).Item("cabdescpro1cj") + dt.Rows(i).Item("cabdescpro2cj")))
-                    PrecioCostoCaja = (dt.Rows(i).Item("cabsubtot") - (dt.Rows(i).Item("cabdesccj") + dt.Rows(i).Item("cabdescpro1cj") + dt.Rows(i).Item("cabdescpro2cj"))) * 0.87
-
-                    PrecioCostoCaja = PrecioCostoCaja / dt.Rows(i).Item("cabcantcj")
-                    CantidadUnitaria = dt.Rows(i).Item("cabcantun") / dt.Rows(i).Item("cabcantcj")
-                    If (PrecioCostoCaja > 0 And CantidadUnitaria > 0) Then
-                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabtot") = CostoTotal
-                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostocj") = PrecioCostoCaja
-                        CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostoun") = PrecioCostoCaja / CantidadUnitaria
-                        'dgjDetalle.SetValue("cabtot", CostoTotal)
-                        'dgjDetalle.SetValue("cabpcostocj", PrecioCostoCaja)
-                        'dgjDetalle.SetValue("cabpcostoun", PrecioCostoCaja / CantidadUnitaria)
+                        PrecioCostoCaja = PrecioCostoCaja / dt.Rows(i).Item("cabcantcj")
+                        CantidadUnitaria = dt.Rows(i).Item("cabcantun") / dt.Rows(i).Item("cabcantcj")
+                        If (PrecioCostoCaja > 0 And CantidadUnitaria > 0) Then
+                            CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabtot") = CostoTotal
+                            CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostocj") = PrecioCostoCaja
+                            CType(dgjDetalle.DataSource, DataTable).Rows(i).Item("cabpcostoun") = PrecioCostoCaja / CantidadUnitaria
+                            'dgjDetalle.SetValue("cabtot", CostoTotal)
+                            'dgjDetalle.SetValue("cabpcostocj", PrecioCostoCaja)
+                            'dgjDetalle.SetValue("cabpcostoun", PrecioCostoCaja / CantidadUnitaria)
+                        End If
+                        '''''''''
                     End If
-                    '''''''''
-                End If
 
-            Next
-            tbtotal.Value = (tbSubtotalC.Value - (tbMdesc.Value + tbDescuentoPro1.Value + tvDescuento02.Value))
-        End If
+                Next
+                tbtotal.Value = (tbSubtotalC.Value - (tbMdesc.Value + tbDescuentoPro1.Value + tvDescuento02.Value))
+            End If
+        Catch ex As Exception
+            MostrarMensajeError("Ocurrio un error inesperado")
+        End Try
+
     End Sub
 
     Private Sub DoubleInput1_ValueChanged(sender As Object, e As EventArgs) Handles tbDescuentoPro1.ValueChanged

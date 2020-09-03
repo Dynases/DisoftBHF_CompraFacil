@@ -70,6 +70,7 @@
     <Compile Include="Enum\ENTipoPersonal.vb" />
     <Compile Include="Enum\ENEstadoPedido.vb" />
     <Compile Include="Enum\ENLibreria.vb" />
+    <Compile Include="Enum\ENTipoValidacion.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

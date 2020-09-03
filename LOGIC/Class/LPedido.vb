@@ -61,4 +61,11 @@ Public Class LPedido
             Throw New Exception(ex.Message)
         End Try
     End Function
+    Public Function ExisteConciliacion(listIdPedido As List(Of Integer), idChofer As Integer, tipoValidacion As Integer) As Boolean
+        Try
+            Return iPedido.ExisteConciliacion(listIdPedido, idChofer, tipoValidacion)
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        End Try
+    End Function
 End Class

@@ -2720,5 +2720,4 @@ Public Class F02_Pedido
         'Btn_TerminarAdd.PerformClick()
 
     End Sub
-
 End Class

@@ -51,18 +51,18 @@ Public Class frmBillingDispatch
             Next
 
             If (list1.Count = 0) Then
-                ToastNotification.Show(Me, "No Existe ningun dato a Facturar!!".ToUpper,
-                                    My.Resources.OK,
-                                    5 * 1000,
-                                    eToastGlowColor.Red,
-                                    eToastPosition.TopCenter)
-                Return
+                Throw New Exception("No Existe ningun dato a Facturar!!".ToUpper)
             End If
+            Dim listIdPedido = list1.Select(Function(a) a.Id).ToList()
+            Dim idChofer = Me.cbChoferes.Value
+            Dim resultado = New LPedido().ExisteConciliacion(listIdPedido, idChofer, ENTipoValidacion.FACTURAR)
 
-            For i As Integer = 0 To list1.Count - 1 Step 1
+            Dim listaF = list1.OrderBy(Function(a) a.idZona).ToList()
+            
+            For i As Integer = 0 To listaF.Count - 1 Step 1
 
-                GrabarTV001(Str(list1(i).Id))
-                Dim dtDetalle As DataTable = L_prObtenerDetallePedidoFactura(Str(list1(i).Id))
+                GrabarTV001(Str(listaF(i).Id))
+                Dim dtDetalle As DataTable = L_prObtenerDetallePedidoFactura(Str(listaF(i).Id))
 
                 P_fnGenerarFactura(dtDetalle.Rows(0).Item("oanumi"), dtDetalle.Rows(0).Item("subtotal"), dtDetalle.Rows(0).Item("descuento"), dtDetalle.Rows(0).Item("total"), dtDetalle.Rows(0).Item("nit"), dtDetalle.Rows(0).Item("cliente"), dtDetalle.Rows(0).Item("codcli"))
 
@@ -96,7 +96,7 @@ Public Class frmBillingDispatch
                 P_prImprimirFacturar(numi, True, True, nit) '_Codigo de a tabla TV001
             Else
                 'Volver todo al estada anterior
-                ToastNotification.Show(Me, "No es posible facturar, vuelva a ingresar a la mesa he intente nuevamente!!!".ToUpper,
+                ToastNotification.Show(Me, "No es posible facturar, vuelva a ingresar he intente nuevamente".ToUpper,
                                        My.Resources.OK,
                                        5 * 1000,
                                        eToastGlowColor.Red,
@@ -381,7 +381,7 @@ Public Class frmBillingDispatch
 
             Dim listResult = New LPedido().ListarDespachoXClienteDeChofer(idChofer)
             Dim lista = (From a In listResult
-                         Where a.oafdoc = Tb_Fecha.Value).ToList
+                         Where a.oafdoc = Tb_Fecha.Value).OrderBy(Function(i) i.IdZona).ToList
             If (lista.Count = 0) Then
                 Throw New Exception("No registros para generar el reporte.")
             End If
@@ -756,7 +756,9 @@ Public Class frmBillingDispatch
                     Exit Sub
                 End If
             Next
+
             Dim idChofer = Me.cbChoferes.Value
+            Dim resultado = New LPedido().ExisteConciliacion(listIdPedido, idChofer, ENTipoValidacion.VOLVERDISTRIBUCION)
             Dim result = New LPedido().VolverPedidoDistribucion(listIdPedido, idChofer)
             If (result) Then
                 CargarPedidos()

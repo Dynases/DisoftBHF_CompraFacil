@@ -8,5 +8,5 @@ Public Interface IPedido
     Function ListarDespachoXProductoDeChoferSalida(idChofer As Integer) As List(Of RDespachoXProducto)
     Function ListarDespachoXProductoDeChofer(idChofer As Integer) As List(Of RDespachoXProducto)
     Function VolverPedidoDistribucion(listIdPedido As List(Of Integer), idChofer As Integer) As Boolean
-
+    Function ExisteConciliacion(listIdPedido As List(Of Integer), idChofer As Integer, tipoValidacion As Integer) As Boolean
 End Interface
