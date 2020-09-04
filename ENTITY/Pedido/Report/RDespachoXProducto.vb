@@ -77,12 +77,12 @@
             _oafdoc = value
         End Set
     End Property
-    Private _caja As Decimal
-    Public Property Caja() As Decimal
+    Private _caja As Integer
+    Public Property Caja() As Integer
         Get
             Return _caja
         End Get
-        Set(ByVal value As Decimal)
+        Set(ByVal value As Integer)
             _caja = value
         End Set
     End Property
