@@ -125,18 +125,11 @@
     <Reference Include="AxInterop.AcroPDFLib">
       <HintPath>..\..\..\..\DINASES\Librerias\librerias\PDF\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportSource">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Shared">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Windows.Forms">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Windows.Forms.dll</HintPath>
-    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.DotNetBar.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=2c9ff1fddc42653c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Design.dll</HintPath>
@@ -453,6 +446,12 @@
       <DependentUpon>R0_UTilidadPorProducto.vb</DependentUpon>
     </Compile>
     <Compile Include="Mapas\R0_UTilidadPorProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_VentasProductosRanking.Designer.vb">
+      <DependentUpon>R01_VentasProductosRanking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_VentasProductosRanking.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pr_ReporteVentasGrafico.Designer.vb">
@@ -1327,6 +1326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mapas\R0_UTilidadPorProducto.resx">
       <DependentUpon>R0_UTilidadPorProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\R01_VentasProductosRanking.resx">
+      <DependentUpon>R01_VentasProductosRanking.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pr_ReporteVentasGrafico.resx">
       <DependentUpon>Pr_ReporteVentasGrafico.vb</DependentUpon>
