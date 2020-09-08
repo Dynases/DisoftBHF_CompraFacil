@@ -57,6 +57,7 @@ Public Class R01_VentasProductosRanking
         Dim DtP As DataTable
         DtP = L_fnObtenerProveedor()
         DtP.Rows.Add(0, "TODOS")
+
         g_prArmarCombo(cbProveedor, DtP, 60, 200, "COD", "PROVEEDOR")
         cbProveedor.SelectedIndex = Convert.ToInt32(DtP.Rows.Count - 1)
 
@@ -102,18 +103,39 @@ Public Class R01_VentasProductosRanking
         End With
         cbDescripcion.SelectedIndex = Convert.ToInt32(Dt.Rows.Count - 1)
     End Sub
+
+    Public Sub CalcularRanking(ByRef _dt As DataTable)
+        Dim total As Double = 0
+        For i As Integer = 0 To _dt.Rows.Count - 1 Step 1
+
+            total = total + _dt.Rows(i).Item("Importe")
+
+        Next
+        For i As Integer = 0 To _dt.Rows.Count - 1 Step 1
+            Dim porcentaje As Double
+            porcentaje = ((_dt.Rows(i).Item("Importe") * 100) / total)
+            _dt.Rows(i).Item("Ranking") = porcentaje
+
+        Next
+
+
+
+    End Sub
+
     Private Sub P_prCargarReporte()
         Dim _dt As New DataTable
-        _dt = L_fnStockProductosFiltros(cbProveedor.Value, cbCategoria.Value, cbMarca.Value, cbAtributo.Value, cbDescripcion.Value)
-
+        _dt = L_fnReporteComercial(cbProveedor.Value, cbCategoria.Value, cbMarca.Value, cbAtributo.Value, cbDescripcion.Value, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
+        CalcularRanking(_dt)
         If (_dt.Rows.Count > 0) Then
-            Dim objrep As New R_StockActualFiltros()
+            Dim objrep As New R_ReporteComercial()
             objrep.SetDataSource(_dt)
             objrep.SetParameterValue("Proveedor", cbProveedor.Text)
             objrep.SetParameterValue("Categoria", cbCategoria.Text)
             objrep.SetParameterValue("Marca", cbMarca.Text)
             objrep.SetParameterValue("Atributo", cbAtributo.Text)
             objrep.SetParameterValue("Descripcion", cbDescripcion.Text)
+            objrep.SetParameterValue("FechaDesde", tbFechaI.Value.ToString("yyyy/MM/dd"))
+            objrep.SetParameterValue("FechaHasta", tbFechaF.Value.ToString("yyyy/MM/dd"))
             objrep.SetParameterValue("Usuario", L_Usuario)
             MCrReporte.ReportSource = objrep
         Else

@@ -2268,6 +2268,25 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
+    Public Shared Function L_fnReporteComercial(Proveedor As Integer, Categoria As Integer, Marca As Integer, Atributo As Integer, Descripcion As String, FechaDesde As String, FechaHasta As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@gr1", Proveedor))
+        _listParam.Add(New Datos.DParametro("@cat", Categoria))
+        _listParam.Add(New Datos.DParametro("@gr2", Marca))
+        _listParam.Add(New Datos.DParametro("@gr3", Atributo))
+        _listParam.Add(New Datos.DParametro("@desc2", Descripcion))
+
+        _listParam.Add(New Datos.DParametro("@FechaDesde", FechaDesde))
+        _listParam.Add(New Datos.DParametro("@FechaHasta", FechaHasta))
+        _Tabla = D_ProcedimientoConParam("MAM_ReporteComercial", _listParam)
+
+        Return _Tabla
+    End Function
+
     Public Shared Function L_GetConceptoInvetario() As DataTable
         Dim Tabla As DataTable
         Dim Where As String
