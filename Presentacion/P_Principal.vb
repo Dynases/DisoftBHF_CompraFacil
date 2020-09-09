@@ -1310,6 +1310,51 @@ Public Class P_Principal
         'tab3.Icon = frm.Icon
     End Sub
 
+    Private Sub btnReporteComercial_Click(sender As Object, e As EventArgs) Handles btnReporteComercial.Click
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New R01_VentasProductosRanking
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+        frm._nameButton = btnReporteComercial.Name
+        frm._tab = tab3
+        frm._modulo = FP_Venta
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+    End Sub
+
+    Private Sub btInveMovimientos_Click(sender As Object, e As EventArgs) Handles btInveRepMovimientos.Click
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New R01_ReporteMovimientos
+
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+        frm._nameButton = btInveRepMovimientos.Name
+        frm._tab = tab3
+        frm._modulo = FP_Venta
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+    End Sub
+
+    Private Sub btnReporteFacturada_Click(sender As Object, e As EventArgs) Handles btnReporteFacturada.Click
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New F01_ReporteVentaFact
+
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+    End Sub
+
 
 #End Region
 

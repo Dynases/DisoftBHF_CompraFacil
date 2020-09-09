@@ -44,6 +44,7 @@ Public Class R01_ProductosMesa
         Dim dt As DataTable
         dt = L_fnObtenerTabla("mamesa", "CM001", "maest=1")
         g_prArmarCombo(cbMesa, dt, 85, 200, "Mesa")
+        ''ssss
     End Sub
     Public Sub g_prArmarCombo(cbj As MultiColumnCombo, dtCombo As DataTable,
                               Optional anchoCodigo As Integer = 60, Optional anchoDesc As Integer = 200,

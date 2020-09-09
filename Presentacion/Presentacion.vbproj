@@ -125,18 +125,11 @@
     <Reference Include="AxInterop.AcroPDFLib">
       <HintPath>..\..\..\..\DINASES\Librerias\librerias\PDF\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportSource">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Shared">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Windows.Forms">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Windows.Forms.dll</HintPath>
-    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.DotNetBar.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=2c9ff1fddc42653c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Design.dll</HintPath>
@@ -453,6 +446,24 @@
       <DependentUpon>R0_UTilidadPorProducto.vb</DependentUpon>
     </Compile>
     <Compile Include="Mapas\R0_UTilidadPorProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_ReporteVentaFact.Designer.vb">
+      <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_ReporteVentaFact.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_ReporteMovimientos.Designer.vb">
+      <DependentUpon>R01_ReporteMovimientos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_ReporteMovimientos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_VentasProductosRanking.Designer.vb">
+      <DependentUpon>R01_VentasProductosRanking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_VentasProductosRanking.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pr_ReporteVentasGrafico.Designer.vb">
@@ -832,6 +843,12 @@
       <DependentUpon>R_HisotorialCobrosVentasCredito.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\R_KardexGeneral.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_KardexGeneral.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\R_Mam_CreditoGeneral.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -878,6 +895,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>R_ReporteCobranzas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_ReporteComercial.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_ReporteComercial.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\R_ReportePagosCobranzas.vb">
@@ -1328,6 +1351,15 @@
     <EmbeddedResource Include="Mapas\R0_UTilidadPorProducto.resx">
       <DependentUpon>R0_UTilidadPorProducto.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\F01_ReporteVentaFact.resx">
+      <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\R01_ReporteMovimientos.resx">
+      <DependentUpon>R01_ReporteMovimientos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\R01_VentasProductosRanking.resx">
+      <DependentUpon>R01_VentasProductosRanking.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pr_ReporteVentasGrafico.resx">
       <DependentUpon>Pr_ReporteVentasGrafico.vb</DependentUpon>
     </EmbeddedResource>
@@ -1536,6 +1568,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_HisotorialCobrosVentasCredito.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_KardexGeneral.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_KardexGeneral.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_Mam_CreditoGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_Mam_CreditoGeneral.vb</LastGenOutput>
@@ -1567,6 +1603,10 @@
     <EmbeddedResource Include="Reportes\R_ReporteCobranzas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_ReporteCobranzas.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_ReporteComercial.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ReporteComercial.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_ReportePagosCobranzas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
