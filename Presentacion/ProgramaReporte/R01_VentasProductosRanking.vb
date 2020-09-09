@@ -40,7 +40,8 @@ Public Class R01_VentasProductosRanking
         Me.Text = "VENTAS COMERCIALES ".ToUpper
         Me.WindowState = FormWindowState.Maximized
         MCrReporte.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
-
+        tbFechaI.Value = Now.Date
+        tbFechaF.Value = Now.Date
         P_prArmarCombos()
 
     End Sub
