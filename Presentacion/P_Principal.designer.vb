@@ -259,12 +259,12 @@ Partial Class P_Principal
         'SideNav1
         '
         Me.SideNav1.BackColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.SideNav1.Controls.Add(Me.SideNavPanelPedido)
         Me.SideNav1.Controls.Add(Me.SideNavPanelInventario)
         Me.SideNav1.Controls.Add(Me.SideNavPanelVenta)
         Me.SideNav1.Controls.Add(Me.SideNavPanelRRHH)
         Me.SideNav1.Controls.Add(Me.SideNavPanelCompra)
         Me.SideNav1.Controls.Add(Me.SideNavPaenlConf)
-        Me.SideNav1.Controls.Add(Me.SideNavPanelPedido)
         Me.SideNav1.Controls.Add(Me.SideNavPanelLogistica)
         Me.SideNav1.Controls.Add(Me.SideNavPanelCerrarSesion)
         Me.SideNav1.Controls.Add(Me.SideNavPanelVentana)
@@ -290,6 +290,7 @@ Partial Class P_Principal
         Me.SideNavPanelInventario.Name = "SideNavPanelInventario"
         Me.SideNavPanelInventario.Size = New System.Drawing.Size(1193, 700)
         Me.SideNavPanelInventario.TabIndex = 87
+        Me.SideNavPanelInventario.Visible = False
         '
         'PanelInventario
         '
@@ -1954,12 +1955,11 @@ Partial Class P_Principal
         Me.SideNavPanelPedido.Controls.Add(Me.PanelPedido)
         Me.SideNavPanelPedido.Controls.Add(Me.PictureBox03)
         Me.SideNavPanelPedido.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SideNavPanelPedido.Location = New System.Drawing.Point(189, 44)
+        Me.SideNavPanelPedido.Location = New System.Drawing.Point(165, 40)
         Me.SideNavPanelPedido.Margin = New System.Windows.Forms.Padding(4)
         Me.SideNavPanelPedido.Name = "SideNavPanelPedido"
-        Me.SideNavPanelPedido.Size = New System.Drawing.Size(1167, 695)
+        Me.SideNavPanelPedido.Size = New System.Drawing.Size(1193, 700)
         Me.SideNavPanelPedido.TabIndex = 156
-        Me.SideNavPanelPedido.Visible = False
         '
         'PanelPedido
         '
@@ -1968,7 +1968,7 @@ Partial Class P_Principal
         Me.PanelPedido.Location = New System.Drawing.Point(0, 0)
         Me.PanelPedido.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelPedido.Name = "PanelPedido"
-        Me.PanelPedido.Size = New System.Drawing.Size(1167, 555)
+        Me.PanelPedido.Size = New System.Drawing.Size(1193, 560)
         Me.PanelPedido.TabIndex = 6
         '
         'MetroTilePanelPedido
@@ -1993,7 +1993,7 @@ Partial Class P_Principal
         Me.MetroTilePanelPedido.Margin = New System.Windows.Forms.Padding(4)
         Me.MetroTilePanelPedido.MultiLine = True
         Me.MetroTilePanelPedido.Name = "MetroTilePanelPedido"
-        Me.MetroTilePanelPedido.Size = New System.Drawing.Size(1167, 555)
+        Me.MetroTilePanelPedido.Size = New System.Drawing.Size(1193, 560)
         Me.MetroTilePanelPedido.TabIndex = 2
         Me.MetroTilePanelPedido.Text = "mtp2Logistica"
         '
@@ -2209,10 +2209,10 @@ Partial Class P_Principal
         '
         Me.PictureBox03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox03.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PictureBox03.Location = New System.Drawing.Point(0, 555)
+        Me.PictureBox03.Location = New System.Drawing.Point(0, 560)
         Me.PictureBox03.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox03.Name = "PictureBox03"
-        Me.PictureBox03.Size = New System.Drawing.Size(1167, 140)
+        Me.PictureBox03.Size = New System.Drawing.Size(1193, 140)
         Me.PictureBox03.TabIndex = 5
         Me.PictureBox03.TabStop = False
         Me.PictureBox03.Visible = False
@@ -2930,6 +2930,7 @@ Partial Class P_Principal
         '
         'FP_Pedido
         '
+        Me.FP_Pedido.Checked = True
         Me.FP_Pedido.Name = "FP_Pedido"
         Me.FP_Pedido.Panel = Me.SideNavPanelPedido
         Me.FP_Pedido.Symbol = ""
@@ -2937,7 +2938,6 @@ Partial Class P_Principal
         '
         'FP_Inventario
         '
-        Me.FP_Inventario.Checked = True
         Me.FP_Inventario.Name = "FP_Inventario"
         Me.FP_Inventario.Panel = Me.SideNavPanelInventario
         Me.FP_Inventario.Symbol = ""
