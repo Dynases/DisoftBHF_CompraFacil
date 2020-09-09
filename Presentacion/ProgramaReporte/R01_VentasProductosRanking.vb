@@ -135,8 +135,8 @@ Public Class R01_VentasProductosRanking
             objrep.SetParameterValue("Marca", cbMarca.Text)
             objrep.SetParameterValue("Atributo", cbAtributo.Text)
             objrep.SetParameterValue("Descripcion", cbDescripcion.Text)
-            objrep.SetParameterValue("FechaDesde", tbFechaI.Value.ToString("yyyy/MM/dd"))
-            objrep.SetParameterValue("FechaHasta", tbFechaF.Value.ToString("yyyy/MM/dd"))
+            objrep.SetParameterValue("FechaDesde", tbFechaI.Value.ToString("dd/MM/yyyy"))
+            objrep.SetParameterValue("FechaHasta", tbFechaF.Value.ToString("dd/MM/yyyy"))
             objrep.SetParameterValue("Usuario", L_Usuario)
             MCrReporte.ReportSource = objrep
         Else
