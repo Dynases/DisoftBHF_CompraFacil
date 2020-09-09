@@ -448,6 +448,12 @@
     <Compile Include="Mapas\R0_UTilidadPorProducto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ProgramaReporte\F01_ReporteVentaFact.Designer.vb">
+      <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_ReporteVentaFact.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ProgramaReporte\R01_ReporteMovimientos.Designer.vb">
       <DependentUpon>R01_ReporteMovimientos.vb</DependentUpon>
     </Compile>
@@ -1344,6 +1350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mapas\R0_UTilidadPorProducto.resx">
       <DependentUpon>R0_UTilidadPorProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\F01_ReporteVentaFact.resx">
+      <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramaReporte\R01_ReporteMovimientos.resx">
       <DependentUpon>R01_ReporteMovimientos.vb</DependentUpon>

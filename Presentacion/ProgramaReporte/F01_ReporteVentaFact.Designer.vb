@@ -221,6 +221,7 @@ Partial Class F01_ReporteVentaFact
         '
         'grDatos
         '
+        Me.grDatos.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.[False]
         Me.grDatos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grDatos.Location = New System.Drawing.Point(0, 0)
         Me.grDatos.Margin = New System.Windows.Forms.Padding(4)

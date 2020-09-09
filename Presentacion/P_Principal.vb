@@ -1341,6 +1341,20 @@ Public Class P_Principal
         tab3.Text = frm.Text
     End Sub
 
+    Private Sub btnReporteFacturada_Click(sender As Object, e As EventArgs) Handles btnReporteFacturada.Click
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New F01_ReporteVentaFact
+
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
+    End Sub
+
 
 #End Region
 

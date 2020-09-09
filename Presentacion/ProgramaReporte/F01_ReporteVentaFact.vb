@@ -7,6 +7,8 @@ Imports System.IO
 Imports DevComponents.DotNetBar.SuperGrid
 
 Public Class F01_ReporteVentaFact
+    Dim RutaGlobal As String = gs_CarpetaRaiz
+    Dim RutaTemporal As String = "C:\Temporal"
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
 
     End Sub
@@ -28,53 +30,196 @@ Public Class F01_ReporteVentaFact
             grDatos.DataSource = dt
             grDatos.RetrieveStructure()
             grDatos.AlternatingColors = True
+            'Mes Fecha	Codigo	NombreCliente	Direccion	CodigoVendedor	Vendedor	Zona	Transportista	Supervisor	NroFactura	
+            'detalle Almacen	CodProducto	Producto	Unidad	Cantidad	Precio	Descuento	Importe	IVA	VentaNeta	CostoTotal	Ganancia	PrecioOficial	PrecioVendido	TipoPago	Proveedor	Categoria	Marca	Atributo	Descripcion
+            With grDatos.RootTable.Columns("Atributo")
+                .Caption = "Atributo"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Descripcion")
+                .Caption = "Descripcion"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("detalle")
+                .Caption = "Detalle"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Almacen")
+                .Caption = "Almacen"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("CodProducto")
+                .Caption = "CodProducto"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Unidad")
+                .Caption = "Unidad"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("TipoPago")
+                .Caption = "TipoPago"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Proveedor")
+                .Caption = "Proveedor"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Categoria")
+                .Caption = "Categoria"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Marca")
+                .Caption = "Marca"
+                .FormatString = ""
+                .Visible = True
+            End With
 
-            'a.canumi ,a.canombre ,a.cadesc ,a.caimg ,a.cafact,a.cahact,a.cauact
-            '    With grBuscador.RootTable.Columns("canumi")
-            '    .Width = 100
-            '    .Caption = "CODIGO"
-            '    .Visible = True
+            With grDatos.RootTable.Columns("Zona")
+                .Caption = "Zona"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Vendedor")
+                .Caption = "Vendedor"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Transportista")
+                .Caption = "Transportista"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Supervisor")
+                .Caption = "Supervisor"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("NroFactura")
+                .Caption = "NroFactura"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Codigo")
+                .Caption = "Codigo"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("NombreCliente")
+                .Caption = "NombreCliente"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Direccion")
+                .Caption = "Direccion"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("CodigoVendedor")
+                .Caption = "CodigoVendedor"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("CodigoVendedor")
+                .Caption = "CodigoVendedor"
+                .FormatString = ""
+                .Visible = True
+            End With
 
-            'End With
-            'With grBuscador.RootTable.Columns("canombre")
-            '    .Width = 300
-            '    .Caption = "NOMBRE CATEGORIA"
-            '    .Visible = True
-            'End With
+            With grDatos.RootTable.Columns("Mes")
+                .Caption = "Mes"
+                .FormatString = ""
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Fecha")
+                .Caption = "Fecha"
+                .FormatString = "dd/MM/yyyy"
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("Producto")
+                .Width = 250
+                .Caption = "Producto"
+                .Visible = True
+            End With
 
 
-            'With grBuscador.RootTable.Columns("cadesc")
-            '    .Width = 350
-            '    .Visible = True
-            '    .Caption = "DESCRIPCION"
-            'End With
-            'With grBuscador.RootTable.Columns("caimg")
-            '    .Width = 150
-            '    .Visible = False
-            'End With
-            'With grBuscador.RootTable.Columns("caest")
-            '    .Width = 150
-            '    .Visible = False
-            'End With
 
-            'With grBuscador.RootTable.Columns("cafact")
-            '    .Width = 120
-            '    .Visible = True
-            '    .Caption = "FECHA"
-            '    .FormatString = "dd/MM/yyyy"
-            'End With
+            With grDatos.RootTable.Columns("Producto")
+                .Width = 250
+                .Caption = "Producto"
+                .Visible = True
+            End With
+            With grDatos.RootTable.Columns("CostoTotal")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
+            With grDatos.RootTable.Columns("Ganancia")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
+            With grDatos.RootTable.Columns("PrecioOficial")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
+            With grDatos.RootTable.Columns("PrecioVendido")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
+            With grDatos.RootTable.Columns("Cantidad")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
+            With grDatos.RootTable.Columns("Precio")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
+            With grDatos.RootTable.Columns("Descuento")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
+            With grDatos.RootTable.Columns("Importe")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
+            With grDatos.RootTable.Columns("IVA")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
+            With grDatos.RootTable.Columns("VentaNeta")
+                .Width = 100
+                .FormatString = "0.00"
+                .Visible = True
+
+            End With
 
 
-            'With grBuscador.RootTable.Columns("cahact")
-            '    .Width = 50
-            '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            '    .Visible = False
-            'End With
-            'With grBuscador.RootTable.Columns("cauact")
-            '    .Width = 50
-            '    .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Near
-            '    .Visible = False
-            'End With
+
 
             With grDatos
                 .DefaultFilterRowComparison = FilterConditionOperator.Contains
@@ -84,8 +229,137 @@ Public Class F01_ReporteVentaFact
                 'diseño de la grilla
                 .VisualStyle = VisualStyle.Office2007
             End With
+        Else
+            If (Not IsNothing(grDatos) And Not IsNothing(grDatos.DataSource)) Then
 
+                CType(grDatos.DataSource, DataTable).Rows.Clear()
+
+            End If
+
+            ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
+                                    My.Resources.INFORMATION, 2000,
+                                    eToastGlowColor.Blue,
+                                    eToastPosition.TopCenter)
         End If
 
     End Sub
+    Private Sub _prCrearCarpetaReportes()
+        Dim rutaDestino As String = RutaGlobal + "\Reporte\Reporte Productos\"
+
+        If System.IO.Directory.Exists(RutaGlobal + "\Reporte\Reporte Productos\") = False Then
+            If System.IO.Directory.Exists(RutaGlobal + "\Reporte") = False Then
+                System.IO.Directory.CreateDirectory(RutaGlobal + "\Reporte")
+                If System.IO.Directory.Exists(RutaGlobal + "\Reporte\Reporte Productos") = False Then
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Reporte\Reporte Productos")
+                End If
+            Else
+                If System.IO.Directory.Exists(RutaGlobal + "\Reporte\Reporte Productos") = False Then
+                    System.IO.Directory.CreateDirectory(RutaGlobal + "\Reporte\Reporte Productos")
+
+                End If
+            End If
+        End If
+    End Sub
+    Private Sub btExcel_Click(sender As Object, e As EventArgs) Handles btExcel.Click
+        If (Not IsNothing(grDatos) And Not IsNothing(grDatos.DataSource)) Then
+
+            _prCrearCarpetaReportes()
+            Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
+            If (P_ExportarExcel(RutaGlobal + "\Reporte\Reporte Productos")) Then
+                ToastNotification.Show(Me, "EXPORTACIÓN DE LISTA DE PRODUCTOS EXITOSA..!!!",
+                                           img, 2000,
+                                           eToastGlowColor.Green,
+                                           eToastPosition.BottomCenter)
+            Else
+                ToastNotification.Show(Me, "FALLO AL EXPORTACIÓN DE LISTA DE PRODUCTOS..!!!",
+                                           My.Resources.WARNING, 2000,
+                                           eToastGlowColor.Red,
+                                           eToastPosition.BottomLeft)
+            End If
+        Else
+            ToastNotification.Show(Me, "NO HAY DATOS PARA EXPORTAR..!!!",
+                                   My.Resources.INFORMATION, 2000,
+                                   eToastGlowColor.Blue,
+                                   eToastPosition.TopCenter)
+
+        End If
+    End Sub
+    Public Function P_ExportarExcel(_ruta As String) As Boolean
+        Dim _ubicacion As String
+        'Dim _directorio As New FolderBrowserDialog
+
+        If (1 = 1) Then 'If(_directorio.ShowDialog = Windows.Forms.DialogResult.OK) Then
+            '_ubicacion = _directorio.SelectedPath
+            _ubicacion = _ruta
+            Try
+                Dim _stream As Stream
+                Dim _escritor As StreamWriter
+                Dim _fila As Integer = grDatos.GetRows.Length
+                Dim _columna As Integer = grDatos.RootTable.Columns.Count
+                Dim _archivo As String = _ubicacion & "\ListaDeProductos_" & Now.Date.Day &
+                    "." & Now.Date.Month & "." & Now.Date.Year & "_" & Now.Hour & "." & Now.Minute & "." & Now.Second & ".csv"
+                Dim _linea As String = ""
+                Dim _filadata = 0, columndata As Int32 = 0
+                File.Delete(_archivo)
+                _stream = File.OpenWrite(_archivo)
+                _escritor = New StreamWriter(_stream, System.Text.Encoding.UTF8)
+
+                For Each _col As GridEXColumn In grDatos.RootTable.Columns
+                    If (_col.Visible) Then
+                        _linea = _linea & _col.Caption & ";"
+                    End If
+                Next
+                _linea = Mid(CStr(_linea), 1, _linea.Length - 1)
+                _escritor.WriteLine(_linea)
+                _linea = Nothing
+
+                'Pbx_Precios.Visible = True
+                'Pbx_Precios.Minimum = 1
+                'Pbx_Precios.Maximum = Dgv_Precios.RowCount
+                'Pbx_Precios.Value = 1
+
+                For Each _fil As GridEXRow In grDatos.GetRows
+                    For Each _col As GridEXColumn In grDatos.RootTable.Columns
+                        If (_col.Visible) Then
+                            Dim data As String = CStr(_fil.Cells(_col.Key).Value)
+                            data = data.Replace(";", ",")
+                            _linea = _linea & data & ";"
+                        End If
+                    Next
+                    _linea = Mid(CStr(_linea), 1, _linea.Length - 1)
+                    _escritor.WriteLine(_linea)
+                    _linea = Nothing
+                    'Pbx_Precios.Value += 1
+                Next
+                _escritor.Close()
+                'Pbx_Precios.Visible = False
+                Try
+                    Dim ef = New Efecto
+                    ef._archivo = _archivo
+
+                    ef.tipo = 1
+                    ef.Context = "Su archivo ha sido Guardado en la ruta: " + _archivo + vbLf + "DESEA ABRIR EL ARCHIVO?"
+                    ef.Header = "PREGUNTA"
+                    ef.ShowDialog()
+                    Dim bandera As Boolean = False
+                    bandera = ef.band
+                    If (bandera = True) Then
+                        Process.Start(_archivo)
+                    End If
+
+                    'If (MessageBox.Show("Su archivo ha sido Guardado en la ruta: " + _archivo + vbLf + "DESEA ABRIR EL ARCHIVO?", "PREGUNTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes) Then
+                    '    Process.Start(_archivo)
+                    'End If
+                    Return True
+                Catch ex As Exception
+                    MsgBox(ex.Message)
+                    Return False
+                End Try
+            Catch ex As Exception
+                MsgBox(ex.Message)
+                Return False
+            End Try
+        End If
+        Return False
+    End Function
 End Class
