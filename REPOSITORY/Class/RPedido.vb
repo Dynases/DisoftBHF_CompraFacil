@@ -46,7 +46,8 @@ Public Class RPedido
                                       .NombreCliente = b.ccdesc,
                                       .NombreVendedor = c.cbdesc,
                                       .NroFactura = d.oacnrofac,
-                                      .idZona = a.oazona
+                                      .idZona = a.oazona,
+                                      .idCliente = b.ccnumi
                                       }).ToList()
                 Return listResult
             End Using
@@ -81,6 +82,7 @@ Public Class RPedido
             Using db = GetSchema()
                 Dim listResult = (From a In db.VR_GO_DespachoXCliente
                                   Where a.oaccbnumi = idChofer And a.oaest = ENEstadoPedido.DICTADO And a.oaap = 1
+                                  Order By a.IdZona, a.ccnumi
                                   Select New RDespachoxCliente With {
                                       .oaccbnumi = a.oaccbnumi,
                                       .ccnumi = a.ccnumi,

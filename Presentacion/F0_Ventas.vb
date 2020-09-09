@@ -1393,138 +1393,160 @@ Public Class F0_Ventas
     Private Sub P_GenerarReporte(numi As String)
 
     End Sub
+    Private Sub MostrarMensajeError(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.WARNING,
+                               5000,
+                               eToastGlowColor.Red,
+                               eToastPosition.TopCenter)
+
+    End Sub
+    Private Sub MostrarMensajeOk(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.OK,
+                               5000,
+                               eToastGlowColor.Green,
+                               eToastPosition.TopCenter)
+    End Sub
     Private Sub P_prImprimirFacturar(numi As String, impFactura As Boolean, grabarPDF As Boolean)
-        Dim _Fecha, _FechaAl As Date
-        Dim _Ds, _Ds1, _Ds2, _Ds3 As New DataSet
-        Dim _Autorizacion, _Nit, _Fechainv, _Total, _Key, _Cod_Control, _Hora,
+        Try
+            Dim _Fecha, _FechaAl As Date
+            Dim _Ds, _Ds1, _Ds2, _Ds3 As New DataSet
+            Dim _Autorizacion, _Nit, _Fechainv, _Total, _Key, _Cod_Control, _Hora,
             _Literal, _TotalDecimal, _TotalDecimal2 As String
-        Dim I, _NumFac, _numidosif, _TotalCC As Integer
-        Dim ice, _Desc, _TotalLi As Decimal
-        Dim _VistaPrevia As Integer = 0
+            Dim I, _NumFac, _numidosif, _TotalCC As Integer
+            Dim ice, _Desc, _TotalLi As Decimal
+            Dim _VistaPrevia As Integer = 0
 
-        _Desc = CDbl(0)
-        If Not IsNothing(P_Global.Visualizador) Then
-            P_Global.Visualizador.Close()
-        End If
+            _Desc = CDbl(0)
+            If Not IsNothing(P_Global.Visualizador) Then
+                P_Global.Visualizador.Close()
+            End If
 
-        _Fecha = Now.Date.ToString("dd/MM/yyyy")
-        _Hora = Now.Hour.ToString + ":" + Now.Minute.ToString
-        _Ds1 = L_Dosificacion("1", "1", _Fecha)
+            _Fecha = Now.Date.ToString("dd/MM/yyyy")
+            _Hora = Now.Hour.ToString + ":" + Now.Minute.ToString
+            _Ds1 = L_Dosificacion("1", "1", _Fecha)
 
-        _Ds = L_Reporte_Factura(numi, numi)
-        _Autorizacion = _Ds1.Tables(0).Rows(0).Item("yeautoriz").ToString
-        _NumFac = CInt(_Ds1.Tables(0).Rows(0).Item("yenunf")) + 1
-        _Nit = _Ds.Tables(0).Rows(0).Item("fvanitcli").ToString
-        _Fechainv = Microsoft.VisualBasic.Right(_Fecha.ToShortDateString, 4) +
+            _Ds = L_Reporte_Factura(numi, numi)
+            _Autorizacion = _Ds1.Tables(0).Rows(0).Item("yeautoriz").ToString
+            _NumFac = CInt(_Ds1.Tables(0).Rows(0).Item("yenunf")) + 1
+            _Nit = _Ds.Tables(0).Rows(0).Item("fvanitcli").ToString
+            _Fechainv = Microsoft.VisualBasic.Right(_Fecha.ToShortDateString, 4) +
                     Microsoft.VisualBasic.Right(Microsoft.VisualBasic.Left(_Fecha.ToShortDateString, 5), 2) +
                     Microsoft.VisualBasic.Left(_Fecha.ToShortDateString, 2)
-        _Total = _Ds.Tables(0).Rows(0).Item("fvatotal").ToString
-        ice = _Ds.Tables(0).Rows(0).Item("fvaimpsi")
-        _numidosif = _Ds1.Tables(0).Rows(0).Item("yenumi").ToString
-        _Key = _Ds1.Tables(0).Rows(0).Item("yekey")
-        _FechaAl = _Ds1.Tables(0).Rows(0).Item("yefal")
+            _Total = _Ds.Tables(0).Rows(0).Item("fvatotal").ToString
+            ice = _Ds.Tables(0).Rows(0).Item("fvaimpsi")
+            _numidosif = _Ds1.Tables(0).Rows(0).Item("yenumi").ToString
+            _Key = _Ds1.Tables(0).Rows(0).Item("yekey")
+            _FechaAl = _Ds1.Tables(0).Rows(0).Item("yefal")
 
-        Dim maxNFac As Integer = L_fnObtenerMaxIdTabla("TFV001", "fvanfac", "fvaautoriz = " + _Autorizacion)
-        _NumFac = maxNFac + 1
+            Dim maxNFac As Integer = L_fnObtenerMaxIdTabla("TFV001", "fvanfac", "fvaautoriz = " + _Autorizacion)
+            _NumFac = maxNFac + 1
 
-        _TotalCC = Math.Round(CDbl(_Total), MidpointRounding.AwayFromZero)
-        _Cod_Control = ControlCode.generateControlCode(_Autorizacion, _NumFac, _Nit, _Fechainv, CStr(_TotalCC), _Key)
+            _TotalCC = Math.Round(CDbl(_Total), MidpointRounding.AwayFromZero)
+            _Cod_Control = ControlCode.generateControlCode(_Autorizacion, _NumFac, _Nit, _Fechainv, CStr(_TotalCC), _Key)
 
-        'Literal 
-        _TotalLi = _Ds.Tables(0).Rows(0).Item("fvastot") - _Ds.Tables(0).Rows(0).Item("fvadesc")
-        _TotalDecimal = _TotalLi - Math.Truncate(_TotalLi)
-        _TotalDecimal2 = CDbl(_TotalDecimal) * 100
+            'Literal 
+            _TotalLi = _Ds.Tables(0).Rows(0).Item("fvastot") - _Ds.Tables(0).Rows(0).Item("fvadesc")
+            _TotalDecimal = _TotalLi - Math.Truncate(_TotalLi)
+            _TotalDecimal2 = CDbl(_TotalDecimal) * 100
 
-        'Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(_Total) - CDbl(_TotalDecimal)) + " con " + IIf(_TotalDecimal2.Equals("0"), "00", _TotalDecimal2) + "/100 Bolivianos"
-        _Literal = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(_TotalLi) - CDbl(_TotalDecimal)) + " con " + IIf(_TotalDecimal2.Equals("0"), "00", _TotalDecimal2) + "/100 Bolivianos"
-        _Ds2 = L_Reporte_Factura_Cia("1")
-        QrFactura.Text = _Ds2.Tables(0).Rows(0).Item("scnit").ToString + "|" + Str(_NumFac).Trim + "|" + _Autorizacion + "|" + _Fecha + "|" + _Total + "|" + _TotalLi.ToString + "|" + _Cod_Control + "|" + _Nit + "|" + ice.ToString + "|0|0|" + Str(_Desc).Trim
+            'Dim li As String = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(_Total) - CDbl(_TotalDecimal)) + " con " + IIf(_TotalDecimal2.Equals("0"), "00", _TotalDecimal2) + "/100 Bolivianos"
+            _Literal = Facturacion.ConvertirLiteral.A_fnConvertirLiteral(CDbl(_TotalLi) - CDbl(_TotalDecimal)) + " con " + IIf(_TotalDecimal2.Equals("0"), "00", _TotalDecimal2) + "/100 Bolivianos"
+            _Ds2 = L_Reporte_Factura_Cia("1")
+            QrFactura.Text = _Ds2.Tables(0).Rows(0).Item("scnit").ToString + "|" + Str(_NumFac).Trim + "|" + _Autorizacion + "|" + _Fecha + "|" + _Total + "|" + _TotalLi.ToString + "|" + _Cod_Control + "|" + _Nit + "|" + ice.ToString + "|0|0|" + Str(_Desc).Trim
 
-        'L_Modificar_Factura("fvanumi = " + CStr(numi),
-        '                    "",
-        '                    CStr(_NumFac),
-        '                    CStr(_Autorizacion),
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    "",
-        '                    _Cod_Control,
-        '                    _FechaAl.ToString("yyyy/MM/dd"),
-        '                    "",
-        '                    "",
-        '                    CStr(numi))
+            'L_Modificar_Factura("fvanumi = " + CStr(numi),
+            '                    "",
+            '                    CStr(_NumFac),
+            '                    CStr(_Autorizacion),
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    "",
+            '                    _Cod_Control,
+            '                    _FechaAl.ToString("yyyy/MM/dd"),
+            '                    "",
+            '                    "",
+            '                    CStr(numi))
 
 
-        'updateTO001C(numi, Str(_NumFac))
-        _Ds = L_Reporte_Factura(numi, numi)
+            'updateTO001C(numi, Str(_NumFac))
+            _Ds = L_Reporte_Factura(numi, numi)
 
-        _Ds3 = L_ObtenerRutaImpresora("1") ' Datos de Impresion de Facturación
+            _Ds3 = L_ObtenerRutaImpresora("1") ' Datos de Impresion de Facturación
 
-        For I = 0 To _Ds.Tables(0).Rows.Count - 1
-            _Ds.Tables(0).Rows(I).Item("fvaimgqr") = P_fnImageToByteArray(QrFactura.Image)
-        Next
-        P_Global.Visualizador = New Visualizador
-        Dim objrep As New R_FacturaPreImpresa1
-        Dim dia, mes, ano As Integer
-        Dim Fecliteral, mesl As String
-        Fecliteral = _Ds.Tables(0).Rows(0).Item("fvafec").ToString
-        dia = Microsoft.VisualBasic.Left(Fecliteral, 2)
-        mes = Microsoft.VisualBasic.Mid(Fecliteral, 4, 2)
-        ano = Microsoft.VisualBasic.Mid(Fecliteral, 7, 4)
-        If mes = 1 Then
-            mesl = "Enero"
-        End If
-        If mes = 2 Then
-            mesl = "Febrero"
-        End If
-        If mes = 3 Then
-            mesl = "Marzo"
-        End If
-        If mes = 4 Then
-            mesl = "Abril"
-        End If
-        If mes = 5 Then
-            mesl = "Mayo"
-        End If
-        If mes = 6 Then
-            mesl = "Junio"
-        End If
-        If mes = 7 Then
-            mesl = "Julio"
-        End If
-        If mes = 8 Then
-            mesl = "Agosto"
-        End If
-        If mes = 9 Then
-            mesl = "Septiembre"
-        End If
-        If mes = 10 Then
-            mesl = "Octubre"
-        End If
-        If mes = 11 Then
-            mesl = "Noviembre"
-        End If
-        If mes = 12 Then
-            mesl = "Diciembre"
-        End If
+            For I = 0 To _Ds.Tables(0).Rows.Count - 1
+                _Ds.Tables(0).Rows(I).Item("fvaimgqr") = P_fnImageToByteArray(QrFactura.Image)
+            Next
+            P_Global.Visualizador = New Visualizador
+            Dim objrep As New R_FacturaPreImpresa1
+            Dim dia, mes, ano As Integer
+            Dim Fecliteral, mesl As String
+            Fecliteral = _Ds.Tables(0).Rows(0).Item("fvafec").ToString
+            dia = Microsoft.VisualBasic.Left(Fecliteral, 2)
+            mes = Microsoft.VisualBasic.Mid(Fecliteral, 4, 2)
+            ano = Microsoft.VisualBasic.Mid(Fecliteral, 7, 4)
+            If mes = 1 Then
+                mesl = "Enero"
+            End If
+            If mes = 2 Then
+                mesl = "Febrero"
+            End If
+            If mes = 3 Then
+                mesl = "Marzo"
+            End If
+            If mes = 4 Then
+                mesl = "Abril"
+            End If
+            If mes = 5 Then
+                mesl = "Mayo"
+            End If
+            If mes = 6 Then
+                mesl = "Junio"
+            End If
+            If mes = 7 Then
+                mesl = "Julio"
+            End If
+            If mes = 8 Then
+                mesl = "Agosto"
+            End If
+            If mes = 9 Then
+                mesl = "Septiembre"
+            End If
+            If mes = 10 Then
+                mesl = "Octubre"
+            End If
+            If mes = 11 Then
+                mesl = "Noviembre"
+            End If
+            If mes = 12 Then
+                mesl = "Diciembre"
+            End If
 
-        Fecliteral = "Cochabamba, " + dia.ToString + " de " + mesl + " del " + ano.ToString
-        objrep.SetDataSource(_Ds.Tables(0))
-        objrep.SetParameterValue("Literal", _Literal)
-        objrep.SetParameterValue("Fechali", Fecliteral)
-        objrep.SetParameterValue("Ley", _Ds1.Tables(0).Rows(0).Item("yenota").ToString())
-        'objrep.PrintOptions.PrinterName = "L4150 Series(Red) (Copiar 1)"
-        objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
-        objrep.PrintToPrinter(1, False, 1, 1)
+            Fecliteral = "Cochabamba, " + dia.ToString + " de " + mesl + " del " + ano.ToString
+            objrep.SetDataSource(_Ds.Tables(0))
+            objrep.SetParameterValue("Literal", _Literal)
+            objrep.SetParameterValue("Fechali", Fecliteral)
+            objrep.SetParameterValue("Ley", _Ds1.Tables(0).Rows(0).Item("yenota").ToString())
+            'objrep.PrintOptions.PrinterName = "L4150 Series(Red) (Copiar 1)"
+            objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
+            objrep.PrintToPrinter(1, False, 1, 1)
+
+        Catch ex As Exception
+            MostrarMensajeError("Ocurrio un error inesperado")
+        End Try
 
     End Sub
     Private Sub ponerDescripcionProducto(ByRef dt As DataTable)

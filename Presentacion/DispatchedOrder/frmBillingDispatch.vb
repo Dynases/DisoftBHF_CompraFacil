@@ -57,12 +57,10 @@ Public Class frmBillingDispatch
             Dim idChofer = Me.cbChoferes.Value
             Dim resultado = New LPedido().ExisteConciliacion(listIdPedido, idChofer, ENTipoValidacion.FACTURAR)
 
-            Dim listaF = list1.OrderBy(Function(a) a.idZona).ToList()
-            
-            For i As Integer = 0 To listaF.Count - 1 Step 1
+            For i As Integer = 0 To list1.Count - 1 Step 1
 
-                GrabarTV001(Str(listaF(i).Id))
-                Dim dtDetalle As DataTable = L_prObtenerDetallePedidoFactura(Str(listaF(i).Id))
+                GrabarTV001(Str(list1(i).Id))
+                Dim dtDetalle As DataTable = L_prObtenerDetallePedidoFactura(Str(list1(i).Id))
 
                 P_fnGenerarFactura(dtDetalle.Rows(0).Item("oanumi"), dtDetalle.Rows(0).Item("subtotal"), dtDetalle.Rows(0).Item("descuento"), dtDetalle.Rows(0).Item("total"), dtDetalle.Rows(0).Item("nit"), dtDetalle.Rows(0).Item("cliente"), dtDetalle.Rows(0).Item("codcli"))
 
@@ -250,16 +248,34 @@ Public Class frmBillingDispatch
         objrep.SetParameterValue("Ley", _Ds1.Tables(0).Rows(0).Item("yenota").ToString())
         'objrep.PrintOptions.PrinterName = "L4150 Series(Red) (Copiar 1)"
 
-        Dim pd As New PrintDocument()
-        pd.PrinterSettings.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
-        If (Not pd.PrinterSettings.IsValid) Then
-            ToastNotification.Show(Me, "La Impresora ".ToUpper + _Ds3.Tables(0).Rows(0).Item("cbrut").ToString + Chr(13) + "No Existe".ToUpper,
-                                   My.Resources.WARNING, 5 * 1000,
-                                   eToastGlowColor.Blue, eToastPosition.BottomRight)
+        If (_Ds3.Tables(0).Rows(0).Item("cbvp")) Then 'Vista Previa de la Ventana de Vizualización 1 = True 0 = False
+            P_Global.Visualizador.CRV1.ReportSource = objrep 'Comentar
+            P_Global.Visualizador.ShowDialog() 'Comentar
+            P_Global.Visualizador.BringToFront() 'Comentar
         Else
-            objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
-            objrep.PrintToPrinter(1, False, 1, 1)
+            Dim pd As New PrintDocument()
+            pd.PrinterSettings.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
+            If (Not pd.PrinterSettings.IsValid) Then
+                ToastNotification.Show(Me, "La Impresora ".ToUpper + _Ds3.Tables(0).Rows(0).Item("cbrut").ToString + Chr(13) + "No Existe".ToUpper,
+                                       My.Resources.WARNING, 5 * 1000,
+                                       eToastGlowColor.Blue, eToastPosition.BottomRight)
+            Else
+                objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString '"EPSON TM-T20II Receipt5 (1)"
+                objrep.PrintToPrinter(1, False, 1, 1)
+            End If
         End If
+
+        'Dim pd As New PrintDocument()
+        'pd.PrinterSettings.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
+        'If (Not pd.PrinterSettings.IsValid) Then
+        '    ToastNotification.Show(Me, "La Impresora ".ToUpper + _Ds3.Tables(0).Rows(0).Item("cbrut").ToString + Chr(13) + "No Existe".ToUpper,
+        '                           My.Resources.WARNING, 5 * 1000,
+        '                           eToastGlowColor.Blue, eToastPosition.BottomRight)
+        'Else
+        '    objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
+        '    objrep.PrintToPrinter(1, False, 1, 1)
+        'End If
+
         'objrep.PrintOptions.PrinterName = _Ds3.Tables(0).Rows(0).Item("cbrut").ToString
         'objrep.PrintToPrinter(1, False, 1, 1)
 
@@ -381,7 +397,7 @@ Public Class frmBillingDispatch
 
             Dim listResult = New LPedido().ListarDespachoXClienteDeChofer(idChofer)
             Dim lista = (From a In listResult
-                         Where a.oafdoc = Tb_Fecha.Value).OrderBy(Function(i) i.IdZona).ToList
+                         Where a.oafdoc = Tb_Fecha.Value).ToList
             If (lista.Count = 0) Then
                 Throw New Exception("No registros para generar el reporte.")
             End If
@@ -531,6 +547,7 @@ Public Class frmBillingDispatch
 
             Dim listResult = New LPedido().ListarPedidoAsignadoAChofer(idChofer)
             Dim lista = (From a In listResult
+                         Order By a.idZona, a.idCliente
                          Where a.Fecha = Tb_Fecha.Value).ToList
             dgjPedido.BoundMode = Janus.Data.BoundMode.Bound
             dgjPedido.DataSource = lista
@@ -606,7 +623,13 @@ Public Class frmBillingDispatch
                 .FilterEditType = FilterEditType.NoEdit
                 .Position = 8
             End With
-
+            With dgjPedido.RootTable.Columns("idCliente")
+                .Caption = "idCliente"
+                .Width = 80
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+                .Visible = False
+                .Position = 7
+            End With
             With dgjPedido
                 .GroupByBoxVisible = False
                 .DefaultFilterRowComparison = FilterConditionOperator.Contains
