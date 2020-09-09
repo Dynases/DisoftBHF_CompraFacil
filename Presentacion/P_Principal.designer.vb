@@ -59,7 +59,7 @@ Partial Class P_Principal
         Me.btStockDisponible = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btSaldoFisicoValorado = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.btEstadoCuentasCompra = New DevComponents.DotNetBar.Metro.MetroTileItem()
-        Me.btInveMovimientos = New DevComponents.DotNetBar.Metro.MetroTileItem()
+        Me.btInveRepMovimientos = New DevComponents.DotNetBar.Metro.MetroTileItem()
         Me.PictureBox06 = New System.Windows.Forms.PictureBox()
         Me.SideNavPanelVenta = New DevComponents.DotNetBar.Controls.SideNavPanel()
         Me.PanelVenta = New System.Windows.Forms.Panel()
@@ -260,10 +260,10 @@ Partial Class P_Principal
         'SideNav1
         '
         Me.SideNav1.BackColor = System.Drawing.Color.FromArgb(CType(CType(49, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.SideNav1.Controls.Add(Me.SideNavPanelInventario)
+        Me.SideNav1.Controls.Add(Me.SideNavPanelPedido)
         Me.SideNav1.Controls.Add(Me.SideNavPanelVenta)
         Me.SideNav1.Controls.Add(Me.SideNavPanelCompra)
-        Me.SideNav1.Controls.Add(Me.SideNavPanelPedido)
-        Me.SideNav1.Controls.Add(Me.SideNavPanelInventario)
         Me.SideNav1.Controls.Add(Me.SideNavPanelRRHH)
         Me.SideNav1.Controls.Add(Me.SideNavPaenlConf)
         Me.SideNav1.Controls.Add(Me.SideNavPanelLogistica)
@@ -559,7 +559,6 @@ Partial Class P_Principal
         Me.SideNavPanelInventario.Name = "SideNavPanelInventario"
         Me.SideNavPanelInventario.Size = New System.Drawing.Size(1193, 700)
         Me.SideNavPanelInventario.TabIndex = 87
-        Me.SideNavPanelInventario.Visible = False
         '
         'PanelInventario
         '
@@ -708,7 +707,7 @@ Partial Class P_Principal
         Me.ItemContainerInveProductos.ItemSpacing = 3
         Me.ItemContainerInveProductos.MultiLine = True
         Me.ItemContainerInveProductos.Name = "ItemContainerInveProductos"
-        Me.ItemContainerInveProductos.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btInveMPMovProducto, Me.btMovPack, Me.btInveMPSaldoProducto, Me.btInveMPKardexProducto, Me.btInveMPProveedor, Me.btInveMPCompraProducto, Me.btPagosCompras, Me.btStockDisponible, Me.btSaldoFisicoValorado, Me.btEstadoCuentasCompra, Me.btInveMovimientos})
+        Me.ItemContainerInveProductos.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.btInveMPMovProducto, Me.btMovPack, Me.btInveMPSaldoProducto, Me.btInveMPKardexProducto, Me.btInveMPProveedor, Me.btInveMPCompraProducto, Me.btPagosCompras, Me.btStockDisponible, Me.btSaldoFisicoValorado, Me.btEstadoCuentasCompra, Me.btInveRepMovimientos})
         '
         '
         '
@@ -929,26 +928,26 @@ Partial Class P_Principal
         Me.btEstadoCuentasCompra.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
         Me.btEstadoCuentasCompra.TitleTextColor = System.Drawing.Color.Red
         '
-        'btInveMovimientos
+        'btInveRepMovimientos
         '
-        Me.btInveMovimientos.Image = Global.Presentacion.My.Resources.Resources.ENTRADA_SALIDA_ALM
-        Me.btInveMovimientos.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btInveMovimientos.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center
-        Me.btInveMovimientos.Name = "btInveMovimientos"
-        Me.btInveMovimientos.SymbolColor = System.Drawing.Color.Empty
-        Me.btInveMovimientos.Text = "REPORTE DE MOVIMIENTOS"
-        Me.btInveMovimientos.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Plum
-        Me.btInveMovimientos.TileSize = New System.Drawing.Size(250, 135)
+        Me.btInveRepMovimientos.Image = Global.Presentacion.My.Resources.Resources.ENTRADA_SALIDA_ALM
+        Me.btInveRepMovimientos.ImageTextAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btInveRepMovimientos.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center
+        Me.btInveRepMovimientos.Name = "btInveRepMovimientos"
+        Me.btInveRepMovimientos.SymbolColor = System.Drawing.Color.Empty
+        Me.btInveRepMovimientos.Text = "REPORTE DE MOVIMIENTOS"
+        Me.btInveRepMovimientos.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Plum
+        Me.btInveRepMovimientos.TileSize = New System.Drawing.Size(250, 135)
         '
         '
         '
-        Me.btInveMovimientos.TileStyle.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.btInveMovimientos.TileStyle.BackColor2 = System.Drawing.Color.BlueViolet
-        Me.btInveMovimientos.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.btInveMovimientos.TileStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btInveMovimientos.TileStyle.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Far
-        Me.btInveMovimientos.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
-        Me.btInveMovimientos.TitleTextColor = System.Drawing.Color.Red
+        Me.btInveRepMovimientos.TileStyle.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.btInveRepMovimientos.TileStyle.BackColor2 = System.Drawing.Color.BlueViolet
+        Me.btInveRepMovimientos.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.btInveRepMovimientos.TileStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btInveRepMovimientos.TileStyle.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Far
+        Me.btInveRepMovimientos.TitleTextAlignment = System.Drawing.ContentAlignment.BottomCenter
+        Me.btInveRepMovimientos.TitleTextColor = System.Drawing.Color.Red
         '
         'PictureBox06
         '
@@ -972,6 +971,7 @@ Partial Class P_Principal
         Me.SideNavPanelVenta.Name = "SideNavPanelVenta"
         Me.SideNavPanelVenta.Size = New System.Drawing.Size(1193, 700)
         Me.SideNavPanelVenta.TabIndex = 134
+        Me.SideNavPanelVenta.Visible = False
         '
         'PanelVenta
         '
@@ -2959,6 +2959,7 @@ Partial Class P_Principal
         '
         'FP_Inventario
         '
+        Me.FP_Inventario.Checked = True
         Me.FP_Inventario.Name = "FP_Inventario"
         Me.FP_Inventario.Panel = Me.SideNavPanelInventario
         Me.FP_Inventario.Symbol = ""
@@ -2966,7 +2967,6 @@ Partial Class P_Principal
         '
         'FP_Venta
         '
-        Me.FP_Venta.Checked = True
         Me.FP_Venta.Name = "FP_Venta"
         Me.FP_Venta.Panel = Me.SideNavPanelVenta
         Me.FP_Venta.Symbol = ""
@@ -3486,6 +3486,6 @@ Partial Class P_Principal
     Friend WithEvents btSaldoFisicoValorado As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btEstadoCuentasCompra As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnReporteComercial As DevComponents.DotNetBar.Metro.MetroTileItem
-    Friend WithEvents btInveMovimientos As DevComponents.DotNetBar.Metro.MetroTileItem
+    Friend WithEvents btInveRepMovimientos As DevComponents.DotNetBar.Metro.MetroTileItem
     Friend WithEvents btnReporteFacturada As DevComponents.DotNetBar.Metro.MetroTileItem
 End Class

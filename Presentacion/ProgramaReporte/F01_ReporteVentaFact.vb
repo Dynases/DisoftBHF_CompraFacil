@@ -45,12 +45,13 @@ Public Class F01_ReporteVentaFact
             With grDatos.RootTable.Columns("detalle")
                 .Caption = "Detalle"
                 .FormatString = ""
-                .Visible = True
+
+                .Visible = False
             End With
             With grDatos.RootTable.Columns("Almacen")
                 .Caption = "Almacen"
                 .FormatString = ""
-                .Visible = True
+                .Visible = False
             End With
             With grDatos.RootTable.Columns("CodProducto")
                 .Caption = "CodProducto"
@@ -101,7 +102,7 @@ Public Class F01_ReporteVentaFact
             With grDatos.RootTable.Columns("Supervisor")
                 .Caption = "Supervisor"
                 .FormatString = ""
-                .Visible = True
+                .Visible = False
             End With
             With grDatos.RootTable.Columns("NroFactura")
                 .Caption = "NroFactura"

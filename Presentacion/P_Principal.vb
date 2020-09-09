@@ -1325,13 +1325,13 @@ Public Class P_Principal
         tab3.Text = frm.Text
     End Sub
 
-    Private Sub btInveMovimientos_Click(sender As Object, e As EventArgs) Handles btInveMovimientos.Click
+    Private Sub btInveMovimientos_Click(sender As Object, e As EventArgs) Handles btInveRepMovimientos.Click
         SideNav1.IsMenuExpanded = False
         FP_Ventana.Select()
         Dim frm As New R01_ReporteMovimientos
 
         Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
-        frm._nameButton = btInveMovimientos.Name
+        frm._nameButton = btInveRepMovimientos.Name
         frm._tab = tab3
         frm._modulo = FP_Venta
         Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
