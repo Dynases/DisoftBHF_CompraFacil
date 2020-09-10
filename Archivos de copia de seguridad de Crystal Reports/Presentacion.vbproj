@@ -123,20 +123,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxInterop.AcroPDFLib">
-      <HintPath>C:\Librerias\PDF\AxInterop.AcroPDFLib.dll</HintPath>
+      <HintPath>..\..\..\..\DINASES\Librerias\librerias\PDF\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.ReportSource">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Shared">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Windows.Forms">
-      <HintPath>c:\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.Windows.Forms.dll</HintPath>
-    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.DotNetBar.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=2c9ff1fddc42653c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Design.dll</HintPath>
@@ -197,7 +190,7 @@
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Gma.QrCodeNet.Encoding">
-      <HintPath>C:\librerias\QrCode\Gma.QrCodeNet.Encoding.dll</HintPath>
+      <HintPath>..\..\..\..\DINASES\Librerias\QrCode\Gma.QrCodeNet.Encoding.dll</HintPath>
     </Reference>
     <Reference Include="GMap.NET.Core">
       <HintPath>..\..\..\..\DINASES\Librerias\Gmap\GMap.NET.Core.dll</HintPath>
@@ -222,6 +215,10 @@
     </Reference>
     <Reference Include="Google.Apis.PlatformServices, Version=1.32.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.32.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.AcroPDFLib">
+      <HintPath>..\..\..\..\DINASES\Librerias\librerias\PDF\Interop.AcroPDFLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\..\..\..\DINASES\Librerias\Gmap\itextsharp.dll</HintPath>
@@ -271,7 +268,7 @@
       <HintPath>C:\Windows\assembly\GAC_MSIL\office\15.0.0.0__71e9bce111e9429c\OFFICE.DLL</HintPath>
     </Reference>
     <Reference Include="OnBarcode.Barcode.WinForms">
-      <HintPath>C:\librerias\QrCode\OnBarcode.Barcode.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\DINASES\Librerias\QrCode\OnBarcode.Barcode.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -284,6 +281,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
@@ -372,6 +370,24 @@
     <Compile Include="F02_Compra.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F02_Descuento.designer.vb">
+      <DependentUpon>F02_Descuento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F02_Descuento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F02_MovimientoPack.designer.vb">
+      <DependentUpon>F02_MovimientoPack.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F02_MovimientoPack.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F02_PedidoNuevo.Designer.vb">
+      <DependentUpon>F02_PedidoNuevo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F02_PedidoNuevo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F02_Precio.Designer.vb">
       <DependentUpon>F02_Precio.vb</DependentUpon>
     </Compile>
@@ -408,6 +424,12 @@
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmCajaGeneral.Designer.vb">
+      <DependentUpon>frmCajaGeneral.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCajaGeneral.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Mapas\F1_Dosificacion.designer.vb">
       <DependentUpon>F1_Dosificacion.vb</DependentUpon>
     </Compile>
@@ -424,6 +446,24 @@
       <DependentUpon>R0_UTilidadPorProducto.vb</DependentUpon>
     </Compile>
     <Compile Include="Mapas\R0_UTilidadPorProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_ReporteVentaFact.Designer.vb">
+      <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_ReporteVentaFact.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_ReporteMovimientos.Designer.vb">
+      <DependentUpon>R01_ReporteMovimientos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_ReporteMovimientos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_VentasProductosRanking.Designer.vb">
+      <DependentUpon>R01_VentasProductosRanking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\R01_VentasProductosRanking.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pr_ReporteVentasGrafico.Designer.vb">
@@ -557,6 +597,12 @@
     <Compile Include="R01_EquipoPrestadoVsUltimaVenta.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="R01_EstadoCuentasCompra.Designer.vb">
+      <DependentUpon>R01_EstadoCuentasCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="R01_EstadoCuentasCompra.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="R01_EstadoCuentasCliente.Designer.vb">
       <DependentUpon>R01_EstadoCuentasCliente.vb</DependentUpon>
     </Compile>
@@ -603,6 +649,18 @@
       <DependentUpon>R01_SaldoEquipo.vb</DependentUpon>
     </Compile>
     <Compile Include="R01_SaldoEquipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="R01_SaldoFisicoValorado.designer.vb">
+      <DependentUpon>R01_SaldoFisicoValorado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="R01_SaldoFisicoValorado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="R01_SaldoProductoFiltros.Designer.vb">
+      <DependentUpon>R01_SaldoProductoFiltros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="R01_SaldoProductoFiltros.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="R01_StockDisponible.Designer.vb">
@@ -653,6 +711,36 @@
     <Compile Include="R0_Credito.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reportes\R_CajaCortes.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_CajaCortes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_CajaDepositos.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_CajaDepositos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_CajaDetalle.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_CajaDetalle.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_CierreCaja.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_CierreCaja.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_CierreCaja1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_CierreCaja1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\R_CajaCliente.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -663,6 +751,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>R_CajaGeneral.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_CajaGeneralConciliacion.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_CajaGeneralConciliacion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\R_CajaProducto.vb">
@@ -700,6 +794,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>R_CuentaPorCobrarDetallado.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_EstadoCuentasCompra.vb">
+      <DependentUpon>R_EstadoCuentasCompra.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reportes\R_EstadoCuentasClientes.vb">
       <AutoGen>True</AutoGen>
@@ -741,6 +841,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>R_HisotorialCobrosVentasCredito.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_KardexGeneral.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_KardexGeneral.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\R_Mam_CreditoGeneral.vb">
@@ -785,6 +891,18 @@
       <DependentUpon>R_ReciboCliente.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\R_ReporteCobranzas.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_ReporteCobranzas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_ReporteComercial.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>R_ReporteComercial.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\R_ReportePagosCobranzas.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -796,6 +914,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>R_saldoCreditoCliente.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\R_SaldosFisicoValorado.vb">
+      <DependentUpon>R_SaldosFisicoValorado.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reportes\R_StockActualFiltros.vb">
+      <DependentUpon>R_StockActualFiltros.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reportes\R_StockDisponible.vb">
       <DependentUpon>R_StockDisponible.rpt</DependentUpon>
@@ -1182,6 +1312,15 @@
     <EmbeddedResource Include="F02_Compra.resx">
       <DependentUpon>F02_Compra.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F02_Descuento.resx">
+      <DependentUpon>F02_Descuento.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F02_MovimientoPack.resx">
+      <DependentUpon>F02_MovimientoPack.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F02_PedidoNuevo.resx">
+      <DependentUpon>F02_PedidoNuevo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F02_Precio.resx">
       <DependentUpon>F02_Precio.vb</DependentUpon>
     </EmbeddedResource>
@@ -1200,6 +1339,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCajaGeneral.resx">
+      <DependentUpon>frmCajaGeneral.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mapas\F1_Dosificacion.resx">
       <DependentUpon>F1_Dosificacion.vb</DependentUpon>
     </EmbeddedResource>
@@ -1208,6 +1350,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mapas\R0_UTilidadPorProducto.resx">
       <DependentUpon>R0_UTilidadPorProducto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\F01_ReporteVentaFact.resx">
+      <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\R01_ReporteMovimientos.resx">
+      <DependentUpon>R01_ReporteMovimientos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\R01_VentasProductosRanking.resx">
+      <DependentUpon>R01_VentasProductosRanking.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pr_ReporteVentasGrafico.resx">
       <DependentUpon>Pr_ReporteVentasGrafico.vb</DependentUpon>
@@ -1272,6 +1423,9 @@
     <EmbeddedResource Include="R01_EquipoPrestadoVsUltimaVenta.resx">
       <DependentUpon>R01_EquipoPrestadoVsUltimaVenta.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R01_EstadoCuentasCompra.resx">
+      <DependentUpon>R01_EstadoCuentasCompra.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R01_EstadoCuentasCliente.resx">
       <DependentUpon>R01_EstadoCuentasCliente.vb</DependentUpon>
     </EmbeddedResource>
@@ -1295,6 +1449,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R01_SaldoEquipo.resx">
       <DependentUpon>R01_SaldoEquipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R01_SaldoFisicoValorado.resx">
+      <DependentUpon>R01_SaldoFisicoValorado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R01_SaldoProductoFiltros.resx">
+      <DependentUpon>R01_SaldoProductoFiltros.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R01_StockDisponible.resx">
       <DependentUpon>R01_StockDisponible.vb</DependentUpon>
@@ -1320,6 +1480,26 @@
     <EmbeddedResource Include="R0_Credito.resx">
       <DependentUpon>R0_Credito.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_CajaCortes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_CajaCortes.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_CajaDepositos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_CajaDepositos.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_CajaDetalle.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_CajaDetalle.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_CierreCaja.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_CierreCaja.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_CierreCaja1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_CierreCaja1.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_CajaCliente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_CajaCliente.vb</LastGenOutput>
@@ -1327,6 +1507,10 @@
     <EmbeddedResource Include="Reportes\R_CajaGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_CajaGeneral.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_CajaGeneralConciliacion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_CajaGeneralConciliacion.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_CajaProducto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1351,6 +1535,10 @@
     <EmbeddedResource Include="Reportes\R_CuentaPorCobrarDetallado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_CuentaPorCobrarDetallado.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_EstadoCuentasCompra.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_EstadoCuentasCompra.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_EstadoCuentasClientes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1380,6 +1568,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_HisotorialCobrosVentasCredito.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_KardexGeneral.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_KardexGeneral.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_Mam_CreditoGeneral.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_Mam_CreditoGeneral.vb</LastGenOutput>
@@ -1408,6 +1600,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_ReciboCliente.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_ReporteCobranzas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ReporteCobranzas.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_ReporteComercial.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_ReporteComercial.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_ReportePagosCobranzas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_ReportePagosCobranzas.vb</LastGenOutput>
@@ -1415,6 +1615,14 @@
     <EmbeddedResource Include="Reportes\R_saldoCreditoCliente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>R_saldoCreditoCliente.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_SaldosFisicoValorado.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_SaldosFisicoValorado.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\R_StockActualFiltros.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>R_StockActualFiltros.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_StockDisponible.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1756,6 +1964,8 @@
     <Content Include="Resources\add.png" />
     <Content Include="Resources\asiento.png" />
     <Content Include="Resources\cobro.png" />
+    <None Include="Resources\descuentos.png" />
+    <None Include="Resources\volver.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
