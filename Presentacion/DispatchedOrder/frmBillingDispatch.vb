@@ -248,7 +248,7 @@ Public Class frmBillingDispatch
         objrep.SetParameterValue("Ley", _Ds1.Tables(0).Rows(0).Item("yenota").ToString())
         'objrep.PrintOptions.PrinterName = "L4150 Series(Red) (Copiar 1)"
 
-        If (_Ds3.Tables(0).Rows(0).Item("cbvp")) Then 'Vista Previa de la Ventana de Vizualización 1 = True 0 = False
+        If (Not _Ds3.Tables(0).Rows(0).Item("cbvp")) Then 'Vista Previa de la Ventana de Vizualización 1 = True 0 = False
             P_Global.Visualizador.CRV1.ReportSource = objrep 'Comentar
             P_Global.Visualizador.ShowDialog() 'Comentar
             P_Global.Visualizador.BringToFront() 'Comentar
