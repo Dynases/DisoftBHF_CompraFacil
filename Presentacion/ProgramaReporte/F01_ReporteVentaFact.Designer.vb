@@ -29,8 +29,6 @@ Partial Class F01_ReporteVentaFact
         Dim cbMarca_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbAtributo_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
-        Me.swestado = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.cbDescripcion = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.cbCategoria = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
@@ -190,8 +188,6 @@ Partial Class F01_ReporteVentaFact
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.LabelX5)
-        Me.Panel1.Controls.Add(Me.swestado)
         Me.Panel1.Controls.Add(Me.LabelX2)
         Me.Panel1.Controls.Add(Me.cbDescripcion)
         Me.Panel1.Controls.Add(Me.cbCategoria)
@@ -213,44 +209,6 @@ Partial Class F01_ReporteVentaFact
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1270, 227)
         Me.Panel1.TabIndex = 29
-        '
-        'LabelX5
-        '
-        Me.LabelX5.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX5.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX5.Location = New System.Drawing.Point(409, 46)
-        Me.LabelX5.Margin = New System.Windows.Forms.Padding(4)
-        Me.LabelX5.Name = "LabelX5"
-        Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX5.Size = New System.Drawing.Size(117, 28)
-        Me.LabelX5.TabIndex = 268
-        Me.LabelX5.Text = "Tipo Reporte:"
-        '
-        'swestado
-        '
-        '
-        '
-        '
-        Me.swestado.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.swestado.Location = New System.Drawing.Point(537, 44)
-        Me.swestado.Margin = New System.Windows.Forms.Padding(4)
-        Me.swestado.Name = "swestado"
-        Me.swestado.OffBackColor = System.Drawing.Color.Gold
-        Me.swestado.OffText = "Pedidos Dictados"
-        Me.swestado.OffTextColor = System.Drawing.Color.Black
-        Me.swestado.OnBackColor = System.Drawing.Color.SpringGreen
-        Me.swestado.OnText = "Pedidos Facturados"
-        Me.swestado.OnTextColor = System.Drawing.Color.Black
-        Me.swestado.Size = New System.Drawing.Size(239, 28)
-        Me.swestado.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
-        Me.swestado.TabIndex = 267
-        Me.swestado.ValueFalse = "0"
-        Me.swestado.ValueTrue = "1"
         '
         'LabelX2
         '
@@ -689,8 +647,6 @@ Partial Class F01_ReporteVentaFact
     Friend WithEvents tbFechaI As DevComponents.Editors.DateTimeAdv.DateTimeInput
     Friend WithEvents ButtonX1 As DevComponents.DotNetBar.ButtonX
     Friend WithEvents btExcel As DevComponents.DotNetBar.ButtonX
-    Friend WithEvents LabelX5 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents swestado As DevComponents.DotNetBar.Controls.SwitchButton
     Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
     Friend WithEvents cbDescripcion As Janus.Windows.GridEX.EditControls.MultiColumnCombo
     Friend WithEvents cbCategoria As Janus.Windows.GridEX.EditControls.MultiColumnCombo

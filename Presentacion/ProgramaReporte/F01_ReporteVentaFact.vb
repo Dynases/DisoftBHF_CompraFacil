@@ -19,7 +19,6 @@ Public Class F01_ReporteVentaFact
         tbFechaI.Value = Now.Date
         tbFechaF.Value = Now.Date
         P_prArmarCombos()
-        swestado.Value = True
     End Sub
     Private Sub P_prArmarCombos()
         P_prArmarComboProveedor()
