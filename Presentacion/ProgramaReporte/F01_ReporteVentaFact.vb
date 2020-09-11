@@ -9,20 +9,89 @@ Imports DevComponents.DotNetBar.SuperGrid
 Public Class F01_ReporteVentaFact
     Dim RutaGlobal As String = gs_CarpetaRaiz
     Dim RutaTemporal As String = "C:\Temporal"
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+    Private Sub P_prInicio()
+        'Abrir conexion dsds
+        If (Not gb_ConexionAbierta) Then
+            L_prAbrirConexion()
+        End If
 
+        Me.WindowState = FormWindowState.Maximized
+        tbFechaI.Value = Now.Date
+        tbFechaF.Value = Now.Date
+        P_prArmarCombos()
+        swestado.Value = True
+    End Sub
+    Private Sub P_prArmarCombos()
+        P_prArmarComboProveedor()
+        P_prArmarComboCategoria()
+        P_prCargarComboLibreria(cbMarca, 102)
+        P_prCargarComboLibreria(cbAtributo, 103)
+        P_prArmarComboDescripcion(cbDescripcion)
+
+
+    End Sub
+    Private Sub P_prArmarComboProveedor()
+        Dim DtP As DataTable
+        DtP = L_fnObtenerProveedor()
+        DtP.Rows.Add(0, "TODOS")
+
+        g_prArmarCombo(cbProveedor, DtP, 60, 200, "COD", "PROVEEDOR")
+        cbProveedor.SelectedIndex = Convert.ToInt32(DtP.Rows.Count - 1)
+
+    End Sub
+    Private Sub P_prArmarComboCategoria()
+        Dim Dt As DataTable
+        Dt = L_fnObtenerCategoria()
+        Dt.Rows.Add(0, "TODOS")
+        g_prArmarCombo(cbCategoria, Dt, 60, 200, "Código", "Categoría")
+        cbCategoria.SelectedIndex = Convert.ToInt32(Dt.Rows.Count - 1)
+
+    End Sub
+
+    Private Sub P_prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String)
+        Dim dt As New DataTable
+        dt = L_prLibreriaProductoGeneral(cod1)
+        dt.Rows.Add(0, "TODOS")
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("cenum").Width = 70
+            .DropDownList.Columns("cenum").Caption = "COD"
+            .DropDownList.Columns.Add("cedesc").Width = 200
+            .DropDownList.Columns("cedesc").Caption = "DESCRIPCION"
+            .ValueMember = "cenum"
+            .DisplayMember = "cedesc"
+            .DataSource = dt
+            .Refresh()
+        End With
+        mCombo.SelectedIndex = Convert.ToInt32(dt.Rows.Count - 1)
+    End Sub
+    Private Sub P_prArmarComboDescripcion(cbDescripcion As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+        Dim Dt As DataTable
+        Dt = L_fnObtenerDescripcion()
+        Dt.Rows.Add("TODOS")
+        With cbDescripcion
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("cadesc2").Width = 200
+            .DropDownList.Columns("cadesc2").Caption = "DESCRIPCION"
+            .ValueMember = "cadesc2"
+            .DisplayMember = "cadesc2"
+            .DataSource = Dt
+            .Refresh()
+        End With
+        cbDescripcion.SelectedIndex = Convert.ToInt32(Dt.Rows.Count - 1)
     End Sub
 
     Private Sub F01_ReporteVentaFact_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Ventas Facturadas"
         tbFechaI.Value = Now.Date
         tbFechaF.Value = Now.Date
+        P_prInicio()
 
     End Sub
 
     Private Sub ButtonX1_Click(sender As Object, e As EventArgs) Handles ButtonX1.Click
 
-        Dim dt As DataTable = L_fnReporteFacturados(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
+        Dim dt As DataTable = L_fnReporteFacturados(cbProveedor.Value, cbCategoria.Value, cbMarca.Value, cbAtributo.Value, cbDescripcion.Value, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
 
         If (dt.Rows.Count > 0) Then
 
@@ -363,4 +432,8 @@ Public Class F01_ReporteVentaFact
         End If
         Return False
     End Function
+
+    Private Sub MBtImprimir_Click(sender As Object, e As EventArgs) Handles MBtImprimir.Click
+
+    End Sub
 End Class

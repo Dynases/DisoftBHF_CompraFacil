@@ -2286,13 +2286,17 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
-    Public Shared Function L_fnReporteFacturados(FechaI As String, FechaF As String) As DataTable
+    Public Shared Function L_fnReporteFacturados(Proveedor As Integer, Categoria As Integer, Marca As Integer, Atributo As Integer, Descripcion As String, FechaI As String, FechaF As String) As DataTable
         Dim _Tabla As DataTable
 
         Dim _listParam As New List(Of Datos.DParametro)
 
         _listParam.Add(New Datos.DParametro("@tipo", 4))
-
+        _listParam.Add(New Datos.DParametro("@gr1", Proveedor))
+        _listParam.Add(New Datos.DParametro("@cat", Categoria))
+        _listParam.Add(New Datos.DParametro("@gr2", Marca))
+        _listParam.Add(New Datos.DParametro("@gr3", Atributo))
+        _listParam.Add(New Datos.DParametro("@desc2", Descripcion))
         _listParam.Add(New Datos.DParametro("@FechaDesde", FechaI))
         _listParam.Add(New Datos.DParametro("@FechaHasta", FechaF))
         _Tabla = D_ProcedimientoConParam("MAM_ReporteComercial", _listParam)
@@ -2326,7 +2330,7 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
-    Public Shared Function L_fnReporteComercial(Proveedor As Integer, Categoria As Integer, Marca As Integer, Atributo As Integer, Descripcion As String, FechaDesde As String, FechaHasta As String) As DataTable
+    Public Shared Function L_fnReporteComercial(Proveedor As Integer, Categoria As Integer, Marca As Integer, Atributo As Integer, Descripcion As String, FechaDesde As String, FechaHasta As String, Reporte As Integer) As DataTable
         Dim _Tabla As DataTable
 
         Dim _listParam As New List(Of Datos.DParametro)
@@ -2340,6 +2344,25 @@ Public Class AccesoLogica
 
         _listParam.Add(New Datos.DParametro("@FechaDesde", FechaDesde))
         _listParam.Add(New Datos.DParametro("@FechaHasta", FechaHasta))
+        _listParam.Add(New Datos.DParametro("@Reporte", Reporte))
+        _Tabla = D_ProcedimientoConParam("MAM_ReporteComercial", _listParam)
+
+        Return _Tabla
+    End Function
+
+    Public Shared Function L_fnReporteExistencia(Proveedor As Integer, Categoria As Integer, Marca As Integer, Atributo As Integer, Descripcion As String, FechaDesde As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@gr1", Proveedor))
+        _listParam.Add(New Datos.DParametro("@cat", Categoria))
+        _listParam.Add(New Datos.DParametro("@gr2", Marca))
+        _listParam.Add(New Datos.DParametro("@gr3", Atributo))
+        _listParam.Add(New Datos.DParametro("@desc2", Descripcion))
+
+        _listParam.Add(New Datos.DParametro("@FechaDesde", FechaDesde))
         _Tabla = D_ProcedimientoConParam("MAM_ReporteComercial", _listParam)
 
         Return _Tabla

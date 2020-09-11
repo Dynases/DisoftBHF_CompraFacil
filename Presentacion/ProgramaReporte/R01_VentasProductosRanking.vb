@@ -43,7 +43,7 @@ Public Class R01_VentasProductosRanking
         tbFechaI.Value = Now.Date
         tbFechaF.Value = Now.Date
         P_prArmarCombos()
-
+        swestado.Value = True
     End Sub
     Private Sub P_prArmarCombos()
         P_prArmarComboProveedor()
@@ -125,7 +125,7 @@ Public Class R01_VentasProductosRanking
 
     Private Sub P_prCargarReporte()
         Dim _dt As New DataTable
-        _dt = L_fnReporteComercial(cbProveedor.Value, cbCategoria.Value, cbMarca.Value, cbAtributo.Value, cbDescripcion.Value, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
+        _dt = L_fnReporteComercial(cbProveedor.Value, cbCategoria.Value, cbMarca.Value, cbAtributo.Value, cbDescripcion.Value, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), IIf(swestado.Value = True, 1, 0))
         CalcularRanking(_dt)
         If (_dt.Rows.Count > 0) Then
             Dim objrep As New R_ReporteComercial()
