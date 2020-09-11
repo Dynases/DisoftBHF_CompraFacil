@@ -38,4 +38,13 @@
             _nombreZona = value
         End Set
     End Property
+    Private _idCliente As Integer
+    Public Property idCliente() As Integer
+        Get
+            Return _idCliente
+        End Get
+        Set(ByVal value As Integer)
+            _idCliente = value
+        End Set
+    End Property
 End Class
