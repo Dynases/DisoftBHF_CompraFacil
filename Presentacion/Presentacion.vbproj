@@ -125,14 +125,11 @@
     <Reference Include="AxInterop.AcroPDFLib">
       <HintPath>..\..\..\..\DINASES\Librerias\librerias\PDF\AxInterop.AcroPDFLib.dll</HintPath>
     </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\librerias\CrystalDecisions.CrystalReports.Design.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DevComponents.DotNetBar.Keyboard, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Keyboard.dll</HintPath>
@@ -453,6 +450,12 @@
       <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
     </Compile>
     <Compile Include="ProgramaReporte\F01_ReporteVentaFact.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_RepZonaVendedores.Designer.vb">
+      <DependentUpon>F01_RepZonaVendedores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_RepZonaVendedores.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProgramaReporte\R01_ReporteMovimientos.Designer.vb">
@@ -1375,6 +1378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramaReporte\F01_ReporteVentaFact.resx">
       <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\F01_RepZonaVendedores.resx">
+      <DependentUpon>F01_RepZonaVendedores.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramaReporte\R01_ReporteMovimientos.resx">
       <DependentUpon>R01_ReporteMovimientos.vb</DependentUpon>

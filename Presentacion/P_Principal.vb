@@ -1386,19 +1386,19 @@ Public Class P_Principal
     End Sub
 
     Private Sub tLogiRepVendedorZona_Click(sender As Object, e As EventArgs) Handles tLogiRepVendedorZona.Click
-        'SideNav1.IsMenuExpanded = False
-        'FP_Ventana.Select()
-        'Dim frm As New F01_ReporteVendedorZonas
+        SideNav1.IsMenuExpanded = False
+        FP_Ventana.Select()
+        Dim frm As New F01_RepZonaVendedores
 
-        'Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
-        'frm._nameButton = tLogiRepVendedorZona.Name
-        'frm._tab = tab3
-        'frm._modulo = FP_Logistica
-        'Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
-        'superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
-        'tab3.AttachedControl.Controls.Add(panel)
-        'frm.Show()
-        'tab3.Text = frm.Text
+        Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
+        frm._nameButton = tLogiRepVendedorZona.Name
+        frm._tab = tab3
+        frm._modulo = FP_Logistica
+        Dim panel As Panel = P_Global._fnCrearPanelVentanas(frm)
+        superTabControlVentana.SelectedTabIndex = superTabControlVentana.Tabs.Count - 1
+        tab3.AttachedControl.Controls.Add(panel)
+        frm.Show()
+        tab3.Text = frm.Text
     End Sub
 
 
