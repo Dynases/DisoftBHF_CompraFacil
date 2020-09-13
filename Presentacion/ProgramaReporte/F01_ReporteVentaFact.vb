@@ -114,7 +114,7 @@ Public Class F01_ReporteVentaFact
                 .Caption = "Detalle"
                 .FormatString = ""
 
-                .Visible = False
+                .Visible = True
             End With
             With grDatos.RootTable.Columns("Almacen")
                 .Caption = "Almacen"
