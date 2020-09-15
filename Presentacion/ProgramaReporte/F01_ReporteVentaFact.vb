@@ -23,10 +23,23 @@ Public Class F01_ReporteVentaFact
     Private Sub P_prArmarCombos()
         P_prArmarComboProveedor()
         P_prArmarComboCategoria()
+        P_prArmarComboFactura()
         P_prCargarComboLibreria(cbMarca, 102)
         P_prCargarComboLibreria(cbAtributo, 103)
         P_prArmarComboDescripcion(cbDescripcion)
+        P_prArmarComboClientes()
+        P_prArmarComboVendedores()
+        P_prArmarComboRepartidor()
+        P_prArmarComboProducto()
 
+    End Sub
+    Private Sub P_prArmarComboProducto()
+        Dim DtP As DataTable
+        DtP = L_fnObtenerProductos()
+        DtP.Rows.Add(0, "TODOS")
+
+        g_prArmarCombo(cbProducto, DtP, 60, 200, "COD", "PRODUCTOS")
+        cbProducto.SelectedIndex = Convert.ToInt32(DtP.Rows.Count - 1)
 
     End Sub
     Private Sub P_prArmarComboProveedor()
@@ -36,6 +49,46 @@ Public Class F01_ReporteVentaFact
 
         g_prArmarCombo(cbProveedor, DtP, 60, 200, "COD", "PROVEEDOR")
         cbProveedor.SelectedIndex = Convert.ToInt32(DtP.Rows.Count - 1)
+
+    End Sub
+
+    Private Sub P_prArmarComboClientes()
+        Dim DtP As DataTable
+        DtP = L_fnObtenerClientes()
+        DtP.Rows.Add(0, "TODOS")
+
+        g_prArmarCombo(cbClientes, DtP, 60, 200, "COD", "CLIENTES")
+        cbClientes.SelectedIndex = Convert.ToInt32(DtP.Rows.Count - 1)
+
+    End Sub
+    Private Sub P_prArmarComboRepartidor()
+        Dim DtP As DataTable
+        DtP = L_fnObtenerPersonal(3)
+        DtP.Rows.Add(0, "TODOS")
+
+        g_prArmarCombo(cbRepartidor, DtP, 60, 200, "COD", "REPARTIDORES")
+        cbRepartidor.SelectedIndex = Convert.ToInt32(DtP.Rows.Count - 1)
+
+    End Sub
+    Private Sub P_prArmarComboVendedores()
+        Dim DtP As DataTable
+        DtP = L_fnObtenerPersonal(1)
+        DtP.Rows.Add(0, "TODOS")
+
+        g_prArmarCombo(cbVendedor, DtP, 60, 200, "COD", "VENDEDORES")
+        cbVendedor.SelectedIndex = Convert.ToInt32(DtP.Rows.Count - 1)
+
+    End Sub
+
+    Private Sub P_prArmarComboFactura()
+        Dim DtP As DataTable
+        DtP = L_fnObtenerProveedor()
+        DtP.Rows.Clear()
+        DtP.Rows.Add(0, "TODOS")
+        DtP.Rows.Add(1, "ACTIVOS")
+        DtP.Rows.Add(2, "ANULADOS")
+        g_prArmarCombo(cbFactura, DtP, 60, 200, "COD", "ESTADO")
+        cbFactura.SelectedIndex = Convert.ToInt32(0)
 
     End Sub
     Private Sub P_prArmarComboCategoria()
@@ -87,11 +140,87 @@ Public Class F01_ReporteVentaFact
         P_prInicio()
 
     End Sub
+    Public Sub Filtrar(ByRef _dt As DataTable)
+        Dim table As DataTable = _dt.Copy
 
+
+        If (cbFactura.Value = 1) Then
+            table = _dt.Copy
+            table.Rows.Clear()
+            For i As Integer = 0 To _dt.Rows.Count - 1 Step 1
+                If (_dt.Rows(i).Item("EstadoFactura") = 1) Then
+                    table.ImportRow(_dt.Rows(i))
+
+                End If
+
+            Next
+            _dt = table.Copy
+        End If
+        If (cbFactura.Value = 2) Then
+            table = _dt.Copy
+            table.Rows.Clear()
+            For i As Integer = 0 To _dt.Rows.Count - 1 Step 1
+                If (_dt.Rows(i).Item("EstadoFactura") = 0) Then
+                    table.ImportRow(_dt.Rows(i))
+
+                End If
+
+            Next
+            _dt = table.Copy
+        End If
+        If (cbClientes.Value <> 0) Then
+            table = _dt.Copy
+            table.Rows.Clear()
+            For i As Integer = 0 To _dt.Rows.Count - 1 Step 1
+                If (_dt.Rows(i).Item("ClienteId") = cbClientes.Value) Then
+                    table.ImportRow(_dt.Rows(i))
+
+                End If
+
+            Next
+            _dt = table.Copy
+        End If
+        If (cbVendedor.Value <> 0) Then
+            table = _dt.Copy
+            table.Rows.Clear()
+            For i As Integer = 0 To _dt.Rows.Count - 1 Step 1
+                If (_dt.Rows(i).Item("CodigoVendedor") = cbVendedor.Value) Then
+                    table.ImportRow(_dt.Rows(i))
+
+                End If
+
+            Next
+            _dt = table.Copy
+        End If
+        If (cbRepartidor.Value <> 0) Then
+            table = _dt.Copy
+            table.Rows.Clear()
+            For i As Integer = 0 To _dt.Rows.Count - 1 Step 1
+                If (_dt.Rows(i).Item("RepartidorId") = cbRepartidor.Value) Then
+                    table.ImportRow(_dt.Rows(i))
+
+                End If
+
+            Next
+            _dt = table.Copy
+        End If
+        If (cbProducto.Value <> 0) Then
+            table = _dt.Copy
+            table.Rows.Clear()
+            For i As Integer = 0 To _dt.Rows.Count - 1 Step 1
+                If (_dt.Rows(i).Item("CodProducto") = cbProducto.Value) Then
+                    table.ImportRow(_dt.Rows(i))
+
+                End If
+
+            Next
+            _dt = table.Copy
+        End If
+    End Sub
     Private Sub ButtonX1_Click(sender As Object, e As EventArgs) Handles ButtonX1.Click
 
         Dim dt As DataTable = L_fnReporteFacturados(cbProveedor.Value, cbCategoria.Value, cbMarca.Value, cbAtributo.Value, cbDescripcion.Value, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
-
+        Filtrar(dt)
         If (dt.Rows.Count > 0) Then
 
 
@@ -99,7 +228,23 @@ Public Class F01_ReporteVentaFact
             grDatos.RetrieveStructure()
             grDatos.AlternatingColors = True
             'Mes Fecha	Codigo	NombreCliente	Direccion	CodigoVendedor	Vendedor	Zona	Transportista	Supervisor	NroFactura	
-            'detalle Almacen	CodProducto	Producto	Unidad	Cantidad	Precio	Descuento	Importe	IVA	VentaNeta	CostoTotal	Ganancia	PrecioOficial	PrecioVendido	TipoPago	Proveedor	Categoria	Marca	Atributo	Descripcion
+            'detalle Almacen	CodProducto	Producto	Unidad	Cantidad	Precio	Descuento	Importe	IVA	VentaNeta	CostoTotal	Ganancia	PrecioOficial	PrecioVendido	TipoPago	Proveedor	Categoria	Marca	Atributo	Descripcion ClienteId RepartidorId
+            With grDatos.RootTable.Columns("RepartidorId")
+                .Caption = "RepartidorId"
+                .FormatString = ""
+                .Visible = False
+            End With
+            With grDatos.RootTable.Columns("ClienteId")
+                .Caption = "ClienteId"
+                .FormatString = ""
+                .Visible = False
+            End With
+            With grDatos.RootTable.Columns("EstadoFactura")
+                .Caption = "EstadoFactura"
+                .FormatString = ""
+                .Visible = False
+            End With
+
             With grDatos.RootTable.Columns("Atributo")
                 .Caption = "Atributo"
                 .FormatString = ""

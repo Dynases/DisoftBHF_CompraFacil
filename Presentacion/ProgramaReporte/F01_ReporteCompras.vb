@@ -19,9 +19,17 @@ Public Class F01_ReporteCompras
         tbFechaI.Value = Now.Date
         tbFechaF.Value = Now.Date
         P_prArmarCombos()
+        P_prArmarComboProducto()
+    End Sub
+    Private Sub P_prArmarComboProducto()
+        Dim DtP As DataTable
+        DtP = L_fnObtenerProductos()
+        DtP.Rows.Add(0, "TODOS")
+
+        g_prArmarCombo(cbProducto, DtP, 60, 200, "COD", "PRODUCTOS")
+        cbProducto.SelectedIndex = Convert.ToInt32(DtP.Rows.Count - 1)
 
     End Sub
-
     Private Sub P_prArmarCombos()
         P_prArmarComboProveedor()
         P_prArmarComboCategoria()
@@ -89,11 +97,27 @@ Public Class F01_ReporteCompras
         P_prInicio()
 
     End Sub
+    Public Sub Filtrar(ByRef _dt As DataTable)
+        Dim table As DataTable = _dt.Copy
 
+
+        If (cbProducto.Value <> 0) Then
+            table = _dt.Copy
+            table.Rows.Clear()
+            For i As Integer = 0 To _dt.Rows.Count - 1 Step 1
+                If (_dt.Rows(i).Item("Codigo") = cbProducto.Value) Then
+                    table.ImportRow(_dt.Rows(i))
+
+                End If
+
+            Next
+            _dt = table.Copy
+        End If
+    End Sub
     Private Sub ButtonX1_Click(sender As Object, e As EventArgs) Handles ButtonX1.Click
 
         Dim dt As DataTable = L_fnReporteComprasFacturadas(cbProveedor.Value, cbCategoria.Value, cbMarca.Value, cbAtributo.Value, cbDescripcion.Value, tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
-
+        Filtrar(dt)
         If (dt.Rows.Count > 0) Then
 
 

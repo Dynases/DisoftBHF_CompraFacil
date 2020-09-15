@@ -2195,6 +2195,50 @@ Public Class AccesoLogica
         Tabla = D_Datos_Tabla("a.canumi as [cod], a.canombre as [desc]", "TC005C a", where)
         Return Tabla
     End Function
+    Public Shared Function L_fnObtenerClientes() As DataTable
+        Dim Tabla As DataTable
+        Dim where As String = ""
+        'Select Case a.canumi ,a.canombre ,a.cadesc ,a.caimg ,a.cafact,a.cahact,a.cauact
+        'From TC005C As a
+        If (where = String.Empty) Then
+            where = "1=1 and ccest=1"
+        Else
+            where = where + " order by a.ccdesc asc"
+        End If
+
+        Tabla = D_Datos_Tabla("a.ccnumi as [cod], a.ccdesc as [desc]", "TC004 a", where)
+        Return Tabla
+    End Function
+
+    Public Shared Function L_fnObtenerProductos() As DataTable
+        Dim Tabla As DataTable
+        Dim where As String = ""
+        'Select Case a.canumi ,a.canombre ,a.cadesc ,a.caimg ,a.cafact,a.cahact,a.cauact
+        'From TC005C As a
+        If (where = String.Empty) Then
+            where = "1=1 and caest=1"
+        Else
+            where = where + " order by a.cadesc asc"
+        End If
+
+        Tabla = D_Datos_Tabla("a.canumi as [cod], a.cadesc as [desc]", "TC001 a", where)
+        Return Tabla
+    End Function
+
+    Public Shared Function L_fnObtenerPersonal(cat As Integer) As DataTable
+        Dim Tabla As DataTable
+        Dim where As String = ""
+        'Select Case a.canumi ,a.canombre ,a.cadesc ,a.caimg ,a.cafact,a.cahact,a.cauact
+        'From TC005C As a
+        If (where = String.Empty) Then
+            where = "1=1 and cbcat=" + Str(cat)
+        Else
+            where = where + " order by a.cbdesc asc"
+        End If
+
+        Tabla = D_Datos_Tabla("a.cbnumi as [cod], a.cbdesc as [desc]", "TC002 a", where)
+        Return Tabla
+    End Function
 
     Public Shared Function L_fnObtenerProveedor() As DataTable
         Dim Tabla As DataTable
