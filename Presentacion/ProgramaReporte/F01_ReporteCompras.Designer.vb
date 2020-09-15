@@ -22,14 +22,16 @@ Partial Class F01_ReporteCompras
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim cbProducto_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F01_ReporteCompras))
         Dim cbDescripcion_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbCategoria_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbProveedor_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbMarca_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim cbAtributo_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim cbProducto_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F01_ReporteCompras))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
+        Me.cbProducto = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.cbDescripcion = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.cbCategoria = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
@@ -48,8 +50,6 @@ Partial Class F01_ReporteCompras
         Me.tbFechaI = New DevComponents.Editors.DateTimeAdv.DateTimeInput()
         Me.GroupPanelBuscador = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.grDatos = New Janus.Windows.GridEX.GridEX()
-        Me.LabelX9 = New DevComponents.DotNetBar.LabelX()
-        Me.cbProducto = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         CType(Me.MSuperTabControlPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MSuperTabControlPrincipal.SuspendLayout()
         Me.MSuperTabControlPanelRegistro.SuspendLayout()
@@ -63,6 +63,7 @@ Partial Class F01_ReporteCompras
         Me.MPnUsuario.SuspendLayout()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.cbProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbDescripcion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbCategoria, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbProveedor, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,7 +73,6 @@ Partial Class F01_ReporteCompras
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupPanelBuscador.SuspendLayout()
         CType(Me.grDatos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MSuperTabControlPrincipal
@@ -129,6 +129,30 @@ Partial Class F01_ReporteCompras
         'MBtUltimo
         '
         Me.MBtUltimo.Location = New System.Drawing.Point(178, 0)
+        '
+        'MBtSalir
+        '
+        Me.MBtSalir.Visible = False
+        '
+        'MBtGrabar
+        '
+        Me.MBtGrabar.Visible = False
+        '
+        'MBtEliminar
+        '
+        Me.MBtEliminar.Visible = False
+        '
+        'MBtModificar
+        '
+        Me.MBtModificar.Visible = False
+        '
+        'MBtNuevo
+        '
+        Me.MBtNuevo.Visible = False
+        '
+        'MBtImprimir
+        '
+        Me.MBtImprimir.Visible = False
         '
         'MBubbleBarUsuario
         '
@@ -192,6 +216,41 @@ Partial Class F01_ReporteCompras
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1270, 227)
         Me.Panel1.TabIndex = 30
+        '
+        'LabelX9
+        '
+        Me.LabelX9.AutoSize = True
+        Me.LabelX9.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX9.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX9.Location = New System.Drawing.Point(409, 49)
+        Me.LabelX9.Margin = New System.Windows.Forms.Padding(4)
+        Me.LabelX9.Name = "LabelX9"
+        Me.LabelX9.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX9.Size = New System.Drawing.Size(79, 20)
+        Me.LabelX9.TabIndex = 278
+        Me.LabelX9.Text = "Producto:"
+        '
+        'cbProducto
+        '
+        cbProducto_DesignTimeLayout.LayoutString = resources.GetString("cbProducto_DesignTimeLayout.LayoutString")
+        Me.cbProducto.DesignTimeLayout = cbProducto_DesignTimeLayout
+        Me.cbProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbProducto.Location = New System.Drawing.Point(537, 44)
+        Me.cbProducto.Margin = New System.Windows.Forms.Padding(4)
+        Me.cbProducto.MaxLength = 40
+        Me.cbProducto.Name = "cbProducto"
+        Me.cbProducto.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.cbProducto.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.cbProducto.SelectedIndex = -1
+        Me.cbProducto.SelectedItem = Nothing
+        Me.cbProducto.Size = New System.Drawing.Size(239, 26)
+        Me.cbProducto.TabIndex = 277
+        Me.cbProducto.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'LabelX2
         '
@@ -582,41 +641,6 @@ Partial Class F01_ReporteCompras
         Me.grDatos.Size = New System.Drawing.Size(1264, 304)
         Me.grDatos.TabIndex = 0
         '
-        'LabelX9
-        '
-        Me.LabelX9.AutoSize = True
-        Me.LabelX9.BackColor = System.Drawing.Color.Transparent
-        '
-        '
-        '
-        Me.LabelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX9.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
-        Me.LabelX9.Location = New System.Drawing.Point(409, 49)
-        Me.LabelX9.Margin = New System.Windows.Forms.Padding(4)
-        Me.LabelX9.Name = "LabelX9"
-        Me.LabelX9.SingleLineColor = System.Drawing.SystemColors.Control
-        Me.LabelX9.Size = New System.Drawing.Size(79, 20)
-        Me.LabelX9.TabIndex = 278
-        Me.LabelX9.Text = "Producto:"
-        '
-        'cbProducto
-        '
-        cbProducto_DesignTimeLayout.LayoutString = resources.GetString("cbProducto_DesignTimeLayout.LayoutString")
-        Me.cbProducto.DesignTimeLayout = cbProducto_DesignTimeLayout
-        Me.cbProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbProducto.Location = New System.Drawing.Point(537, 44)
-        Me.cbProducto.Margin = New System.Windows.Forms.Padding(4)
-        Me.cbProducto.MaxLength = 40
-        Me.cbProducto.Name = "cbProducto"
-        Me.cbProducto.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.cbProducto.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.cbProducto.SelectedIndex = -1
-        Me.cbProducto.SelectedItem = Nothing
-        Me.cbProducto.Size = New System.Drawing.Size(239, 26)
-        Me.cbProducto.TabIndex = 277
-        Me.cbProducto.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
         'F01_ReporteCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -643,6 +667,7 @@ Partial Class F01_ReporteCompras
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.cbProducto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbDescripcion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbCategoria, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbProveedor, System.ComponentModel.ISupportInitialize).EndInit()
@@ -652,7 +677,6 @@ Partial Class F01_ReporteCompras
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupPanelBuscador.ResumeLayout(False)
         CType(Me.grDatos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
