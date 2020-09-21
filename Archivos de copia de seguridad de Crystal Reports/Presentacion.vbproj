@@ -130,49 +130,41 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="DevComponents.DotNetBar.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=2c9ff1fddc42653c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Design.dll</HintPath>
-    </Reference>
     <Reference Include="DevComponents.DotNetBar.Keyboard, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Keyboard.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Keyboard.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.Layout, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Layout.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Layout.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.Layout.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Layout.Design.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Layout.Design.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.Schedule, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.Schedule.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Schedule.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.DotNetBar2.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.Instrumentation, Version=12.5.0.2, Culture=neutral, PublicKeyToken=bc4a9d761ea44ef0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.Instrumentation.dll</HintPath>
-    </Reference>
-    <Reference Include="DevComponents.Instrumentation.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=30cefae8f341f577, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.Instrumentation.Design.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.Instrumentation.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.SuperGrid.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=1fea3f5d8d482bff, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.SuperGrid.Design.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.SuperGrid.Design.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.TreeGX, Version=12.5.0.2, Culture=neutral, PublicKeyToken=cfcbd7476b2389d1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\DotNetBar for Windows Forms\DevComponents.TreeGX.dll</HintPath>
+      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.TreeGX.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
@@ -448,10 +440,22 @@
     <Compile Include="Mapas\R0_UTilidadPorProducto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ProgramaReporte\F01_ReporteCompras.Designer.vb">
+      <DependentUpon>F01_ReporteCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_ReporteCompras.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ProgramaReporte\F01_ReporteVentaFact.Designer.vb">
       <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
     </Compile>
     <Compile Include="ProgramaReporte\F01_ReporteVentaFact.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_RepZonaVendedores.Designer.vb">
+      <DependentUpon>F01_RepZonaVendedores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\F01_RepZonaVendedores.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProgramaReporte\R01_ReporteMovimientos.Designer.vb">
@@ -464,6 +468,12 @@
       <DependentUpon>R01_VentasProductosRanking.vb</DependentUpon>
     </Compile>
     <Compile Include="ProgramaReporte\R01_VentasProductosRanking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgramaReporte\R02_ExistenciaProductos.Designer.vb">
+      <DependentUpon>R02_ExistenciaProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramaReporte\R02_ExistenciaProductos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pr_ReporteVentasGrafico.Designer.vb">
@@ -710,6 +720,18 @@
     </Compile>
     <Compile Include="R0_Credito.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\MAM_RepExistenciaProducto.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MAM_RepExistenciaProducto.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\MAM_ZonasRepartidor.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MAM_ZonasRepartidor.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\R_CajaCortes.vb">
       <AutoGen>True</AutoGen>
@@ -1351,14 +1373,23 @@
     <EmbeddedResource Include="Mapas\R0_UTilidadPorProducto.resx">
       <DependentUpon>R0_UTilidadPorProducto.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\F01_ReporteCompras.resx">
+      <DependentUpon>F01_ReporteCompras.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgramaReporte\F01_ReporteVentaFact.resx">
       <DependentUpon>F01_ReporteVentaFact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\F01_RepZonaVendedores.resx">
+      <DependentUpon>F01_RepZonaVendedores.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramaReporte\R01_ReporteMovimientos.resx">
       <DependentUpon>R01_ReporteMovimientos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramaReporte\R01_VentasProductosRanking.resx">
       <DependentUpon>R01_VentasProductosRanking.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgramaReporte\R02_ExistenciaProductos.resx">
+      <DependentUpon>R02_ExistenciaProductos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pr_ReporteVentasGrafico.resx">
       <DependentUpon>Pr_ReporteVentasGrafico.vb</DependentUpon>
@@ -1479,6 +1510,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R0_Credito.resx">
       <DependentUpon>R0_Credito.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\MAM_RepExistenciaProducto.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MAM_RepExistenciaProducto.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\MAM_ZonasRepartidor.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MAM_ZonasRepartidor.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\R_CajaCortes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
