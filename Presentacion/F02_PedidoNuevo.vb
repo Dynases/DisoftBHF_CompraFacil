@@ -38,7 +38,7 @@ Public Class F02_PedidoNuevo
         _PCargarGridTiposProd()
 
         _PCargarGridDetalle(-1)
-        _PCargarBuscador()
+        _PCargarBuscador(1)
 
         _PFiltrar()
         _PInhabilitar()
@@ -160,159 +160,173 @@ Public Class F02_PedidoNuevo
 
     End Sub
 
-    Private Sub _PCargarBuscador(Optional where As String = "")
+    Private Sub _PCargarBuscador(tipo As Integer, Optional where As String = "")
 
-        JGr_Buscador.BoundMode = BoundMode.Bound
-        If _nuevoBasePeriodico = True Then
-            ''JGr_Buscador.DataSource = L_PedidoCabecera_General_Pedido(-1, " AND oaest=10" + where)
-            JGr_Buscador.DataSource = L_prListaPedidos()
-        Else
-            'JGr_Buscador.DataSource = L_PedidoCabecera_GeneralTOPN(-1, " AND oaest<>10" + where, 100)
-            JGr_Buscador.DataSource = L_prListaPedidos()
-        End If
-        JGr_Buscador.RetrieveStructure()
+        Try
+            JGr_Buscador.BoundMode = BoundMode.Bound
+            If _nuevoBasePeriodico = True Then
+                ''JGr_Buscador.DataSource = L_PedidoCabecera_General_Pedido(-1, " AND oaest=10" + where)
+                JGr_Buscador.DataSource = L_prListaPedidos()
+            Else
+                If tipo = 1 Then
+                    JGr_Buscador.DataSource = L_prListaPedidos()
+                Else
+                    Dim tPedidos = L_prListaPedidosPorFecha(tbFechaDel.Value.Date.ToString("yyyy/MM/dd"), tbFechaAl.Value.Date.ToString("yyyy/MM/dd"))
+                    If tPedidos.Rows.Count = 0 Then
+                        Throw New Exception("No se encontro registro con la fecha específicada")
+                    End If
+                    JGr_Buscador.DataSource = tPedidos
+                End If
+                'JGr_Buscador.DataSource = L_PedidoCabecera_GeneralTOPN(-1, " AND oaest<>10" + where, 100)
 
-        'dar formato a las columnas
+            End If
+            JGr_Buscador.RetrieveStructure()
 
-        With JGr_Buscador.RootTable.Columns("oanumi")
-            .Caption = "Codigo".ToUpper
-            .Width = 70
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-        End With
+            'dar formato a las columnas
 
-        With JGr_Buscador.RootTable.Columns("oafdoc")
-            .Caption = "Fecha".ToUpper
-            .Width = 90
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-        End With
+            With JGr_Buscador.RootTable.Columns("oanumi")
+                .Caption = "Codigo".ToUpper
+                .Width = 70
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            End With
 
-        With JGr_Buscador.RootTable.Columns("oahora")
-            .Caption = "Hora".ToUpper
-            .Width = 90
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-        End With
+            With JGr_Buscador.RootTable.Columns("oafdoc")
+                .Caption = "Fecha".ToUpper
+                .Width = 90
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            End With
 
-        With JGr_Buscador.RootTable.Columns("oaccli")
-            .Caption = "Cod. cli.".ToUpper
-            .Width = 70
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-        End With
+            With JGr_Buscador.RootTable.Columns("oahora")
+                .Caption = "Hora".ToUpper
+                .Width = 90
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            End With
 
-        With JGr_Buscador.RootTable.Columns("credito")
-            .Visible = False
-        End With
-        With JGr_Buscador.RootTable.Columns("ccdesc")
-            .Caption = "Cliente".ToUpper
-            .Width = 200
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .AllowSort = False
-        End With
+            With JGr_Buscador.RootTable.Columns("oaccli")
+                .Caption = "Cod. cli.".ToUpper
+                .Width = 70
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            End With
 
-        With JGr_Buscador.RootTable.Columns("ccdirec")
-            .Caption = "direccion".ToUpper
-            .Width = 150
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .AllowSort = False
-        End With
+            With JGr_Buscador.RootTable.Columns("credito")
+                .Visible = False
+            End With
+            With JGr_Buscador.RootTable.Columns("ccdesc")
+                .Caption = "Cliente".ToUpper
+                .Width = 200
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .AllowSort = False
+            End With
 
-        With JGr_Buscador.RootTable.Columns("cctelf1")
-            .Caption = "telefono".ToUpper
-            .Width = 70
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-        End With
+            With JGr_Buscador.RootTable.Columns("ccdirec")
+                .Caption = "direccion".ToUpper
+                .Width = 150
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .AllowSort = False
+            End With
 
-        With JGr_Buscador.RootTable.Columns("cccat")
-            .Visible = False
-        End With
-        With JGr_Buscador.RootTable.Columns("oaanumiprev")
-            .Visible = False
-        End With
-        With JGr_Buscador.RootTable.Columns("oazona")
-            .Caption = "cod. zona".ToUpper
-            .Width = 70
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-        End With
+            With JGr_Buscador.RootTable.Columns("cctelf1")
+                .Caption = "telefono".ToUpper
+                .Width = 70
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            End With
 
-        With JGr_Buscador.RootTable.Columns("cedesc")
-            .Caption = "zona".ToUpper
-            .Width = 100
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .AllowSort = False
-        End With
+            With JGr_Buscador.RootTable.Columns("cccat")
+                .Visible = False
+            End With
+            With JGr_Buscador.RootTable.Columns("oaanumiprev")
+                .Visible = False
+            End With
+            With JGr_Buscador.RootTable.Columns("oazona")
+                .Caption = "cod. zona".ToUpper
+                .Width = 70
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
+            End With
 
-        With JGr_Buscador.RootTable.Columns("oaobs")
-            .Caption = "observacion".ToUpper
-            .Width = 150
-            .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            .CellStyle.FontSize = gi_fuenteTamano
-            .AllowSort = False
-        End With
+            With JGr_Buscador.RootTable.Columns("cedesc")
+                .Caption = "zona".ToUpper
+                .Width = 100
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .AllowSort = False
+            End With
 
-        With JGr_Buscador.RootTable.Columns("oaobs2")
-            .Visible = False
-        End With
+            With JGr_Buscador.RootTable.Columns("oaobs")
+                .Caption = "observacion".ToUpper
+                .Width = 150
+                .HeaderAlignment = Janus.Windows.GridEX.TextAlignment.Center
+                .CellStyle.FontSize = gi_fuenteTamano
+                .AllowSort = False
+            End With
 
-        With JGr_Buscador.RootTable.Columns("oaest")
-            .Visible = False
-        End With
+            With JGr_Buscador.RootTable.Columns("oaobs2")
+                .Visible = False
+            End With
 
-        With JGr_Buscador.RootTable.Columns("cclat")
-            .Visible = False
-        End With
+            With JGr_Buscador.RootTable.Columns("oaest")
+                .Visible = False
+            End With
 
-        With JGr_Buscador.RootTable.Columns("cclongi")
-            .Visible = False
-        End With
+            With JGr_Buscador.RootTable.Columns("cclat")
+                .Visible = False
+            End With
 
-        With JGr_Buscador.RootTable.Columns("cclongi")
-            .Visible = False
-        End With
-        With JGr_Buscador.RootTable.Columns("oaap")
-            .Visible = False
-        End With
-        With JGr_Buscador.RootTable.Columns("oapg")
-            .Visible = False
-        End With
-        With JGr_Buscador.RootTable.Columns("ccultvent")
-            .Visible = False
-        End With
-        With JGr_Buscador.RootTable.Columns("oarepa")
-            .Visible = False
-        End With
-        With JGr_Buscador.RootTable.Columns("oaanumiprev")
-            .Visible = False
-        End With
-        With JGr_Buscador.RootTable.Columns("montocredito")
-            .Visible = False
-        End With
+            With JGr_Buscador.RootTable.Columns("cclongi")
+                .Visible = False
+            End With
 
-        JGr_Buscador.ContextMenuStrip = ConMenu_Buscador
+            With JGr_Buscador.RootTable.Columns("cclongi")
+                .Visible = False
+            End With
+            With JGr_Buscador.RootTable.Columns("oaap")
+                .Visible = False
+            End With
+            With JGr_Buscador.RootTable.Columns("oapg")
+                .Visible = False
+            End With
+            With JGr_Buscador.RootTable.Columns("ccultvent")
+                .Visible = False
+            End With
+            With JGr_Buscador.RootTable.Columns("oarepa")
+                .Visible = False
+            End With
+            With JGr_Buscador.RootTable.Columns("oaanumiprev")
+                .Visible = False
+            End With
+            With JGr_Buscador.RootTable.Columns("montocredito")
+                .Visible = False
+            End With
 
-        'Habilitar Filtradores
-        With JGr_Buscador
-            .DefaultFilterRowComparison = FilterConditionOperator.Contains
-            .FilterMode = FilterMode.Automatic
-            .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
-            .GroupByBoxVisible = False
-        End With
+            JGr_Buscador.ContextMenuStrip = ConMenu_Buscador
 
-        'diseño de la grilla
-        JGr_Buscador.VisualStyle = VisualStyle.Office2007
+            'Habilitar Filtradores
+            With JGr_Buscador
+                .DefaultFilterRowComparison = FilterConditionOperator.Contains
+                .FilterMode = FilterMode.Automatic
+                .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
+                .GroupByBoxVisible = False
+            End With
+
+            'diseño de la grilla
+            JGr_Buscador.VisualStyle = VisualStyle.Office2007
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+
     End Sub
     Private Sub _PCargarGridDetalle(idCabecera As Integer)
         Dim dtProd, dtCatPrecios As New DataTable
@@ -1750,7 +1764,7 @@ Public Class F02_PedidoNuevo
                 _Nuevo = False 'aumentado danny
                 '_Modificar = False 'aumentado danny
                 _PInhabilitar()
-                _PCargarBuscador()
+                _PCargarBuscador(1)
                 _PFiltrar()
             End If
         Catch ex As Exception
@@ -2418,11 +2432,12 @@ Public Class F02_PedidoNuevo
     End Sub
 
     Private Sub btBuscar_Click(sender As Object, e As EventArgs) Handles btBuscar.Click
-        _PCargarBuscador(" and oafdoc>='" + tbFechaDel.Value.Date.ToString("yyyy/MM/dd") + "' and oafdoc<='" + tbFechaAl.Value.Date.ToString("yyyy/MM/dd") + "'")
+        '_PCargarBuscador(" and oafdoc>='" + tbFechaDel.Value.Date.ToString("yyyy/MM/dd") + "' and oafdoc<='" + tbFechaAl.Value.Date.ToString("yyyy/MM/dd") + "'")
+        _PCargarBuscador(2)
     End Sub
 
     Private Sub ButtonX1_Click(sender As Object, e As EventArgs) Handles Btn_AddProd.Click
-        _PCargarBuscador()
+        _PCargarBuscador(1)
     End Sub
 
     Private Sub REGERARPEDIDOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles REGERARPEDIDOToolStripMenuItem.Click
@@ -2500,7 +2515,7 @@ Public Class F02_PedidoNuevo
 
     Private Sub btActualizar_Click(sender As Object, e As EventArgs) Handles btActualizar.Click
         If (Not MBtGrabar.Enabled) Then
-            _PCargarBuscador()
+            _PCargarBuscador(1)
             _PFiltrar()
         Else
             ToastNotification.Show(Me,
@@ -2835,6 +2850,7 @@ Public Class F02_PedidoNuevo
             'Volver al foco para uno nuevo
             Tb_Fecha.Focus()
             ToastNotification.Show(Me, "Codigo de Pedido " + Tb_Id.Text + " Grabado con Exito.", My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.BottomLeft)
+            _PCargarBuscador(1)
             _PLimpiar()
 
             'ir a clientes

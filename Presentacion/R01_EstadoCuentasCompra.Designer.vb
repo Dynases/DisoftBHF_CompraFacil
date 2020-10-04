@@ -193,6 +193,7 @@ Partial Class R01_EstadoCuentasCompra
         Me.tbProveedor.Location = New System.Drawing.Point(8, 42)
         Me.tbProveedor.Name = "tbProveedor"
         Me.tbProveedor.PreventEnterBeep = True
+        Me.tbProveedor.ReadOnly = True
         Me.tbProveedor.Size = New System.Drawing.Size(238, 23)
         Me.tbProveedor.TabIndex = 246
         '
