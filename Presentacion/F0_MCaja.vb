@@ -1149,28 +1149,28 @@ Public Class F0_MCaja
 
     Private Sub P_GenerarReporte()
         Try
-            Dim dtProducto As DataTable = F_GenerarTablaProductoReporte()
-            Dim dtCliente As DataTable = CType(Dgv_PedidoTotal.DataSource, DataTable)
+            'Dim dtProducto As DataTable = F_GenerarTablaProductoReporte()
+            'Dim dtCliente As DataTable = CType(Dgv_PedidoTotal.DataSource, DataTable)
 
 
-            If Not IsNothing(P_Global.Visualizador) Then
-                P_Global.Visualizador.Close()
-            End If
+            'If Not IsNothing(P_Global.Visualizador) Then
+            '    P_Global.Visualizador.Close()
+            'End If
 
-            P_Global.Visualizador = New Visualizador
-            Dim objrep As New R_CajaGeneral
-            objrep.Subreports.Item("R_CajaProducto.rpt").SetDataSource(dtProducto)
-            objrep.Subreports.Item("R_CajaCliente.rpt").SetDataSource(dtCliente)
-            objrep.SetDataSource(dtCliente)
-            objrep.SetParameterValue("idcaja", TbCodigo.Text)
-            objrep.SetParameterValue("chofer", tbchofer.Text)
-            objrep.SetParameterValue("conciliacion", lbconciliacion.Text)
-            objrep.SetParameterValue("usuario", L_Usuario)
-            objrep.SetParameterValue("fecha", tbFecha.Text)
+            'P_Global.Visualizador = New Visualizador
+            'Dim objrep As New R_CajaGeneral
+            'objrep.Subreports.Item("R_CajaProducto.rpt").SetDataSource(dtProducto)
+            'objrep.Subreports.Item("R_CajaCliente.rpt").SetDataSource(dtCliente)
+            'objrep.SetDataSource(dtCliente)
+            'objrep.SetParameterValue("idcaja", TbCodigo.Text)
+            'objrep.SetParameterValue("chofer", tbchofer.Text)
+            'objrep.SetParameterValue("conciliacion", lbconciliacion.Text)
+            'objrep.SetParameterValue("usuario", L_Usuario)
+            'objrep.SetParameterValue("fecha", tbFecha.Text)
 
-            P_Global.Visualizador.CRV1.ReportSource = objrep
-            P_Global.Visualizador.Show()
-            P_Global.Visualizador.BringToFront()
+            'P_Global.Visualizador.CRV1.ReportSource = objrep
+            'P_Global.Visualizador.Show()
+            'P_Global.Visualizador.BringToFront()
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
         End Try

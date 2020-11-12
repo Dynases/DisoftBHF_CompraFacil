@@ -1155,7 +1155,7 @@ Public Class P_Principal
     Private Sub MetroTileItem9_Click(sender As Object, e As EventArgs) Handles MetroTileItem9.Click
         SideNav1.IsMenuExpanded = False
         FP_Ventana.Select()
-        Dim frm As New F02ZonaAsignacion
+        Dim frm As New F0_AsignacionZonaAlternativo
         Dim tab3 As SuperTabItem = superTabControlVentana.CreateTab(frm.Text)
         frm._nameButton = F02_Zona.Name
         frm._tab = tab3
