@@ -24,7 +24,7 @@ Public Class F0_AsignacionZonaAlternativo
     Public _DtZonas As DataTable
     Public _DtDetalleZonas As DataTable
 
-    Public Fila As Integer = -1
+    Public Modulo As Integer = -1
 
 #End Region
 #Region "Propiedades generales"
@@ -110,8 +110,8 @@ Public Class F0_AsignacionZonaAlternativo
 
 
 
-                'cargar lista prevendedor
-                P_prArmarGrillaPrevendedor()
+            'cargar lista prevendedor
+            P_prArmarGrillaPrevendedor()
             ''  Dim tPre As DataTable = L_ZonaDetalleRepartidor_General(-1, TbCodigo.Text).Tables(0)
             Dim dtZonaVendedore As DataTable = ObtenerDetalleZonas(TbCodigo.Text)
             Dim dtVendedor As DataTable = CType(dgjPrevendedor.DataSource, DataTable).Copy
@@ -134,20 +134,20 @@ Public Class F0_AsignacionZonaAlternativo
     Private Sub dgjRepartidor_EditingCell(sender As Object, e As EditingCellEventArgs) Handles dgjRepartidor.EditingCell
 
         If (e.Column.Index = dgjRepartidor.RootTable.Columns("value").Index) Then
-                e.Cancel = False
-            Else
-                e.Cancel = True
-            End If
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
 
     End Sub
 
     Private Sub dgjPrevendedor_EditingCell(sender As Object, e As EditingCellEventArgs) Handles dgjPrevendedor.EditingCell
 
         If (e.Column.Index = dgjPrevendedor.RootTable.Columns("value").Index) Then
-                e.Cancel = False
-            Else
-                e.Cancel = True
-            End If
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
 
     End Sub
     Private Sub P_PrArmarGrillas()
@@ -305,6 +305,7 @@ Public Class F0_AsignacionZonaAlternativo
             '.FilterRowFormatStyle.BackColor = Color.Blue
             .DefaultFilterRowComparison = FilterConditionOperator.Contains
             '.FilterMode = FilterMode.Automatic
+            '.FilterMode = FilterMode.Automatic
             .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
             'Diseño de la tabla
             .VisualStyle = VisualStyle.Office2007
@@ -315,6 +316,8 @@ Public Class F0_AsignacionZonaAlternativo
 
     Private Sub F02ZonaAsignacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         P_prInicio()
+        btnActual.PerformClick()
+
     End Sub
 
     Private Sub DgjBusqueda_SelectionChanged(sender As Object, e As EventArgs) Handles DgjBusqueda.SelectionChanged
@@ -410,13 +413,25 @@ Public Class F0_AsignacionZonaAlternativo
     End Sub
 
     Private Sub ButtonX1_Click(sender As Object, e As EventArgs) Handles ButtonX1.Click
-        Dim res As Boolean = GrabarDetalleZona(_DtDetalleZonas)
+        Dim res As Boolean
+        If (Modulo = -1) Then
+            res = GrabarDetalleZona(_DtDetalleZonas)
+
+        Else
+            res = GrabarDetalleZonaModulo(_DtDetalleZonas, Modulo)
+        End If
+
 
 
 
 
         If (res) Then
-            _DtDetalleZonas = L_prListarZonas()
+            If (Modulo = -1) Then
+                _DtDetalleZonas = L_prListarZonas()
+            Else
+
+                _DtDetalleZonas = L_prListarZonasDetalle(Modulo)
+            End If
 
             P_prArmarGrillaBusqueda()
             DgjBusqueda.Row = 0
@@ -465,14 +480,16 @@ Public Class F0_AsignacionZonaAlternativo
 
 
         Dim btn As ButtonX = sender
-            Fila = btn.Tag
-            SetearTodos()
-            SetearColorTable(btn, True)
-            If (Fila = -1) Then
-                _DtDetalleZonas = L_prListarZonas()
-            Else
-
-            End If
+        Modulo = btn.Tag
+        SetearTodos()
+        SetearColorTable(btn, True)
+        If (Modulo = -1) Then
+            _DtDetalleZonas = L_prListarZonas()
+            btnSetup.Visible = False
+        Else
+            btnSetup.Visible = True
+            _DtDetalleZonas = L_prListarZonasDetalle(Modulo)
+        End If
 
 
 
@@ -484,6 +501,40 @@ Public Class F0_AsignacionZonaAlternativo
 
 
         P_prLlenarDatos(0)
+    End Sub
+
+    Private Sub ButtonX3_Click_1(sender As Object, e As EventArgs) Handles btnSetup.Click
+        Dim res As Boolean
+
+        res = GrabarDetalleZona(_DtDetalleZonas)
+
+
+            GrabarDetalleZonaModulo(_DtDetalleZonas, Modulo)
+
+            If (res) Then
+            If (Modulo = -1) Then
+                _DtDetalleZonas = L_prListarZonas()
+            Else
+
+                _DtDetalleZonas = L_prListarZonasDetalle(Modulo)
+            End If
+
+            P_prArmarGrillaBusqueda()
+            DgjBusqueda.Row = 0
+
+            DgjBusqueda.Enabled = True
+            ToastNotification.Show(Me, "La Configuracion Fue Asignada a la Asignación Principal del Sistema".ToUpper,
+                           My.Resources.GRABACION_EXITOSA,
+                           InDuracion * 1000,
+                           eToastGlowColor.Green,
+                           eToastPosition.TopCenter)
+        Else
+            ToastNotification.Show(Me, "No se pudo Asignar A la configuración Principal".ToUpper,
+                               My.Resources.WARNING,
+                               InDuracion * 1000,
+                               eToastGlowColor.Red,
+                               eToastPosition.TopCenter)
+        End If
     End Sub
 
 

@@ -55,6 +55,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.DgjBusqueda = New Janus.Windows.GridEX.GridEX()
         Me.TbCodigo = New System.Windows.Forms.TextBox()
         Me.SuperTabItemRepartidor = New DevComponents.DotNetBar.SuperTabItem()
+        Me.btnSetup = New DevComponents.DotNetBar.ButtonX()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -104,7 +105,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(850, 87)
+        Me.Panel3.Size = New System.Drawing.Size(690, 87)
         Me.Panel3.TabIndex = 118
         '
         'btn010
@@ -276,12 +277,13 @@ Partial Class F0_AsignacionZonaAlternativo
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.Transparent
+        Me.Panel2.Controls.Add(Me.btnSetup)
         Me.Panel2.Controls.Add(Me.ButtonX1)
         Me.Panel2.Controls.Add(Me.ButtonX2)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel2.Location = New System.Drawing.Point(850, 0)
+        Me.Panel2.Location = New System.Drawing.Point(690, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(326, 87)
+        Me.Panel2.Size = New System.Drawing.Size(486, 87)
         Me.Panel2.TabIndex = 117
         '
         'ButtonX1
@@ -292,7 +294,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.ButtonX1.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonX1.Image = Global.Presentacion.My.Resources.Resources.save
         Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.ButtonX1.Location = New System.Drawing.Point(32, 0)
+        Me.ButtonX1.Location = New System.Drawing.Point(192, 0)
         Me.ButtonX1.Name = "ButtonX1"
         Me.ButtonX1.Size = New System.Drawing.Size(147, 87)
         Me.ButtonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
@@ -307,7 +309,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.ButtonX2.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonX2.Image = Global.Presentacion.My.Resources.Resources.atras
         Me.ButtonX2.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.ButtonX2.Location = New System.Drawing.Point(179, 0)
+        Me.ButtonX2.Location = New System.Drawing.Point(339, 0)
         Me.ButtonX2.Name = "ButtonX2"
         Me.ButtonX2.Size = New System.Drawing.Size(147, 87)
         Me.ButtonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
@@ -671,6 +673,21 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabItemRepartidor.Name = "SuperTabItemRepartidor"
         Me.SuperTabItemRepartidor.Text = "Listado Zonas"
         '
+        'btnSetup
+        '
+        Me.btnSetup.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnSetup.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btnSetup.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnSetup.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSetup.Image = Global.Presentacion.My.Resources.Resources.BT_ACTUALIZAR
+        Me.btnSetup.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btnSetup.Location = New System.Drawing.Point(45, 0)
+        Me.btnSetup.Name = "btnSetup"
+        Me.btnSetup.Size = New System.Drawing.Size(147, 87)
+        Me.btnSetup.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btnSetup.TabIndex = 2
+        Me.btnSetup.Text = "SetUp"
+        '
         'F0_AsignacionZonaAlternativo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -737,4 +754,5 @@ Partial Class F0_AsignacionZonaAlternativo
     Friend WithEvents btn02 As DevComponents.DotNetBar.ButtonX
     Friend WithEvents btn01 As DevComponents.DotNetBar.ButtonX
     Friend WithEvents btnActual As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btnSetup As DevComponents.DotNetBar.ButtonX
 End Class
