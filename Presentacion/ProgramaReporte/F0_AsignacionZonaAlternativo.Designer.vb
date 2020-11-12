@@ -23,6 +23,21 @@ Partial Class F0_AsignacionZonaAlternativo
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.btn010 = New DevComponents.DotNetBar.ButtonX()
+        Me.btn09 = New DevComponents.DotNetBar.ButtonX()
+        Me.btn08 = New DevComponents.DotNetBar.ButtonX()
+        Me.btn07 = New DevComponents.DotNetBar.ButtonX()
+        Me.btn06 = New DevComponents.DotNetBar.ButtonX()
+        Me.btn05 = New DevComponents.DotNetBar.ButtonX()
+        Me.btn04 = New DevComponents.DotNetBar.ButtonX()
+        Me.btn03 = New DevComponents.DotNetBar.ButtonX()
+        Me.btn02 = New DevComponents.DotNetBar.ButtonX()
+        Me.btn01 = New DevComponents.DotNetBar.ButtonX()
+        Me.btnActual = New DevComponents.DotNetBar.ButtonX()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
+        Me.ButtonX2 = New DevComponents.DotNetBar.ButtonX()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.gPanelVendedor = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.SuperTabControl2 = New DevComponents.DotNetBar.SuperTabControl()
@@ -38,12 +53,11 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabControlPersonal = New DevComponents.DotNetBar.SuperTabControl()
         Me.SuperTabControlPanel1 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.DgjBusqueda = New Janus.Windows.GridEX.GridEX()
-        Me.SuperTabItemRepartidor = New DevComponents.DotNetBar.SuperTabItem()
         Me.TbCodigo = New System.Windows.Forms.TextBox()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
-        Me.ButtonX2 = New DevComponents.DotNetBar.ButtonX()
+        Me.SuperTabItemRepartidor = New DevComponents.DotNetBar.SuperTabItem()
         Me.Panel1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.gPanelVendedor.SuspendLayout()
         CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,18 +74,245 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabControlPersonal.SuspendLayout()
         Me.SuperTabControlPanel1.SuspendLayout()
         CType(Me.DgjBusqueda, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
         '
         Me.Panel1.BackgroundImage = Global.Presentacion.My.Resources.Resources.fondo11
+        Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(959, 87)
+        Me.Panel1.Size = New System.Drawing.Size(1176, 87)
         Me.Panel1.TabIndex = 0
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.Transparent
+        Me.Panel3.Controls.Add(Me.btn010)
+        Me.Panel3.Controls.Add(Me.btn09)
+        Me.Panel3.Controls.Add(Me.btn08)
+        Me.Panel3.Controls.Add(Me.btn07)
+        Me.Panel3.Controls.Add(Me.btn06)
+        Me.Panel3.Controls.Add(Me.btn05)
+        Me.Panel3.Controls.Add(Me.btn04)
+        Me.Panel3.Controls.Add(Me.btn03)
+        Me.Panel3.Controls.Add(Me.btn02)
+        Me.Panel3.Controls.Add(Me.btn01)
+        Me.Panel3.Controls.Add(Me.btnActual)
+        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel3.Location = New System.Drawing.Point(0, 0)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(850, 87)
+        Me.Panel3.TabIndex = 118
+        '
+        'btn010
+        '
+        Me.btn010.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn010.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn010.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn010.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn010.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn010.Location = New System.Drawing.Point(595, 0)
+        Me.btn010.Name = "btn010"
+        Me.btn010.Size = New System.Drawing.Size(50, 87)
+        Me.btn010.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn010.TabIndex = 11
+        Me.btn010.Tag = "10"
+        Me.btn010.Text = "10"
+        '
+        'btn09
+        '
+        Me.btn09.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn09.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn09.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn09.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn09.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn09.Location = New System.Drawing.Point(545, 0)
+        Me.btn09.Name = "btn09"
+        Me.btn09.Size = New System.Drawing.Size(50, 87)
+        Me.btn09.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn09.TabIndex = 10
+        Me.btn09.Tag = "9"
+        Me.btn09.Text = "9"
+        '
+        'btn08
+        '
+        Me.btn08.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn08.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn08.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn08.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn08.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn08.Location = New System.Drawing.Point(495, 0)
+        Me.btn08.Name = "btn08"
+        Me.btn08.Size = New System.Drawing.Size(50, 87)
+        Me.btn08.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn08.TabIndex = 9
+        Me.btn08.Tag = "8"
+        Me.btn08.Text = "8"
+        '
+        'btn07
+        '
+        Me.btn07.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn07.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn07.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn07.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn07.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn07.Location = New System.Drawing.Point(445, 0)
+        Me.btn07.Name = "btn07"
+        Me.btn07.Size = New System.Drawing.Size(50, 87)
+        Me.btn07.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn07.TabIndex = 8
+        Me.btn07.Tag = "7"
+        Me.btn07.Text = "7"
+        '
+        'btn06
+        '
+        Me.btn06.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn06.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn06.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn06.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn06.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn06.Location = New System.Drawing.Point(395, 0)
+        Me.btn06.Name = "btn06"
+        Me.btn06.Size = New System.Drawing.Size(50, 87)
+        Me.btn06.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn06.TabIndex = 7
+        Me.btn06.Tag = "6"
+        Me.btn06.Text = "6"
+        '
+        'btn05
+        '
+        Me.btn05.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn05.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn05.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn05.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn05.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn05.Location = New System.Drawing.Point(345, 0)
+        Me.btn05.Name = "btn05"
+        Me.btn05.Size = New System.Drawing.Size(50, 87)
+        Me.btn05.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn05.TabIndex = 6
+        Me.btn05.Tag = "5"
+        Me.btn05.Text = "5"
+        '
+        'btn04
+        '
+        Me.btn04.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn04.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn04.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn04.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn04.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn04.Location = New System.Drawing.Point(295, 0)
+        Me.btn04.Name = "btn04"
+        Me.btn04.Size = New System.Drawing.Size(50, 87)
+        Me.btn04.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn04.TabIndex = 5
+        Me.btn04.Tag = "4"
+        Me.btn04.Text = "4"
+        '
+        'btn03
+        '
+        Me.btn03.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn03.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn03.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn03.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn03.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn03.Location = New System.Drawing.Point(245, 0)
+        Me.btn03.Name = "btn03"
+        Me.btn03.Size = New System.Drawing.Size(50, 87)
+        Me.btn03.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn03.TabIndex = 4
+        Me.btn03.Tag = "3"
+        Me.btn03.Text = "3"
+        '
+        'btn02
+        '
+        Me.btn02.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn02.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn02.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn02.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn02.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn02.Location = New System.Drawing.Point(195, 0)
+        Me.btn02.Name = "btn02"
+        Me.btn02.Size = New System.Drawing.Size(50, 87)
+        Me.btn02.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn02.TabIndex = 3
+        Me.btn02.Tag = "2"
+        Me.btn02.Text = "2"
+        '
+        'btn01
+        '
+        Me.btn01.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btn01.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btn01.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btn01.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn01.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btn01.Location = New System.Drawing.Point(145, 0)
+        Me.btn01.Name = "btn01"
+        Me.btn01.Size = New System.Drawing.Size(50, 87)
+        Me.btn01.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btn01.TabIndex = 2
+        Me.btn01.Tag = "1"
+        Me.btn01.Text = "1"
+        '
+        'btnActual
+        '
+        Me.btnActual.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.btnActual.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.btnActual.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btnActual.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnActual.Image = Global.Presentacion.My.Resources.Resources.rotacionproducto
+        Me.btnActual.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.btnActual.Location = New System.Drawing.Point(0, 0)
+        Me.btnActual.Name = "btnActual"
+        Me.btnActual.Size = New System.Drawing.Size(145, 87)
+        Me.btnActual.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.btnActual.TabIndex = 1
+        Me.btnActual.Tag = "-1"
+        Me.btnActual.Text = "Actual"
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.Transparent
+        Me.Panel2.Controls.Add(Me.ButtonX1)
+        Me.Panel2.Controls.Add(Me.ButtonX2)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel2.Location = New System.Drawing.Point(850, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(326, 87)
+        Me.Panel2.TabIndex = 117
+        '
+        'ButtonX1
+        '
+        Me.ButtonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.ButtonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.ButtonX1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ButtonX1.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonX1.Image = Global.Presentacion.My.Resources.Resources.save
+        Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.ButtonX1.Location = New System.Drawing.Point(32, 0)
+        Me.ButtonX1.Name = "ButtonX1"
+        Me.ButtonX1.Size = New System.Drawing.Size(147, 87)
+        Me.ButtonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.ButtonX1.TabIndex = 0
+        Me.ButtonX1.Text = "Guardar"
+        '
+        'ButtonX2
+        '
+        Me.ButtonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.ButtonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
+        Me.ButtonX2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.ButtonX2.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonX2.Image = Global.Presentacion.My.Resources.Resources.atras
+        Me.ButtonX2.ImageFixedSize = New System.Drawing.Size(30, 30)
+        Me.ButtonX2.Location = New System.Drawing.Point(179, 0)
+        Me.ButtonX2.Name = "ButtonX2"
+        Me.ButtonX2.Size = New System.Drawing.Size(147, 87)
+        Me.ButtonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
+        Me.ButtonX2.TabIndex = 1
+        Me.ButtonX2.Text = "Salir"
         '
         'TableLayoutPanel1
         '
@@ -88,7 +329,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(959, 488)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1176, 488)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'gPanelVendedor
@@ -98,10 +339,10 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.gPanelVendedor.Controls.Add(Me.SuperTabControl2)
         Me.gPanelVendedor.DisabledBackColor = System.Drawing.Color.Empty
         Me.gPanelVendedor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gPanelVendedor.Location = New System.Drawing.Point(642, 4)
+        Me.gPanelVendedor.Location = New System.Drawing.Point(788, 4)
         Me.gPanelVendedor.Margin = New System.Windows.Forms.Padding(4)
         Me.gPanelVendedor.Name = "gPanelVendedor"
-        Me.gPanelVendedor.Size = New System.Drawing.Size(313, 480)
+        Me.gPanelVendedor.Size = New System.Drawing.Size(384, 480)
         '
         '
         '
@@ -157,7 +398,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabControl2.ReorderTabsEnabled = True
         Me.SuperTabControl2.SelectedTabFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
         Me.SuperTabControl2.SelectedTabIndex = 1
-        Me.SuperTabControl2.Size = New System.Drawing.Size(307, 451)
+        Me.SuperTabControl2.Size = New System.Drawing.Size(378, 451)
         Me.SuperTabControl2.TabFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SuperTabControl2.TabIndex = 118
         Me.SuperTabControl2.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem2})
@@ -171,7 +412,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabControlPanel3.Location = New System.Drawing.Point(0, 26)
         Me.SuperTabControlPanel3.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanel3.Name = "SuperTabControlPanel3"
-        Me.SuperTabControlPanel3.Size = New System.Drawing.Size(307, 425)
+        Me.SuperTabControlPanel3.Size = New System.Drawing.Size(378, 425)
         Me.SuperTabControlPanel3.TabIndex = 1
         Me.SuperTabControlPanel3.TabItem = Me.SuperTabItem2
         '
@@ -187,7 +428,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.dgjPrevendedor.Office2007CustomColor = System.Drawing.Color.DodgerBlue
         Me.dgjPrevendedor.RowHeaderFormatStyle.Font = New System.Drawing.Font("Calibri", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgjPrevendedor.RowHeaderFormatStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
-        Me.dgjPrevendedor.Size = New System.Drawing.Size(307, 425)
+        Me.dgjPrevendedor.Size = New System.Drawing.Size(378, 425)
         Me.dgjPrevendedor.TabIndex = 117
         Me.dgjPrevendedor.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -205,10 +446,10 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.gPanelRepartidor.Controls.Add(Me.SuperTabControl1)
         Me.gPanelRepartidor.DisabledBackColor = System.Drawing.Color.Empty
         Me.gPanelRepartidor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gPanelRepartidor.Location = New System.Drawing.Point(323, 4)
+        Me.gPanelRepartidor.Location = New System.Drawing.Point(396, 4)
         Me.gPanelRepartidor.Margin = New System.Windows.Forms.Padding(4)
         Me.gPanelRepartidor.Name = "gPanelRepartidor"
-        Me.gPanelRepartidor.Size = New System.Drawing.Size(311, 480)
+        Me.gPanelRepartidor.Size = New System.Drawing.Size(384, 480)
         '
         '
         '
@@ -264,7 +505,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabControl1.ReorderTabsEnabled = True
         Me.SuperTabControl1.SelectedTabFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
         Me.SuperTabControl1.SelectedTabIndex = 1
-        Me.SuperTabControl1.Size = New System.Drawing.Size(305, 451)
+        Me.SuperTabControl1.Size = New System.Drawing.Size(378, 451)
         Me.SuperTabControl1.TabFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SuperTabControl1.TabIndex = 118
         Me.SuperTabControl1.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem1})
@@ -278,7 +519,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabControlPanel2.Location = New System.Drawing.Point(0, 26)
         Me.SuperTabControlPanel2.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanel2.Name = "SuperTabControlPanel2"
-        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(305, 425)
+        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(378, 425)
         Me.SuperTabControlPanel2.TabIndex = 1
         Me.SuperTabControlPanel2.TabItem = Me.SuperTabItem1
         '
@@ -294,7 +535,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.dgjRepartidor.Office2007CustomColor = System.Drawing.Color.DodgerBlue
         Me.dgjRepartidor.RowHeaderFormatStyle.Font = New System.Drawing.Font("Calibri", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgjRepartidor.RowHeaderFormatStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
-        Me.dgjRepartidor.Size = New System.Drawing.Size(305, 425)
+        Me.dgjRepartidor.Size = New System.Drawing.Size(378, 425)
         Me.dgjRepartidor.TabIndex = 117
         Me.dgjRepartidor.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -315,7 +556,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.GroupPanelPersonal.Location = New System.Drawing.Point(4, 4)
         Me.GroupPanelPersonal.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupPanelPersonal.Name = "GroupPanelPersonal"
-        Me.GroupPanelPersonal.Size = New System.Drawing.Size(311, 480)
+        Me.GroupPanelPersonal.Size = New System.Drawing.Size(384, 480)
         '
         '
         '
@@ -371,7 +612,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabControlPersonal.ReorderTabsEnabled = True
         Me.SuperTabControlPersonal.SelectedTabFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold)
         Me.SuperTabControlPersonal.SelectedTabIndex = 1
-        Me.SuperTabControlPersonal.Size = New System.Drawing.Size(305, 451)
+        Me.SuperTabControlPersonal.Size = New System.Drawing.Size(378, 451)
         Me.SuperTabControlPersonal.TabFont = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SuperTabControlPersonal.TabIndex = 118
         Me.SuperTabControlPersonal.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItemRepartidor})
@@ -386,7 +627,7 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabControlPanel1.Location = New System.Drawing.Point(0, 26)
         Me.SuperTabControlPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanel1.Name = "SuperTabControlPanel1"
-        Me.SuperTabControlPanel1.Size = New System.Drawing.Size(305, 425)
+        Me.SuperTabControlPanel1.Size = New System.Drawing.Size(378, 425)
         Me.SuperTabControlPanel1.TabIndex = 1
         Me.SuperTabControlPanel1.TabItem = Me.SuperTabItemRepartidor
         '
@@ -409,16 +650,9 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.DgjBusqueda.SelectedFormatStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
         Me.DgjBusqueda.SelectedFormatStyle.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DgjBusqueda.SelectedFormatStyle.ForeColor = System.Drawing.Color.White
-        Me.DgjBusqueda.Size = New System.Drawing.Size(305, 425)
+        Me.DgjBusqueda.Size = New System.Drawing.Size(378, 425)
         Me.DgjBusqueda.TabIndex = 117
         Me.DgjBusqueda.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'SuperTabItemRepartidor
-        '
-        Me.SuperTabItemRepartidor.AttachedControl = Me.SuperTabControlPanel1
-        Me.SuperTabItemRepartidor.GlobalItem = False
-        Me.SuperTabItemRepartidor.Name = "SuperTabItemRepartidor"
-        Me.SuperTabItemRepartidor.Text = "Listado Zonas"
         '
         'TbCodigo
         '
@@ -430,57 +664,25 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.TbCodigo.TabIndex = 116
         Me.TbCodigo.Visible = False
         '
-        'Panel2
+        'SuperTabItemRepartidor
         '
-        Me.Panel2.BackColor = System.Drawing.Color.Transparent
-        Me.Panel2.Controls.Add(Me.ButtonX1)
-        Me.Panel2.Controls.Add(Me.ButtonX2)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel2.Location = New System.Drawing.Point(591, 0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(368, 87)
-        Me.Panel2.TabIndex = 117
-        '
-        'ButtonX1
-        '
-        Me.ButtonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.ButtonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
-        Me.ButtonX1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.ButtonX1.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonX1.Image = Global.Presentacion.My.Resources.Resources.save
-        Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.ButtonX1.Location = New System.Drawing.Point(74, 0)
-        Me.ButtonX1.Name = "ButtonX1"
-        Me.ButtonX1.Size = New System.Drawing.Size(147, 87)
-        Me.ButtonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
-        Me.ButtonX1.TabIndex = 0
-        Me.ButtonX1.Text = "Guardar"
-        '
-        'ButtonX2
-        '
-        Me.ButtonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.ButtonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.Office2007WithBackground
-        Me.ButtonX2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.ButtonX2.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonX2.Image = Global.Presentacion.My.Resources.Resources.atras
-        Me.ButtonX2.ImageFixedSize = New System.Drawing.Size(30, 30)
-        Me.ButtonX2.Location = New System.Drawing.Point(221, 0)
-        Me.ButtonX2.Name = "ButtonX2"
-        Me.ButtonX2.Size = New System.Drawing.Size(147, 87)
-        Me.ButtonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014
-        Me.ButtonX2.TabIndex = 1
-        Me.ButtonX2.Text = "Salir"
+        Me.SuperTabItemRepartidor.AttachedControl = Me.SuperTabControlPanel1
+        Me.SuperTabItemRepartidor.GlobalItem = False
+        Me.SuperTabItemRepartidor.Name = "SuperTabItemRepartidor"
+        Me.SuperTabItemRepartidor.Text = "Listado Zonas"
         '
         'F0_AsignacionZonaAlternativo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(959, 575)
+        Me.ClientSize = New System.Drawing.Size(1176, 575)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "F0_AsignacionZonaAlternativo"
         Me.Text = "F0_AsignacionZonaAlternativo"
         Me.Panel1.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.gPanelVendedor.ResumeLayout(False)
         CType(Me.SuperTabControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -498,7 +700,6 @@ Partial Class F0_AsignacionZonaAlternativo
         Me.SuperTabControlPanel1.ResumeLayout(False)
         Me.SuperTabControlPanel1.PerformLayout()
         CType(Me.DgjBusqueda, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -524,4 +725,16 @@ Partial Class F0_AsignacionZonaAlternativo
     Friend WithEvents Panel2 As Panel
     Friend WithEvents ButtonX1 As DevComponents.DotNetBar.ButtonX
     Friend WithEvents ButtonX2 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents btn010 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btn09 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btn08 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btn07 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btn06 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btn05 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btn04 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btn03 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btn02 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btn01 As DevComponents.DotNetBar.ButtonX
+    Friend WithEvents btnActual As DevComponents.DotNetBar.ButtonX
 End Class

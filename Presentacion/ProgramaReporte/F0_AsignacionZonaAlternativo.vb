@@ -24,6 +24,8 @@ Public Class F0_AsignacionZonaAlternativo
     Public _DtZonas As DataTable
     Public _DtDetalleZonas As DataTable
 
+    Public Fila As Integer = -1
+
 #End Region
 #Region "Propiedades generales"
 
@@ -438,6 +440,50 @@ Public Class F0_AsignacionZonaAlternativo
         Me.Close()
         _modulo.Select()
         _tab.Close()
+    End Sub
+    Public Sub SetearColorTable(Btn As ButtonX, bandera As Boolean)
+        If (bandera = True) Then
+            Btn.ColorTable = eButtonColor.BlueOrb
+        Else
+            Btn.ColorTable = eButtonColor.Office2007WithBackground
+        End If
+    End Sub
+    Public Sub SetearTodos()
+        SetearColorTable(btnActual, False)
+        SetearColorTable(btn01, False)
+        SetearColorTable(btn02, False)
+        SetearColorTable(btn03, False)
+        SetearColorTable(btn04, False)
+        SetearColorTable(btn05, False)
+        SetearColorTable(btn06, False)
+        SetearColorTable(btn07, False)
+        SetearColorTable(btn08, False)
+        SetearColorTable(btn09, False)
+        SetearColorTable(btn010, False)
+    End Sub
+    Private Sub ButtonX3_Click(sender As Object, e As EventArgs) Handles btnActual.Click, btn01.Click, btn02.Click, btn03.Click, btn04.Click, btn05.Click, btn06.Click, btn07.Click, btn08.Click, btn09.Click, btn010.Click
+
+
+        Dim btn As ButtonX = sender
+            Fila = btn.Tag
+            SetearTodos()
+            SetearColorTable(btn, True)
+            If (Fila = -1) Then
+                _DtDetalleZonas = L_prListarZonas()
+            Else
+
+            End If
+
+
+
+
+
+
+
+            P_PrArmarGrillas()
+
+
+        P_prLlenarDatos(0)
     End Sub
 
 
